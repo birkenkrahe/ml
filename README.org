@@ -4,6 +4,9 @@
 #+OPTIONS: toc:nil
 #+attr_html: :width 600px
 [[./img/cover.jpg]]
+
+Photo by <a href="https://unsplash.com/@kasiape?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Katarzyna Pe</a> on <a href="https://unsplash.com/s/photos/machine-learning-stormtrooper?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  
 * What's in this repo?
 
   * Repository for DSC 305 - Machine learning
