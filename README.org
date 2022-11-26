@@ -2,6 +2,8 @@
 #+AUTHOR:Marcus Birkenkrahe
 #+SUBTITLE: DSC 305 @ Lyon College Spring 2023
 #+OPTIONS: toc:nil
+#+attr_html: :width 600px
+[[./img/cover.jpg]]
 * What's in this repo?
 
   * Repository for DSC 305 - Machine learning
