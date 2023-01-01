@@ -1,0 +1,65 @@
+#+title: ml
+#+startup: overview hideblocks indent
+#+property: header-args:R :session *R* :exports both :results output
+** Entry test - DSC 305 "Machine Learning"
+*** README
+
+We're going to use the statistical programming language R in this
+course. Some proficiency with R is assumed though we'll review the
+basics at the start.
+
+If you're new to R, I suggest you complete the (free) "[[https://www.datacamp.com/courses/free-introduction-to-r][Introduction to
+R]]" course on the DataCamp platform - this will take about 4 hours of
+your time. The course is free - you only have to register with
+DataCamp (please use your Lyon email for that).
+
+This entry test covers some of the basics:
+1. R data structures
+2. Managing data with R
+3. Exploring and understanding data using R
+
+To work through the test, open this [[https://colab.research.google.com/drive/1FiCejT-5WwsnRcyB7OPfDcP0X-1HwFFi?usp=sharing][notebook in Google
+Colaboratory]][fn:1] and answer the questions by adding code in the code
+blocks and running them one by one as shown in the figure.
+#+attr_html: :width 400px
+[[./img/colab2.png]]
+
+Alternatively, you can work through this Org-mode file using Emacs.
+
+*** R data structures
+
+1) Create a vector named ~subject_name~ to store three patient names,
+   John Doe, Jane Doe, and Steve Graves.
+   #+begin_src R :results silent
+     subject_name <- c("John Doe", "Jane Doe", "Steve Graves")
+   #+end_src
+
+2) Display the content of ~subject_name~ in five different ways (you
+   should know at least two ways to do this).
+   #+begin_src R
+     subject_name
+     (subject_name) # () is equivalent to the identity function
+     print(subject_name)
+     head(subject_name)
+     show(subject_name)
+   #+end_src
+
+   #+RESULTS:
+   : [1] "John Doe"     "Jane Doe"     "Steve Graves"
+   : [1] "John Doe"     "Jane Doe"     "Steve Graves"
+   : [1] "John Doe"     "Jane Doe"     "Steve Graves"
+   : [1] "John Doe"     "Jane Doe"     "Steve Graves"
+   : [1] "John Doe"     "Jane Doe"     "Steve Graves"
+
+3) What type of vector is ~subject_name~? 
+   #+begin_src R
+     class(subject_name)
+     typeof(subject_name)
+     mode(subject_name)
+   #+end_src
+
+   #+RESULTS:
+   : [1] "character"
+   : [1] "character"
+   : [1] "character"
+
