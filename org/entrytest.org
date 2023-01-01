@@ -20,9 +20,7 @@ This entry test covers some of the basics:
 
 To work through the test, open this [[https://colab.research.google.com/drive/1FiCejT-5WwsnRcyB7OPfDcP0X-1HwFFi?usp=sharing][notebook in Google
 Colaboratory]][fn:1] and answer the questions by adding code in the code
-blocks and running them one by one as shown in the figure.
-#+attr_html: :width 400px
-[[../img/colab2.png]]
+blocks and running them one by one as shown [[https://github.com/birkenkrahe/ml/blob/main/img/colab2.png][in this figure]].
 
 Alternatively, you can work through this Org-mode file using Emacs.
 
