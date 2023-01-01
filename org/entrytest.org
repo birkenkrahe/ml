@@ -43,3 +43,12 @@ Alternatively, you can work through [[https://raw.githubusercontent.com/birkenkr
      ...
    #+end_src
 
+* Footnotes
+
+[fn:1] If you want to start a new R notebook in Google Colaboratory,
+you need to enter ~https://colab.to/r~. For an explanation on how to use
+Python + R in this environment, [[https://youtu.be/XasBV68Szk4][see here]]. In the course, we're going
+to do literate programming with GNU Emacs + ESS + Org-mode
+instead. Colaboratory, RStudio, or DataCamp workspace are all
+alternative IDEs. However, none of them give us the freedom and
+control that Emacs gives us.
