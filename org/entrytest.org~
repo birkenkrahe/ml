@@ -31,17 +31,35 @@ Alternatively, you can work through this Org-mode file using Emacs.
 1) Create a vector named ~subject_name~ to store three patient names,
    John Doe, Jane Doe, and Steve Graves.
    #+begin_src R :results silent
-     ...
+     subject_name <- c("John Doe", "Jane Doe", "Steve Graves")
    #+end_src
 
 2) Display the content of ~subject_name~ in five different ways (you
    should know at least two ways to do this).
    #+begin_src R
-     ...
+     subject_name
+     (subject_name) # () is equivalent to the identity function
+     print(subject_name)
+     head(subject_name)
+     show(subject_name)
    #+end_src
+
+   #+RESULTS:
+   : [1] "John Doe"     "Jane Doe"     "Steve Graves"
+   : [1] "John Doe"     "Jane Doe"     "Steve Graves"
+   : [1] "John Doe"     "Jane Doe"     "Steve Graves"
+   : [1] "John Doe"     "Jane Doe"     "Steve Graves"
+   : [1] "John Doe"     "Jane Doe"     "Steve Graves"
 
 3) What type of vector is ~subject_name~? 
    #+begin_src R
-     ...
+     class(subject_name)
+     typeof(subject_name)
+     mode(subject_name)
    #+end_src
+
+   #+RESULTS:
+   : [1] "character"
+   : [1] "character"
+   : [1] "character"
 
