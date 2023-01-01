@@ -1,8 +1,8 @@
-#+title: Entry test - DSC 305 "Machine Learning"
-#+author: [yourname] 
+#+title: ml
 #+startup: overview hideblocks indent
 #+property: header-args:R :session *R* :exports both :results output
-* README
+** Entry test - DSC 305 "Machine Learning"
+*** README
 
 We're going to use the statistical programming language R in this
 course. Some proficiency with R is assumed though we'll review the
@@ -24,7 +24,7 @@ blocks and running them one by one as shown [[https://github.com/birkenkrahe/ml/
 
 Alternatively, you can work through [[https://raw.githubusercontent.com/birkenkrahe/ml/main/org/entrytest.org][this Org-mode file]] using Emacs.
 
-* R data structures
+*** R data structures
 
 1) Create a vector named ~subject_name~ to store three patient names,
    John Doe, Jane Doe, and Steve Graves.
