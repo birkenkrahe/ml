@@ -22,7 +22,7 @@ To work through the test, open this [[https://colab.research.google.com/drive/1F
 Colaboratory]][fn:1] and answer the questions by adding code in the code
 blocks and running them one by one as shown [[https://github.com/birkenkrahe/ml/blob/main/img/colab2.png][in this figure]].
 
-Alternatively, you can work through this Org-mode file using Emacs.
+Alternatively, you can work through [[https://raw.githubusercontent.com/birkenkrahe/ml/main/org/entrytest.org][this Org-mode file]] using Emacs.
 
 *** R data structures
 
