@@ -1,0 +1,415 @@
+% Created 2023-01-03 Tue 10:53
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Marcus Birkenkrahe}
+\date{\today}
+\title{DSC 305.01/CSC 482.01 - Machine Learning - Spring 2023 Syllabus}
+\hypersetup{
+ pdfauthor={Marcus Birkenkrahe},
+ pdftitle={DSC 305.01/CSC 482.01 - Machine Learning - Spring 2023 Syllabus},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.2 (Org mode 9.5.5)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+\section{General Course Information}
+\label{sec:org3f7e090}
+
+\begin{itemize}
+\item Meeting Times: Tuesday/Thursday, 13:00-13:50 hrs
+\item Meeting place: Lyon Building Computer Lab 104
+\item Professor: Marcus Birkenkrahe
+\item Office: Derby Science Building 210
+\item Phone: (870) 307-7254 (Office) / (501 422-4725 (Private)
+\item Office Hours: Mon/Wed/Fri 16:15-16:45, Tue/Thu 16:00-16:30
+\item Textbook: Machine Learning With R (3e) by Brett Lantz, Packt
+Publishing (\href{https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864}{Online: packtpub.com, ebook US\$5})
+\end{itemize}
+
+\section{Objectives}
+\label{sec:orgadb89f3}
+
+This course is concerned with algorithms that transform information
+into actionable intelligence using present-day computers and big
+data. We use R, a cross-platform, zero-cost statistical programming
+environment that combines a wide range of functions, interfaces to
+common machine learning packages, and best-in-class visualization.
+
+\section{Student learning outcomes}
+\label{sec:org29694a9}
+
+Students who complete DSC 305, "Machine Learning" (ML), can:
+
+\begin{itemize}
+\item Apply un/supervised learning models to big data problems
+\item Understand neural networks and Support Vector Machine algorithms
+\item Distinguish different methods to make predictions with ML
+\item Work with open source libraries like \texttt{Keras} and \texttt{TensorFlow} by Google
+\item Master the whole infrastructure for advanced statistical computing
+\item Know how to effectively present assignment results
+\item Improve data literacy, research and present a project as a team
+\end{itemize}
+
+\section{Course requirements}
+\label{sec:org3e9437b}
+
+\begin{itemize}
+\item Basic proficiency with R is useful (as taught in DSC 105 or obtained
+independently on DataCamp "Introduction to R", GitHub's "fasteR", or
+Part I of the Book of R by Davies)
+\item Imagination, creativity and a visual mind, enjoying finding patterns
+and spotting correlations
+\item Basic understanding of algorithms and data structures (in any
+programming language)
+\item Basic understanding of data science infrastructure especially
+literate programming methods
+\end{itemize}
+
+\section{Grading system}
+\label{sec:org9b9b4e9}
+
+\begin{center}
+\begin{tabular}{lrrrr}
+REQUIREMENT & UNITS & PPU & TOTAL & \% of TOTAL\\
+\hline
+Final exam & 1 & 100 & 100 & 20.\\
+Home assignments & 10 & 10 & 100 & 20.\\
+Class assignments & 10 & 10 & 100 & 20.\\
+Project sprint reviews & 5 & 20 & 100 & 20.\\
+Multiple-choice tests & 10 & 10 & 100 & 20.\\
+\hline
+TOTAL &  &  & 500 & 100.\\
+\hline
+\end{tabular}
+\end{center}
+
+You should be able to see your current grade at any time using the
+Canvas gradebook for the course.
+
+\section{Grading table}
+\label{sec:org25534ad}
+
+This table is used to convert completion rates into letter
+grades. for the midterm results, letter grades still carry signs,
+while for the term results, only straight letters are given (by
+rounding up).
+
+\begin{center}
+\begin{tabular}{rll}
+\hline
+\textbf{\%} & \textbf{MIDTERM GRADE} & \textbf{FINAL GRADE}\\
+\hline
+100-98 & A+ & \\
+97-96 & A & A (PASSED -\\
+95-90 & A- & VERY GOOD)\\
+\hline
+89-86 & B+ & \\
+85-80 & B & B (PASSED -\\
+79-76 & B- & GOOD)\\
+\hline
+75-70 & C+ & \\
+69-66 & C & C (PASSED -\\
+65-60 & C- & SATISFACTORY)\\
+\hline
+59-56 & D+ & \\
+55-50 & D & D (PASSED)\\
+\hline
+49-0 & F & F (FAILED)\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Standard Policies}
+\label{sec:org3b1329f}
+\subsection{Honor Code}
+\label{sec:orgb33b690}
+
+All graded work in this class is to be pledged in accordance with the
+Lyon College Honor Code. The use of a phone for any reason during the
+course of an exam is considered an honor code violation.
+
+\subsection{Class Attendance Policy}
+\label{sec:org8590db1}
+
+Students are expected to attend all class periods for the courses in
+which they are enrolled. They are responsible for conferring with
+individual professors regarding any missed assignments. Faculty
+members are to notify the Registrar when a student misses the
+equivalent of one, two, three, and four weeks of class periods in a
+single course. Under this policy, there is no distinction between
+“excused” and “unexcused” absences, except that a student may make up
+work missed during an excused absence. A reminder of the college’s
+attendance policy will be issued to the student at one week, a second
+reminder at two weeks, a warning at three weeks, and notification of
+administrative withdrawal and the assigning of an “F” grade at four
+weeks. Students who are administratively withdrawn from more than one
+course will be placed on probation or suspended.
+
+\subsection{Academic Support}
+\label{sec:org7051595}
+
+The Morrow Academic Center (MAC) helps students who want to improve
+grades by providing peer-led services including Supplemental
+Instruction (SI), tutoring, the Writing Center, and academic coaching
+as well providing 24-hour, online tutoring for all subjects through
+Tutor.com. A schedule of peer-led services is available at
+lyon.edu/mac and Tutor.com is accessed through courses in
+Schoology. Contact Donald Taylor, Director of Academic Support, at
+870-307-7319 or donald.taylor@lyon.edu for more information about MAC
+services.
+
+\subsection{Technology Support}
+\label{sec:org8161210}
+
+For general technology support, you can contact the IT department by
+emailing support@lyon.edu or by calling 870-307-7555. For assistance
+with classroom-related technologies, such as the learning management
+system (LMS), you can request support using the methods above, or you
+can contact sarah.williams@lyon.edu directly for assistance. Your
+course content will be accessible digitally using either the Schoology
+or Canvas LMS. Both LMS platforms will use your myLyon credentials for
+your student login.
+
+\begin{itemize}
+\item For Canvas, login at lyon.instructure.com
+\item For Schoology, login at lyon.schoology.com
+\end{itemize}
+
+\subsection{Disabilities}
+\label{sec:orga69f281}
+
+Students seeking reasonable accommodations based on documented
+learning disabilities must contact Interim Director of Academic
+Support Donald Taylor in the Morrow Academic Center at (870) 307-7019
+or at donald.taylor@lyon.edu.
+
+\subsection{Harassment, Discrimination, and Sexual Misconduct}
+\label{sec:org3f2bec7}
+
+Lyon College seeks to provide all members of the community with a safe
+and secure learning and work environment that is free of crime and/or
+policy violations motivated by discrimination, sexual and bias-related
+harassment, and other violations of rights. The College has a
+zero-tolerance policy against gender-based misconduct, sexual assault,
+and interpersonal violence toward any member or guest of the Lyon
+College community. Any individual who has been the victim of an act of
+violence or intimidation is urged to make an official report by
+contacting a campus Title IX coordinator or by visiting
+www.lyon.edu/file-a-title-ix-report. A report of an act of violence or
+intimidation will be dealt with promptly. Confidentiality will be
+maintained to the greatest extent possible within the constraints of
+the law. For more information regarding the College’s Title IX
+policies and procedures, visit www.lyon.edu/title-ix.
+
+\subsection{Mental \& Behavioral Health}
+\label{sec:org8b5b518}
+
+Lyon College is dedicated to ensuring each student has access to
+mental and behavioral health resources. The College’s Mental and
+Behavioral Health Office is located in Edwards Commons and is
+partnered with White River Health System’s Behavioral Health
+Clinic. The office is committed to helping the Lyon community achieve
+maximum mental and behavioral wellness through both preventative and
+reactive care. A full-time, licensed, professional counselor provides
+counseling, consultations, outreach, workshops, and many more mental
+and behavioral services to Lyon students, faculty, and staff at no
+cost. The Mental and Behavioral Health Office also provides access to
+White River Health System’s services and facilities, including
+medication management and in-patient and out-patient care. To make an
+appointment, contact counseling@lyon.edu.
+
+\subsection{College-Wide COVID-19 Policies}
+\label{sec:orgd466e8a}
+
+The College does not require masks in instructional and meeting spaces
+inside academic buildings. However, if instructors require masks in
+their classroom, lab, or studio, then students and guests must comply
+with that requirement.  Vaccines are strongly encouraged for all
+faculty, staff, and students. Vaccines are not mandated for Lyon
+College community members, although there may be specific courses
+involving interactions with vulnerable, external populations where a
+vaccine may be required.  The College will continue to offer
+symptomatic testing for students, faculty and staff.
+
+\subsection{Details}
+\label{sec:org2dafc45}
+
+Details specific to this course may be found in the subsequent pages
+of this syllabus. Those details will include at least the following:
+\begin{itemize}
+\item A description of the course consistent with the Lyon College
+catalog.
+\item A list of student learning outcomes for the course.
+\item A summary of all course requirements.
+\item An explanation of the grading system to be used in the course.
+\item Any course-specific attendance policies that go beyond the College
+policy.
+\item Details about what constitutes acceptable and unacceptable student
+collaboration on graded work.
+\item A clear statement about which LMS is being used for the course.
+\end{itemize}
+
+\subsection{Learning Management System (LMS)}
+\label{sec:org5e2b12e}
+
+We will use Canvas in this course.
+\section{Assignments and Honor Code}
+\label{sec:orgc8b7c31}
+
+There will be several assignments during the summer school,
+including programming assignments and multiple-choice tests. They
+are due at the beginning of the class period on the due date. Once
+class begins, the assigment will be considered one day late if it
+has not been turned in.  Late programs will not be accepted without
+an extension. Extensions will \textbf{not} be granted for reasons such as:
+
+\begin{itemize}
+\item You could not get to a computer
+\item You could not get a computer to do what you wanted it to do
+\item The network was down
+\item The printer was out of paper or toner
+\item You erased your files, lost your homework, or misplaced your
+flash drive
+\item You had other coursework or family commitments that interfered
+with your work in this course
+\end{itemize}
+
+Put “Pledged” and a note of any collaboration in the comments of any
+program you turn in. Programming assignments are individual efforts,
+but you may seek assistance from another student or the course
+instructor.  You may not copy someone else’s solution. If you are
+having trouble finishing an assignment, it is far better to do your
+own work and receive a low score than to go through an honor trial and
+suffer the penalties that may be involved.
+
+What is cheating on an assignment? Here are a few examples:
+
+\begin{itemize}
+\item Having someone else write your assignment, in whole or in part
+\item Copying an assignment someone else wrote, in whole or in part
+\item Collaborating with someone else to the extent that your
+submissions are identifiably very similar, in whole or in part
+\item Turning in a submission with the wrong name on it
+\end{itemize}
+
+What is not cheating?  Here are some examples:
+\begin{itemize}
+\item Talking to someone in general terms about concepts involved in an
+assignment
+\item Asking someone for help with a specific error message or bug in
+your program
+\item Getting help with the specifics of language syntax or citation
+style
+\item Utilizing information given to you by the instructor
+\end{itemize}
+
+Any assistance must be clearly explained in the comments at the
+beginning of your submission.  If you have any questions about this,
+please ask or review the policies relating to the Honor Code.
+
+Absences on Days of Exams: Test “make-ups” will only be allowed if
+arrangements have been made prior to the scheduled time.  If you are
+sick the day of the test, please e-mail me or leave a message on my
+phone before the scheduled time, and we can make arrangements when
+you return.
+
+\section{Attendance policy}
+\label{sec:org55c94c5}
+
+In accordance with college policy, if you miss 4 weeks of class, you
+fail the course automatically. Any missed meetings result in an \href{https://catalog.lyon.edu/class-attendance}{"Early
+Alert" report}.
+
+You should take care not to miss consecutive sessions if at all
+possible - otherwise you risk losing touch with the class and falling
+behind.
+\section{Important Dates}
+\label{sec:orgbd582d3}
+
+\begin{center}
+\begin{tabular}{lll}
+DATE & DAY & DESCRIPTION\\
+\hline
+3 January & Tuesday & Last day to deposit for '22 spring semester\\
+10 January & Tuesday & Classes begin\\
+16 January & Monday & MLK Day - no classes\\
+17 January & Tuesday & Last day to add a class\\
+24 January & Tuesday & Last day to drop without record of course\\
+ &  & Last day to declare a course pass-fail\\
+ &  & Deadline for removal of incompletes\\
+25-28 February & Saturday-Tuesday & Mental-Health break (no classes)\\
+1 March & Wednesday & Mid-term grades available by noon\\
+8 March & Wednesday & Lst day to drop a course with a "W"\\
+18-26 March & Saturday-Sunday & Spring break\\
+7-9 April & Friday-Sunday & Easter break\\
+18 April & Tuesday & Honors Convocation\\
+4 May & Wednesday & Last day of spring classes\\
+4-7 May & Thursday-Sunday & Final exams for graduating seniors\\
+ &  & (start 6pm Thu, no exams before 1pm Sun)\\
+5-10 May & Thursday-Tuesday & Final exams for non-graduating students\\
+ &  & (no exams before 1pm on Sunday)\\
+9 May & Tuesday & Senior grades due by noon\\
+12 May & Friday & Baccalaureate\\
+13 May & Saturday & Spring commencement\\
+17 May & Wednesday & All final grades due by noon\\
+\end{tabular}
+\end{center}
+
+\section{Schedule and session content}
+\label{sec:org0e9b9fe}
+
+Lectures and lab sessions are aligned with the content of the 10
+DataCamp lessons that need to be completed in the course of the term.
+
+\begin{center}
+\begin{tabular}{rlll}
+WEEK & DATE & DATACAMP ASSIGNMENT & TESTS\\
+\hline
+1 & Jan 10,12 &  & \\
+\hline
+2 & Jan 17,19 & What is Machine Learning? & Test 1\\
+\hline
+3 & Jan 24,26 & Machine Learning Models & Test 2\\
+\hline
+4 & Jan 31, Feb 2 & k-Nearest Neighbors (kNN) & Test 3\\
+\hline
+5 & Feb 7,9 & \textbf{Sprint review 1: literature review} & \\
+\hline
+6 & Feb 14,16 & Naive Bayes & Test 4\\
+\hline
+7 & Feb 21,23 & Logistic Regression & Test 5\\
+\hline
+8 & Mar 2 & Classification Trees & Test 6\\
+\hline
+9 & Mar 7,9 & \textbf{Sprint review 2: methodology} & \\
+\hline
+10 & Mar 14,16 & Unsupervised learning: clustering & Test 7\\
+\hline
+11 & Mar 28,30 & Hierarchical clustering & Test 8\\
+\hline
+12 & Apr 4,6 & Dimensionality reduction & Test 9\\
+\hline
+13 & Apr 11,13 & \textbf{Sprint review 3: abstract} & \\
+\hline
+14 & Apr 18,20 & Unsupervised learning case study & Test 10\\
+\hline
+15 & Apr 25,27 & \textbf{Sprint review 4: final presentation} & \\
+\hline
+16 & May 2 &  & \\
+\hline
+\end{tabular}
+\end{center}
+\end{document}

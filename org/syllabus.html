@@ -1,0 +1,1047 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-01-03 Tue 10:52 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DSC 305.01/CSC 482.01 - Machine Learning - Spring 2023 Syllabus</title>
+<meta name="author" content="Marcus Birkenkrahe" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">DSC 305.01/CSC 482.01 - Machine Learning - Spring 2023 Syllabus</h1>
+<div id="outline-container-org98ebca0" class="outline-2">
+<h2 id="org98ebca0"><span class="section-number-2">1.</span> General Course Information</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Meeting Times: Tuesday/Thursday, 13:00-13:50 hrs</li>
+<li>Meeting place: Lyon Building Computer Lab 104</li>
+<li>Professor: Marcus Birkenkrahe</li>
+<li>Office: Derby Science Building 210</li>
+<li>Phone: (870) 307-7254 (Office) / (501 422-4725 (Private)</li>
+<li>Office Hours: Mon/Wed/Fri 16:15-16:45, Tue/Thu 16:00-16:30</li>
+<li>Textbook: Machine Learning With R (3e) by Brett Lantz, Packt
+Publishing (<a href="https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864">Online: packtpub.com, ebook US$5</a>)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc1e5227" class="outline-2">
+<h2 id="orgc1e5227"><span class="section-number-2">2.</span> Objectives</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+This course is concerned with algorithms that transform information
+into actionable intelligence using present-day computers and big
+data. We use R, a cross-platform, zero-cost statistical programming
+environment that combines a wide range of functions, interfaces to
+common machine learning packages, and best-in-class visualization.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc3fb6a3" class="outline-2">
+<h2 id="orgc3fb6a3"><span class="section-number-2">3.</span> Student learning outcomes</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Students who complete DSC 305, "Machine Learning" (ML), can:
+</p>
+
+<ul class="org-ul">
+<li>Apply un/supervised learning models to big data problems</li>
+<li>Understand neural networks and Support Vector Machine algorithms</li>
+<li>Distinguish different methods to make predictions with ML</li>
+<li>Work with open source libraries like <code>Keras</code> and <code>TensorFlow</code> by Google</li>
+<li>Master the whole infrastructure for advanced statistical computing</li>
+<li>Know how to effectively present assignment results</li>
+<li>Improve data literacy, research and present a project as a team</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8672974" class="outline-2">
+<h2 id="org8672974"><span class="section-number-2">4.</span> Course requirements</h2>
+<div class="outline-text-2" id="text-4">
+<ul class="org-ul">
+<li>Basic proficiency with R is useful (as taught in DSC 105 or obtained
+independently on DataCamp "Introduction to R", GitHub's "fasteR", or
+Part I of the Book of R by Davies)</li>
+<li>Imagination, creativity and a visual mind, enjoying finding patterns
+and spotting correlations</li>
+<li>Basic understanding of algorithms and data structures (in any
+programming language)</li>
+<li>Basic understanding of data science infrastructure especially
+literate programming methods</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd561d3a" class="outline-2">
+<h2 id="orgd561d3a"><span class="section-number-2">5.</span> Grading system</h2>
+<div class="outline-text-2" id="text-5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">REQUIREMENT</th>
+<th scope="col" class="org-right">UNITS</th>
+<th scope="col" class="org-right">PPU</th>
+<th scope="col" class="org-right">TOTAL</th>
+<th scope="col" class="org-right">% of TOTAL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Final exam</td>
+<td class="org-right">1</td>
+<td class="org-right">100</td>
+<td class="org-right">100</td>
+<td class="org-right">20.</td>
+</tr>
+
+<tr>
+<td class="org-left">Home assignments</td>
+<td class="org-right">10</td>
+<td class="org-right">10</td>
+<td class="org-right">100</td>
+<td class="org-right">20.</td>
+</tr>
+
+<tr>
+<td class="org-left">Class assignments</td>
+<td class="org-right">10</td>
+<td class="org-right">10</td>
+<td class="org-right">100</td>
+<td class="org-right">20.</td>
+</tr>
+
+<tr>
+<td class="org-left">Project sprint reviews</td>
+<td class="org-right">5</td>
+<td class="org-right">20</td>
+<td class="org-right">100</td>
+<td class="org-right">20.</td>
+</tr>
+
+<tr>
+<td class="org-left">Multiple-choice tests</td>
+<td class="org-right">10</td>
+<td class="org-right">10</td>
+<td class="org-right">100</td>
+<td class="org-right">20.</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">TOTAL</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">&#xa0;</td>
+<td class="org-right">500</td>
+<td class="org-right">100.</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+You should be able to see your current grade at any time using the
+Canvas gradebook for the course.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org49d4413" class="outline-2">
+<h2 id="org49d4413"><span class="section-number-2">6.</span> Grading table</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+This table is used to convert completion rates into letter
+grades. for the midterm results, letter grades still carry signs,
+while for the term results, only straight letters are given (by
+rounding up).
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right"><b>%</b></th>
+<th scope="col" class="org-left"><b>MIDTERM GRADE</b></th>
+<th scope="col" class="org-left"><b>FINAL GRADE</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">100-98</td>
+<td class="org-left">A+</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">97-96</td>
+<td class="org-left">A</td>
+<td class="org-left">A (PASSED -</td>
+</tr>
+
+<tr>
+<td class="org-right">95-90</td>
+<td class="org-left">A-</td>
+<td class="org-left">VERY GOOD)</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">89-86</td>
+<td class="org-left">B+</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">85-80</td>
+<td class="org-left">B</td>
+<td class="org-left">B (PASSED -</td>
+</tr>
+
+<tr>
+<td class="org-right">79-76</td>
+<td class="org-left">B-</td>
+<td class="org-left">GOOD)</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">75-70</td>
+<td class="org-left">C+</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">69-66</td>
+<td class="org-left">C</td>
+<td class="org-left">C (PASSED -</td>
+</tr>
+
+<tr>
+<td class="org-right">65-60</td>
+<td class="org-left">C-</td>
+<td class="org-left">SATISFACTORY)</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">59-56</td>
+<td class="org-left">D+</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-right">55-50</td>
+<td class="org-left">D</td>
+<td class="org-left">D (PASSED)</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">49-0</td>
+<td class="org-left">F</td>
+<td class="org-left">F (FAILED)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org631952c" class="outline-2">
+<h2 id="org631952c"><span class="section-number-2">7.</span> Standard Policies</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org38781b2" class="outline-3">
+<h3 id="org38781b2"><span class="section-number-3">7.1.</span> Honor Code</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+All graded work in this class is to be pledged in accordance with the
+Lyon College Honor Code. The use of a phone for any reason during the
+course of an exam is considered an honor code violation.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org453dde3" class="outline-3">
+<h3 id="org453dde3"><span class="section-number-3">7.2.</span> Class Attendance Policy</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+Students are expected to attend all class periods for the courses in
+which they are enrolled. They are responsible for conferring with
+individual professors regarding any missed assignments. Faculty
+members are to notify the Registrar when a student misses the
+equivalent of one, two, three, and four weeks of class periods in a
+single course. Under this policy, there is no distinction between
+“excused” and “unexcused” absences, except that a student may make up
+work missed during an excused absence. A reminder of the college’s
+attendance policy will be issued to the student at one week, a second
+reminder at two weeks, a warning at three weeks, and notification of
+administrative withdrawal and the assigning of an “F” grade at four
+weeks. Students who are administratively withdrawn from more than one
+course will be placed on probation or suspended.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org75815c8" class="outline-3">
+<h3 id="org75815c8"><span class="section-number-3">7.3.</span> Academic Support</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+The Morrow Academic Center (MAC) helps students who want to improve
+grades by providing peer-led services including Supplemental
+Instruction (SI), tutoring, the Writing Center, and academic coaching
+as well providing 24-hour, online tutoring for all subjects through
+Tutor.com. A schedule of peer-led services is available at
+lyon.edu/mac and Tutor.com is accessed through courses in
+Schoology. Contact Donald Taylor, Director of Academic Support, at
+870-307-7319 or donald.taylor@lyon.edu for more information about MAC
+services.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org66d43cd" class="outline-3">
+<h3 id="org66d43cd"><span class="section-number-3">7.4.</span> Technology Support</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+For general technology support, you can contact the IT department by
+emailing support@lyon.edu or by calling 870-307-7555. For assistance
+with classroom-related technologies, such as the learning management
+system (LMS), you can request support using the methods above, or you
+can contact sarah.williams@lyon.edu directly for assistance. Your
+course content will be accessible digitally using either the Schoology
+or Canvas LMS. Both LMS platforms will use your myLyon credentials for
+your student login.
+</p>
+
+<ul class="org-ul">
+<li>For Canvas, login at lyon.instructure.com</li>
+<li>For Schoology, login at lyon.schoology.com</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgbe89e91" class="outline-3">
+<h3 id="orgbe89e91"><span class="section-number-3">7.5.</span> Disabilities</h3>
+<div class="outline-text-3" id="text-7-5">
+<p>
+Students seeking reasonable accommodations based on documented
+learning disabilities must contact Interim Director of Academic
+Support Donald Taylor in the Morrow Academic Center at (870) 307-7019
+or at donald.taylor@lyon.edu.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6238663" class="outline-3">
+<h3 id="org6238663"><span class="section-number-3">7.6.</span> Harassment, Discrimination, and Sexual Misconduct</h3>
+<div class="outline-text-3" id="text-7-6">
+<p>
+Lyon College seeks to provide all members of the community with a safe
+and secure learning and work environment that is free of crime and/or
+policy violations motivated by discrimination, sexual and bias-related
+harassment, and other violations of rights. The College has a
+zero-tolerance policy against gender-based misconduct, sexual assault,
+and interpersonal violence toward any member or guest of the Lyon
+College community. Any individual who has been the victim of an act of
+violence or intimidation is urged to make an official report by
+contacting a campus Title IX coordinator or by visiting
+www.lyon.edu/file-a-title-ix-report. A report of an act of violence or
+intimidation will be dealt with promptly. Confidentiality will be
+maintained to the greatest extent possible within the constraints of
+the law. For more information regarding the College’s Title IX
+policies and procedures, visit www.lyon.edu/title-ix.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org388d9cf" class="outline-3">
+<h3 id="org388d9cf"><span class="section-number-3">7.7.</span> Mental &amp; Behavioral Health</h3>
+<div class="outline-text-3" id="text-7-7">
+<p>
+Lyon College is dedicated to ensuring each student has access to
+mental and behavioral health resources. The College’s Mental and
+Behavioral Health Office is located in Edwards Commons and is
+partnered with White River Health System’s Behavioral Health
+Clinic. The office is committed to helping the Lyon community achieve
+maximum mental and behavioral wellness through both preventative and
+reactive care. A full-time, licensed, professional counselor provides
+counseling, consultations, outreach, workshops, and many more mental
+and behavioral services to Lyon students, faculty, and staff at no
+cost. The Mental and Behavioral Health Office also provides access to
+White River Health System’s services and facilities, including
+medication management and in-patient and out-patient care. To make an
+appointment, contact counseling@lyon.edu.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd5b42f4" class="outline-3">
+<h3 id="orgd5b42f4"><span class="section-number-3">7.8.</span> College-Wide COVID-19 Policies</h3>
+<div class="outline-text-3" id="text-7-8">
+<p>
+The College does not require masks in instructional and meeting spaces
+inside academic buildings. However, if instructors require masks in
+their classroom, lab, or studio, then students and guests must comply
+with that requirement.  Vaccines are strongly encouraged for all
+faculty, staff, and students. Vaccines are not mandated for Lyon
+College community members, although there may be specific courses
+involving interactions with vulnerable, external populations where a
+vaccine may be required.  The College will continue to offer
+symptomatic testing for students, faculty and staff.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7e174ea" class="outline-3">
+<h3 id="org7e174ea"><span class="section-number-3">7.9.</span> Details</h3>
+<div class="outline-text-3" id="text-7-9">
+<p>
+Details specific to this course may be found in the subsequent pages
+of this syllabus. Those details will include at least the following:
+</p>
+<ul class="org-ul">
+<li>A description of the course consistent with the Lyon College
+catalog.</li>
+<li>A list of student learning outcomes for the course.</li>
+<li>A summary of all course requirements.</li>
+<li>An explanation of the grading system to be used in the course.</li>
+<li>Any course-specific attendance policies that go beyond the College
+policy.</li>
+<li>Details about what constitutes acceptable and unacceptable student
+collaboration on graded work.</li>
+<li>A clear statement about which LMS is being used for the course.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgaa30dcb" class="outline-3">
+<h3 id="orgaa30dcb"><span class="section-number-3">7.10.</span> Learning Management System (LMS)</h3>
+<div class="outline-text-3" id="text-7-10">
+<p>
+We will use Canvas in this course.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge18b57d" class="outline-2">
+<h2 id="orge18b57d"><span class="section-number-2">8.</span> Assignments and Honor Code</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+There will be several assignments during the summer school,
+including programming assignments and multiple-choice tests. They
+are due at the beginning of the class period on the due date. Once
+class begins, the assigment will be considered one day late if it
+has not been turned in.  Late programs will not be accepted without
+an extension. Extensions will <b>not</b> be granted for reasons such as:
+</p>
+
+<ul class="org-ul">
+<li>You could not get to a computer</li>
+<li>You could not get a computer to do what you wanted it to do</li>
+<li>The network was down</li>
+<li>The printer was out of paper or toner</li>
+<li>You erased your files, lost your homework, or misplaced your
+flash drive</li>
+<li>You had other coursework or family commitments that interfered
+with your work in this course</li>
+</ul>
+
+<p>
+Put “Pledged” and a note of any collaboration in the comments of any
+program you turn in. Programming assignments are individual efforts,
+but you may seek assistance from another student or the course
+instructor.  You may not copy someone else’s solution. If you are
+having trouble finishing an assignment, it is far better to do your
+own work and receive a low score than to go through an honor trial and
+suffer the penalties that may be involved.
+</p>
+
+<p>
+What is cheating on an assignment? Here are a few examples:
+</p>
+
+<ul class="org-ul">
+<li>Having someone else write your assignment, in whole or in part</li>
+<li>Copying an assignment someone else wrote, in whole or in part</li>
+<li>Collaborating with someone else to the extent that your
+submissions are identifiably very similar, in whole or in part</li>
+<li>Turning in a submission with the wrong name on it</li>
+</ul>
+
+<p>
+What is not cheating?  Here are some examples:
+</p>
+<ul class="org-ul">
+<li>Talking to someone in general terms about concepts involved in an
+assignment</li>
+<li>Asking someone for help with a specific error message or bug in
+your program</li>
+<li>Getting help with the specifics of language syntax or citation
+style</li>
+<li>Utilizing information given to you by the instructor</li>
+</ul>
+
+<p>
+Any assistance must be clearly explained in the comments at the
+beginning of your submission.  If you have any questions about this,
+please ask or review the policies relating to the Honor Code.
+</p>
+
+<p>
+Absences on Days of Exams: Test “make-ups” will only be allowed if
+arrangements have been made prior to the scheduled time.  If you are
+sick the day of the test, please e-mail me or leave a message on my
+phone before the scheduled time, and we can make arrangements when
+you return.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfe697c5" class="outline-2">
+<h2 id="orgfe697c5"><span class="section-number-2">9.</span> Attendance policy</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+In accordance with college policy, if you miss 4 weeks of class, you
+fail the course automatically. Any missed meetings result in an <a href="https://catalog.lyon.edu/class-attendance">"Early
+Alert" report</a>.
+</p>
+
+<p>
+You should take care not to miss consecutive sessions if at all
+possible - otherwise you risk losing touch with the class and falling
+behind.
+</p>
+</div>
+</div>
+<div id="outline-container-org9957443" class="outline-2">
+<h2 id="org9957443"><span class="section-number-2">10.</span> Important Dates</h2>
+<div class="outline-text-2" id="text-10">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">DATE</th>
+<th scope="col" class="org-left">DAY</th>
+<th scope="col" class="org-left">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">3 January</td>
+<td class="org-left">Tuesday</td>
+<td class="org-left">Last day to deposit for '22 spring semester</td>
+</tr>
+
+<tr>
+<td class="org-left">10 January</td>
+<td class="org-left">Tuesday</td>
+<td class="org-left">Classes begin</td>
+</tr>
+
+<tr>
+<td class="org-left">16 January</td>
+<td class="org-left">Monday</td>
+<td class="org-left">MLK Day - no classes</td>
+</tr>
+
+<tr>
+<td class="org-left">17 January</td>
+<td class="org-left">Tuesday</td>
+<td class="org-left">Last day to add a class</td>
+</tr>
+
+<tr>
+<td class="org-left">24 January</td>
+<td class="org-left">Tuesday</td>
+<td class="org-left">Last day to drop without record of course</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Last day to declare a course pass-fail</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Deadline for removal of incompletes</td>
+</tr>
+
+<tr>
+<td class="org-left">25-28 February</td>
+<td class="org-left">Saturday-Tuesday</td>
+<td class="org-left">Mental-Health break (no classes)</td>
+</tr>
+
+<tr>
+<td class="org-left">1 March</td>
+<td class="org-left">Wednesday</td>
+<td class="org-left">Mid-term grades available by noon</td>
+</tr>
+
+<tr>
+<td class="org-left">8 March</td>
+<td class="org-left">Wednesday</td>
+<td class="org-left">Lst day to drop a course with a "W"</td>
+</tr>
+
+<tr>
+<td class="org-left">18-26 March</td>
+<td class="org-left">Saturday-Sunday</td>
+<td class="org-left">Spring break</td>
+</tr>
+
+<tr>
+<td class="org-left">7-9 April</td>
+<td class="org-left">Friday-Sunday</td>
+<td class="org-left">Easter break</td>
+</tr>
+
+<tr>
+<td class="org-left">18 April</td>
+<td class="org-left">Tuesday</td>
+<td class="org-left">Honors Convocation</td>
+</tr>
+
+<tr>
+<td class="org-left">4 May</td>
+<td class="org-left">Wednesday</td>
+<td class="org-left">Last day of spring classes</td>
+</tr>
+
+<tr>
+<td class="org-left">4-7 May</td>
+<td class="org-left">Thursday-Sunday</td>
+<td class="org-left">Final exams for graduating seniors</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">(start 6pm Thu, no exams before 1pm Sun)</td>
+</tr>
+
+<tr>
+<td class="org-left">5-10 May</td>
+<td class="org-left">Thursday-Tuesday</td>
+<td class="org-left">Final exams for non-graduating students</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">(no exams before 1pm on Sunday)</td>
+</tr>
+
+<tr>
+<td class="org-left">9 May</td>
+<td class="org-left">Tuesday</td>
+<td class="org-left">Senior grades due by noon</td>
+</tr>
+
+<tr>
+<td class="org-left">12 May</td>
+<td class="org-left">Friday</td>
+<td class="org-left">Baccalaureate</td>
+</tr>
+
+<tr>
+<td class="org-left">13 May</td>
+<td class="org-left">Saturday</td>
+<td class="org-left">Spring commencement</td>
+</tr>
+
+<tr>
+<td class="org-left">17 May</td>
+<td class="org-left">Wednesday</td>
+<td class="org-left">All final grades due by noon</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org42e73ee" class="outline-2">
+<h2 id="org42e73ee"><span class="section-number-2">11.</span> Schedule and session content</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+Lectures and lab sessions are aligned with the content of the 10
+DataCamp lessons that need to be completed in the course of the term.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-right">WEEK</th>
+<th scope="col" class="org-left">DATE</th>
+<th scope="col" class="org-left">DATACAMP ASSIGNMENT</th>
+<th scope="col" class="org-left">TESTS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-right">1</td>
+<td class="org-left">Jan 10,12</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">2</td>
+<td class="org-left">Jan 17,19</td>
+<td class="org-left">What is Machine Learning?</td>
+<td class="org-left">Test 1</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">3</td>
+<td class="org-left">Jan 24,26</td>
+<td class="org-left">Machine Learning Models</td>
+<td class="org-left">Test 2</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">4</td>
+<td class="org-left">Jan 31, Feb 2</td>
+<td class="org-left">k-Nearest Neighbors (kNN)</td>
+<td class="org-left">Test 3</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">5</td>
+<td class="org-left">Feb 7,9</td>
+<td class="org-left"><b>Sprint review 1: literature review</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">6</td>
+<td class="org-left">Feb 14,16</td>
+<td class="org-left">Naive Bayes</td>
+<td class="org-left">Test 4</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">7</td>
+<td class="org-left">Feb 21,23</td>
+<td class="org-left">Logistic Regression</td>
+<td class="org-left">Test 5</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">8</td>
+<td class="org-left">Mar 2</td>
+<td class="org-left">Classification Trees</td>
+<td class="org-left">Test 6</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">9</td>
+<td class="org-left">Mar 7,9</td>
+<td class="org-left"><b>Sprint review 2: methodology</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">10</td>
+<td class="org-left">Mar 14,16</td>
+<td class="org-left">Unsupervised learning: clustering</td>
+<td class="org-left">Test 7</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">11</td>
+<td class="org-left">Mar 28,30</td>
+<td class="org-left">Hierarchical clustering</td>
+<td class="org-left">Test 8</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">12</td>
+<td class="org-left">Apr 4,6</td>
+<td class="org-left">Dimensionality reduction</td>
+<td class="org-left">Test 9</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">13</td>
+<td class="org-left">Apr 11,13</td>
+<td class="org-left"><b>Sprint review 3: abstract</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">14</td>
+<td class="org-left">Apr 18,20</td>
+<td class="org-left">Unsupervised learning case study</td>
+<td class="org-left">Test 10</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">15</td>
+<td class="org-left">Apr 25,27</td>
+<td class="org-left"><b>Sprint review 4: final presentation</b></td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-right">16</td>
+<td class="org-left">May 2</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Marcus Birkenkrahe</p>
+<p class="date">Created: 2023-01-03 Tue 10:52</p>
+</div>
+</body>
+</html>

@@ -13,44 +13,39 @@
 - Textbook: Machine Learning With R (3e) by Brett Lantz, Packt
   Publishing ([[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][Online: packtpub.com, ebook US$5]])
 
-** Objectives
+* Objectives
 
-This course continues the journey into data science using the
-functional, object-oriented statistical programming language R. We
-will also explore data science using command line UNIX tools. In
-contrast to the basic introduction (DSC 105), we will explore some
-“Tidyverse” packages like dplyr (for data frame manipulation) and
-ggplot2 (for plotting), as well as the RStudio IDE and R Markdown for
-data science publishing. The course is accompanied by DataCamp
-assignments from the “Intermediate R” course and includes a
-certificate.
+This course is concerned with algorithms that transform information
+into actionable intelligence using present-day computers and big
+data. We use R, a cross-platform, zero-cost statistical programming
+environment that combines a wide range of functions, interfaces to
+common machine learning packages, and best-in-class visualization.
 
-** Student learning outcomes
+* Student learning outcomes
 
-Students who complete dsc 205, "advanced introduction to data
-science", will be able to:
+Students who complete DSC 305, "Machine Learning" (ML), can:
 
-- Import data into R, store them, and transform them for analysis
-- Visualize data as part of advanced explorative data analysis
-- Understand basic predictive modeling strategies and methods
-- Master statistical programming in R using the "Tidyverse" package
-- Master the infrastructure for advanced statistical computing
+- Apply un/supervised learning models to big data problems
+- Understand neural networks and Support Vector Machine algorithms
+- Distinguish different methods to make predictions with ML
+- Work with open source libraries like ~Keras~ and ~TensorFlow~ by Google
+- Master the whole infrastructure for advanced statistical computing
 - Know how to effectively present assignment results
-- Improve data literacy
-- Be ready for advanced data science courses like data
-  visualization (DSC 302) and machine learning (DSC 305)
-- Research and present a project as a team
+- Improve data literacy, research and present a project as a team
 
-** Course requirements
+* Course requirements
 
-Introductory knowledge of R as taught in DSC 105 or obtained
-independently by completing the DataCamp online course “Introduction
-to R” or “fasteR: Fast Lane to Learning R!” (chapters 1-15 only,
-freely available on GitHub), or Davies, The Book of R (NoStarch, 2016,
-Part I only). Basic R concepts are repeated and practiced at the start
-of the term.
+- Basic proficiency with R is useful (as taught in DSC 105 or obtained
+  independently on DataCamp "Introduction to R", GitHub's "fasteR", or
+  Part I of the Book of R by Davies)
+- Imagination, creativity and a visual mind, enjoying finding patterns
+  and spotting correlations
+- Basic understanding of algorithms and data structures (in any
+  programming language)
+- Basic understanding of data science infrastructure especially
+  literate programming methods
 
-** GRADING SYSTEM
+* Grading system
 
 | REQUIREMENT            | UNITS | PPU | TOTAL | % of TOTAL |
 |------------------------+-------+-----+-------+------------|
@@ -67,33 +62,33 @@ of the term.
 You should be able to see your current grade at any time using the
 Canvas gradebook for the course.
 
-** GRADING TABLE
+* Grading table
 
-THIS TABLE IS USED TO CONVERT COMPLETION RATES INTO LETTER
-GRADES. FOR THE MIDTERM RESULTS, LETTER GRADES STILL CARRY SIGNS,
-WHILE FOR THE TERM RESULTS, ONLY STRAIGHT LETTERS ARE GIVEN (BY
-ROUNDING UP).
+This table is used to convert completion rates into letter
+grades. for the midterm results, letter grades still carry signs,
+while for the term results, only straight letters are given (by
+rounding up).
 
-|--------+-----------------+---------------|
-|    *%* | *MIDTERM GRADE* | *FINAL GRADE* |
-|--------+-----------------+---------------|
-| 100-98 | A+              |               |
-|  97-96 | A               | A (PASSED -   |
-|  95-90 | A-              | VERY GOOD)    |
-|--------+-----------------+---------------|
-|  89-86 | B+              |               |
-|  85-80 | B               | B (PASSED -   |
-|  79-76 | B-              | GOOD)         |
-|--------+-----------------+---------------|
-|  75-70 | C+              |               |
-|  69-66 | C               | C (PASSED -   |
-|  65-60 | C-              | SATISFACTORY) |
-|--------+-----------------+---------------|
-|  59-56 | D+              |               |
-|  55-50 | D               | D (PASSED)    |
-|--------+-----------------+---------------|
-|   49-0 | F               | F (FAILED)    |
-|--------+-----------------+---------------|
+|--------+---------------+---------------|
+|      *%* | *MIDTERM GRADE* | *FINAL GRADE*   |
+|--------+---------------+---------------|
+| 100-98 | A+            |               |
+|  97-96 | A             | A (PASSED -   |
+|  95-90 | A-            | VERY GOOD)    |
+|--------+---------------+---------------|
+|  89-86 | B+            |               |
+|  85-80 | B             | B (PASSED -   |
+|  79-76 | B-            | GOOD)         |
+|--------+---------------+---------------|
+|  75-70 | C+            |               |
+|  69-66 | C             | C (PASSED -   |
+|  65-60 | C-            | SATISFACTORY) |
+|--------+---------------+---------------|
+|  59-56 | D+            |               |
+|  55-50 | D             | D (PASSED)    |
+|--------+---------------+---------------|
+|   49-0 | F             | F (FAILED)    |
+|--------+---------------+---------------|
 
 * Standard Policies
 ** Honor Code
@@ -214,8 +209,7 @@ of this syllabus. Those details will include at least the following:
 ** Learning Management System (LMS)
 
 We will use Canvas in this course.
-
-** Assignments and Honor Code
+* Assignments and Honor Code
 
 There will be several assignments during the summer school,
 including programming assignments and multiple-choice tests. They
@@ -267,7 +261,8 @@ arrangements have been made prior to the scheduled time.  If you are
 sick the day of the test, please e-mail me or leave a message on my
 phone before the scheduled time, and we can make arrangements when
 you return.
-** Attendance policy
+
+* Attendance policy
 
 In accordance with college policy, if you miss 4 weeks of class, you
 fail the course automatically. Any missed meetings result in an [[https://catalog.lyon.edu/class-attendance]["Early
@@ -276,7 +271,6 @@ Alert" report]].
 You should take care not to miss consecutive sessions if at all
 possible - otherwise you risk losing touch with the class and falling
 behind.
-
 * Important Dates
 
 | DATE           | DAY              | DESCRIPTION                                 |
@@ -309,37 +303,37 @@ behind.
 Lectures and lab sessions are aligned with the content of the 10
 DataCamp lessons that need to be completed in the course of the term.
 
-| WEEK | DATE          | DATACAMP ASSIGNMENT                                       | TESTS   |
-|------+---------------+-----------------------------------------------------------+---------|
-|    1 | Jan 10,12     |                                                           |         |
-|------+---------------+-----------------------------------------------------------+---------|
-|    2 | Jan 17,19     | Intermediate R: Conditionals and Control Flow             | Test 1  |
-|------+---------------+-----------------------------------------------------------+---------|
-|    3 | Jan 24,26     | Intermediate R: Loops                                     | Test 2  |
-|------+---------------+-----------------------------------------------------------+---------|
-|    4 | Jan 31, Feb 2 | Intermediate R: Functions                                 | Test 3  |
-|------+---------------+-----------------------------------------------------------+---------|
-|    5 | Feb 7,9       | Sprint review 1: literature review                        |         |
-|------+---------------+-----------------------------------------------------------+---------|
-|    6 | Feb 14,16     | Intermediate R: apply family                              | Test 4  |
-|------+---------------+-----------------------------------------------------------+---------|
-|    7 | Feb 21,23     | Intermediate R: Utilities                                 | Test 5  |
-|------+---------------+-----------------------------------------------------------+---------|
-|    8 | Mar 2         | Introduction to the Tidyverse: Data Wrangling             | Test 6  |
-|------+---------------+-----------------------------------------------------------+---------|
-|    9 | Mar 7,9       | Sprint review 2: methodology                              |         |
-|------+---------------+-----------------------------------------------------------+---------|
-|   10 | Mar 14,16     | Exploratory Data Analysis in R: Categorical Data          | Test 7  |
-|------+---------------+-----------------------------------------------------------+---------|
-|   11 | Mar 28,30     | Exploratory Data Analysis in R: Numerical Data            | Test 8  |
-|------+---------------+-----------------------------------------------------------+---------|
-|   12 | Apr 4,6       | Exploratory Data Analysis in R: Numerical Summaries       | Test 9  |
-|------+---------------+-----------------------------------------------------------+---------|
-|   13 | Apr 11,13     | Sprint review 3: abstract                                 |         |
-|------+---------------+-----------------------------------------------------------+---------|
-|   14 | Apr 18,20     | Exploratory Data Analysis in R: Case Study Spam Detection | Test 10 |
-|------+---------------+-----------------------------------------------------------+---------|
-|   15 | Apr 25,27     | Sprint review 4: final presentation                       |         |
-|------+---------------+-----------------------------------------------------------+---------|
-|   16 | May 2         |                                                           |         |
-|------+---------------+-----------------------------------------------------------+---------|
+| WEEK | DATE          | DATACAMP ASSIGNMENT                 | TESTS   |
+|------+---------------+-------------------------------------+---------|
+|    1 | Jan 10,12     |                                     |         |
+|------+---------------+-------------------------------------+---------|
+|    2 | Jan 17,19     | What is Machine Learning?           | Test 1  |
+|------+---------------+-------------------------------------+---------|
+|    3 | Jan 24,26     | Machine Learning Models             | Test 2  |
+|------+---------------+-------------------------------------+---------|
+|    4 | Jan 31, Feb 2 | k-Nearest Neighbors (kNN)           | Test 3  |
+|------+---------------+-------------------------------------+---------|
+|    5 | Feb 7,9       | *Sprint review 1: literature review*  |         |
+|------+---------------+-------------------------------------+---------|
+|    6 | Feb 14,16     | Naive Bayes                         | Test 4  |
+|------+---------------+-------------------------------------+---------|
+|    7 | Feb 21,23     | Logistic Regression                 | Test 5  |
+|------+---------------+-------------------------------------+---------|
+|    8 | Mar 2         | Classification Trees                | Test 6  |
+|------+---------------+-------------------------------------+---------|
+|    9 | Mar 7,9       | *Sprint review 2: methodology*        |         |
+|------+---------------+-------------------------------------+---------|
+|   10 | Mar 14,16     | Unsupervised learning: clustering   | Test 7  |
+|------+---------------+-------------------------------------+---------|
+|   11 | Mar 28,30     | Hierarchical clustering             | Test 8  |
+|------+---------------+-------------------------------------+---------|
+|   12 | Apr 4,6       | Dimensionality reduction            | Test 9  |
+|------+---------------+-------------------------------------+---------|
+|   13 | Apr 11,13     | *Sprint review 3: abstract*           |         |
+|------+---------------+-------------------------------------+---------|
+|   14 | Apr 18,20     | Unsupervised learning case study    | Test 10 |
+|------+---------------+-------------------------------------+---------|
+|   15 | Apr 25,27     | *Sprint review 4: final presentation* |         |
+|------+---------------+-------------------------------------+---------|
+|   16 | May 2         |                                     |         |
+|------+---------------+-------------------------------------+---------|
