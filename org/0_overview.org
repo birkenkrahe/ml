@@ -27,16 +27,31 @@ Image: [[https://xkcd.com/2228/][xkcd, Machine Learning Captcha]]
 Source: [[https://github.com/birkenkrahe/ml/blob/main/img/0_ml_chatgpt_1.png][ChatGPT]] (and [[https://github.com/birkenkrahe/ml/blob/main/img/0_ml_chatgpt_2.png][concerns]])
 
 * What will we do when in this course?
-#+attr_html: :width 400px
+#+attr_html: :width 350px
 [[../img/0_toc.png]]
 
 Source: syllabus, see [[https://lyon.instructure.com/courses/1021/assignments/syllabus][Canvas]] or [[https://github.com/birkenkrahe/ml/blob/main/org/syllabus.org][GitHub]]
 
 * How will we be evaluated in this course?
-#+attr_html: :width 500px
+#+attr_html: :width 400px
 [[../img/0_grades.png]]
 
 Source: syllabus, see [[https://lyon.instructure.com/courses/1021/assignments/syllabus][Canvas]] or [[https://github.com/birkenkrahe/ml/blob/main/org/syllabus.org][GitHub]]
+* What could we do next?
+
+1) Complete (or review) [[https://app.datacamp.com/learn/courses/free-introduction-to-r]["Introduction to R" in DataCamp]]
+   #+attr_html: :width 400px
+   [[../img/0_datacamp.png]]
+  
+2) Get the textbook: [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][Lantz, Machine Learning with R (3e) 2019]]
+   #+attr_html: :width 200px
+   [[../img/0_lantz.png]]
+
+3) Install WSL (Windows Subsystem for Linux) on your PC
+   #+attr_html: :width 400px
+   [[../img/0_wsl.png]]
+
+   ChatGPT: Is Linux relevant for machine learning?   #+attr_html: :width 40  
 
 
-Textbook: [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][Lantz, Machine Learning with R (3e) 2019]]
+   
