@@ -1,0 +1,5 @@
+#+TITLE:Agenda - Machine Learning (DSC 305) 
+#+AUTHOR:Agenda - Machine Learning (DSC 305) 
+#+STARTUP:overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results: output :exports both

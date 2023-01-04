@@ -9,8 +9,9 @@
 * What's in this repo?
 
   * Repository for DSC 305 - Machine learning
-  * Emacs Org-mode files( ~.org~) are rendered as Markdown (not on
-    mobile app but works well in mobile browser).
+  * Emacs Org-mode files( ~.org~) are rendered as Markdown (not on the
+    mobile GitHub app but works well in mobile browser - except
+    internal links).
   * Reference links in the files lead to a 404 error. You always find
     the references at the end of a file.
   * For a TOC, open the bullet point list menu 
@@ -18,8 +19,7 @@
 ** Agenda for every session
 ** Syllabus for a course overview
 ** Practice with interactive notebooks
-** Assignments and solutions
-** Installation information
+** Assignments and solutions (as PDF)
 
 * How to use GitHub
 

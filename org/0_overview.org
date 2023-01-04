@@ -1,0 +1,40 @@
+#+TITLE:Course overview (DSC 305 - machine learning) 
+#+AUTHOR:Course overview (DSC 305 - machine learning) 
+#+STARTUP:overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+
+* What is "machine learning" about?
+#+attr_html: :width 400px
+[[../img/0_machine_learning.png]]
+Image: [[https://xkcd.com/1838/][xkcd, Machine Learning]]
+
+#+begin_quote
+"Software applications that become more accurate in predicting outcomes
+without being explicitly programmed." (ChatGPT)
+#+end_quote
+
+* Why is this important?
+#+attr_html: :width 200px
+[[../img/0_machine_learning_captcha.png]]
+Image: [[https://xkcd.com/2228/][xkcd, Machine Learning Captcha]] 
+
+#+begin_quote
+- *Make predictions* or recommendations from large data sets
+- *Classify* large amount of data into different *categories*
+- *Identify* *patterns* that humans did not detect
+- *Automate* processes driving a car or identifying spam emails
+#+end_quote
+Source: ChatGPT (and concerns)
+
+* What will we do when in this course?
+#+attr_html: :width 400px
+[[../img/0_toc.png]]
+
+Table: from syllabus, see [[https://lyon.instructure.com/courses/1021/assignments/syllabus][Canvas]] or [[https://github.com/birkenkrahe/ml/blob/main/org/syllabus.org][GitHub]]
+
+* How will we be evaluated in this course?
+
+
+Table: from syllabus, see [[https://lyon.instructure.com/courses/1021/assignments/syllabus][Canvas]] or [[https://github.com/birkenkrahe/ml/blob/main/org/syllabus.org][GitHub]]
+
+Textbook: [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][Lantz, Machine Learning with R (3e) 2019]]
