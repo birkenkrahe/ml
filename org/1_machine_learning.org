@@ -1,0 +1,897 @@
+#+TITLE: INTRODUCTION TO MACHINE LEARNING
+#+AUTHOR: Marcus Birkenkrahe
+#+STARTUP: overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+#+attr_html: :width 600px
+* README
+
+The purpose of today's machine learning (ML) is to assist us with
+making sense of the world's massive data collections.
+
+1) Origins, applications and pitfalls of ML
+
+2) How computer use models to transform data into knowledge
+
+3) Steps to math an ML algorithm to your data
+
+4) Simple R examples
+
+* Origins of ML
+
+1) *Statistical modeling* (17th century)
+
+2) *Machine learning* (1950s)
+
+3) *Knowledge discovery* (1980s)
+
+4) *Data mining* (1990s)
+
+5) *Data science* (2010s)
+
+* Uses and abuses of ML
+#+attr_html: :width 400px
+[[../img/1_deepblue.png]]
+
+- Deep Blue defated Kasparov (1997), Watson won Jeopardy (2011)
+
+- Machines are pure horsepower without direction - they "need a human
+  to motivate the analysis and turn the result into meaningful
+  action" - like a hound with a human.
+
+- Interesting analysis of Kasparov vs. Deep Blue (Anderson, 2017)
+  + A coding bug may have misled Kasparov to overestimate Deep Blue
+  + Conspiracy? Deep Blue may have have been a "[[https://en.wikipedia.org/wiki/Mechanical_Turk][Mechanical Turk]]"
+  + Illustrates the difference between man and machine
+
+* ML successes
+
+Many different uses, many different models:
+- *Identification* of unwanted spam messages in email
+- *Segmentation* of customer behavior for targeted advertising
+- *Forecasts* of weather behavior and long-term climate changes
+- *Prevention* of fraudulent credit card transactions
+- *Estimation* of actuarial financial damage of natural disasters
+- *Prediction* of popular election outcomes
+- *Autonomous* vehicles: auto-piloting drones and self-driving cars
+- *Optimization* of energy use in homes and office buildings
+- *Projection* of areas where criminal activity is most likely
+- *Discovery* of genetic sequences linked to diseases
+
+* Limits of ML
+
+- Little flexibility outside of strict parameters and no common sense
+
+- Consequences of releasing an algorithm hard to predict[fn:1]
+
+- Inability to make simple inferences about logical next steps
+  (e.g. repeatedly served banners on ecommerce sites)
+
+- Random epic failures: handwriting recognition, 1994
+  #+caption: Lisa on Ice, The Simpsons, 20th Century Fox (1994)
+  #+attr_html: :width 400px
+  [[../img/lantz_2.jpg]]
+
+- Auto-correct failures (ML insists on what you once wanted/were)
+
+- Natural language processing is still very difficult (but: ChatGPT)
+
+- Alas, we often adapt to the limited abilities of our machines
+
+* ML ethics
+
+- Like any tool, it can be used for "good" or for "evil"
+- Associated legal issues and social norms are still uncertain
+- Issues include privacy rights of customers
+- Handing critical operations (e.g. airport control) to machines
+- Relying on ML in life-or-death situations (medical diagnosis)
+- Blindly applying ML analysis results to make decisions
+- Perpetuating discrimination based on race or gender
+- Reinforcing negative stereotypes
+- Anonymizing data is difficult because ML is good at finding you
+- Cp. General Data Protection Regulation (GDPR) and EU policies
+- ML can be used for fake news, or misguiding autonomous systems
+
+* Extended example: supervised learning
+#+attr_html: :width 400px
+[[../img/1_supervisor.jpg]]
+
+*Process:*
+1) Build a classification model from known data instances
+2) Test model to classify newly presented unknown data instances
+3) Translate model into algorithmic production rules
+
+* Building a model from training data
+
+- Dataset: hypothetical training data for a disease diagnosis
+  #+attr_html: :width 600px
+  [[../img/1_patientdata.png]]
+
+- Patient 1 has a sore throat, fever, swollen glands, is congested and
+  has a headache. He was diagnosed with strep throat.
+
+- A /decision tree/ can be used to generalize a set of input instances
+  as shown and transform it into rules.
+
+- To generalize, we must make assumptions about the relative
+  importance of attributes and their relationship
+
+- For example:
+  + If a patient has swollen glands, the diagnosis is strep throat
+  + If a patient does not have swollen glands and a fever, it's a cold
+  + If a patient does not have swollen glands nor a fever, it's allergy
+  #+attr_html: :width 400px
+  [[../img/1_decision_tree.png]]
+
+- The attributes /sore throat/, /congestion/ and /headache/ do not enter our
+  diagnostic prediction
+
+* Testing the model on unknown instances
+
+- Moving on to a new data set with unknown classification, i.e. no
+  diagnosis
+
+- Use the decision tree to classify the first two instances:
+  #+attr_html: :width 600px
+  [[../img/1_testing.png]]
+
+- Patient 11 has swollen glands but no fever => strep throat
+
+- Patient 12 has no swollen glands but fever => cold
+
+* Translate model into production rules
+
+- General form of a /production rule/ looks like pseudocode[fn:7]:
+  #+begin_example
+  IF antecedent condition
+  THEN consequent conditions
+  #+end_example
+
+- The three /production rules/ for the decision tree:
+  #+begin_example
+    IF swollen glands = YES
+    THEN diagnosis = strep throat
+
+    IF swollen glands = No & Fever = Yes
+    THEN diagnosis = cold
+
+    IF swollen glands = No & Fever = No
+    THEN diagnosis = allergy
+  #+end_example
+
+- Testing the rules on patient 13 yields: diagnosis = allergy
+
+
+* IN PROGRESS How machines learn
+
+- Unlike humans, machines need explicit conditions and instructions
+  literally down to the letter (ML does not change that completely)
+
+- What's the effect for humans when making everything very explicit?
+  *Does explicitness help or hinder human learning?*
+
+- To be a strong data scientist / ML practitioner requires solid
+  understanding of *how the learning algorithms work*
+
+- Basic ML process:
+  #+attr_html: :width 600px
+  [[../img/1_lantz_3.jpg]]
+
+- How does the extended diagnosis example fit in this scheme?
+
+* Data storage = observe + memorize + recall
+#+attr_html: :width 400px
+[[../img/1_sheldon.png]]
+
+- *Data storage* utilizes observation, memory, and recall to provide a
+  factual basis for further reasoning
+
+- Store raw data selectively - more data does not necessarily mean
+  more information (too much data can obscure what you're looking for)
+
+- Remember studying for an exam - do you gorge yourself on all
+  available details or do you select questions and answers that were
+  discussed in class?[fn:2]
+
+- Storage needs to take software and hardware conditions into account
+
+* Nile example: data storage
+
+- To run the code below, open in Emacs
+
+- Example: the following numbers come from R's ~Nile~ data set:
+  #+begin_example
+  1120 1160 963 1210 1160 1160 813 1230 1370 1140
+  995 935 1110 994 1020 960 1180 799 958 1140
+  1100 1210 1150 1250 1260 1220 1030 1100 774 840
+  874 694 940 833 701 916 692 1020 1050 969
+  831 726 456 824 702 1120 1100 832 764 821
+  768 845 864 862 698 845 744 796 1040 759
+  781 865 845 944 984 897 822 1010 771 676
+  649 846 812 742 801 1040 860 874 848 890
+  744 749 838 1050 918 986 797 923 975 815
+  1020 906 901 1170 912 746 919 718 714 740
+  #+end_example
+
+- To extract the data from the data set (already stored in R):
+  #+begin_src R :results silent
+    write(x=Nile,
+          file="../data/Nile.txt", # Unix-style forward slash
+          ncolumns=1,
+          sep=" ")
+  #+end_src
+    
+- The values are stored as a text file ~Nile.txt~ of size 440 byte,
+  which means 440 * 8 = 3520 bits, or binary value capacitors:
+  #+begin_src R
+    shell(cmd="DIR ..\\data\\Nile.txt") # escaped Windows backward slash
+  #+end_src
+
+  #+RESULTS:
+  :  Volume in drive C is OS
+  :  Volume Serial Number is 0654-135C
+  : 
+  :  Directory of c:\Users\birkenkrahe\Documents\GitHub\ml\data
+  : 
+  : 01/05/2023  10:46 AM               530 Nile.txt
+  :                1 File(s)            530 bytes
+  :                0 Dir(s)  298,322,276,352 bytes free
+
+- When on disk, ~Nile.txt~ is stored in non-volatile memory (it's
+  permanent). When it is loaded into R (or another shell program), it
+  is represented as RAM (Random Access Memory), physically realized as
+  a capacitor that is charged (1) or uncharged (0) ([[http://androidgrl.github.io/2019/01/01/binary/][source]]).
+  #+attr_html: :width 400px
+  [[../img/1_lantz_dramcapacitor.png]]
+
+- You can look at the text file using ~notepad~:
+  #+begin_src R :results silent
+    shell(cmd="notepad ..\\data\\Nile.txt")
+  #+end_src
+
+** Abstraction = transform + train
+
+- *Abstraction* involves translating stored data into broader
+  representations and concepts
+
+- Abstraction needs to take available computing data structures into
+  account
+
+- The nature of a "representation" is that it is *not the original* -
+  for ML, recognition is more important than reality: the AI is not
+  trying to build a world, but to translate it into something it can
+  "see"
+
+- René Magritte's painting "The Treachery of Images" illustrates this
+  idea: "Ceci n'est pas une pipe" because it's an image of a pipe, and
+  not the pipe itself.
+  #+attr_html: :width 400px
+  #+caption: Magritte, La Trahison Des Images, Source: http://collections.lacma.org/node/239578
+  [[./img/lantz_4.jpg]]
+
+*** Nile example: transformation
+
+- ~Nile~ example: earlier, we stored integer numbers in memory. A
+  convenient representation in R involves choosing a data structure
+  and transforming the numbers into it
+
+- We read the text data from file using ~read.table~ and store them in a
+  time series:
+  1) write ~Nile~ as a 1-column text file
+  2) read the text file ~read.table~ as a ~data.frame~
+  3) remove column name with ~colnames~
+  4) create time series with ~ts~ from data frame
+  #+begin_src R
+    write(
+      x=Nile,
+      file="./data/Nile.txt",
+      ncolumns=1)
+    nile_df <- read.table(
+      file="./data/Nile.txt",
+      sep=" ",
+      header=FALSE)
+    colnames(nile_df) <- NULL
+    nile_ts <- ts(nile_df,start=1871)
+    str(nile_ts)
+    nile_ts
+  #+end_src
+
+- The transformed data set contains additional information that was
+  not present in the numbers themselves. We have used additional
+  information (about the origin of the data) and R's time series data
+  structure.
+
+*** Modeling
+
+- When a machine creates a *Knowledge representation*, it summarizes
+  stored raw data using a *model*, an explicit description of the
+  patterns within the data
+
+- A model represents an idea greater than the sum of its parts (also:
+  "The whole is greater than the sum of its parts")
+
+- In visual perception, this is illustrated by the six Gestalt (German
+  for "shape") principles: each of them implies not just the pixels of
+  the image but a pattern that leads to a human process of perceiving
+  more than just the pattern itself.
+  #+attr_html: :width 600px
+  #+caption: Source: https://www.europeanproceedings.com/article/10.15405/epes.22043.25/image/3
+  [[./img/lantz_gestalt.png]]
+
+- Ironically, computers, unlike humans, cannot comprehend these
+  Gestalt patterns as a whole, they can only sequentially process the
+  components of a pattern[fn:4].
+
+- There are many different types of models, including:
+  + Mathematical equations
+  + Relational diagrams, such as trees and graphs
+  + Logical if/else rules (conditional structures)
+  + Groupings of data (clusters)
+
+- Typically , the machine does not pick the model - it is picked by a
+  human depending on the learning task and the type of data available
+
+*** Nile example - modeling
+
+- As an example of statistical inference, we use the time series data
+  of ~Nile~ to create a statistical model
+
+- In R this is easily achieved with the ~summary~ function
+  #+begin_src R
+    data(Nile)  # add the built-in Nile dataset to the session
+    ls()  # show all R objects in the current session
+    summary(Nile) # 5-point summary + sample average
+  #+end_src
+
+  #+RESULTS:
+  : [1] "nile"    "Nile"    "nile_df"
+  :    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
+  :   456.0   798.5   893.5   919.4  1032.5  1370.0
+
+- To visualize this model, you can use ~boxplot~ (and ~abline~ to add the
+  ~mean~):
+  #+begin_src R :results graphics file :file ./img/lantz_boxplot.png
+    boxplot(Nile, las=1, horizontal=TRUE,
+            main="Annual flow of the Nile at Aswan\nbetween 1871 and 1970",
+            xlab="Nile volume (mio cubic meters)")
+    abline(v=mean(Nile),
+           col="blue",
+           lwd=2)
+  #+end_src
+
+  #+RESULTS:
+  [[file:./img/lantz_boxplot.png]]
+
+- The /generic/ function ~summary~ collapses the abstraction (time series
+  representation) into a statistical summary
+
+- That ~summary~ is generic is relevant because it means that it can
+  deal with many different abstractions (and models, too):
+  #+begin_src R
+    methods(summary)
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+   [1] summary.aov                    summary.aovlist*
+   [3] summary.aspell*                summary.check_packages_in_dir*
+   [5] summary.connection             summary.data.frame
+   [7] summary.Date                   summary.default
+   [9] summary.ecdf*                  summary.factor
+  [11] summary.glm                    summary.infl*
+  [13] summary.lm                     summary.loess*
+  [15] summary.manova                 summary.matrix
+  [17] summary.mlm*                   summary.nls*
+  [19] summary.packageStatus*         summary.POSIXct
+  [21] summary.POSIXlt                summary.ppr*
+  [23] summary.prcomp*                summary.princomp*
+  [25] summary.proc_time              summary.srcfile
+  [27] summary.srcref                 summary.stepfun
+  [29] summary.stl*                   summary.table
+  [31] summary.tukeysmooth*           summary.warnings
+  see '?methods' for accessing help and source code
+  #+end_example
+
+*** ML training
+
+- ML models are trained. This means that the model is fitted to a data
+  set
+
+- Once the model is trained, it has been transformed into an abstract
+  form that summarizes (and transcends) the original information
+
+- The training model is not "learning" yet because the result still
+  must be evaluated (tested) before the model is ready.
+
+- Example from physics: by fitting equations to observational data,
+  Newton inferred the concept of gravity. It was always present but
+  not recognized:
+  #+attr_html: :width 600px
+  [[./img/lantz_5.png]]
+
+- In R: ~g~ is the acceleration due to gravity[fn:5]
+  #+begin_src R
+    d <- c(4.9,19.6,44.1,78.5) # distance observations
+    t2 <-c(1,2,3,4)  # time observations
+    format(2*d/(t2^2),digits=2) # compute, print 2 digits
+  #+end_src
+
+  #+RESULTS:
+  : [1] "9.8" "9.8" "9.8" "9.8"
+
+- Other model examples include:
+  1. Genomic data models identify genes responsible for disease
+  2. Bank transaction models identify fraudulent activities
+  3. Psychological models identify new disorders
+
+- These patterns were always there but had not been identified/seen
+  prior to presenting the information in a different format.[fn:6]
+
+*** Nile example - training
+
+- The ~truehist~ function fits the dataset to a density estimate, and
+  ~density~ does the same with a smoothing effect added:
+  #+begin_src R :results graphics file :file ./img/lantz_nile.png
+    library(MASS)
+    truehist(Nile,
+             las=1,
+             xlab="",
+             main="")
+    par(new=TRUE)
+    plot(density(Nile),
+         col="red",
+         lwd=2,
+         xaxt="n",
+         yaxt="n",
+         main="")
+    title("Flow through the Nile 1872-1970")
+  #+end_src
+
+  #+RESULTS:
+  [[file:./img/lantz_nile.png]]
+
+- The ~lm~ function attempts to fit a linear model to the ~Nile~ dataset:
+  #+begin_src R :results graphics file :file ./img/lantz_nile_lm.png
+    model <- lm(Nile ~ time(Nile))
+    plot(Nile, type="p",col="blue",pch=16,
+         ylab="Flow in mio cubic metres")
+    abline(model,col="red",lwd=2)
+    lines(Nile,type="l", col="black", lty=2)
+    title("Flow through the Nile at Assuan 1872-1970")
+    legend("topright",
+           legend=c("Observation", "Linear Model"),
+           pch = c(16,NA),
+           lty = c(NA, 2),
+           col = c("blue", "red"))
+  #+end_src
+
+  #+RESULTS:
+  [[file:./img/lantz_nile_lm.png]]
+
+- This last example demonstrates "underfitting" = most points are not
+  well represented by the model. However, the general trend is well
+  represented by the red line: over time, the water flow through the
+  Nile at Assuan decreased.
+
+** Generalization
+
+- *Generalization* uses abstracted data to create knowledge and
+  inferences that drive action in new contexts
+
+- To do this, the machine searches through an entire set of models
+  (equivalent to theories of prediction or inference) employing a
+  process called "heuristics" (finding skills or educated guesses)
+
+- Compare it to a Google search that you perform yourself: in response
+  to the output of the search you refine your search string, e.g.
+  1) "generalization" (in response to the too general result)
+  2) "generalization reasoning" (in response to Google's completion)
+  3) "generalization reasoning models" (in response to your interest)
+  4) "generalization models" (in response to the too specific result)
+  5) "generalization machine learning" (result still too specific)
+
+  This last search leads straight to a [[https://developers.google.com/machine-learning/crash-course/generalization/video-lecture][foundational course]] offered by
+  Google developers and many links directly related to ML.
+
+- *Human heuristics* are guided by emotion and can be fallible -
+  e.g. "availability heuristics", the tendency to estimate likelihood
+  of an event depending on how easily examples can be recalled
+  (e.g. airline accidents over vehicle accidents)
+
+- Misapplied *machine heuristics* as a result of algorithmic errors are
+  called *bias* if the conclusions are systematically erroneous
+  (i.e. wrong in a consistent or predictable manner)
+
+- Example: an ML algorithm that generalizes faces to have two circles
+  above a mouth would not identify a face with glasses.
+  #+attr_html: :width 400px
+  [[./img/lantz_6.png]]
+
+- Consider this: could "a little bias" also be useful?
+  #+begin_quote
+  Bias (like presets) allows us to favor some choices over others and
+  discard some choices as irrelevant. The net effect could be that we
+  become more action-oriented and less bogged down by search. Bias is
+  also how ML algorithms choose among many ways to understand data.
+
+  *ChatGPT (Dec 21, 12:20 pm):* "Bias refers to a preference or
+  inclination that can influence one's judgment or understanding of a
+  situation. Bias can be helpful in some cases, as it allows us to
+  make decisions quickly and efficiently based on our past experiences
+  and knowledge. For example, if you have a bias towards a particular
+  brand of car, you might be more likely to choose that brand when
+  shopping for a new car because you have had good experiences with it
+  in the past.
+
+  However, bias can also be harmful, as it can lead to
+  stereotypes, discrimination, and flawed decision-making. It is
+  important to be aware of one's own biases and to try to recognize
+  and overcome them in order to make fair and objective decisions. In
+  general, it is best to approach situations with an open mind and to
+  consider all relevant information rather than relying solely on bias
+  or preconceived notions."
+  #+end_quote
+
+** Evaluation + overfitting
+#+begin_quote
+"There is no single learning algorithm to rule them all." -Brett Lantz
+#+end_quote
+
+- No ML approach is best for every problem - an application of the
+  rigorous "No Free Lunch" (NFL) theorem for search and optimization
+  ([[https://fab.cba.mit.edu/classes/865.18/design/optimization/nfl.pdf][Wolpert/Macready, 2005]])
+
+- *Evaluation* provides a feedback mechanism to measure the utility of
+  learned knowledge and inform potential improvements
+
+- After training on an initial training dataset, the model is
+  evaluated on a separate test dataset of new, unseen cases
+
+- Models fail to generalize perfectly due to noise, unexplained or
+  inexplicable variations in data due to
+  1) measurement errors (e.g. imprecise sensors)
+  2) human subject issues (e.g. random answers in surveys)
+  3) data quality issues (missing, null, truncated, corrupted values)
+  4) complex phenomena whose impact appears to be random
+
+- Famous noise that turned into gold: [[https://www.esa.int/Science_Exploration/Space_Science/Herschel/Cosmic_Microwave_Background_CMB_radiation][cosmic microwave background]]
+  radiation that is attributed to an echo of the 'Big Bang'
+
+- Modeling noise is called /overfitting/.
+  #+attr_html: :width 500px
+  [[./img/lantz_overfitting.jpg]]
+
+* ML in practice
+** Process
+#+attr_html: :width 500px
+#+caption: DataCamp "Understanding ML" course
+[[./img/dc_ml_flow.png]]
+
+1. Data collection: The data collection step involves gathering the
+   learning material an algorithm will use to generate actionable
+   knowledge. In most cases, the data will need to be combined into a
+   single source, such as a text file, spreadsheet, or database.
+
+2. Data exploration and preparation: The quality of any machine
+   learning project is based largely on the quality of its input
+   data. Thus, it is important to learn more about the data and its
+   nuances during a practice called data exploration. Additional work
+   is required to prepare the data for the learning process. This
+   involves fixing or cleaning so-called "messy" data, eliminating
+   unnecessary data, and recoding the data to conform to the learner's
+   expected inputs.
+
+3. Model training: By the time the data has been prepared for
+   analysis, you are likely to have a sense of what you are capable of
+   learning from the data. The specific machine learning task chosen
+   will inform the selection of an appropriate algorithm, and the
+   algorithm will represent the data in the form of a model.
+
+4. Model evaluation: Each machine learning model results in a biased
+   solution to the learning problem, which means that it is important
+   to evaluate how well the algorithm learned from its
+   experience. Depending on the type of model used, you might be able
+   to evaluate the accuracy of the model using a test dataset, or you
+   may need to develop measures of performance specific to the
+   intended application.
+
+5. Model improvement: If better performance is needed, it becomes
+   necessary to utilize more advanced strategies to augment the
+   model's performance. Sometimes it may be necessary to switch to a
+   different type of model altogether. You may need to supplement your
+   data with additional data or perform additional preparatory work,
+   as in step two of this process.
+
+6. Model deployment: if the model appears to be performing well, it
+   can be deployed for its intended task. As the case may be, you
+   might utilize your model to provide score data for predictions
+   (possibly in real time); for projections of financial data; to
+   generate useful insight for marketing or research; or to automate
+   tasks, such as mail delivery or flying aircraft. The successes and
+   failures of the deployed model might even provide additional data
+   to train your next-generation learner.
+
+** Units of observation vs. analysis
+
+- A *unit of observation* is the smallest entity with measured
+  properties of interest for a study. Commonly, the unit of
+  observation is in the form of persons, objects or things,
+  transactions, time points, geographic regions, or
+  measurements. Sometimes, units of observation are combined to form
+  units, such as person-years, which denote cases where the same
+  person is tracked over multiple years, and each person-year
+  comprises a person's data for one year.
+
+- The *unit of analysis* is the smallest unit from which inference is
+  made. Although it is often the case, the observed and analyzed units
+  are not always the same. For example, data observed from people (the
+  unit of observation) might be used to analyze trends across
+  countries (the unit of analysis).
+
+- Distinguish *example*, instances of the unit of observation for which
+  properties were recorded, and *features*, the recorded properties or
+  attributes of examples that may be useful for ML
+
+- Use case: spam email identification. The unit of observation could be
+  email messages, examples would be specific individual messages, and
+  the features might consist of the words used in the messages.
+
+- Use case: cancer detection. The unit of observation could be
+  patients, the examples might be a random sample of cancer patients,
+  and the features genomic markers from biopsied cells, and patient
+  characteristics like weight, height, blood pressure.
+
+** Structured vs. unstructured data
+
+- Humans can consume /unstructured/ data - free-form text, pictures,
+  sound, and they can handle cases with many or few features
+- Computers required data to be /structured/ - each example of the
+  phenomenon has the same features, which are organized in data
+  structures like tables or matrices or data frames
+
+- In data tables, matrices or data frames, rows correspond to examples
+  or records or observations of features, which correspond to columns
+
+- Data entries can have different types: /numeric-discrete/,
+  /numeric-continuous/, /categorical-nominal/, or /categorical-ordinal/
+
+- Clarity about features, observations, and data types is crucial for
+  selecting the best learning algorithm
+
+** Types of ML algorithms
+
+Machine learning algorithms are divided into categories according to
+their purpose. Understanding the categories of learning algorithms is
+an essential first step toward using data to drive the desired action.
+
+*** Predictive models - supervised learning - classification
+
+- *Predictive models* involve prediction of one value using other values
+  in the same dataset. The algorithm models the relationship between
+  the target feature (predicted) and the other features (predictors).
+
+- These models do not need to be forecasting models (for the future),
+  they can also predict past events or work in real-time.
+
+- The process of training a predictive model is called *supervised
+  learning*. The "supervision" refers to the fact that the target
+  values let the learner (the machine) know how well it's doing.
+
+- Given a set of data, a *supervised learning algorithm* optimizes a
+  *function* (the *model*) to find the combination of *feature* input values
+  that result in the *target* output.
+
+- *Classification* means predicting which category an example belongs
+  to. The corresponding supervised ML algorithm is a *classifier*, e.g.
+  1) An email message is spam
+  2) A person has cancer
+  3) A football team will win or loose
+  4) An applicant will default on a loan
+
+- The classification target feature is the *class*, which is divided
+  into category values called *levels*, which may be nominal or ordinal
+
+- The most widely used supervised learning algorithm for *numeric
+  prediction*, especially forecasting, is *linear regression*
+
+- Since discrete numbers can be converted to categories, the boundary
+  between classification and numeric prediction models is blurry
+
+*** Descriptive models - unsupervised learning - clustering
+
+- *Descriptive models* are used to summarize data in new and interesting
+  ways. No single feature is more important than any other.
+
+- Because there is no target to be supervised, the process of training
+  a descriptive model is called *unsupervised learning*.
+
+- An example is *pattern discovery* in *data mining* to identify useful
+  associations (correlations) within data. An application is *market
+  basket analysis* of transactional purchase data in retail: if the
+  retailer learns that swimming trunks are purchased at the same time
+  as sunscreen, it could use this information when marketing both
+  products, e.g. reposition them in the store, run a promotion etc.
+
+- *Clustering* is descriptive modeling - it means dividing a dataset
+  into homogenous groups. This can be used for *segmentation analysis*
+  to identify groups of individuals with similar behavior or
+  demographics, e.g. to create a "people like you have
+  bought this item, too" type of promotion.
+
+*** Meta-learners - ensembles - reinforcement learning
+
+- *Meta-learners* are models that learn how to learn more effectively by
+  using the result of past learning to inform additional learning
+
+- *Ensembles* are algorithms that work in teams, and algorithms that
+  evolve over time in a process called *reinforcement learning*
+
+- *Adversarial learning* involves learning about a model's weaknesses in
+  order to harden it against malicious attacks
+
+- The popular *ChatGPT* model is a natural-language processing (NLP)
+  variant of the GPT-3 (Generative Pertained Transformer 3) model,
+  which was trained in massive amount of text data to generate
+  human-like responses to a given input.
+  #+attr_html: :width 500px
+  [[./img/ml_chatgpt.png]]
+
+  The image shows ChatGPT output via Google Chrome extension (right)
+  next to "classic" Google search engine output (left)
+
+- List of Supervised Learning algorithms
+
+  | NAME                    | TYPE               | CHAPTER |
+  |-------------------------+--------------------+---------|
+  | Naive Bayes             | Classification     |       4 |
+  | Decision trees          | Classification     |       5 |
+  | Linear regression       | Numeric prediction |       6 |
+  | Regression trees        | Numeric prediction |       6 |
+  | Model trees             | Numeric prediction |       6 |
+  | Neural networks         | Dual use           |       7 |
+  | Support Vector Machines | Dual use           |       7 |
+  |-------------------------+--------------------+---------|
+
+- List of Unsupervised Learning algorithms
+  | NAME               | TYPE              | CHAPTER |
+  |--------------------+-------------------+---------|
+  | Association rules  | Pattern detection |       8 |
+  | k-means clustering | Clustering        |       9 |
+
+- Meta-learning algorithms
+  | NAME           | TYPE     | CHAPTER |
+  |----------------+----------+---------|
+  | Bagging        | Dual use |      11 |
+  | Boosting       | Dual use |      11 |
+  | Random forests | Dual use |      11 |
+
+* ML with R
+** R packages
+
+- R is free, open source software (FOSS) for statistical programming
+- Many ML algorithms must be installed on top of base R as packages
+- Both base R and packages can be obtained from CRAN, the
+  Comprehensive R Archive Network (CRAN), at [[https://cran.r-project.org][cran.r-project.org]]
+- There is a [[https://cran.r-project.org/web/views/MachineLearning.html][separate /task view/ for ML on CRAN]]
+
+** The ~RWeka~ package
+
+- ~RWeka~ was developed by Hornik et al (2009). [[http://www.cs.waikato.ac.nz/~ml/weka/][See here]] for more
+  information on ~weka~) - you also need to have [[http://www.java.com/][Java]] installed
+
+- When installing the package with ~install.packages~, required
+  /dependencies/ (other packages) will also be installed
+
+- When installing, pick a mirror near you for greater download speed
+
+- The /default/ location will be announced at the end of the install, or
+  your system may ask you to specify a location (accept the default)
+
+- You could also specify a location to install using the ~lib~ parameter:
+  #+begin_example R
+  > install.packages("RWeka", lib = "/path/to/library")
+  #+end_example
+
+- To load the package, use the ~library~ function. To see it in the work
+  environment, use ~search()~, and to detach it from the current
+  session, use ~detach~:
+  #+begin_src R
+    library(RWeka)
+    search()
+    detach("package:RWeka", unload=TRUE)
+    search()
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+   [1] ".GlobalEnv"        "package:RWeka"     "package:lattice"
+   [4] "package:MASS"      "package:scales"    "package:ggplot2"
+   [7] "ESSR"              "package:stats"     "package:graphics"
+  [10] "package:grDevices" "package:utils"     "package:datasets"
+  [13] "package:methods"   "Autoloads"         "package:base"
+   [1] ".GlobalEnv"        "package:lattice"   "package:MASS"
+   [4] "package:scales"    "package:ggplot2"   "ESSR"
+   [7] "package:stats"     "package:graphics"  "package:grDevices"
+  [10] "package:utils"     "package:datasets"  "package:methods"
+  [13] "Autoloads"         "package:base"
+  #+end_example
+
+** RStudio
+
+- RStudio is an additional interface to R available at
+  https://www.rstudio.com
+
+- RStudio includes:
+  1) an integrated code editor
+  2) an R command-line console
+  3) a file browser
+  4) code output, plot, graphics
+  5) project and package management
+  6) integration with source / version control tools
+  7) database connection maangement
+  8) compilation of R output to HTML, PDF, WORD
+
+- RStudio Notebook formats allow for literate programming
+
+* Summary
+
+- ML can find actionable insight in large data sets
+- ML involves abstraction of data into structured representation and
+  generalization of the structure into action that can be evaluated
+- Data that contains examples/observations/records and features of the
+  concept to be learnt is summarized in a model
+- The ML model is used for prescriptive or descriptive purposes
+- ML purposes can be: category classification, numeric prediction,
+  pattern detection, and clustering
+- Algorithms are chosen based on input data and learning task
+- R supports ML through community-authored, FOSS packages that need to
+  be installed and loaded
+
+* Outlook
+
+- 80% or more of the time spent on typical ML projects is spent on
+  data preparation aka "data wrangling"
+
+* References
+
+- Anderson (2017). Twenty years on from Deep Blue vs Kasparov: how a
+  chess match started the big data revolution. [[https://theconversation.com/twenty-years-on-from-deep-blue-vs-kasparov-how-a-chess-match-started-the-big-data-revolution-76882][@theconversation.com.]]
+
+- Lantz (2019). Machine Learning with R. Packt.
+
+- Roiger (2020). Just Enough R!. CRC Press.
+
+- Serrano (2021). Grokking Machine Learning.
+
+* Footnotes
+[fn:7]This is exactly what pseudocode is: natural language without the
+constraints of syntactical rules. What used to be helpful in the past
+could in the future well become the standard for programming, cp.
+
+[fn:1] See Loizos (Dec 9, 2022): "[[https://techcrunch.com/2022/12/09/is-chatgpt-a-virus-that-has-been-released-into-the-wild/][Is ChatGPT a 'virus that has been
+released into the wild'?]]" - 2019 interview with Sam Altman (OpenAI)
+
+[fn:2]In fact, human learning is poorly understood: if you have an
+eidetic memory ([[https://youtu.be/A4ugfCjqlZ4][Sheldon-Cooper-style]]), storing everything may be a
+valid strategy. I don't think I have that but I still like to fill
+myself up with seemingly "irrelevant" data - and I trust my guardian
+angel, or my intuition, or whatever you will, to pull the proverbial
+rabbit out of a hat when needed. This has often worked for me!
+
+[fn:3]To extract the data and write them to a text file, I used
+~write(x=Nile,file="Nile.txt",ncolumns=1)~. Default: ~sep=" "~).
+
+[fn:4]This was one of the critiques of AI by philosopher Hubert
+Dreyfus ([[https://en.wikipedia.org/wiki/Hubert_Dreyfus#Dreyfus'_criticism_of_AI][see Wikipedia here]] and here for a [[https://debategraph.org/Details.aspx?nid=2785][graph representation]]).
+
+[fn:5]For the back story on this, I asked a fully trained model,
+ChatGPT:
+#+attr_html: :width 500px
+[[../img/1_lantz_gravity.png]]
+
+[fn:6]There is also the danger here - all predictions are stochastic
+in nature, i.e. they are probabilistic predictions, likelihoods,
+only. And the testing as well as the evaluation is rife with
+assumptions. One may ask: how permanent are the results, which are
+unlike gravity, subject to cultural definitions ("fraud", "disorder",
+"disease") hence not as objective as physical, observable laws?

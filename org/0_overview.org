@@ -1,57 +1,73 @@
-#+TITLE:Course overview (DSC 305 - machine learning) 
-#+AUTHOR:Course overview (DSC 305 - machine learning) 
-#+STARTUP:overview hideblocks indent
+#+TITLE:COURSE OVERVIEW (DSC 305 - MACHINE LEARNING) 
+#+AUTHOR: Marcus Birkenkrahe
+#+STARTUP: overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
-
+#+attr_html: :width 600px
+[[../img/cover.jpg]]
 * What is "machine learning" about?
 #+attr_html: :width 400px
 [[../img/0_machine_learning.png]]
 Image: [[https://xkcd.com/1838/][xkcd, Machine Learning]]
-
-#+begin_quote
-"Software applications that become more accurate in predicting outcomes
-without being explicitly programmed." (ChatGPT)
-#+end_quote
-
-* Why is this important?
+* Why is machine learning important?
 #+attr_html: :width 200px
 [[../img/0_machine_learning_captcha.png]]
 Image: [[https://xkcd.com/2228/][xkcd, Machine Learning Captcha]] 
-
-#+begin_quote
-- *Make predictions* or recommendations from large data sets
-- *Classify* large amount of data into different *categories*
-- *Identify* *patterns* that humans did not detect
-- *Automate* processes driving a car or identifying spam emails
-#+end_quote
-Source: [[https://github.com/birkenkrahe/ml/blob/main/img/0_ml_chatgpt_1.png][ChatGPT]] (and [[https://github.com/birkenkrahe/ml/blob/main/img/0_ml_chatgpt_2.png][concerns]])
-
-* What will we do when in this course?
+* What will we do in this course?
 #+attr_html: :width 350px
 [[../img/0_toc.png]]
-
 Source: syllabus, see [[https://lyon.instructure.com/courses/1021/assignments/syllabus][Canvas]] or [[https://github.com/birkenkrahe/ml/blob/main/org/syllabus.org][GitHub]]
 
-* How will we be evaluated in this course?
+* How will you be evaluated?
 #+attr_html: :width 400px
 [[../img/0_grades.png]]
-
 Source: syllabus, see [[https://lyon.instructure.com/courses/1021/assignments/syllabus][Canvas]] or [[https://github.com/birkenkrahe/ml/blob/main/org/syllabus.org][GitHub]]
-* What could we do next?
 
-1) Complete (or review) [[https://app.datacamp.com/learn/courses/free-introduction-to-r]["Introduction to R" in DataCamp]]
+* What are "sprint reviews"?
+#+attr_html: :width 600px
+[[../img/0_scrum.png]]
+
+* What kind of projects do you want?
+#+attr_html: :width 400px
+#+Caption: https://ideaboardz.com/for/Agile%20ML%20project/4779027
+[[../img/0_ideaboardz.png]]
+
+- Let me know what kind of project you'd like to work on this term!
+- Turn to your neighbor(s) and discuss with them
+- Fill in a post-it note and/or vote on existing notes: go to
+  [[https://tinyurl.com/2s38bdtk][tinyurl.com/2s38bdtk]]
+
+  1) I can give you a project topic to work on - IF SO, WHY?
+  2) Or you can pick your own project topic - IF SO, WHY?
+  3) You can do the work and present the results in class - IF SO, WHY?
+  4) Or you can write an essay instead - IF SO, WHY?
+  
+* What could you do next?
+
+1) Complete/review introductory R or statistics courses
+   - [[https://app.datacamp.com/learn/courses/free-introduction-to-r][Introduction to R" in DataCamp]] (data structures)
+   - [[https://app.datacamp.com/learn/courses/intermediate-r][Intermediate R]] (conditionals, functions, loops, utilities)
+   - [[https://app.datacamp.com/learn/courses/introduction-to-statistics][Introduction to statistics]]
+   - [[https://github.com/matloff/fasteR][fasteR by Norman Matloff (GitHub)]] - fast lane to R
+   - [[https://github.com/matloff/fastStat][fastStat by Norman Matloff (GitHub)]] - fast lane to statistics
    #+attr_html: :width 400px
    [[../img/0_datacamp.png]]
   
-2) Get the textbook: [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][Lantz, Machine Learning with R (3e) 2019]]
+2) Get the 2019 textbook by [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][Lantz, Machine Learning with R (3e)]] and
+   read the first chapter (it's free even without buying it).
+   - There are many other books (not many of them very good)
+   - Stay away from "cookbooks" (ML with Keras or TensorFlow)
    #+attr_html: :width 200px
    [[../img/0_lantz.png]]
 
-3) Install WSL (Windows Subsystem for Linux) on your PC
+3) Install WSL (Windows Subsystem for Linux) on your PC, then learn
+   the command line with [[https://linuxcommand.org/tlcl.php][Shotts' book (5e, 2023)]].
    #+attr_html: :width 400px
-   [[../img/0_wsl.png]]
-
-   ChatGPT: Is Linux relevant for machine learning?   #+attr_html: :width 40  
-
-
-   
+   [[../img/0_ml_chatgpt_3.png]]
+   ChatGPT: /Is Linux relevant for machine learning?/
+* What are you looking forward to?
+#+attr_html: :width 400px
+[[../img/0_2001.jpg]]
+Image: "2001: A Space Odyssey" (Kubrick and Clarke, 1968)
+* Next
+#+attr_html: :width 200px
+[[../img/0_rlogo.svg]]

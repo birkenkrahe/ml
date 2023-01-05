@@ -3,13 +3,19 @@
 #+STARTUP:overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:R :session *R* :results: output :exports both :noweb yes
-* Week 1 - Course overview & Review of R
+* Week 1 - Course overview & ML overview
 #+attr_html: :width 500px
 [[../img/cover.jpg]]
 
 [[https://unsplash.com/@kasiape][Photo by Katarzyna Pe at Unsplash.com]]
 
 - [ ] Course overview - assignments, grading, topics
+- [ ] Introduction to machine learning
+  
+* Week 2 - Review of R
+#+attr_html: :width 200px
+[[../img/0_rlogo.svg]]
+
 - [ ] Review: R data structures, environment, exploration
   
  
