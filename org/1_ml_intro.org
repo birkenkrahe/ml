@@ -198,8 +198,10 @@ Many different uses, many different models:
 
 * Nile example: data storage
 
-- To run the code below, open https://tinyurl.com/26zaxpr3, save the
-  file to ~1_Nile_practice.org~ and open it in Emacs.
+- To run the code below, open [[https://tinyurl.com/2mnv425w][tinyurl.com/2mnv425w]], save the
+  file to ~1_ml_practice.org~ and open it in Emacs.
+
+- Once you're done, upload the completed file to Canvas:
 
 - Example: the following numbers come from R's ~Nile~ data set:
   #+begin_example
@@ -228,16 +230,6 @@ Many different uses, many different models:
   #+begin_src R
     shell(cmd="DIR ..\\data\\Nile.txt") # escaped Windows backward slash
   #+end_src
-
-  #+RESULTS:
-  :  Volume in drive C is OS
-  :  Volume Serial Number is 0654-135C
-  :
-  :  Directory of c:\Users\birkenkrahe\Documents\GitHub\ml\data
-  :
-  : 01/05/2023  10:46 AM               530 Nile.txt
-  :                1 File(s)            530 bytes
-  :                0 Dir(s)  298,322,276,352 bytes free
 
 - When on disk, ~Nile.txt~ is stored in non-volatile memory (it's
   permanent). When it is loaded into R (or another shell program), it
@@ -295,13 +287,6 @@ Many different uses, many different models:
     str(nile_ts)
     class(nile_ts)
   #+end_src
-
-  #+RESULTS:
-  :  Time-Series [1:100, 1] from 1871 to 1970: 1120 1160 963 1210 1160 1160 813 1230 1370 1140 ...
-  :  - attr(*, "dimnames")=List of 2
-  :   ..$ : NULL
-  :   ..$ : NULL
-  : [1] "ts"
   
 * Modeling
  #+attr_html: :width 600px
@@ -457,9 +442,6 @@ Many different uses, many different models:
            lty = c(NA, 2),  # assign line type
            col = c("blue", "red")) # assign color
   #+end_src
-
-  #+RESULTS:
-  [[file:../img/lantz_nile_lm.png]]
 
 - This last example demonstrates "underfitting" = most points are not
   well represented by the model. However, the general trend is well

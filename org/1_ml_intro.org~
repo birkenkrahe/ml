@@ -3,7 +3,6 @@
 #+STARTUP: overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
-#+attr_html: :width 600px
 * README
 
 The purpose of today's machine learning (ML) is to assist us with
@@ -279,9 +278,9 @@ Many different uses, many different models:
   1) read the text file ~read.table~ as a ~data.frame~
   2) remove column name with ~colnames~
   3) create time series with ~ts~ from data frame
-  #+begin_src R
+  #+begin_src R :results silent
      nile_df <- read.table(
-      file="./data/Nile.txt",   # read from text file
+      file="../data/Nile.txt",   # read from text file
       sep=" ",                  # entries separated by empty space
       header=FALSE)             # no 1st row with attribute information
     colnames(nile_df) <- NULL
@@ -294,9 +293,15 @@ Many different uses, many different models:
   structure.
   #+begin_src R
     str(nile_ts)
-    nile_ts
     class(nile_ts)
   #+end_src
+
+  #+RESULTS:
+  :  Time-Series [1:100, 1] from 1871 to 1970: 1120 1160 963 1210 1160 1160 813 1230 1370 1140 ...
+  :  - attr(*, "dimnames")=List of 2
+  :   ..$ : NULL
+  :   ..$ : NULL
+  : [1] "ts"
   
 * Modeling
  #+attr_html: :width 600px
@@ -528,11 +533,12 @@ Many different uses, many different models:
 * Summary
 
 - ML can find actionable insight in large data sets
-- ML involves abstraction of data into structured representation and
-  generalization of the structure into action that can be evaluated
+
+- ML involves *abstraction* of data into structured *representation* and
+  *generalization* of the structure into action that can be *evaluated*
+
 - Data that contains examples/observations/records and features of the
-  concept to be learnt is summarized in a model
-- The ML model is used for prescriptive or descriptive purposes
+  concept to be learnt is summarized in a *model*
 
 * References
 
