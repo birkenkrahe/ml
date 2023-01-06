@@ -9,15 +9,18 @@
 
 [[https://unsplash.com/@kasiape][Photo by Katarzyna Pe at Unsplash.com]]
 
-- [ ] Course overview - assignments, grading, topics
+- [ ] Course overview - assignments, grading, topics, platforms
 - [ ] Introduction to machine learning
+- [ ] First DataCamp assignment "Understanding machine learning"
+- [ ] First in-class practice "Introduction to machine learning"
   
 * Week 2 - Review of R
 #+attr_html: :width 200px
 [[../img/0_rlogo.svg]]
 
 - [ ] Review: R data structures, environment, exploration
-  
+- [ ] Machine learning in practice: types of models
+- [ ] First multiple-choice test in class on Thursday, January 19
  
 
     

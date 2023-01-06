@@ -14,7 +14,8 @@ machine learning:
 - Training the model
 
 Most of this material can be found in Lantz, Machine Learning with R
-(3e, 2019), Packt. [[https://github.com/birkenkrahe/ml/blob/main/pdf/data_structures.pdf][Solutions can be found in GitHub]].
+(3e, 2019), Packt. Solutions are on GitHub as PDF files.
+
 * TODO Identify and pledge yourself
 
 1) In Emacs, replace the placeholder ~[yourname]~ at the top of this
@@ -190,7 +191,9 @@ in the file ~1_nile_hist.png~.
             col = c("blue", "red"))
    #+end_src
 
-* TODO Congratulations!
+* TODO Wow! Congratulations!
 
-Well done! If you've completed all steps, you can now upload the
-Org-mode file to Canvas (see ~Assignments > In-class practice~.
+Well done! You've reached the end of the first in-class practice file.
+
+If you've completed all steps, you can now upload the Org-mode file to
+Canvas (see ~Assignments > In-class practice~.

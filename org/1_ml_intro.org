@@ -4,6 +4,8 @@
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
 * README
+#+attr_html: :width 500px
+[[../img/0_ml.png]]
 
 The purpose of today's machine learning (ML) is to assist us with
 making sense of the world's massive data collections.
@@ -17,16 +19,19 @@ making sense of the world's massive data collections.
 4) Simple R examples
 
 * Origins of ML
+#+attr_html: :width 400px
+[[../img/1_origins.jpg]]
+Image: [[https://en.wikipedia.org/wiki/Assassin%27s_Creed_Origins][Assassin's Creed Origins (2017)]]
 
-1) *Statistical modeling* (17th century)
+1) *Statistical modeling* (17th century)[fn:15]
 
-2) *Machine learning* (1950s)
+2) *Machine learning* (1950s)[fn:16]
 
-3) *Knowledge discovery* (1980s)
+3) *Knowledge discovery* (1980s)[fn:17]
 
-4) *Data mining* (1990s)
+4) *Data mining* (1990s)[fn:18]
 
-5) *Data science* (2010s)
+5) *Data science* (2010s)[fn:19]
 
 * Uses and abuses of ML
 #+attr_html: :width 400px
@@ -529,6 +534,19 @@ Many different uses, many different models:
 - Data that contains examples/observations/records and features of the
   concept to be learnt is summarized in a *model*
 
+* ML Glossary
+
+| TERM             | MEANING                                |
+|------------------+----------------------------------------|
+| Machine learning | Computer solves task with models       |
+| Data abstraction | Transform raw data to table structure  |
+| Generalization   | Trained model fits unknown data        |
+| Evaluation       | Model feedback to test accuracy        |
+| Heuristics       | Model to find solution quickly         |
+| Bias             | Machine heuristics that lead to errors |
+| Overfitting      | Modeling noise instead of signals      |
+| Underfitting     | Model is too simple for the data       |
+
 * References
 
 - Anderson (2017). Twenty years on from Deep Blue vs Kasparov: how a
@@ -548,6 +566,36 @@ Many different uses, many different models:
 - Serrano (2021). Grokking Machine Learning.
 
 * Footnotes
+[fn:19]Data science refers to the process of extracting meaningful
+   knowledge from data, using methods from statistics, computer
+   science, database management and more. ML is not required for data
+   science but it is often used - e.g. when fitting a trendline to a
+   dataset. Popular since ca. 2012. Subfields include data
+   engineering, process mining, and machine learning.
+
+[fn:18]Data mining is the process of using one or more machine
+   learning algorithms to find patterns or structure in data. The
+   patterns may be: a set of rules, a graph or network, a tree, one or
+   more equations, etc. The applications can be part of a visual
+   dashboard or as simple as a list. Popular since ca. 1995.
+
+[fn:17]Knowledge discovery in databases (KDD) was coined in 1989 to
+   emphasise that knowledge can be derived from data-driven
+   discovery. Frequently used interchangeably with data
+   mining. Includes not just the pattern search but also methods for
+   extracting, preparing and using data.
+
+[fn:16]For ML, assumptions about data distributions and variable
+   independence are not a concern. ML is part of the field of
+   Artificial Intelligence (AI) - computers who make their own
+   decisions. Popular since 1959 (Arthur Samuel: ML is the ability to
+   learn without being explicitly programmed.). Subfields include deep
+   learning = ML with artificial neural networks; reinforcement
+   learning = reward-based machine learning
+[fn:15]Statistical methods make assumptions about the nature of the
+data. If these assumptions are violated the models built with the data
+are inaccurate. Systematically developed in the 17th and 18th century,
+popular since the rise of computers in the mid-20th century.
 
 [fn:14]Compare this with the very similar looking diagram earlier, the
 linear trendline modeling of the ~Nile~ time series data. Underfitting
@@ -605,9 +653,8 @@ rabbit out of a hat when needed. This has often worked for me!
 Dreyfus ([[https://en.wikipedia.org/wiki/Hubert_Dreyfus#Dreyfus'_criticism_of_AI][see Wikipedia here]] and here for a [[https://debategraph.org/Details.aspx?nid=2785][graph representation]]).
 
 [fn:10]For the back story on this, I asked a fully trained model,
-ChatGPT: "How far does an object of 1 kg fall in 1 second?"
-#+attr_html: :width 400px
-[[../img/1_lantz_gravity.png]]
+ChatGPT: "How far does an object of 1 kg fall in 1 second?" - very
+complete answer, check it out: [[https://tinyurl.com/mr2sm6zx][tinyurl.com/mr2sm6zx]].
 
 [fn:11]There is also the danger here - all predictions are stochastic
 in nature, i.e. they are probabilistic predictions, likelihoods,

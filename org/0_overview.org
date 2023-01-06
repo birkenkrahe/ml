@@ -1,34 +1,62 @@
-#+TITLE:COURSE OVERVIEW (DSC 305 - MACHINE LEARNING) 
+#+TITLE:COURSE OVERVIEW
 #+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: DSC 305 - MACHINE LEARNING - SPRING 2023
 #+STARTUP: overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
 #+attr_html: :width 600px
 [[../img/cover.jpg]]
 * What is "machine learning" about?
 #+attr_html: :width 400px
+#+attr_latex: :width 250px
+#+caption: xkcd, https://xkcd.com/1838/, Machine Learning
+#+CAPTION: Image: xkcd, https://xkcd.com/1838/, Machine Learning
 [[../img/0_machine_learning.png]]
-Image: [[https://xkcd.com/1838/][xkcd, Machine Learning]]
+
+What do you think "machine learning" is about?
+
 * Why is machine learning important?
-#+attr_html: :width 200px
+#+attr_html: :width 300px
+#+attr_latex: :width 200px
+#+caption: xkcd, https://xkcd.com/2228/, Machine Learning Captcha
 [[../img/0_machine_learning_captcha.png]]
-Image: [[https://xkcd.com/2228/][xkcd, Machine Learning Captcha]] 
+
+What do you think - is machine learning important? Why or why not?
+
 * What will we do in this course?
 #+attr_html: :width 350px
+#+attr_latex: :width 250px
+#+caption: Source: syllabus, Canvas (lyon.instructure.com) or GitHub (github.com/birkenkrahe/ml)
 [[../img/0_toc.png]]
-Source: syllabus, see [[https://lyon.instructure.com/courses/1021/assignments/syllabus][Canvas]] or [[https://github.com/birkenkrahe/ml/blob/main/org/syllabus.org][GitHub]]
+
+- Topics and assignments are largely aligned with a textbook by Lantz
+  (2019) and the DataCamp lessons in the "Machine Learning with R"
+  track.
 
 * How will you be evaluated?
 #+attr_html: :width 400px
+#+attr_latex: :width 400px
+#+caption: Source: syllabus, Canvas (lyon.instructure.com) or GitHub (github.com/birkenkrahe/ml)
 [[../img/0_grades.png]]
-Source: syllabus, see [[https://lyon.instructure.com/courses/1021/assignments/syllabus][Canvas]] or [[https://github.com/birkenkrahe/ml/blob/main/org/syllabus.org][GitHub]]
+
+- All course requirements have deadlines
+- Late submissions will be penalized (loss of points)
+- Final exam will be sourced by term test questions
+- The project will be presented 4 times (sprint reviews)
 
 * What are "sprint reviews"?
 #+attr_html: :width 600px
+#+attr_latex: :width 400px
+#+caption: Scrum sprint review and IMRaD publishing framework
 [[../img/0_scrum.png]]
+
+- Scrum is an important software engineering technique
+- IMRaD is an important framework to publish scientific papers
+- MLOps requires improved project management and reading papers
 
 * What kind of projects do you want?
 #+attr_html: :width 400px
-#+Caption: https://ideaboardz.com/for/Agile%20ML%20project/4779027
+#+attr_latex: :width 300px
+#+Caption: ideaboardz.com Kanban board
 [[../img/0_ideaboardz.png]]
 
 - Let me know what kind of project you'd like to work on this term!
@@ -41,33 +69,93 @@ Source: syllabus, see [[https://lyon.instructure.com/courses/1021/assignments/sy
   3) You can do the work and present the results in class - IF SO, WHY?
   4) Or you can write an essay instead - IF SO, WHY?
   
-* What could you do next?
+* Which tools are you going to use?
+#+attr_html: :width 400px
+#+attr_latex: :width 300px
+#+caption: Unsplash, workshop
+[[../img/0_tools.jpg]]
 
-1) Complete/review introductory R or statistics courses
+- [[https://app.datacamp.com/groups/lyon-college-data-science-spring-2023/assignments][DataCamp courses]] (10 weekly home assignments)
+- [[https://github.com/birkenkrahe/ml][GitHub repository]] (all course materials except tests)
+- [[https://github.com/birkenkrahe/org/blob/master/FAQ.org][GNU Emacs + ESS + R]] (literate programming environment)
+- [[https://lyon.instructure.com/courses/1021/pages/course-links][Canvas]] (learning management system)
+
+* How can you register at DataCamp?
+#+attr_html: :width 600px
+#+attr_latex: :width 400px
+#+caption: DataCamp assignments for January
+[[../img/0_datacamp1.png]]
+
+- You find the invitation link to the group for Spring 23 in
+  Canvas. The direct link: [[https://tinyurl.com/DataCampMLSP23][tinyurl.com/DataCampMLSP23]]
+- You will automatically be subscribed to the ML team
+- If you are in more than one course, I will add you later manually
+- These accounts will be valid until July 8, 2023 only
+
+* When is the first assignment due?
+#+attr_html: :width 300px
+#+attr_latex: :width 300px
+#+caption: Unsplash, test
+[[../img/0_test.jpg]]
+
+- The first DataCamp home assignment is due on January 17. For late
+  submissions, you lose 1 point per day (out of 10 possible points)
+
+- The first in-class assignment is due on January 17. For late
+  submissions, you lose 1 point per day (out of 10 possible points)
+  
+- We'll write the first weekly multiple-choice test on January 19.
+
+* What else could you do for a good start?
+
+1) Complete/review introductory R or statistics courses:
    - [[https://app.datacamp.com/learn/courses/free-introduction-to-r][Introduction to R" in DataCamp]] (data structures)
    - [[https://app.datacamp.com/learn/courses/intermediate-r][Intermediate R]] (conditionals, functions, loops, utilities)
    - [[https://app.datacamp.com/learn/courses/introduction-to-statistics][Introduction to statistics]]
    - [[https://github.com/matloff/fasteR][fasteR by Norman Matloff (GitHub)]] - fast lane to R
    - [[https://github.com/matloff/fastStat][fastStat by Norman Matloff (GitHub)]] - fast lane to statistics
    #+attr_html: :width 400px
+   #+attr_latex: :width 300px
+   #+caption: DataCamp course dashboard banner
    [[../img/0_datacamp.png]]
   
-2) Get the 2019 textbook by [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][Lantz, Machine Learning with R (3e)]] and
+2) If you do not have any experience with Emacs, work through the
+   *online tutorial* (open it in Emacs with ~CTRL + h t~) - ca. 1 hour.
+   - Learn to open/close the editor
+   - Learn basic cursor control (moving around)
+   - Learn basic file management (open/close/find/save files)
+   - Learn basic windows (buffer) management
+
+3) Get the 2019 textbook by [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][Lantz, Machine Learning with R (3e)]] and
    read the first chapter (it's free even without buying it).
-   - There are many other books (not many of them very good)
+   - There are many other books (most of them not all that good)
    - Stay away from "cookbooks" (ML with Keras or TensorFlow)
    #+attr_html: :width 200px
+   #+attr_latex: :width 200px
+   #+caption: Book cover, ML with R 3rd ed. by Brett Lantz (Packt, 2019)
    [[../img/0_lantz.png]]
 
-3) Install WSL (Windows Subsystem for Linux) on your PC, then learn
+4) Install WSL (Windows Subsystem for Linux) on your PC, then learn
    the command line with [[https://linuxcommand.org/tlcl.php][Shotts' book (5e, 2023)]].
    #+attr_html: :width 400px
+   #+attr_latex: :width 400px
+   #+caption: Conversation with ChatGPT by OpenAI
    [[../img/0_ml_chatgpt_3.png]]
    ChatGPT: /Is Linux relevant for machine learning?/
+
 * What are you looking forward to?
 #+attr_html: :width 400px
+#+attr_latex: :width 250px
+#+Caption: "2001: A Space Odyssey" (Kubrick and Clarke, 1968)
 [[../img/0_2001.jpg]]
-Image: "2001: A Space Odyssey" (Kubrick and Clarke, 1968)
+
+
 * Next
-#+attr_html: :width 200px
-[[../img/0_rlogo.svg]]
+#+attr_html: :width 300px
+#+attr_latex: :width 250px
+#+Caption: "2001: A Space Odyssey" (Kubrick and Clarke, 1968)
+[[../img/0_ml.png]]
+#+attr_html: :width 300px
+#+attr_latex: :width 250px
+#+Caption: R logo, by the R Project, r-project.org
+[[../img/0_Rlogo.png]]
