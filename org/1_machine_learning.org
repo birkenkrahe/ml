@@ -161,8 +161,7 @@ Many different uses, many different models:
 
 - Testing the rules on patient 13 yields: diagnosis = allergy
 
-
-* IN PROGRESS How machines learn
+* How machines learn
 
 - Unlike humans, machines need explicit conditions and instructions
   literally down to the letter (ML does not change that completely)
@@ -186,18 +185,20 @@ Many different uses, many different models:
 - *Data storage* utilizes observation, memory, and recall to provide a
   factual basis for further reasoning
 
-- Store raw data selectively - more data does not necessarily mean
-  more information (too much data can obscure what you're looking for)
+- Storage needs to take software and hardware conditions into account
+
+- You need to store raw data selectively - *more data* does not
+  necessarily mean *more information* (too much data can obscure what
+  you're looking for) and carries a performance overhead
 
 - Remember studying for an exam - do you gorge yourself on all
   available details or do you select questions and answers that were
   discussed in class?[fn:2]
 
-- Storage needs to take software and hardware conditions into account
-
 * Nile example: data storage
 
-- To run the code below, open in Emacs
+- To run the code below, open https://tinyurl.com/26zaxpr3, save the
+  file to ~1_Nile_practice.org~ and open it in Emacs.
 
 - Example: the following numbers come from R's ~Nile~ data set:
   #+begin_example
@@ -220,7 +221,7 @@ Many different uses, many different models:
           ncolumns=1,
           sep=" ")
   #+end_src
-    
+
 - The values are stored as a text file ~Nile.txt~ of size 440 byte,
   which means 440 * 8 = 3520 bits, or binary value capacitors:
   #+begin_src R
@@ -230,9 +231,9 @@ Many different uses, many different models:
   #+RESULTS:
   :  Volume in drive C is OS
   :  Volume Serial Number is 0654-135C
-  : 
+  :
   :  Directory of c:\Users\birkenkrahe\Documents\GitHub\ml\data
-  : 
+  :
   : 01/05/2023  10:46 AM               530 Nile.txt
   :                1 File(s)            530 bytes
   :                0 Dir(s)  298,322,276,352 bytes free
@@ -249,7 +250,10 @@ Many different uses, many different models:
     shell(cmd="notepad ..\\data\\Nile.txt")
   #+end_src
 
-** Abstraction = transform + train
+* Abstraction = transform + train
+#+attr_html: :width 400px
+[[../img/1_lantz_4.jpg]]
+[[http://collections.lacma.org/node/239578][Image: Magritte, La Trahison Des Images]]
 
 - *Abstraction* involves translating stored data into broader
   representations and concepts
@@ -262,46 +266,41 @@ Many different uses, many different models:
   trying to build a world, but to translate it into something it can
   "see"
 
-- René Magritte's painting "The Treachery of Images" illustrates this
-  idea: "Ceci n'est pas une pipe" because it's an image of a pipe, and
-  not the pipe itself.
-  #+attr_html: :width 400px
-  #+caption: Magritte, La Trahison Des Images, Source: http://collections.lacma.org/node/239578
-  [[./img/lantz_4.jpg]]
-
-*** Nile example: transformation
+* Nile example: transformation
 
 - ~Nile~ example: earlier, we stored integer numbers in memory. A
-  convenient representation in R involves choosing a data structure
+  convenient representation in R involves choosing a *data structure*
   and transforming the numbers into it
 
-- We read the text data from file using ~read.table~ and store them in a
-  time series:
-  1) write ~Nile~ as a 1-column text file
-  2) read the text file ~read.table~ as a ~data.frame~
-  3) remove column name with ~colnames~
-  4) create time series with ~ts~ from data frame
+- We read the text data from file using the R function ~read.table~ and
+  store them in a time series using the R function ~ts~:
+  1) read the text file ~read.table~ as a ~data.frame~
+  2) remove column name with ~colnames~
+  3) create time series with ~ts~ from data frame
   #+begin_src R
-    write(
-      x=Nile,
-      file="./data/Nile.txt",
-      ncolumns=1)
-    nile_df <- read.table(
-      file="./data/Nile.txt",
-      sep=" ",
-      header=FALSE)
+     nile_df <- read.table(
+      file="./data/Nile.txt",   # read from text file
+      sep=" ",                  # entries separated by empty space
+      header=FALSE)             # no 1st row with attribute information
     colnames(nile_df) <- NULL
     nile_ts <- ts(nile_df,start=1871)
-    str(nile_ts)
-    nile_ts
   #+end_src
 
 - The transformed data set contains additional information that was
   not present in the numbers themselves. We have used additional
   information (about the origin of the data) and R's time series data
   structure.
-
-*** Modeling
+  #+begin_src R
+    str(nile_ts)
+    nile_ts
+    class(nile_ts)
+  #+end_src
+  
+* Modeling
+ #+attr_html: :width 600px
+ [[../img/1_lantz_gestalt.png]]
+ 
+[[https://www.europeanproceedings.com/article/10.15405/epes.22043.25/image/3][Source: Hosseini, Hytönen, Kinnunen (2022)]]
 
 - When a machine creates a *Knowledge representation*, it summarizes
   stored raw data using a *model*, an explicit description of the
@@ -310,17 +309,9 @@ Many different uses, many different models:
 - A model represents an idea greater than the sum of its parts (also:
   "The whole is greater than the sum of its parts")
 
-- In visual perception, this is illustrated by the six Gestalt (German
-  for "shape") principles: each of them implies not just the pixels of
-  the image but a pattern that leads to a human process of perceiving
-  more than just the pattern itself.
-  #+attr_html: :width 600px
-  #+caption: Source: https://www.europeanproceedings.com/article/10.15405/epes.22043.25/image/3
-  [[./img/lantz_gestalt.png]]
-
-- Ironically, computers, unlike humans, cannot comprehend these
-  Gestalt patterns as a whole, they can only sequentially process the
-  components of a pattern[fn:4].
+- Machines, unlike humans, cannot comprehend these Gestalt patterns as
+  a whole, they can only sequentially process the components of a
+  pattern[fn:4].
 
 - There are many different types of models, including:
   + Mathematical equations
@@ -331,7 +322,7 @@ Many different uses, many different models:
 - Typically , the machine does not pick the model - it is picked by a
   human depending on the learning task and the type of data available
 
-*** Nile example - modeling
+* Nile example - modeling
 
 - As an example of statistical inference, we use the time series data
   of ~Nile~ to create a statistical model
@@ -343,59 +334,34 @@ Many different uses, many different models:
     summary(Nile) # 5-point summary + sample average
   #+end_src
 
-  #+RESULTS:
-  : [1] "nile"    "Nile"    "nile_df"
-  :    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
-  :   456.0   798.5   893.5   919.4  1032.5  1370.0
-
 - To visualize this model, you can use ~boxplot~ (and ~abline~ to add the
   ~mean~):
-  #+begin_src R :results graphics file :file ./img/lantz_boxplot.png
-    boxplot(Nile, las=1, horizontal=TRUE,
+  #+begin_src R :results graphics file :file ../img/lantz_boxplot.png
+    boxplot(Nile,
+            las=1, # reorient x-axis labels
+            horizontal=TRUE, # show boxplot horizontally
             main="Annual flow of the Nile at Aswan\nbetween 1871 and 1970",
             xlab="Nile volume (mio cubic meters)")
-    abline(v=mean(Nile),
-           col="blue",
-           lwd=2)
+    abline(v=mean(Nile),  # draw a vertical line 
+           col="blue",    # paint line blue
+           lwd=2)         # double line width
   #+end_src
-
-  #+RESULTS:
-  [[file:./img/lantz_boxplot.png]]
 
 - The /generic/ function ~summary~ collapses the abstraction (time series
   representation) into a statistical summary
 
-- That ~summary~ is generic is relevant because it means that it can
+- That ~summary~ is /generic/ is relevant because it means that it can
   deal with many different abstractions (and models, too):
   #+begin_src R
     methods(summary)
   #+end_src
+  
+* ML training
+#+attr_html: :width 400px
+[[../img/1_train.png]]
 
-  #+RESULTS:
-  #+begin_example
-   [1] summary.aov                    summary.aovlist*
-   [3] summary.aspell*                summary.check_packages_in_dir*
-   [5] summary.connection             summary.data.frame
-   [7] summary.Date                   summary.default
-   [9] summary.ecdf*                  summary.factor
-  [11] summary.glm                    summary.infl*
-  [13] summary.lm                     summary.loess*
-  [15] summary.manova                 summary.matrix
-  [17] summary.mlm*                   summary.nls*
-  [19] summary.packageStatus*         summary.POSIXct
-  [21] summary.POSIXlt                summary.ppr*
-  [23] summary.prcomp*                summary.princomp*
-  [25] summary.proc_time              summary.srcfile
-  [27] summary.srcref                 summary.stepfun
-  [29] summary.stl*                   summary.table
-  [31] summary.tukeysmooth*           summary.warnings
-  see '?methods' for accessing help and source code
-  #+end_example
-
-*** ML training
-
-- ML models are trained. This means that the model is fitted to a data
-  set
+- Machine learning models are trained. This means that the model is
+  fitted to a data set
 
 - Once the model is trained, it has been transformed into an abstract
   form that summarizes (and transcends) the original information
@@ -403,66 +369,86 @@ Many different uses, many different models:
 - The training model is not "learning" yet because the result still
   must be evaluated (tested) before the model is ready.
 
+* Training a physics model  
+
 - Example from physics: by fitting equations to observational data,
-  Newton inferred the concept of gravity. It was always present but
-  not recognized:
+  Newton inferred the concept of gravity (we think). It was always
+  present but not recognized:
   #+attr_html: :width 600px
-  [[./img/lantz_5.png]]
+  [[../img/1_lantz_5.png]]
 
 - In R: ~g~ is the acceleration due to gravity[fn:5]
   #+begin_src R
     d <- c(4.9,19.6,44.1,78.5) # distance observations
     t2 <-c(1,2,3,4)  # time observations
+    2*d/(t^2) # fit data to model = compute g
     format(2*d/(t2^2),digits=2) # compute, print 2 digits
   #+end_src
-
-  #+RESULTS:
-  : [1] "9.8" "9.8" "9.8" "9.8"
 
 - Other model examples include:
   1. Genomic data models identify genes responsible for disease
   2. Bank transaction models identify fraudulent activities
   3. Psychological models identify new disorders
+  4. Medical models identify diagnostic patterns
 
 - These patterns were always there but had not been identified/seen
   prior to presenting the information in a different format.[fn:6]
 
-*** Nile example - training
+* Nile example - training a density model
 
 - The ~truehist~ function fits the dataset to a density estimate, and
   ~density~ does the same with a smoothing effect added:
-  #+begin_src R :results graphics file :file ./img/lantz_nile.png
-    library(MASS)
-    truehist(Nile,
-             las=1,
-             xlab="",
-             main="")
-    par(new=TRUE)
-    plot(density(Nile),
-         col="red",
-         lwd=2,
-         xaxt="n",
-         yaxt="n",
-         main="")
+  #+begin_src R :results graphics file :file ../img/lantz_nile.png
+    library(MASS)     # load MASS package
+    truehist(Nile,    # target dataset for histogram
+             las=1,   # reorient axis labels
+             xlab="", # remove default x-axis annotation
+             main="") # remove default title
+    par(new=TRUE)     # allow plotting over previous plot
+    plot(density(Nile), # target dataset for plot
+         col="red",   # draw line in red
+         col.lab="red", # color axis label red
+         lwd=2,       # double line width
+         xaxt="n",    # suppress plotting x-axis
+         yaxt="n",    # suppress plotting y-axis
+         main="")     # remove title
     title("Flow through the Nile 1872-1970")
   #+end_src
 
-  #+RESULTS:
-  [[file:./img/lantz_nile.png]]
+* Nile example: training a linear model
 
 - The ~lm~ function attempts to fit a linear model to the ~Nile~ dataset:
   #+begin_src R :results graphics file :file ./img/lantz_nile_lm.png
-    model <- lm(Nile ~ time(Nile))
-    plot(Nile, type="p",col="blue",pch=16,
-         ylab="Flow in mio cubic metres")
-    abline(model,col="red",lwd=2)
-    lines(Nile,type="l", col="black", lty=2)
+    ## create the linear model (needs 2 dimensions)
+    model <- lm(Nile ~ time(Nile)) 
+
+    ## plot Nile data
+    plot(Nile,    
+         type="p",  # plot points only
+         col="blue", # plot points in blue
+         pch=16,  # point character solid circle
+         ylab="Flow in mio cubic metres") # y-axis annotation
+
+    ## draw the model - a trendline
+    abline(model,  # model consists of intercept and slope
+           col="red", # red line
+           lwd=2)   # double line width
+
+    ## connect Nile data by black dashed lines
+    lines(Nile,
+          type="l",
+          col="black",
+          lty=2)
+
+    ## title plot
     title("Flow through the Nile at Assuan 1872-1970")
-    legend("topright",
+
+    ## add a legend
+    legend("topright",  # where the legend is located
            legend=c("Observation", "Linear Model"),
-           pch = c(16,NA),
-           lty = c(NA, 2),
-           col = c("blue", "red"))
+           pch = c(16,NA),  # assign point character
+           lty = c(NA, 2),  # assign line type
+           col = c("blue", "red")) # assign color
   #+end_src
 
   #+RESULTS:
@@ -491,7 +477,10 @@ Many different uses, many different models:
   5) "generalization machine learning" (result still too specific)
 
   This last search leads straight to a [[https://developers.google.com/machine-learning/crash-course/generalization/video-lecture][foundational course]] offered by
-  Google developers and many links directly related to ML.
+  Google developers and many links directly related to ML. The
+  corresponding ChatGPT conversation yields a better answer at step 3.
+
+  
 
 - *Human heuristics* are guided by emotion and can be fallible -
   e.g. "availability heuristics", the tendency to estimate likelihood
@@ -560,6 +549,7 @@ Many different uses, many different models:
 - Modeling noise is called /overfitting/.
   #+attr_html: :width 500px
   [[./img/lantz_overfitting.jpg]]
+  
 
 * ML in practice
 ** Process
@@ -856,6 +846,13 @@ an essential first step toward using data to drive the desired action.
 
 - Anderson (2017). Twenty years on from Deep Blue vs Kasparov: how a
   chess match started the big data revolution. [[https://theconversation.com/twenty-years-on-from-deep-blue-vs-kasparov-how-a-chess-match-started-the-big-data-revolution-76882][@theconversation.com.]]
+
+- Hosseini, Z., Hytönen, K., & Kinnunen, J. (2022). Improving Online
+  Content Quality Through Technological Pedagogical Content Design
+  (TPCD). In S. Vachkova, & S. S. Chiang (Eds.), Education and City:
+  Quality Education for Modern Cities, vol 3. European Proceedings of
+  Educational Sciences (pp. 284-296). European
+  Publisher. https://doi.org/10.15405/epes.22043.25
 
 - Lantz (2019). Machine Learning with R. Packt.
 
