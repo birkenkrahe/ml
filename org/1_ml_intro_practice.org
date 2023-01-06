@@ -1,0 +1,183 @@
+#+TITLE: How machines learn - Nile example
+#+AUTHOR: [yourname]
+#+SUBTITLE: In-class practice
+#+STARTUP:overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+* README
+
+This file covers the ~Nile~ example from the introductory lecture on
+machine learning:
+- Data storage
+- Transformation of data
+- Modeling of data
+- Training the model
+
+Most of this material can be found in Lantz, Machine Learning with R
+(3e, 2019), Packt. [[https://github.com/birkenkrahe/ml/blob/main/pdf/data_structures.pdf][Solutions can be found in GitHub]].
+* TODO Identify and pledge yourself
+
+1) In Emacs, replace the placeholder ~[yourname]~ at the top of this
+   file by your own name and write ~(pledged)~ next to it
+2) Go with the cursor on the headline and hange the ~TODO~ label to ~DONE~
+   by entering ~S-<right>~ ("Shift + right-arrow").
+
+
+* TODO Data storage: text file
+
+1) Example: the following numbers come from R's ~Nile~ data set:
+   #+begin_example
+   1120 1160 963 1210 1160 1160 813 1230 1370 1140
+   995 935 1110 994 1020 960 1180 799 958 1140
+   1100 1210 1150 1250 1260 1220 1030 1100 774 840
+   874 694 940 833 701 916 692 1020 1050 969
+   831 726 456 824 702 1120 1100 832 764 821
+   768 845 864 862 698 845 744 796 1040 759
+   781 865 845 944 984 897 822 1010 771 676
+   649 846 812 742 801 1040 860 874 848 890
+   744 749 838 1050 918 986 797 923 975 815
+   1020 906 901 1170 912 746 919 718 714 740
+   #+end_example
+
+2) To extract the data from the data set (already stored in R):
+   #+begin_src R :results silent
+     write(x=Nile,
+           file="Nile.txt",
+           ncolumns=1,
+           sep=" ")
+   #+end_src
+
+3) The values are stored as a text file ~Nile.txt~ of size 440 byte,
+   which means 440 * 8 = 3520 bits, or binary value capacitors:
+   #+begin_src R
+     shell(cmd="DIR Nile.txt")
+   #+end_src
+
+4) When on disk, ~Nile.txt~ is stored in non-volatile memory (it's
+   permanent). When it is loaded into R (or another shell program), it
+   is represented as RAM (Random Access Memory).
+   #+begin_src R :results silent
+     shell(cmd="notepad Nile.txt")
+   #+end_src
+
+* TODO Abstraction: transformation
+
+1) Read the text data from file using ~read.table~ and store them in a
+   time series using ~ts~:
+   #+begin_src R
+     ## read the text file as a data.frame
+     nile_df <- read.table(
+       file="Nile.txt",
+       sep=" ",
+       header=FALSE)
+
+     ## remove column name with colnames
+     colnames(nile_df) <- NULL
+
+     ## create time series with ts from data frame
+     nile_ts <- ts(nile_df,start=1871)
+   #+end_src
+
+2) Display R object structure:
+   #+begin_src R
+     ## show structure of time series
+     str(nile_ts)
+
+     ## show time series data
+     nile_ts
+   #+end_src
+
+* TODO Generalization: modeling
+
+1) The ~summary~ function represents a statistical model:
+   #+begin_src R
+     data(Nile)  # add the built-in Nile dataset to the session
+     ls()  # show all R objects in the current session
+     summary(Nile) # 5-point summary + sample average
+   #+end_src
+
+2) Visualize the model as a ~boxplot~ (with ~abline~ to add the ~mean~):
+   #+begin_src R :results graphics file :file 1_boxplot.png
+     boxplot(Nile,
+             las=1,
+             horizontal=TRUE,
+             main="Annual flow of the Nile at Aswan\nbetween 1871 and 1970",
+             xlab="Nile volume (mio cubic meters)")
+     abline(v=mean(Nile),
+            col="blue",
+            lwd=2)
+   #+end_src
+
+3) The /generic/ function ~summary~ collapses the abstraction (time series
+       representation) into a statistical summary
+
+4) That ~summary~ is generic is relevant because it means that it can
+   deal with many different abstractions (and models, too):
+   #+begin_src R
+     methods(summary)
+   #+end_src
+
+* TODO Training a physics model of gravity
+
+1) The table shows observed distance of an object falling near Earth
+   and the corresponding time to reach that distance:
+   | DISTANCE [m] | TIME [s] |
+   |--------------+----------|
+   |          4.9 |        1 |
+   |         19.6 |        2 |
+   |         44.1 |        3 |
+   |         78.5 |        4 |
+
+2) Transforming the data to fit the data to the model (~g~):
+   #+begin_src R
+     d <- c(4.9,19.6,44.1,78.5)
+     t <-c(1,2,3,4)
+     2*d/(t^2)
+     ## format the output to show 2 digits only
+   #+end_src
+
+* TODO Training a density model
+
+The ~truehist~ function fits the dataset to a density estimate, and
+~density~ does the same with a smoothing effect added:
+#+begin_src R :results graphics file :file 1_nile.png
+  library(MASS)
+  truehist(Nile,
+           las=1,
+           xlab="",
+           main="")
+  par(new=TRUE)
+  plot(density(Nile),
+       col="red",
+       col.lab="red",
+       lwd=2,
+       xaxt="n",
+       yaxt="n",
+       main="")
+  title("Flow through the Nile 1872-1970")
+#+end_src
+
+* TODO Training a linear model
+
+The ~lm~ function attempts to fit a linear model to the ~Nile~ dataset:
+#+begin_src R :results graphics file :file ./img/lantz_nile_lm.png
+  model <- lm(Nile ~ time(Nile))
+  plot(Nile,
+       type="p",
+       col="blue",
+       pch=16,
+       ylab="Flow in mio cubic metres")
+  abline(model,
+         col="red",
+         lwd=2)
+  lines(Nile,
+        type="l",
+        col="black",
+        lty=2)
+  title("Flow through the Nile at Assuan 1872-1970")
+  legend("topright",
+         legend=c("Observation", "Linear Model"),
+         pch = c(16,NA),
+         lty = c(NA, 2),
+         col = c("blue", "red"))
+#+end_src
