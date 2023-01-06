@@ -11,7 +11,7 @@ This file covers main data structures in R:
 - Data frames, or a table of features (cols) and observations (rows)
 
 Most of this material can be found in Lantz, Machine Learning with R
-(3e, 2019), Packt. [[https://github.com/birkenkrahe/ml/blob/main/pdf/data_structures.pdf][Solutions can be found in GitHub]].
+(3e, 2019), Packt. Solutions can be found in GitHub as PDF files.
 
 * TODO Identify and pledge yourself
 
@@ -60,7 +60,7 @@ Most of this material can be found in Lantz, Machine Learning with R
 * TODO Factors
 
 1) Create a ~factor~ vector named ~gender~ for the three patients, with
-   the values ~"MALE"~ or ~"FEMALE"~.
+   the values "MALE" or "FEMALE".
    #+begin_src R
 
    #+end_src

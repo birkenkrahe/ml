@@ -22,7 +22,6 @@ Most of this material can be found in Lantz, Machine Learning with R
 2) Go with the cursor on the headline and hange the ~TODO~ label to ~DONE~
    by entering ~S-<right>~ ("Shift + right-arrow").
 
-
 * TODO Data storage: text file
 
 1) Example: the following numbers come from R's ~Nile~ data set:
@@ -39,23 +38,22 @@ Most of this material can be found in Lantz, Machine Learning with R
    1020 906 901 1170 912 746 919 718 714 740
    #+end_example
 
-2) To extract the data from the data set (already stored in R):
+2) To extract the data from the data set (already stored in R), write
+   the dataset ~Nile~ to a file called ~Nile.txt~.
    #+begin_src R :results silent
      write(x=Nile,
-           file="Nile.txt",
+           file="____.___",
            ncolumns=1,
            sep=" ")
    #+end_src
 
-3) The values are stored as a text file ~Nile.txt~ of size 440 byte,
-   which means 440 * 8 = 3520 bits, or binary value capacitors:
+3) List the text file from within R using ~shell~ and the Windows
+   command ~DIR~:
    #+begin_src R
-     shell(cmd="DIR Nile.txt")
+     shell(cmd="___ ____.___")
    #+end_src
 
-4) When on disk, ~Nile.txt~ is stored in non-volatile memory (it's
-   permanent). When it is loaded into R (or another shell program), it
-   is represented as RAM (Random Access Memory).
+4) Look at the file using Windows' ~notepad~ text editor:
    #+begin_src R :results silent
      shell(cmd="notepad Nile.txt")
    #+end_src
@@ -63,58 +61,56 @@ Most of this material can be found in Lantz, Machine Learning with R
 * TODO Abstraction: transformation
 
 1) Read the text data from file using ~read.table~ and store them in a
-   time series using ~ts~:
+   time series using ~ts~. Use the correct separator for the data, and
+   specify if the ~header~ should be imported or not.
    #+begin_src R
      ## read the text file as a data.frame
      nile_df <- read.table(
        file="Nile.txt",
-       sep=" ",
-       header=FALSE)
+       sep="_",
+       header=_____)
 
      ## remove column name with colnames
-     colnames(nile_df) <- NULL
+     colnames(nile_df) <- ____
 
-     ## create time series with ts from data frame
-     nile_ts <- ts(nile_df,start=1871)
+     ## create time series with ts from the data frame
+     nile_ts <- ts(data = _______,start=1871)
    #+end_src
 
-2) Display R object structure:
+2) Display R object structure of the time series:
    #+begin_src R
      ## show structure of time series
-     str(nile_ts)
-
-     ## show time series data
-     nile_ts
+     ___(nile_ts)
    #+end_src
 
 * TODO Generalization: modeling
 
 1) The ~summary~ function represents a statistical model:
    #+begin_src R
-     data(Nile)  # add the built-in Nile dataset to the session
-     ls()  # show all R objects in the current session
+     data(Nile)    # add the built-in Nile dataset to the session
+     ____          # show all R objects in the current session
      summary(Nile) # 5-point summary + sample average
    #+end_src
 
-2) Visualize the model as a ~boxplot~ (with ~abline~ to add the ~mean~):
-   #+begin_src R :results graphics file :file 1_boxplot.png
+2) Visualize the model as a ~boxplot~ (with ~abline~ to add the ~mean~) and
+   store the result in the file ~1_boxplot.png~
+   #+begin_src R :results graphics file :file ___________
      boxplot(Nile,
              las=1,
              horizontal=TRUE,
              main="Annual flow of the Nile at Aswan\nbetween 1871 and 1970",
              xlab="Nile volume (mio cubic meters)")
+
      abline(v=mean(Nile),
             col="blue",
             lwd=2)
    #+end_src
 
-3) The /generic/ function ~summary~ collapses the abstraction (time series
-       representation) into a statistical summary
-
-4) That ~summary~ is generic is relevant because it means that it can
-   deal with many different abstractions (and models, too):
+3) That ~summary~ is generic is relevant because it means that it can
+   deal with many different abstractions (and models, too): run the
+   function ~methods~ on the function ~summary~ as its argument:
    #+begin_src R
-     methods(summary)
+     _______
    #+end_src
 
 * TODO Training a physics model of gravity
@@ -130,23 +126,27 @@ Most of this material can be found in Lantz, Machine Learning with R
 
 2) Transforming the data to fit the data to the model (~g~):
    #+begin_src R
-     d <- c(4.9,19.6,44.1,78.5)
-     t <-c(1,2,3,4)
+     d <- _____________  # distance data
+     t <- _____________  # time data
      2*d/(t^2)
-     ## format the output to show 2 digits only
+     _____ ## format output to show 2 digits only
    #+end_src
 
 * TODO Training a density model
 
 The ~truehist~ function fits the dataset to a density estimate, and
-~density~ does the same with a smoothing effect added:
-#+begin_src R :results graphics file :file 1_nile.png
+~density~ does the same with a smoothing effect added. Store the plots
+in the file ~1_nile_hist.png~.
+#+begin_src R :results graphics file :file _______
   library(MASS)
+  ## fit Nile data to histogram
   truehist(Nile,
            las=1,
            xlab="",
            main="")
-  par(new=TRUE)
+  par(new=TRUE)  # plot next plot on top of previous plot
+
+  ## plot density estimate of Nile
   plot(density(Nile),
        col="red",
        col.lab="red",
@@ -159,25 +159,38 @@ The ~truehist~ function fits the dataset to a density estimate, and
 
 * TODO Training a linear model
 
-The ~lm~ function attempts to fit a linear model to the ~Nile~ dataset:
-#+begin_src R :results graphics file :file ./img/lantz_nile_lm.png
-  model <- lm(Nile ~ time(Nile))
-  plot(Nile,
-       type="p",
-       col="blue",
-       pch=16,
-       ylab="Flow in mio cubic metres")
-  abline(model,
-         col="red",
-         lwd=2)
-  lines(Nile,
-        type="l",
-        col="black",
-        lty=2)
-  title("Flow through the Nile at Assuan 1872-1970")
-  legend("topright",
-         legend=c("Observation", "Linear Model"),
-         pch = c(16,NA),
-         lty = c(NA, 2),
-         col = c("blue", "red"))
-#+end_src
+1) The ~lm~ function needs points to fit a line through. ~Nile~ only has
+   two vectors, one is the ~Nile~ values, the other one is the ~time~ of
+   each instance of ~Nile~. Apply the function ~time~ to ~Nile~:
+   #+begin_src R
+     ___________
+   #+end_src
+
+2) The ~lm~ function attempts to fit a linear model to the ~Nile~
+   dataset. Store the result of the code in the file ~1_nile_lm.png~:
+   #+begin_src R :results graphics file :file ___________
+     model <- lm(Nile ~ time(Nile))
+     plot(Nile,
+          type="p",
+          col="blue",
+          pch=16,
+          ylab="Flow in mio cubic metres")
+     abline(model,
+            col="red",
+            lwd=2)
+     lines(Nile,
+           type="l",
+           col="black",
+           lty=2)
+     title("Flow through the Nile at Assuan 1872-1970")
+     legend("topright",
+            legend=c("Observation", "Linear Model"),
+            pch = c(16,NA),
+            lty = c(NA, 2),
+            col = c("blue", "red"))
+   #+end_src
+
+* TODO Congratulations!
+
+Well done! If you've completed all steps, you can now upload the
+Org-mode file to Canvas (see ~Assignments > In-class practice~.

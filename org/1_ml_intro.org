@@ -409,6 +409,13 @@ Many different uses, many different models:
 
 * Nile example: training a linear model
 
+-  The ~lm~ function needs points to fit a line through. ~Nile~ only has
+   two vectors, one is the ~Nile~ values, the other one is the ~time~ of
+   each instance of ~Nile~. Apply the function ~time~ to ~Nile~:
+   #+begin_src R
+     time(Nile)
+   #+end_src
+
 - The ~lm~ function attempts to fit a linear model to the ~Nile~ dataset:
   #+begin_src R :results graphics file :file ../img/lantz_nile_lm.png
     ## create the linear model (needs 2 dimensions)
