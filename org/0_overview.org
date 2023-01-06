@@ -9,7 +9,6 @@
 #+attr_html: :width 400px
 #+attr_latex: :width 250px
 #+caption: xkcd, https://xkcd.com/1838/, Machine Learning
-#+CAPTION: Image: xkcd, https://xkcd.com/1838/, Machine Learning
 [[../img/0_machine_learning.png]]
 
 What do you think "machine learning" is about?
@@ -86,8 +85,7 @@ What do you think - is machine learning important? Why or why not?
 #+caption: DataCamp assignments for January
 [[../img/0_datacamp1.png]]
 
-- You find the invitation link to the group for Spring 23 in
-  Canvas. The direct link: [[https://tinyurl.com/DataCampMLSP23][tinyurl.com/DataCampMLSP23]]
+- You find the invitation link for Spring 23 [[https://lyon.instructure.com/courses/1021/pages][in Canvas]].
 - You will automatically be subscribed to the ML team
 - If you are in more than one course, I will add you later manually
 - These accounts will be valid until July 8, 2023 only
