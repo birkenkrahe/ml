@@ -96,10 +96,10 @@ What do you think - is machine learning important? Why or why not?
 #+caption: Unsplash, test
 [[../img/0_test.jpg]]
 
-- The first DataCamp home assignment is due on January 17. For late
+- The first DataCamp home assignment is due on January 19. For late
   submissions, you lose 1 point per day (out of 10 possible points)
 
-- The first in-class assignment is due on January 17. For late
+- The first in-class assignment is due on January 19. For late
   submissions, you lose 1 point per day (out of 10 possible points)
   
 - We'll write the first weekly multiple-choice test on January 19.
