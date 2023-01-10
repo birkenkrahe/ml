@@ -11,6 +11,16 @@
 [[../img/0_machine_learning.png]]
 
 What do you think "machine learning" is about?
+- Creating a predictive model for complicated data
+- AI
+- Chappie movie - sentient robots
+- Training neural networks
+- Self-checkout with automatic fraud detection
+- To see how a computer system works
+- ChatGPT - "Generative Pre-trained Transformer" = chatbot
+- DALL-E - to make funny pictures from text
+- Autonomous vehicles
+
 
 * Why is machine learning important?
 #+attr_latex: :width 200px
@@ -19,6 +29,12 @@ What do you think "machine learning" is about?
 
 What do you think - is machine learning important? Why or why not?
 
+- *Automate* human jobs (speed and accuracy) - not "normal robots"
+- Double-edge sword for *security* (hackers)
+- Use for *problem-solving* (e.g. teaching a car how to park but issues
+  with transferability and memory)
+- *Decision-making* independent of simple (computational) problem
+  solving
 * What will we do in this course?
 #+attr_latex: :width 250px
 #+caption: Source: syllabus, Canvas (lyon.instructure.com) or GitHub (github.com/birkenkrahe/ml)
@@ -102,7 +118,7 @@ material.
 - [[https://magenta.tensorflow.org/demos][Magenta TensorFlow]]
 - [[https://beta.openai.com/playground][OpenAI ChatGPT Playground]]
 - ML with Tensorflow ([[https://www.tensorflow.org/tutorials/quickstart/beginner][quickstart]])
-- [[https://theconversation.com/twenty-years-on-from-deep-blue-vs-kasparov-how-a-chess-match-started-the-big-data-revolution-76882][DeepBlue defeats Gary Kasparov]] ([[https://youtu.be/hbtuHtrViPo][Fridman interview]])
+- [[https://theconversation.com/twenty-years-on-from-deep-blue-vs-kasparov-how-a-chess-match-started-the-big-data-revolution-76882][DeepBlue defeats Gary Kasparov]] ([[https://youtu.be/hbtuHtrViPo][Fridman interview]], 1998)
 - AlphaGo wins Go against human ([[https://youtu.be/WXuK6gekU1Y][documentary, 2017]])
 
 * Which tools are you going to use?
@@ -158,7 +174,7 @@ material.
 Complete/review  introductory R or statistics courses:
 - [[https://app.datacamp.com/learn/courses/free-introduction-to-r][Introduction to R" in DataCamp]] (data structures)
 - [[https://app.datacamp.com/learn/courses/intermediate-r][Intermediate R]] (conditionals, functions, loops, utilities)
-- [[https://app.datacamp.com/learn/courses/introduction-to-statistics][Introduction to statistics]]
+- [[https://app.datacamp.com/learn/courses/introduction-to-statistics][Introduction to statistics]] (no code)
 - [[https://github.com/matloff/fasteR][fasteR by Norman Matloff (GitHub)]] - fast lane to R
 - [[https://github.com/matloff/fastStat][fastStat by Norman Matloff (GitHub)]] - fast lane to statistics (*new!*)
 
