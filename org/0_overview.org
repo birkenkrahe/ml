@@ -27,9 +27,9 @@ What do you think - is machine learning important? Why or why not?
 #+caption: Source: syllabus, Canvas (lyon.instructure.com) or GitHub (github.com/birkenkrahe/ml)
 [[../img/0_toc.png]]
 
-- Topics and assignments are largely aligned with a textbook by Lantz
-  (2019) and the DataCamp lessons in the "Machine Learning with R"
-  track.
+- Topics: supervised learning, unsupervised learning, deep learning
+- Assignments aligned with Lantz (2019) and some DataCamp lessons
+- You will work with R and its ML packages
 
 * How will you be evaluated?
 #+attr_html: :width 400px
@@ -40,7 +40,9 @@ What do you think - is machine learning important? Why or why not?
 - All course requirements have deadlines
 - Late submissions will be penalized (loss of points)
 - Final exam will be sourced by term test questions
+- Home 
 - The project will be presented 4 times (sprint reviews)
+
 
 * What are "sprint reviews"?
 #+attr_html: :width 600px
@@ -58,6 +60,7 @@ What do you think - is machine learning important? Why or why not?
 #+Caption: ideaboardz.com Kanban board
 [[../img/0_ideaboardz.png]]
 
+- All projects are 3-people group projects - 7 projects in total
 - Let me know what kind of project you'd like to work on this term!
 - Turn to your neighbor(s) and discuss with them
 - Fill in a post-it note and/or vote on existing notes: go to
