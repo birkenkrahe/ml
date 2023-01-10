@@ -95,6 +95,7 @@ to avoid plagiarization) and can survive a cross-examination on the
 material.
 
 *Concrete examples:* Analyse, test and present
+- [[https://lablab.ai/event/openai-hackathon][OpenAI Online Hackathons]]
 - [[https://teachablemachine.withgoogle.com/][Teachable Machine]]
 - [[https://machinelearningforkids.co.uk/][Machine Learning for Kids]]
 - [[https://ecraft2learn.github.io/ai/][ML with Snap!]]
