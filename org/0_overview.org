@@ -3,7 +3,7 @@
 #+SUBTITLE: DSC 305 - MACHINE LEARNING - SPRING 2023
 #+STARTUP: overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
-#+attr_html: :width 600px
+#+attr_html: :width 500px
 [[../img/cover.jpg]]
 * What is "machine learning" about?
 #+attr_latex: :width 250px
@@ -25,7 +25,9 @@ What do you think - is machine learning important? Why or why not?
 [[../img/0_toc.png]]
 
 - Topics: supervised learning, unsupervised learning, deep learning
+
 - Assignments aligned with Lantz (2019) and some DataCamp lessons
+
 - You will work with R and its ML packages
 
 * How will you be evaluated?
@@ -34,11 +36,17 @@ What do you think - is machine learning important? Why or why not?
 [[../img/0_grades.png]]
 
 - All course requirements have deadlines
+
 - Late submissions will be penalized (loss of points)
+
 - Final exam will be sourced by term test questions (graded)
+
 - Home assignments: 10 DataCamp lessons (ungraded)
+
 - Class practice: in-class interactive notebooks (ungraded)
+
 - The project will be presented 4 times (sprint reviews)
+
 - Tests: multiple choice questions (graded)
 
 * What are "sprint reviews"?
@@ -47,7 +55,9 @@ What do you think - is machine learning important? Why or why not?
 [[../img/0_scrum.png]]
 
 - Scrum is an important software engineering technique
+
 - IMRaD is an important framework to publish scientific papers
+
 - MLOps requires improved project management and reading papers
 
 * What kind of projects do you want?
@@ -56,11 +66,13 @@ What do you think - is machine learning important? Why or why not?
 [[../img/0_project.png]]
 
 - All projects are 3-people group projects - 7 projects in total
-- Let me know what kind of project you'd like to work on this term!
-- Turn to your neighbor(s) and discuss with them
-- Fill in a post-it note and/or vote on existing notes: go to
-  [[https://tinyurl.com/2s38bdtk][tinyurl.com/2s38bdtk]]
 
+- Let me know what kind of project you'd like to work on this term!
+
+- Turn to your neighbor(s) and discuss with them
+
+- Fill in a post-it note and/or vote on existing notes: go to
+  [[https://tinyurl.com/2s38bdtk][tinyurl.com/2s38bdtk]]:
   1) I can give you a project topic to work on - IF SO, WHY?
   2) Or you can pick your own project topic - IF SO, WHY?
   3) You can do the work and present the results in class - IF SO, WHY?
@@ -98,19 +110,24 @@ material.
 [[../img/0_tools.jpg]]
 
 - [[https://app.datacamp.com/groups/lyon-college-data-science-spring-2023/assignments][DataCamp courses]] (10 weekly home assignments)
+
 - [[https://github.com/birkenkrahe/ml][GitHub repository]] (all course materials except tests)
+
 - [[https://github.com/birkenkrahe/org/blob/master/FAQ.org][GNU Emacs + ESS + R]] (literate programming environment)
+
 - [[https://lyon.instructure.com/courses/1021/pages/course-links][Canvas]] (learning management system)
 
 * How can you register at DataCamp?
-#+attr_html: :width 600px
 #+attr_latex: :width 400px
 #+caption: DataCamp assignments for January
 [[../img/0_datacamp1.png]]
 
 - You find the invitation link for Spring 23 [[https://lyon.instructure.com/courses/1021/pages][in Canvas]].
+
 - You will automatically be subscribed to the ML team
+
 - If you are in more than one course, I will add you later manually
+
 - These accounts will be valid until July 8, 2023 only
 
 * When is the first assignment due?
@@ -128,7 +145,7 @@ material.
 - We'll write the first weekly multiple-choice test on January 19.
 
 * What else could you do for a good start?
-#+attr_latex: :width 600px
+#+attr_latex: :width 400px
 #+caption: Off to a good start
 [[../img/0_start.jpg]]
 
@@ -147,9 +164,9 @@ Complete/review  introductory R or statistics courses:
 (I might give an introduction to R in a biostatistics course.)
 
 * Literate Programming
-#+attr_latex: :width 300px
-#+caption: GNU Emacs Logo
-[[../img/0_gnuemacs.png]]
+ #+attr_latex: :width 400px
+ #+caption: Literate Programming with GNU Emacs (illustration)
+ [[../img/0_gnuemacs1.png]]
 
 If you do not have any experience with Emacs, work through the *online
 tutorial* (open it in Emacs with ~CTRL + h t~) - ca. 1 hour.
