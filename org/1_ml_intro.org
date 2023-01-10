@@ -3,9 +3,11 @@
 #+STARTUP: overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
-* README
-#+attr_html: :width 500px
+#+attr_html: :width 600px
 [[../img/0_ml.png]]
+* README
+#+attr_html: :width 600px
+[[../img/future_of_ai.png]]
 
 The purpose of today's machine learning (ML) is to assist us with
 making sense of the world's massive data collections.
@@ -19,9 +21,9 @@ making sense of the world's massive data collections.
 4) Simple R examples
 
 * Origins of ML
-#+attr_html: :width 400px
+#+attr_html: :width 600px
+#+caption: Image: Assassin's Creed Origins (2017)
 [[../img/1_origins.jpg]]
-Image: [[https://en.wikipedia.org/wiki/Assassin%27s_Creed_Origins][Assassin's Creed Origins (2017)]]
 
 1) *Statistical modeling* (17th century)[fn:1]
 
@@ -32,6 +34,11 @@ Image: [[https://en.wikipedia.org/wiki/Assassin%27s_Creed_Origins][Assassin's Cr
 4) *Data mining* (1990s)[fn:4]
 
 5) *Data science* (2010s)[fn:5]
+
+* What about "intelligence"?
+#+attr_html: :width 600px
+#+caption: ChatGPT's answer to "Are you intelligent?"
+[[../img/1_intelligence.png]]
 
 * Uses and abuses of ML
 #+attr_html: :width 400px
@@ -49,6 +56,9 @@ Image: [[https://en.wikipedia.org/wiki/Assassin%27s_Creed_Origins][Assassin's Cr
   + Illustrates the difference between man and machine
 
 * ML successes
+#+attr_html: :width 400px
+#+caption: Inside of a Tesla car driving autonomously
+[[../img/1_tesla.jpg]]
 
 Many different uses, many different models:
 - *Identification* of unwanted spam messages in email
@@ -83,18 +93,21 @@ Many different uses, many different models:
 - Alas, we often adapt to the limited abilities of our machines
 
 * ML ethics
+  #+caption: Lisa on Ice, The Simpsons, 20th Century Fox (1994)
+  #+attr_html: :width 500px
+  [[../img/1_ethics.jpg]]
 
 - Like any tool, it can be used for "good" or for "evil"
-- Associated legal issues and social norms are still uncertain
-- Issues include privacy rights of customers
-- Handing critical operations (e.g. airport control) to machines
-- Relying on ML in life-or-death situations (medical diagnosis)
-- Blindly applying ML analysis results to make decisions
-- Perpetuating discrimination based on race or gender
-- Reinforcing negative stereotypes
-- Anonymizing data is difficult because ML is good at finding you
-- Cp. General Data Protection Regulation (GDPR) and EU policies
-- ML can be used for fake news, or misguiding autonomous systems
+- Associated *legal* issues and social norms are still uncertain
+- Issues include *privacy* rights of customers
+- Handing *critical* operations (e.g. airport control) to machines
+- Relying on ML in *life-or-death* situations (medical diagnosis)
+- *Blindly* applying ML analysis results to make decisions
+- *Perpetuating* discrimination based on race or gender
+- *Reinforcing* negative stereotypes
+- *Anonymizing* data is difficult because ML is good at finding you
+- *Regulation*, e.g. EU's General Data Protection Regulation (GDPR)
+- ML can be used for fake news, or *misguiding* autonomous systems
 
 * Extended example: supervised learning
 #+attr_html: :width 400px
