@@ -44,7 +44,7 @@ making sense of the world's massive data collections.
 #+attr_html: :width 400px
 [[../img/1_deepblue.png]]
 
-- Deep Blue defated Kasparov (1997), Watson won Jeopardy (2011)
+- Deep Blue defeated Kasparov (1997), Watson won Jeopardy (2011)
 
 - Machines are pure horsepower without direction - they need a human
   to motivate the analysis and turn the result into meaningful
@@ -54,6 +54,7 @@ making sense of the world's massive data collections.
   + A coding bug may have misled Kasparov to overestimate Deep Blue
   + Conspiracy? Deep Blue may have have been a "[[https://en.wikipedia.org/wiki/Mechanical_Turk][Mechanical Turk]]"
   + Illustrates the difference between man and machine
+  + Kasparov seems to have had a mental breakdown
 
 * ML successes
 #+attr_html: :width 400px
@@ -76,7 +77,7 @@ Many different uses, many different models:
 
 - Little flexibility outside of strict parameters and no common sense
 
-- Consequences of releasing an algorithm hard to predict[fn:6]
+- Consequences of releasing a ML model are hard to predict[fn:6]
 
 - Inability to make simple inferences about logical next steps
   (e.g. repeatedly served banners on ecommerce sites)
@@ -88,7 +89,7 @@ Many different uses, many different models:
 
 - Auto-correct failures (ML insists on what you once wanted/were)
 
-- Natural language processing is still very difficult
+- Natural language processing (audio/text mining) is still very difficult
 
 - Alas, we often adapt to the limited abilities of our machines
 
@@ -187,7 +188,7 @@ Many different uses, many different models:
 - Unlike humans, machines need explicit conditions and instructions
   literally down to the letter (ML does not change that completely)
 
-- [ ] What's the effect for humans when making everything very explicit?
+- [X] What's the effect for humans when making everything very explicit?
   *Does explicitness help or hinder human learning?*[fn:8]
 
 - To be a strong data scientist / ML practitioner requires solid
