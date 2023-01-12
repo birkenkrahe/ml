@@ -21,7 +21,6 @@ What do you think "machine learning" is about?
 - DALL-E - to make funny pictures from text
 - Autonomous vehicles
 
-
 * Why is machine learning important?
 #+attr_latex: :width 200px
 #+caption: xkcd, https://xkcd.com/2228/, Machine Learning Captcha
@@ -35,6 +34,7 @@ What do you think - is machine learning important? Why or why not?
   with transferability and memory)
 - *Decision-making* independent of simple (computational) problem
   solving
+
 * What will we do in this course?
 #+attr_latex: :width 250px
 #+caption: Source: syllabus, Canvas (lyon.instructure.com) or GitHub (github.com/birkenkrahe/ml)
@@ -110,7 +110,8 @@ What do you think - is machine learning important? Why or why not?
 to avoid plagiarization) and can survive a cross-examination on the
 material.
 
-*Concrete examples:* Analyse, test and present
+*Concrete examples:* Explore, analyse, test and present
+- [[https://wandb.ai/site][Weights & Biases MLOps platform]]
 - [[https://lablab.ai/event/openai-hackathon][OpenAI Online Hackathons]]
 - [[https://teachablemachine.withgoogle.com/][Teachable Machine]]
 - [[https://machinelearningforkids.co.uk/][Machine Learning for Kids]]

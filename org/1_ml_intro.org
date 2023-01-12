@@ -18,7 +18,7 @@ making sense of the world's massive data collections.
 
 3) Steps to math an ML algorithm to your data
 
-4) Simple R examples
+4) Extended no-code example and simple R examples
 
 * Origins of ML
 #+attr_html: :width 600px
@@ -46,11 +46,11 @@ making sense of the world's massive data collections.
 
 - Deep Blue defated Kasparov (1997), Watson won Jeopardy (2011)
 
-- Machines are pure horsepower without direction - they "need a human
+- Machines are pure horsepower without direction - they need a human
   to motivate the analysis and turn the result into meaningful
-  action" - like a hound with a human.
+  action - like a hound and a human.
 
-- Interesting analysis of Kasparov vs. Deep Blue (Anderson, 2017)
+- Interesting analysis of Kasparov vs. Deep Blue ([[https://theconversation.com/twenty-years-on-from-deep-blue-vs-kasparov-how-a-chess-match-started-the-big-data-revolution-76882][Anderson, 2017]])
   + A coding bug may have misled Kasparov to overestimate Deep Blue
   + Conspiracy? Deep Blue may have have been a "[[https://en.wikipedia.org/wiki/Mechanical_Turk][Mechanical Turk]]"
   + Illustrates the difference between man and machine
@@ -88,7 +88,7 @@ Many different uses, many different models:
 
 - Auto-correct failures (ML insists on what you once wanted/were)
 
-- Natural language processing is still very difficult (but: ChatGPT)
+- Natural language processing is still very difficult
 
 - Alas, we often adapt to the limited abilities of our machines
 
@@ -97,7 +97,7 @@ Many different uses, many different models:
   #+attr_html: :width 500px
   [[../img/1_ethics.jpg]]
 
-- Like any tool, it can be used for "good" or for "evil"
+- Like any *tool*, it can be used for "good" or for "evil"
 - Associated *legal* issues and social norms are still uncertain
 - Issues include *privacy* rights of customers
 - Handing *critical* operations (e.g. airport control) to machines
@@ -144,6 +144,8 @@ Many different uses, many different models:
   diagnostic prediction
 
 * Testing the model on unknown instances
+  #+attr_html: :width 400px
+  [[../img/1_decision_tree.png]]
 
 - Moving on to a new data set with unknown classification, i.e. no
   diagnosis
@@ -157,13 +159,14 @@ Many different uses, many different models:
 - Patient 12 has no swollen glands but fever => cold
 
 * Translate model into production rules
+  #+attr_html: :width 400px
+  [[../img/1_decision_tree.png]]
 
 - General form of a /production rule/ looks like pseudocode[fn:7]:
   #+begin_example
   IF antecedent condition
   THEN consequent conditions
   #+end_example
-
 - The three /production rules/ for the decision tree:
   #+begin_example
     IF swollen glands = YES
@@ -175,8 +178,9 @@ Many different uses, many different models:
     IF swollen glands = No & Fever = No
     THEN diagnosis = allergy
   #+end_example
-
 - Testing the rules on patient 13 yields: diagnosis = allergy
+  #+attr_html: :width 600px
+  [[../img/1_testing.png]]
 
 * How machines learn
 
@@ -580,32 +584,32 @@ Many different uses, many different models:
 
 * Footnotes
 
-[fn:1]Statistical methods make assumptions about the nature of the
+[fn:1] *Statistical* methods make assumptions about the nature of the
 data. If these assumptions are violated the models built with the data
 are inaccurate. Systematically developed in the 17th and 18th century,
 popular since the rise of computers in the mid-20th century.
 
-[fn:2]For ML, assumptions about data distributions and variable
-   independence are not a concern. ML is part of the field of
+[fn:2] For *Machine Learning*, assumptions about data distributions and
+   variable independence are not a concern. ML is part of the field of
    Artificial Intelligence (AI) - computers who make their own
-   decisions. Popular since 1959 (Arthur Samuel: ML is the ability to
-   learn without being explicitly programmed.). Subfields include deep
-   learning = ML with artificial neural networks; reinforcement
+   decisions. Popular since 1959 (Arthur Samuel: "ML is the ability to
+   learn without being explicitly programmed."). Subfields include
+   deep learning = ML with artificial neural networks; reinforcement
    learning = reward-based machine learning
 
-[fn:3]Knowledge discovery in databases (KDD) was coined in 1989 to
+[fn:3] *Knowledge discovery* in databases (KDD) was coined in 1989 to
    emphasise that knowledge can be derived from data-driven
    discovery. Frequently used interchangeably with data
    mining. Includes not just the pattern search but also methods for
    extracting, preparing and using data.
 
-[fn:4]Data mining is the process of using one or more machine
+[fn:4] *Data mining* is the process of using one or more machine
    learning algorithms to find patterns or structure in data. The
    patterns may be: a set of rules, a graph or network, a tree, one or
    more equations, etc. The applications can be part of a visual
    dashboard or as simple as a list. Popular since ca. 1995.
 
-[fn:5]Data science refers to the process of extracting meaningful
+[fn:5] *Data science* refers to the process of extracting meaningful
    knowledge from data, using methods from statistics, computer
    science, database management and more. ML is not required for data
    science but it is often used - e.g. when fitting a trendline to a

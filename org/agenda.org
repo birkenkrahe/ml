@@ -9,7 +9,10 @@
 
 [[https://unsplash.com/@kasiape][Photo by Katarzyna Pe at Unsplash.com]]
 
-- [ ] Course overview - assignments, grading, topics, platforms
+- [X] Course overview - assignments, grading, topics, platforms
+- [ ] Interesting article: "[[https://blog.replit.com/fourth][The Fourth Age of Programming]]"
+- [ ] Interesting webinar: "[[https://www.datacamp.com/webinars/2023-data-trends-and-predictions][Data Trends & Predictions 2023]]" report
+  ([[https://github.com/birkenkrahe/ds2/blob/main/pdf/data_trends_2023.pdf][PDF]]) (Wed Jan 18, 10AM) - register/attend/watch the recording later
 - [ ] Introduction to machine learning
 - [ ] First DataCamp assignment "Understanding machine learning"
 - [ ] First in-class practice "Introduction to machine learning"
@@ -24,3 +27,7 @@
  
 
     
+* References
+
+- Stokes, Jon (Jan 4, 2023). The Fourth Age Of Programming
+  [Blog]. URL: [[https://blog.replit.com/fourth][blog.repolit.com]]
