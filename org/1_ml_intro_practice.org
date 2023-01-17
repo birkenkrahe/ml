@@ -56,7 +56,7 @@ Most of this material can be found in Lantz, Machine Learning with R
 
 4) Look at the file using Windows' ~notepad~ text editor:
    #+begin_src R :results silent
-     shell(cmd="notepad Nile.txt")
+     shell(cmd="notepad ____")
    #+end_src
 
 * TODO Abstraction: transformation

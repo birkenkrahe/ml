@@ -112,6 +112,7 @@ Many different uses, many different models:
 
 * Extended example: supervised learning
 #+attr_html: :width 400px
+#+caption: Poster, Labor Management Committee, 1950s
 [[../img/1_supervisor.jpg]]
 
 *Process:*
@@ -123,6 +124,7 @@ Many different uses, many different models:
 
 - Dataset: hypothetical training data for a disease diagnosis
   #+attr_html: :width 600px
+  #+caption: Hypothetical disease diagnosis training data (Source: Roiger, 2021)
   [[../img/1_patientdata.png]]
 
 - Patient 1 has a sore throat, fever, swollen glands, is congested and
@@ -139,6 +141,7 @@ Many different uses, many different models:
   + If a patient does not have swollen glands and a fever, it's a cold
   + If a patient does not have swollen glands nor a fever, it's allergy
   #+attr_html: :width 400px
+  #+caption: Decision tree for disease diagnosis (Source: Roiger, 2021)
   [[../img/1_decision_tree.png]]
 
 - The attributes /sore throat/, /congestion/ and /headache/ do not enter our
@@ -146,6 +149,7 @@ Many different uses, many different models:
 
 * Testing the model on unknown instances
   #+attr_html: :width 400px
+  #+caption: Decision tree for disease diagnosis
   [[../img/1_decision_tree.png]]
 
 - Moving on to a new data set with unknown classification, i.e. no
@@ -153,6 +157,7 @@ Many different uses, many different models:
 
 - Use the decision tree to classify the first two instances:
   #+attr_html: :width 600px
+  #+caption: Test data for disease diagnosis model (source: Roger, 2021)
   [[../img/1_testing.png]]
 
 - Patient 11 has swollen glands but no fever => strep throat
@@ -161,6 +166,7 @@ Many different uses, many different models:
 
 * Translate model into production rules
   #+attr_html: :width 400px
+  #+caption: Decision tree for disease diagnosis (source: Roger, 2021)
   [[../img/1_decision_tree.png]]
 
 - General form of a /production rule/ looks like pseudocode[fn:7]:
@@ -181,6 +187,7 @@ Many different uses, many different models:
   #+end_example
 - Testing the rules on patient 13 yields: diagnosis = allergy
   #+attr_html: :width 600px
+  #+caption: Test data for disease diagnosis model (source: Roger, 2021)
   [[../img/1_testing.png]]
 
 * How machines learn
@@ -196,12 +203,13 @@ Many different uses, many different models:
 
 - Basic ML process:
   #+attr_html: :width 600px
+  #+caption: General machine learning process (Source: Lantz, 2019)
   [[../img/1_lantz_3.jpg]]
 
 - [ ] How does the extended diagnosis example fit in this
   scheme?[fn:9]
 
-* Data storage = observe + memorize + recall
+* NEXT Data storage = observe + memorize + recall
 #+attr_html: :width 400px
 [[../img/1_sheldon.png]]
 
@@ -219,10 +227,13 @@ Many different uses, many different models:
   available details or do you select questions and answers that were
   discussed in class?[fn:11]
 
+- See Kupek (2023): "[[https://stackoverflow.blog/2023/01/04/getting-your-data-in-shape-for-machine-learning/][Getting your data in shape for machine learning]]"
+  with a (Python) Google Colaboratory [[https://colab.research.google.com/drive/1mg2WRO7_DIc1U_0Q1NO7ou6C4F89NuWY?usp=sharing][notebook for coding examples]].
+
 * Nile example: data storage
 
 - To run the code below, open [[https://tinyurl.com/2mnv425w][tinyurl.com/2mnv425w]], save the
-  file to ~1_ml_practice.org~ and open it in Emacs.
+  file to ~1_ml_intro_practice.org~ and open it in Emacs.
 
 - Once you're done, upload the completed file to Canvas:
 
@@ -268,8 +279,8 @@ Many different uses, many different models:
 
 * Abstraction = transform + train
 #+attr_html: :width 400px
+#+caption: Margritte, La Trahison Des Images, lacma.org
 [[../img/1_lantz_4.jpg]]
-[[http://collections.lacma.org/node/239578][Image: Magritte, La Trahison Des Images]][fn:12]
 
 - *Abstraction* involves translating stored data into broader
   representations and concepts
@@ -277,10 +288,12 @@ Many different uses, many different models:
 - [ ] Abstraction needs to take available computing data structures
   into account - how?
 
-- The nature of a "representation" is that it is *not the original* -
-  for ML, recognition is more important than reality: the AI is not
+- The nature of a "representation" is that it is *not the
+  original* [fn:12]
+
+- For ML, recognition is more important than reality: the AI is not
   trying to build a world, but to translate it into something it can
-  "see"
+  "see".
 
 * Nile example: transformation
 
@@ -294,7 +307,7 @@ Many different uses, many different models:
   2) remove column name with ~colnames~
   3) create time series with ~ts~ from data frame
   #+begin_src R :results silent
-     nile_df <- read.table(
+    nile_df <- read.table(
       file="../data/Nile.txt",   # read from text file
       sep=" ",                  # entries separated by empty space
       header=FALSE)             # no 1st row with attribute information
@@ -313,16 +326,15 @@ Many different uses, many different models:
   
 * Modeling
  #+attr_html: :width 600px
+ #+caption: Source: Hosseini, Hytönen, Kinnunen (2022)
  [[../img/1_lantz_gestalt.png]]
  
- [[https://www.europeanproceedings.com/article/10.15405/epes.22043.25/image/3][Source: Hosseini, Hytönen, Kinnunen (2022)]][fn:13]
-
 - When a machine creates a *Knowledge representation*, it summarizes
   stored raw data using a *model*, an explicit description of the
   patterns within the data
 
 - A model represents an idea greater than the sum of its parts (also:
-  "The whole is greater than the sum of its parts")
+  "The whole is greater than the sum of its parts")[fn:13]
 
 - Machines, unlike humans, cannot comprehend these Gestalt patterns as
   a whole, they can only sequentially process the components of a
@@ -373,6 +385,7 @@ Many different uses, many different models:
   
 * ML training
 #+attr_html: :width 400px
+#+caption: Runners, photo from Unsplash
 [[../img/1_train.png]]
 
 - Machine learning models are trained. This means that the model is
@@ -390,6 +403,7 @@ Many different uses, many different models:
   Newton inferred the concept of gravity (we think). It was always
   present but not recognized:
   #+attr_html: :width 600px
+  #+caption: Modeling example in physics (Lantz, 2019)
   [[../img/1_lantz_5.png]]
 
 - In R: ~g~ is the acceleration due to gravity[fn:15]
@@ -507,12 +521,14 @@ Many different uses, many different models:
 - Example: an ML algorithm that generalizes faces to have two circles
   above a mouth would not identify a face with glasses.
   #+attr_html: :width 500px
+  #+caption: Machines cannot do heuristics (Lantz, 2019)
   [[../img/1_lantz_6.png]]
 
 - [ ] Could "a little bias" also be useful?[fn:17]
 
 * Evaluation + overfitting
 #+attr_html: :width 400px
+#+caption: The One Ring To Rule Them All
 [[../img/1_ring.png]]
 #+begin_quote
 "There is no single learning algorithm to rule them all." -Brett Lantz
@@ -540,6 +556,7 @@ Many different uses, many different models:
 
 - Modeling noise is called /overfitting/.[fn:18]
   #+attr_html: :width 500px
+  #+caption: Overfitting (Lantz, 2019)
   [[../img/1_lantz_overfitting.jpg]]
 
 * Summary
@@ -577,6 +594,9 @@ Many different uses, many different models:
   Educational Sciences (pp. 284-296). European
   Publisher. https://doi.org/10.15405/epes.22043.25
 
+- Kupek (Jan 4, 2023). Getting your data in shape for machine
+  learning. URL: [[https://stackoverflow.blog/2023/01/04/getting-your-data-in-shape-for-machine-learning/][stackoverflow.blog]].
+  
 - Lantz (2019). Machine Learning with R. Packt.
 
 - Roiger (2020). Just Enough R!. CRC Press.
@@ -636,11 +656,11 @@ Abstraction: table of attributes and records; (3) Generalization:
 rules from known diagnosis; (4) Evaluation: prediction of unknown
 diagnosis
 
-[fn:10]Storage needs to take software and hardware conditions into
+[fn:10] Storage needs to take software and hardware conditions into
 account: (1) performance: access speed; (2) data organisation,
 e.g. relational or non-relational data; (3) missing or otherwise
 contaminated data; (4) R: all data is in memory (space issue); (5)
-SQLite: one ffile non-concurrent access (security/usability issues)
+SQLite: one file non-concurrent access (security/usability issues)
 
 [fn:11]In fact, human learning is poorly understood: if you have an
 eidetic memory ([[https://youtu.be/A4ugfCjqlZ4][Sheldon-Cooper-style]]), storing everything may be a
@@ -656,8 +676,7 @@ rabbit out of a hat when needed. This has often worked for me!
 [fn:13]In visual perception, the idea of a model summarizing data is
   illustrated by the six Gestalt (German for "shape") principles: each
   of them implies not just the pixels of the image but a pattern that
-  leads to a human process of perceiving more than just the pattern
-  itself.
+  leads a human perceiving more than just the pattern itself.
 
 [fn:14]This was one of the critiques of AI by philosopher Hubert
 Dreyfus ([[https://en.wikipedia.org/wiki/Hubert_Dreyfus#Dreyfus'_criticism_of_AI][see Wikipedia here]] and here for a [[https://debategraph.org/Details.aspx?nid=2785][graph representation]]).
