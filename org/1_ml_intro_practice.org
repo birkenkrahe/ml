@@ -111,8 +111,12 @@ Most of this material can be found in Lantz, Machine Learning with R
    deal with many different abstractions (and models, too): run the
    function ~methods~ on the function ~summary~ as its argument:
    #+begin_src R
-     _______
+     methods(boxplot)
    #+end_src
+
+   #+RESULTS:
+   : [1] boxplot.default  boxplot.formula* boxplot.matrix  
+   : see '?methods' for accessing help and source code
 
 * TODO Training a physics model of gravity
 
@@ -127,11 +131,15 @@ Most of this material can be found in Lantz, Machine Learning with R
 
 2) Transforming the data to fit the data to the model (~g~):
    #+begin_src R
-     d <- _____________  # distance data
-     t <- _____________  # time data
+     d <- c(4.9, 19.6,44.1,78.5)  # distance data
+     t <- c(1,2,3,4)  # time data
      2*d/(t^2)
-     _____ ## format output to show 2 digits only
+     format(2*d/(t^2), digits=2)## format output to show 2 digits only
    #+end_src
+
+   #+RESULTS:
+   : [1] 9.8000 9.8000 9.8000 9.8125
+   : [1] "9.8" "9.8" "9.8" "9.8"
 
 * TODO Training a density model
 

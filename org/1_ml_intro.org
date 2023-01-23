@@ -94,9 +94,9 @@ Many different uses, many different models:
 - Alas, we often adapt to the limited abilities of our machines
 
 * ML ethics
-  #+caption: Lisa on Ice, The Simpsons, 20th Century Fox (1994)
-  #+attr_html: :width 500px
-  [[../img/1_ethics.jpg]]
+#+caption: Lisa on Ice, The Simpsons, 20th Century Fox (1994)
+#+attr_html: :width 500px
+[[../img/1_ethics.jpg]]
 
 - Like any *tool*, it can be used for "good" or for "evil"
 - Associated *legal* issues and social norms are still uncertain
@@ -148,9 +148,9 @@ Many different uses, many different models:
   diagnostic prediction
 
 * Testing the model on unknown instances
-  #+attr_html: :width 400px
-  #+caption: Decision tree for disease diagnosis
-  [[../img/1_decision_tree.png]]
+#+attr_html: :width 400px
+#+caption: Decision tree for disease diagnosis
+[[../img/1_decision_tree.png]]
 
 - Moving on to a new data set with unknown classification, i.e. no
   diagnosis
@@ -165,9 +165,9 @@ Many different uses, many different models:
 - Patient 12 has no swollen glands but fever => cold
 
 * Translate model into production rules
-  #+attr_html: :width 400px
-  #+caption: Decision tree for disease diagnosis (source: Roger, 2021)
-  [[../img/1_decision_tree.png]]
+#+attr_html: :width 400px
+#+caption: Decision tree for disease diagnosis (source: Roger, 2021)
+[[../img/1_decision_tree.png]]
 
 - General form of a /production rule/ looks like pseudocode[fn:7]:
   #+begin_example
@@ -209,14 +209,14 @@ Many different uses, many different models:
 - [ ] How does the extended diagnosis example fit in this
   scheme?[fn:9]
 
-* NEXT Data storage = observe + memorize + recall
+* Data storage = observe + memorize + recall
 #+attr_html: :width 400px
 [[../img/1_sheldon.png]]
 
 - *Data storage* utilizes observation, memory, and recall to provide a
   factual basis for further reasoning
 
-- [ ] Storage needs to take software and hardware conditions into
+- [X] Storage needs to take software and hardware conditions into
   account - how?[fn:10]
 
 - You need to store raw data selectively - *more data* does not
@@ -285,13 +285,13 @@ Many different uses, many different models:
 - *Abstraction* involves translating stored data into broader
   representations and concepts
 
-- [ ] Abstraction needs to take available computing data structures
+- [X] Abstraction needs to take available computing data structures
   into account - how?
 
 - The nature of a "representation" is that it is *not the
   original* [fn:12]
 
-- For ML, recognition is more important than reality: the AI is not
+- For ML, recognition is more important than reality: the "AI" is not
   trying to build a world, but to translate it into something it can
   "see".
 
@@ -323,12 +323,12 @@ Many different uses, many different models:
     str(nile_ts)
     class(nile_ts)
   #+end_src
-  
+
 * Modeling
- #+attr_html: :width 600px
- #+caption: Source: Hosseini, Hytönen, Kinnunen (2022)
- [[../img/1_lantz_gestalt.png]]
- 
+#+attr_html: :width 600px
+#+caption: Source: Hosseini, Hytönen, Kinnunen (2022)
+[[../img/1_lantz_gestalt.png]]
+
 - When a machine creates a *Knowledge representation*, it summarizes
   stored raw data using a *model*, an explicit description of the
   patterns within the data
@@ -369,7 +369,7 @@ Many different uses, many different models:
             horizontal=TRUE, # show boxplot horizontally
             main="Annual flow of the Nile at Aswan\nbetween 1871 and 1970",
             xlab="Nile volume (mio cubic meters)")
-    abline(v=mean(Nile),  # draw a vertical line 
+    abline(v=mean(Nile),  # draw a vertical line
            col="blue",    # paint line blue
            lwd=2)         # double line width
   #+end_src
@@ -382,7 +382,7 @@ Many different uses, many different models:
   #+begin_src R
     methods(summary)
   #+end_src
-  
+
 * ML training
 #+attr_html: :width 400px
 #+caption: Runners, photo from Unsplash
@@ -392,12 +392,13 @@ Many different uses, many different models:
   fitted to a data set
 
 - Once the model is trained, it has been transformed into an abstract
-  form that summarizes (and transcends) the original information
+  form ("black box") that summarizes (and transcends) the original
+  information
 
 - The training model is not "learning" yet because the result still
   must be evaluated (tested) before the model is ready.
 
-* Training a physics model  
+* Training a physics model
 
 - Example from physics: by fitting equations to observational data,
   Newton inferred the concept of gravity (we think). It was always
@@ -447,19 +448,19 @@ Many different uses, many different models:
 * Nile example: training a linear model
 
 -  The ~lm~ function needs points to fit a line through. ~Nile~ only has
-   two vectors, one is the ~Nile~ values, the other one is the ~time~ of
-   each instance of ~Nile~. Apply the function ~time~ to ~Nile~:
-   #+begin_src R
-     time(Nile)
-   #+end_src
+  two vectors, one is the ~Nile~ values, the other one is the ~time~ of
+  each instance of ~Nile~. Apply the function ~time~ to ~Nile~:
+  #+begin_src R
+    time(Nile)
+  #+end_src
 
 - The ~lm~ function attempts to fit a linear model to the ~Nile~ dataset:
   #+begin_src R :results graphics file :file ../img/lantz_nile_lm.png
     ## create the linear model (needs 2 dimensions)
-    model <- lm(Nile ~ time(Nile)) 
+    model <- lm(Nile ~ time(Nile))
 
     ## plot Nile data
-    plot(Nile,    
+    plot(Nile,
          type="p",  # plot points only
          col="blue", # plot points in blue
          pch=16,  # point character solid circle
@@ -510,9 +511,9 @@ Many different uses, many different models:
   5) "generalization machine learning" (result still too specific)
 
 - *Human heuristics* are guided by emotion and can be fallible -
-   e.g. "availability heuristics", the tendency to estimate likelihood
-   of an event depending on how easily examples can be recalled
-   (e.g. airline accidents over vehicle accidents)
+  e.g. "availability heuristics", the tendency to estimate likelihood
+  of an event depending on how easily examples can be recalled
+  (e.g. airline accidents over vehicle accidents)
 
 - Misapplied *machine heuristics* as a result of algorithmic errors are
   called *bias* if the conclusions are /systematically/ erroneous
@@ -596,7 +597,7 @@ Many different uses, many different models:
 
 - Kupek (Jan 4, 2023). Getting your data in shape for machine
   learning. URL: [[https://stackoverflow.blog/2023/01/04/getting-your-data-in-shape-for-machine-learning/][stackoverflow.blog]].
-  
+
 - Lantz (2019). Machine Learning with R. Packt.
 
 - Roiger (2020). Just Enough R!. CRC Press.
@@ -611,31 +612,31 @@ are inaccurate. Systematically developed in the 17th and 18th century,
 popular since the rise of computers in the mid-20th century.
 
 [fn:2] For *Machine Learning*, assumptions about data distributions and
-   variable independence are not a concern. ML is part of the field of
-   Artificial Intelligence (AI) - computers who make their own
-   decisions. Popular since 1959 (Arthur Samuel: "ML is the ability to
-   learn without being explicitly programmed."). Subfields include
-   deep learning = ML with artificial neural networks; reinforcement
-   learning = reward-based machine learning
+variable independence are not a concern. ML is part of the field of
+Artificial Intelligence (AI) - computers who make their own
+decisions. Popular since 1959 (Arthur Samuel: "ML is the ability to
+learn without being explicitly programmed."). Subfields include
+deep learning = ML with artificial neural networks; reinforcement
+learning = reward-based machine learning
 
 [fn:3] *Knowledge discovery* in databases (KDD) was coined in 1989 to
-   emphasise that knowledge can be derived from data-driven
-   discovery. Frequently used interchangeably with data
-   mining. Includes not just the pattern search but also methods for
-   extracting, preparing and using data.
+emphasise that knowledge can be derived from data-driven
+discovery. Frequently used interchangeably with data
+mining. Includes not just the pattern search but also methods for
+extracting, preparing and using data.
 
 [fn:4] *Data mining* is the process of using one or more machine
-   learning algorithms to find patterns or structure in data. The
-   patterns may be: a set of rules, a graph or network, a tree, one or
-   more equations, etc. The applications can be part of a visual
-   dashboard or as simple as a list. Popular since ca. 1995.
+learning algorithms to find patterns or structure in data. The
+patterns may be: a set of rules, a graph or network, a tree, one or
+more equations, etc. The applications can be part of a visual
+dashboard or as simple as a list. Popular since ca. 1995.
 
 [fn:5] *Data science* refers to the process of extracting meaningful
-   knowledge from data, using methods from statistics, computer
-   science, database management and more. ML is not required for data
-   science but it is often used - e.g. when fitting a trendline to a
-   dataset. Popular since ca. 2012. Subfields include data
-   engineering, process mining, and machine learning.
+knowledge from data, using methods from statistics, computer
+science, database management and more. ML is not required for data
+science but it is often used - e.g. when fitting a trendline to a
+dataset. Popular since ca. 2012. Subfields include data
+engineering, process mining, and machine learning.
 
 [fn:6] See Loizos (Dec 9, 2022): "[[https://techcrunch.com/2022/12/09/is-chatgpt-a-virus-that-has-been-released-into-the-wild/][Is ChatGPT a 'virus that has been
 released into the wild'?]]" - 2019 interview with Sam Altman (OpenAI)
@@ -645,11 +646,11 @@ constraints of syntactical rules. What used to be helpful in the past
 could in the future well become the standard for programming, cp.
 
 [fn:8]How did you "learn" to close a door? Did your mom give you a
-  long lecture about the physics, the difference in temperature on
-  either side of the door, and about the different ways to grip and
-  turn the handle? What happens when you encounter a different handle
-  you have not seen yet? What if you encounter a door that has no
-  handle?
+long lecture about the physics, the difference in temperature on
+either side of the door, and about the different ways to grip and
+turn the handle? What happens when you encounter a different handle
+you have not seen yet? What if you encounter a door that has no
+handle?
 
 [fn:9]Diagnosis ML example: (1) Data storage: raw patient data; (2)
 Abstraction: table of attributes and records; (3) Generalization:
@@ -670,13 +671,13 @@ angel, or my intuition, or whatever you will, to pull the proverbial
 rabbit out of a hat when needed. This has often worked for me!
 
 [fn:12]René Magritte's painting "The Treachery of Images" illustrates
-  the idea of a representation: /"Ceci n'est pas une pipe"/ because it's
-  an image of a pipe, and not the pipe itself.
+the idea of a representation: /"Ceci n'est pas une pipe"/ because it's
+an image of a pipe, and not the pipe itself.
 
 [fn:13]In visual perception, the idea of a model summarizing data is
-  illustrated by the six Gestalt (German for "shape") principles: each
-  of them implies not just the pixels of the image but a pattern that
-  leads a human perceiving more than just the pattern itself.
+illustrated by the six Gestalt (German for "shape") principles: each
+of them implies not just the pixels of the image but a pattern that
+leads a human perceiving more than just the pattern itself.
 
 [fn:14]This was one of the critiques of AI by philosopher Hubert
 Dreyfus ([[https://en.wikipedia.org/wiki/Hubert_Dreyfus#Dreyfus'_criticism_of_AI][see Wikipedia here]] and here for a [[https://debategraph.org/Details.aspx?nid=2785][graph representation]]).
@@ -693,9 +694,9 @@ unlike gravity, subject to cultural definitions ("fraud", "disorder",
 "disease") hence not as objective as physical, observable laws?
 
 [fn:17]Bias (like presets) allows us to favor some choices over others
-  and discard some choices as irrelevant. The net effect could be that
-  we become more action-oriented and less bogged down by search. Bias
-  is also how ML algorithms choose among many ways to understand data.
+and discard some choices as irrelevant. The net effect could be that
+we become more action-oriented and less bogged down by search. Bias
+is also how ML algorithms choose among many ways to understand data.
 
 [fn:18]Compare this with the very similar looking diagram earlier, the
 linear trendline modeling of the ~Nile~ time series data. Underfitting

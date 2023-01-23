@@ -1,6 +1,6 @@
 #+TITLE:Agenda - Machine Learning (DSC 305) 
 #+AUTHOR:Agenda - Machine Learning (DSC 305) 
-#+STARTUP:overview hideblocks indent
+#+STARTUP:overview hideblocks indent inlineimages
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:R :session *R* :results: output :exports both :noweb yes
 * Week 1 - Course overview & ML overview
@@ -22,20 +22,20 @@
 [[../img/ml_R.png]]
 
 Topics:
-- [ ] Introduction to machine learning (continued)
-- [ ] Review: R data structures, environment, exploration
+- [X] Introduction to machine learning (continued)
+- [X] Review: R data structures, environment, exploration
 
 Submissions:
-- [ ] First multiple-choice test in class on Thursday, Jan-19
-- [ ] First DataCamp home assignment "What is Machine Learning" Jan-19
-- [ ] First in-class practice "Introduction to machine learning"
+- [X] First multiple-choice test in class on Thursday, Jan-19
+- [X] First DataCamp home assignment "What is Machine Learning" Jan-19
+- [X] First in-class practice "Introduction to machine learning"
 
 Recommendations:
-- [ ] "Lyon Data & Analytics Nexus" on Discord (invitation only)
-- [ ] [[https://youtu.be/BRiNw490Eq0][Google search operators tutorial]] (video, 1 hr) => project
-- [ ] [[https://youtu.be/i_LwzRVP7bg][ML for everybody by FreeCodeCamp]] (video, 4 hrs) => Python
+- [X] "Lyon Data & Analytics Nexus" on Discord (invitation only)
+- [X] [[https://youtu.be/BRiNw490Eq0][Google search operators tutorial]] (video, 1 hr) => project
+- [X] [[https://youtu.be/i_LwzRVP7bg][ML for everybody by FreeCodeCamp]] (video, 4 hrs) => Python
 
-* Lyon data science nerd network (invitation only)
+** Lyon data science nerd network (invitation only)
 #+attr_latex: :width 400px
 #+caption: Lyon Data & Analytics Nexus Discord server dashboard
 [[../img/discord.png]]
@@ -44,7 +44,7 @@ Recommendations:
 - Lyon alumni, students, and companies are invited
 - Share internship and job opportunities, and more
 
-* Google search for programmers (Goldin, 2023)
+** Google search for programmers (Goldin, 2023)
 #+attr_latex: :width 400px
 #+caption: Google search tutorial by Seth Goldin (freeCodeCamp)
 [[../img/goldin.png]]
@@ -54,7 +54,7 @@ Waste of time?
 2) Finding is not understanding
 3) Understanding is not using
 
-Google's business model = data + algorithm + infrastructure + brand
+*Google's business model = data + algorithm + infrastructure + brand*
 1) data are offered by users for free
 2) algorithm is largely known and public
 3) infrastructure is proprietary and hard to duplicate
@@ -100,7 +100,7 @@ these tips may not always return the most accurate results.
 - [[https://en.wikipedia.org/wiki/Internet_Relay_Chat][Internet Relay Chat]] - in Emacs (~M-x erc~), e.g. [[https://libera.chat/][libera.chat]]
 - [[https://www.linuxtoday.com/developer/how-to-use-emacs-as-a-usenet-reader-with-gnus/][Usenet]], mailing lists, Slack, Discord, reddit, quora etc.
 
-* Rapid review - intro to ML
+** Rapid review - intro to ML
 #+attr_latex: :width 400px
 #+caption: Photo by Benjamin Davies on Unsplash
 [[../img/rapid_review.jpg]]
@@ -116,6 +116,12 @@ these tips may not always return the most accurate results.
 5) What are the steps for a supervised learning process?
 
 6) What is the general ML process?
+
+* Week 3 
+
+* Doctor, Doctor!
+
+- ~M-x doctor~
 
 * References
 
