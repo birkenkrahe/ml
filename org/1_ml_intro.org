@@ -424,7 +424,7 @@ Many different uses, many different models:
 - These patterns were always there but had not been identified/seen
   prior to presenting the information in a different format.[fn:16]
 
-* Nile example - training a density model
+* NEXT Nile example - training a density model
 
 - The ~truehist~ function fits the dataset to a density estimate, and
   ~density~ does the same with a smoothing effect added:

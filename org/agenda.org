@@ -16,7 +16,7 @@
 - [ ] Introduction to machine learning
 - [X] First DataCamp assignment "Understanding machine learning"
   
-* Week 2 - Introduction to ML & Review of R
+* Week 2 - Introduction to ML & Review of R (Part I)
 #+attr_html: :width 400px
 #+caption: ML intro & R review in week 2 of DSC 305
 [[../img/ml_R.png]]
@@ -26,7 +26,7 @@ Topics:
 - [X] Review: R data structures, environment, exploration
 
 Submissions:
-- [X] First multiple-choice test in class on Thursday, Jan-19
+- [X] First multiple-choice test in class on +Thursday, Jan-19+ Jan-24
 - [X] First DataCamp home assignment "What is Machine Learning" Jan-19
 - [X] First in-class practice "Introduction to machine learning"
 
@@ -117,9 +117,78 @@ these tips may not always return the most accurate results.
 
 6) What is the general ML process?
 
-* Week 3 
 
-* Doctor, Doctor!
+* Week 3 - Introduction to ML & Review of R (Part II)
+#+attr_html: :width 400px
+#+caption: ML intro & R review in week 2 of DSC 305
+[[../img/ml_R.png]]
+
+Topics:
+- [ ] Condition for repeating tests
+- [ ] Test 1 review
+- [ ] "Doctor, Doctor!"
+- [ ] Introduction to machine learning (continued)
+- [ ] Review: R data structures, environment, exploration
+
+Submissions:
+- [ ] First multiple-choice test in class on +Thursday, Jan-19+
+- [ ] Second DataCamp home assignment "Machine Learning Models" Jan-31
+- [ ] In-class practice "Introduction to machine learning" (continued)
+- [ ] In-class practice "R data structures"
+
+* TODO Project - first sprint review (Tuesday, Feb 7)
+#+attr_html: :width 400px
+[[../img/sprint.jpg]]
+
+- The term project purpose is down to you - or you can approach me for
+  an idea (but please do that sooner than later)!
+
+- There are many different ways to present a paper or a slide pack:
+  e.g. succinct, verbose, opinionated, objective, accessible or not.
+
+- Your first deliverable is a *project proposal* formatted as an
+  Org-mode file. Here is a template for such a file with definitions.
+
+  1) Meta data: preliminary title (~#+TITLE~), list of team members
+     (~#+AUTHOR:~), course title (~#+SUBTITLE~).
+
+  2) Headlines: ~Problem~, ~Reason~, ~Constraints~, ~Goals and Non-goals~,
+     ~Metrics~, ~References~
+
+     - *Problem*: describe the problem that you're trying to solve.
+
+     - *Reason*: why is this problem interesting (to you) right now?
+
+     - *Constraints:* which difficulties, e.g. technical or conceptual,
+       do you foresee right now?
+
+     - *Goals and non-goals*: list all goals that you might want to
+       achieve with this project. Order the goals by importance. Add a
+       list of non-goals, i.e. things that are outside the scope of
+       your project.
+
+     - *Metrics*: how would you measure the success of your project?
+
+     - *References*: list any references that you found already. Make
+       sure that they are consistent (same format) and complete
+       (author, date, title, place).
+
+- Upload your result to Canvas (*no later than Feb 7, 12 pm*). Missing
+  the deadline will cost you points.
+
+Source: Ellis, Data Science Project Proposals (2021). URL:
+[[https://crunchingthedata.com/data-science-project-proposals/][crunchingthedata.com]].
+
+* TODO Condition for repeating tests
+#+attr_latex: :width 400px
+#+caption: Late or missed the test? Talk to me!
+[[../img/late.jpg]]
+
+- If you inform me beforehand that you cannot attend an announced
+  test, we can make arrangements for you to take the test outside of
+  class.
+
+* TODO Doctor, Doctor!
 
 - ~M-x doctor~
 
