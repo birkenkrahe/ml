@@ -125,15 +125,16 @@ these tips may not always return the most accurate results.
 
 Topics:
 - [ ] Condition for repeating tests
-- [ ] Test 1 review
+- [ ] Test 1 review in class
 - [ ] "Doctor, Doctor!"
 - [ ] Introduction to machine learning (continued)
 - [ ] Review: R data structures, environment, exploration
 
 Submissions:
-- [ ] First multiple-choice test in class on +Thursday, Jan-19+
-- [ ] Second DataCamp home assignment "Machine Learning Models" Jan-31
+- [ ] First multiple-choice test in class on Tuesday 24-Jan
+- [ ] 2nd DataCamp home assignment "Machine Learning Models" by Jan-31
 - [ ] In-class practice "Introduction to machine learning" (continued)
+- [ ] Exercise: build an ML code glossary
 - [ ] In-class practice "R data structures"
 
 * TODO Project - first sprint review (Tuesday, Feb 7)
