@@ -587,7 +587,7 @@ Many different uses, many different models:
 
 - Create a table in Org-mode by typing ~|~ for each new column
 
-- Collect all functions from the practice file and explain them
+- Collect all (20) functions from the practice file and explain them
 
 - To highlight code, you can surround it with a ~~~ character
 

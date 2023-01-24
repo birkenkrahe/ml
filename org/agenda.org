@@ -124,9 +124,10 @@ these tips may not always return the most accurate results.
 [[../img/ml_R.png]]
 
 Topics:
+- [ ] "Doctor, Doctor!"
 - [ ] Condition for repeating tests
 - [ ] Test 1 review in class
-- [ ] "Doctor, Doctor!"
+- [ ] Project 1st sprint review
 - [ ] Introduction to machine learning (continued)
 - [ ] Review: R data structures, environment, exploration
 
@@ -136,6 +137,29 @@ Submissions:
 - [ ] In-class practice "Introduction to machine learning" (continued)
 - [ ] Exercise: build an ML code glossary
 - [ ] In-class practice "R data structures"
+
+* TODO Doctor, Doctor!
+#+attr_html: :width 400px
+[[../img/couch.jpg]]
+
+- ~M-x doctor~
+
+* TODO Condition for repeating tests
+#+attr_latex: :width 400px
+#+caption: Late or missed the test? Talk to me!
+[[../img/late.jpg]]
+
+- If you inform me beforehand that you cannot attend an announced
+  test, we can make arrangements for you to take the test outside of
+  class.
+
+* TODO [[https://lyon.instructure.com/courses/1021/assignments/6737/edit?quiz_lti][Test 1 review]]
+* TODO How should you study for data science tests?
+#+attr_html: :width 200px
+[[../img/studying.jpg]]
+
+- If you were successful in the test: what did you do?
+- If not: what do you think you should have done?
 
 * TODO Project - first sprint review (Tuesday, Feb 7)
 #+attr_html: :width 400px
@@ -179,19 +203,6 @@ Submissions:
 
 Source: Ellis, Data Science Project Proposals (2021). URL:
 [[https://crunchingthedata.com/data-science-project-proposals/][crunchingthedata.com]].
-
-* TODO Condition for repeating tests
-#+attr_latex: :width 400px
-#+caption: Late or missed the test? Talk to me!
-[[../img/late.jpg]]
-
-- If you inform me beforehand that you cannot attend an announced
-  test, we can make arrangements for you to take the test outside of
-  class.
-
-* TODO Doctor, Doctor!
-
-- ~M-x doctor~
 
 * References
 
