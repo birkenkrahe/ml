@@ -198,6 +198,19 @@ in the file ~1_nile_hist.png~.
             lty = c(NA, 2),
             col = c("blue", "red"))
    #+end_src
+* TODO Create code glossary
+
+- Create a table in Org-mode by typing ~|~ for each new column
+
+- Collect all functions from the practice file and explain them
+
+- To highlight code, you can surround it with a ~~~ character
+
+- To "fix" the table alignment, use ~M-q~ (ALT + q)
+
+| NO | FUNCTION | MEANING |
+|----+----------+---------|
+|    |          |         |
 
 * TODO Wow! Congratulations!
 

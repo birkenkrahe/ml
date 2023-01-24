@@ -583,6 +583,20 @@ Many different uses, many different models:
 | Overfitting      | Modeling noise instead of signals      |
 | Underfitting     | Model is too simple for the data       |
 
+* TODO ML Code Glossary
+
+- Create a table in Org-mode by typing ~|~ for each new column
+
+- Collect all functions from the practice file and explain them
+
+- To highlight code, you can surround it with a ~~~ character
+
+- To "fix" the table alignment, use ~M-q~ (ALT + q)
+
+| NO | FUNCTION | MEANING |
+|----+----------+---------|
+|    |          |         |
+
 * References
 
 - Anderson (2017). Twenty years on from Deep Blue vs Kasparov: how a
