@@ -3,8 +3,7 @@
 #+STARTUP: overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
-* ML in practice
-* Process
+* ML in Practice - Process
 #+attr_html: :width 500px
 #+caption: DataCamp "Understanding ML" course
 [[../img/1_dc_ml_flow.png]]
@@ -209,8 +208,7 @@ an essential first step toward using data to drive the desired action.
   | Boosting       | Dual use |      11 |
   | Random forests | Dual use |      11 |
 
-* ML with R
-* R packages
+* ML with R - R packages
 
 - R is free, open source software (FOSS) for statistical programming
 - Many ML algorithms must be installed on top of base R as packages
@@ -276,7 +274,6 @@ an essential first step toward using data to drive the desired action.
   8) compilation of R output to HTML, PDF, WORD
 
 - RStudio Notebook formats allow for literate programming
-
 
 * Summary
 
