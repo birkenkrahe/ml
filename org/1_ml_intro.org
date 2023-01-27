@@ -1,6 +1,6 @@
 #+TITLE: INTRODUCTION TO MACHINE LEARNING
 #+AUTHOR: Marcus Birkenkrahe
-#+STARTUP: overview hideblocks indent
+#+STARTUP: overview hideblocks indent inlineimages
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
 #+attr_html: :width 600px
@@ -424,7 +424,7 @@ Many different uses, many different models:
 - These patterns were always there but had not been identified/seen
   prior to presenting the information in a different format.[fn:16]
 
-* NEXT Nile example - training a density model
+* Nile example - training a density model
 
 - The ~truehist~ function fits the dataset to a density estimate, and
   ~density~ does the same with a smoothing effect added:
@@ -444,6 +444,9 @@ Many different uses, many different models:
          main="")     # remove title
     title("Flow through the Nile 1872-1970")
   #+end_src
+
+  #+RESULTS:
+  [[file:../img/lantz_nile.png]]
 
 * Nile example: training a linear model
 
@@ -708,9 +711,10 @@ unlike gravity, subject to cultural definitions ("fraud", "disorder",
 "disease") hence not as objective as physical, observable laws?
 
 [fn:17]Bias (like presets) allows us to favor some choices over others
-and discard some choices as irrelevant. The net effect could be that
-we become more action-oriented and less bogged down by search. Bias
-is also how ML algorithms choose among many ways to understand data.
+and discard some choices as irrelevant (or immoral/toxic). The net
+effect could be that we become more action-oriented and less bogged
+down by search. Bias is also how ML algorithms choose among many ways
+to understand data.
 
 [fn:18]Compare this with the very similar looking diagram earlier, the
 linear trendline modeling of the ~Nile~ time series data. Underfitting

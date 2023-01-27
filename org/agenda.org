@@ -138,6 +138,10 @@ Submissions:
 - [ ] Exercise: build an ML code glossary
 - [ ] In-class practice "R data structures"
 
+** DONE [[https://lyon.instructure.com/courses/1021/discussion_topics/2125][Jan 26 session online]]
+#+attr_latex: :width 400px
+[[../img/zoom.png]]
+
 ** DONE Doctor, Doctor!
 #+attr_html: :width 400px
 [[../img/couch.jpg]]
