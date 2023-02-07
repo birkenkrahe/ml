@@ -283,8 +283,19 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 2) Managing data in R
 3) Exploring data in R
 
-Source: [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][Lantz, Machine learning with R (3e), chapter 2]]
+[Source: [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][Lantz, Machine learning with R (3e), chapter 2]]]
 
+- Download raw ~2_R_structure_practice.org~ [[https://raw.githubusercontent.com/birkenkrahe/ml/main/org/2_R_structure_practice.org][from GitHub (birkenkrahe/ml)]]
+- Open a CMD line terminal (Windows search: CMD, Mac: terminal)
+- Navigate to the download directory with ~cd~
+- Open the file in a terminal Emacs (can you take this command apart?)
+  #+begin_example sh
+    $ emacs -nw --file 2_R_structure_practice.org
+  #+end_example
+  #+attr_latex: :width 400px
+  [[../img/emacs.png]]
+
+  
 * References
 
 - Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –
