@@ -148,7 +148,7 @@ Submissions:
 
 - ~M-x doctor~
 
-** DONE Project - first sprint review (Tuesday, Feb 7)
+** DONE Project - first sprint review (Tuesday, Feb 13)
 #+attr_html: :width 400px
 [[../img/sprint.jpg]]
 
@@ -185,7 +185,7 @@ Submissions:
        sure that they are consistent (same format) and complete
        (author, date, title, place).
 
-- Upload your result to Canvas (*no later than Feb 7, 12 pm*). Missing
+- Upload your result to Canvas (*no later than Feb 13*). Missing
   the deadline will cost you points.
 
 Source: Ellis, Data Science Project Proposals (2021). URL:
@@ -209,6 +209,8 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 - If not: what do you think you should have done?
 
 * Week 4 - ML models overview
+* TODO Upload your practice files to GDrive
+
 * References
 
 - Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –
