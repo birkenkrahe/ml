@@ -197,5 +197,5 @@ Most of this material can be found in Lantz, Machine Learning with R
 Well done! You've reached the end of this in-class practice file.
 
 If you've completed all steps, you can now upload the Org-mode file to
-Canvas (see ~Assignments > In-class practice~.
+Canvas (see ~Assignments > In-class practice~).
 

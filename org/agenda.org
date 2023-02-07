@@ -275,7 +275,7 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 3) We'll review the DataCamp sessions in class and in the tests (I'll
    announce tests 1 week in advance)
      
-* TODO R review: structures
+* TODO R review: structures/management/exploration
 #+attr_latex: :width 400px
 [[../img/rlogo.png]]
 
@@ -283,7 +283,7 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 2) Managing data in R
 3) Exploring data in R
 
-Source: Lantz, Machine learning with R (3e), chapter 2
+Source: [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][Lantz, Machine learning with R (3e), chapter 2]]
 
 * References
 
