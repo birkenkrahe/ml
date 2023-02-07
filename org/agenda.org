@@ -276,7 +276,7 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
    announce tests 1 week in advance)
      
 * TODO R review: structures/management/exploration
-#+attr_latex: :width 400px
+#+attr_latex: :width 250px
 [[../img/rlogo.png]]
 
 1) Data structures in R
@@ -294,8 +294,8 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
   #+end_example
   #+attr_latex: :width 400px
   [[../img/emacs.png]]
+- Finish practice files started in class on your own by the deadline
 
-  
 * References
 
 - Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –
