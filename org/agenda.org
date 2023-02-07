@@ -216,7 +216,7 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 #+attr_latex: :width 400px
 [[../img/ml_types2.png]]
 
-* TODO Upload practice files 2 GDrive (or 2 stick)
+** DONE Upload practice files 2 GDrive (or 2 stick)
 #+attr_latex: :width 400px
 [[../img/gdrive.png]]
 
@@ -225,7 +225,7 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 
 - Make a bootable Linux stick (e.g. [[https://linuxmint-installation-guide.readthedocs.io/en/latest/burn.html][Linux Mint]]), too
 
-* TODO Create an ~.Rprofile~
+** DONE Create an ~.Rprofile~
 
 - Create or open ~~/.Rprofile~ and add these lines to it:
   #+begin_example R
@@ -244,11 +244,11 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
   and you will be able to display a "~tibble~" (a sort of data frame
   popular in the "Tidyverse") in Emacs:
   #+begin_src R :results output
-    library(dplyr)
+    library(MASS)
     tibble(mtcars)
   #+end_src
 
-* TODO Test 2 opens Friday - closes Tuesday Feb 14
+** DONE Test 2 opens Friday - closes Tuesday Feb 14
 #+attr_latex: :width 400px
 #+caption: Image by Grovemade via Unsplash.com
 [[../img/homeoffice.jpg]]
@@ -259,7 +259,7 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 - You can complete the test at your leisure (within the set time
   limit) but you must complete it before the deadline (Tue-14-Feb)
   
-* TODO Home assignments - project and DataCamp
+** DONE Home assignments - project and DataCamp
 #+attr_latex: :width 400px
 #+caption: Image by Feliphe Schiarolli via Unsplash.com
 [[../img/classroom.jpg]]
@@ -275,7 +275,7 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 3) We'll review the DataCamp sessions in class and in the tests (I'll
    announce tests 1 week in advance)
      
-* TODO R review: structures/management/exploration
+** DONE R review: structures/management/exploration
 #+attr_latex: :width 250px
 [[../img/rlogo.png]]
 
@@ -290,11 +290,21 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 - Navigate to the download directory with ~cd~
 - Open the file in a terminal Emacs (can you take this command apart?)
   #+begin_example sh
-    $ emacs -nw --file 2_R_structure_practice.org
+    emacs -nw --file 2_R_structure_practice.org
   #+end_example
   #+attr_latex: :width 400px
   [[../img/emacs.png]]
 - Finish practice files started in class on your own by the deadline
+
+* READ Understanding R startup
+#+attr_latex: :width 400px
+#+caption: From "R for Enterprise: Understanding R's Startup (Lopp, 2019)
+[[../img/rstartup.jpeg]]
+
+[[https://rviews.rstudio.com/2017/04/19/r-for-enterprise-understanding-r-s-startup/][Here is an article]] (Lopp, 2019) on R startup variables and
+settings. Includes an explanation why the ~.Rprofile~ startup file was
+not read when some of you opened the R console in the shell (you
+should probably try ~Rgui~ on the command line, too).
 
 * References
 
@@ -302,8 +312,13 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
   All Advanced Search Operators Tutorial [2023 Tips]. Online:
   [[https://youtu.be/BRiNw490Eq0][youtube.com]].
 
-- Ying, K. @freeCodeCamp.org (Sep 26, 2022). Machine Learning for
-  Everybody - Full Course. Online: [[https://youtu.be/i_LwzRVP7bg][youtube.com]].
+- Lopp, Sean (Apr 4, 2019). R for Enterprise: Understanding R's
+  Startup. In: R Views. Online: [[https://rviews.rstudio.com/2017/04/19/r-for-enterprise-understanding-r-s-startup/][rviews.rstudio.com]].
 
 - Stokes, Jon (Jan 4, 2023). The Fourth Age Of Programming
   [Blog]. URL: [[https://blog.replit.com/fourth][blog.repolit.com]]
+
+- Ying, K. @freeCodeCamp.org (Sep 26, 2022). Machine Learning for
+  Everybody - Full Course. Online: [[https://youtu.be/i_LwzRVP7bg][youtube.com]].
+
+
