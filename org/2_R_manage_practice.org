@@ -20,7 +20,71 @@ Most of this material can be found in Lantz, Machine Learning with R
 2) Go with the cursor on the headline and hange the ~TODO~ label to ~DONE~
    by entering ~S-<right>~ ("Shift + right-arrow").
 
-* TODO 
+* TODO Saving, loading, removing R data structures
+
+1) Copy the built-in data frame ~ToothGrowth~ to an R object ~df~ and
+   display its structure.
+   #+begin_src R 
+
+   #+end_src
+
+2) Save ~df~ to a (machine) file ~df.RData~ in the current directory.
+   #+begin_src R :results silent
+
+   #+end_src
+
+3) Check that the file exists without leaving R.
+   #+begin_src R
+
+   #+end_src
+
+4) Remove ~df~ from the current R session and check that it's been
+   removed.
+   #+begin_src R
+
+   #+end_src
+
+5) Load the dataframe from the file ~df.RData~.
+   #+begin_src R
+
+   #+end_src
+
+6) You can save all data from your work session with ~save.image()~. The
+   result will be saved in a file ~.RData~.
+   1. Create ~x <- 1:100~, ~y <- c(TRUE,FALSE)~
+   2. Run ~save.image()~
+   3. Check that the file exists with ~shell~
+   4. Remove all objects from your session with ~rm~ and check with ~ls~
+   5. Load ~.RData~
+   6. Check your session variable list with ~ls~
+   #+begin_src R
+
+   #+end_src
+
+* TODO Importing data from CSV files
+
+The (raw) file with patient data is available online here:
+https://raw.githubusercontent.com/birkenkrahe/ml/main/data/pt_data.csv
+
+1) Read the CSV file into a dataframe ~pt_data~ and confirm its
+   structure.
+   #+begin_src R
+
+   #+end_src
+
+2) What are the default parameters of ~read.csv~ regarding existence of
+   a ~header~, the import of ~characters~ as ~factor~, and the separator?
+   #+begin_src R
+
+   #+end_src
+
+3) Write the dataframe ~pt_data~ to a CSV file ~pt_data.csv~ in your PC's
+   ~Download~ directory, set the parameter ~row.names~ to ~FALSE~, and check
+   that the file is there.
+   #+begin_src R
+
+   #+end_src
+
 * TODO Wow! Congratulations!
 
 Well done! You've reached the end of this in-class practice file.

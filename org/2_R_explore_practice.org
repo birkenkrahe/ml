@@ -20,6 +20,93 @@ Most of this material can be found in Lantz, Machine Learning with R
 2) Go with the cursor on the headline and hange the ~TODO~ label to ~DONE~
    by entering ~S-<right>~ ("Shift + right-arrow").
 
+* TODO Getting the data
+
+Download the raw file ~usedcars.csv~ from this location and put it into
+a dataframe ~usedcars~: [[https://tinyurl.com/yp5r3kw7][tinyurl.com/yp5r3kw7]]
+#+begin_src R
+
+#+end_src
+
+* TODO Exploring the structure of numerical data
+
+1) Display common summary statistics for the ~year~ variable to find out
+   when the vehicle records commenced, and when they were posted.
+   #+begin_src R
+
+   #+end_src
+
+2) Based on the ~price~, what kind of cars dominated the listing?
+   #+begin_src R
+     summary(usedcars$price) # economy/mid-range cars dominate
+   #+end_src
+
+3) Based on the ~mileage~ of the listed cars, are there outliers?
+   1) compute the Inter-Quartile Range * 1.5
+   2) how many values are above the outlier threshold?
+   #+begin_src R
+
+   #+end_src
+
+4) Visualize the spread of the data ~mileage~.
+   #+begin_src R :results graphics file :file spread.png
+
+   #+end_src
+
+5) Visualize frequency of ~price~.
+   #+begin_src R :results graphics file :file price.png
+
+   #+end_src
+
+6) How many cars are priced between $12,000 and $14,000?
+   #+begin_src R
+
+   #+end_src
+
+* TODO Exploring the structure of categorical data
+
+1) Check which variables of the ~usedcars~ data frame are ~numeric~ and
+   which are ~categorical~.
+   #+begin_src R
+
+   #+end_src
+
+2) Display the car model ~year~ as a frequency table.
+   #+begin_src R
+
+   #+end_src
+
+3) Visualize the frequency table.
+   #+begin_src R :results graphics file :file year.png
+
+   #+end_src
+
+4) Display the proportions of the different car models:
+   #+begin_src R
+
+   #+end_src
+
+5) Display the proportions of ~color~ with a single decimal place.
+   #+begin_src R
+
+   #+end_src
+
+* TODO Exploring and visualizing relationships
+
+1) Visualize the relationship between ~price~ and ~mileage~ in ~usedcars~.
+   #+begin_src R :results graphics file :file price_mileage_plot.png
+
+   #+end_src
+
+2) Create a cross table of ~color~ vs. ~model~.
+   #+begin_src R
+
+   #+end_src
+
+4) Visualize the cross table.
+   #+begin_src R :results graphics file :file color_model.png
+
+   #+end_src   
 
 * TODO Wow! Congratulations!
 
