@@ -20,7 +20,6 @@ Most of this material can be found in Lantz, Machine Learning with R
 2) Go with the cursor on the headline and hange the ~TODO~ label to ~DONE~
    by entering ~S-<right>~ ("Shift + right-arrow").
 
-* TODO 
 
 * TODO Wow! Congratulations!
 
