@@ -1,10 +1,13 @@
 #+TITLE: ML IN PRACTICE - TYPES OF MODELS
 #+AUTHOR: Marcus Birkenkrahe
-#+STARTUP: overview hideblocks indent
+#+STARTUP: overview hideblocks indent inlineimages
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
-* ML in Practice - Process
-#+attr_html: :width 500px
+#+attr_latex: :width 400px
+#+caption: DataCamp "Understanding ML" course
+[[../img/leopard.jpg]]
+* ML IN PRACTICE - PROCESS
+#+attr_latex: :width 400px
 #+caption: DataCamp "Understanding ML" course
 [[../img/1_dc_ml_flow.png]]
 
@@ -52,7 +55,7 @@
    failures of the deployed model might even provide additional data
    to train your next-generation learner.
 
-* Units of observation vs. analysis
+* UNITS OF OBSERVATION VS. ANALYSIS
 
 - A *unit of observation* is the smallest entity with measured
   properties of interest for a study. Commonly, the unit of
@@ -73,19 +76,20 @@
   properties were recorded, and *features*, the recorded properties or
   attributes of examples that may be useful for ML
 
-- Use case: spam email identification. The unit of observation could be
+- Use case: *spam email identification*. The unit of observation could be
   email messages, examples would be specific individual messages, and
   the features might consist of the words used in the messages.
 
-- Use case: cancer detection. The unit of observation could be
+- Use case: *cancer detection*. The unit of observation could be
   patients, the examples might be a random sample of cancer patients,
   and the features genomic markers from biopsied cells, and patient
   characteristics like weight, height, blood pressure.
 
-* Structured vs. unstructured data
+* STRUCTURED VS. UNSTRUCTURED DATA
 
 - Humans can consume /unstructured/ data - free-form text, pictures,
   sound, and they can handle cases with many or few features
+
 - Computers required data to be /structured/ - each example of the
   phenomenon has the same features, which are organized in data
   structures like tables or matrices or data frames
@@ -99,15 +103,15 @@
 - Clarity about features, observations, and data types is crucial for
   selecting the best learning algorithm
 
-* Types of ML algorithms
-#+attr_html: :width 400px
+* TYPES OF ML ALGORITHMS
+#+attr_latex: :width 400px
 [[../img/3_ml_models.png]]
 
 Machine learning algorithms are divided into categories according to
 their purpose. Understanding the categories of learning algorithms is
 an essential first step toward using data to drive the desired action.
 
-* Predictive models - supervised learning - classification
+* PREDICTIVE MODELS - SUPERVISED LEARNING - CLASSIFICATION
 
 - *Predictive models* involve prediction of one value using other values
   in the same dataset. The algorithm models the relationship between
@@ -140,7 +144,7 @@ an essential first step toward using data to drive the desired action.
 - Since discrete numbers can be converted to categories, the boundary
   between classification and numeric prediction models is blurry
 
-* Descriptive models - unsupervised learning - clustering
+* DESCRIPTIVE MODELS - UNSUPERVISED LEARNING - CLUSTERING
 
 - *Descriptive models* are used to summarize data in new and interesting
   ways. No single feature is more important than any other.
@@ -149,11 +153,13 @@ an essential first step toward using data to drive the desired action.
   a descriptive model is called *unsupervised learning*.
 
 - An example is *pattern discovery* in *data mining* to identify useful
-  associations (correlations) within data. An application is *market
-  basket analysis* of transactional purchase data in retail: if the
-  retailer learns that swimming trunks are purchased at the same time
-  as sunscreen, it could use this information when marketing both
-  products, e.g. reposition them in the store, run a promotion etc.
+  associations (correlations) within data.
+
+- Application: *market basket analysis* of transactional purchase data
+  in retail: if the retailer learns that swimming trunks are purchased
+  at the same time as sunscreen, it could use this information when
+  marketing both products, e.g. reposition them in the store, run a
+  promotion etc.
 
 - *Clustering* is descriptive modeling - it means dividing a dataset
   into homogenous groups. This can be used for *segmentation analysis*
@@ -161,7 +167,7 @@ an essential first step toward using data to drive the desired action.
   demographics, e.g. to create a "people like you have
   bought this item, too" type of promotion.
 
-* Meta-learners - ensembles - reinforcement learning
+* META-LEARNERS - ENSEMBLES - REINFORCEMENT LEARNING
 
 - *Meta-learners* are models that learn how to learn more effectively by
   using the result of past learning to inform additional learning
@@ -176,47 +182,58 @@ an essential first step toward using data to drive the desired action.
   variant of the GPT-3 (Generative Pertained Transformer 3) model,
   which was trained in massive amount of text data to generate
   human-like responses to a given input.
-  #+attr_html: :width 500px
-  [[./img/ml_chatgpt.png]]
+  #+attr_latex: :width 400px
+  [[../img/ml_chatgpt.png]]
 
   The image shows ChatGPT output via Google Chrome extension (right)
-  next to "classic" Google search engine output (left)
+  next to "classic" Google search engine output (left)[fn:1].
 
-- List of Supervised Learning algorithms
+* ALGORITHMS
 
-  | NAME                    | TYPE               | CHAPTER |
-  |-------------------------+--------------------+---------|
-  | Naive Bayes             | Classification     |       4 |
-  | Decision trees          | Classification     |       5 |
-  | Linear regression       | Numeric prediction |       6 |
-  | Regression trees        | Numeric prediction |       6 |
-  | Model trees             | Numeric prediction |       6 |
-  | Neural networks         | Dual use           |       7 |
-  | Support Vector Machines | Dual use           |       7 |
-  |-------------------------+--------------------+---------|
+- List of Supervised Learning algorithms (Lantz, 2019):
+  |-------------------------+--------------------+-----|
+  | NAME                    | TYPE               | CH. |
+  |-------------------------+--------------------+-----|
+  | Naive Bayes             | Classification     |   4 |
+  | Decision trees          | Classification     |   5 |
+  | Linear regression       | Numeric prediction |   6 |
+  | Regression trees        | Numeric prediction |   6 |
+  | Model trees             | Numeric prediction |   6 |
+  | Neural networks         | Dual use           |   7 |
+  | Support Vector Machines | Dual use           |   7 |
+  |-------------------------+--------------------+-----|
 
-- List of Unsupervised Learning algorithms
-  | NAME               | TYPE              | CHAPTER |
-  |--------------------+-------------------+---------|
-  | Association rules  | Pattern detection |       8 |
-  | k-means clustering | Clustering        |       9 |
+- List of Unsupervised Learning algorithms:
+  |--------------------+-------------------+-----|
+  | NAME               | TYPE              | CH. |
+  |--------------------+-------------------+-----|
+  | Association rules  | Pattern detection |   8 |
+  | k-means clustering | Clustering        |   9 |
+  |--------------------+-------------------+-----|
 
-- Meta-learning algorithms
-  | NAME           | TYPE     | CHAPTER |
-  |----------------+----------+---------|
-  | Bagging        | Dual use |      11 |
-  | Boosting       | Dual use |      11 |
-  | Random forests | Dual use |      11 |
+- Meta-learning algorithms:
+  |----------------+----------+-----|
+  | NAME           | TYPE     | CH. |
+  |----------------+----------+-----|
+  | Bagging        | Dual use |  11 |
+  | Boosting       | Dual use |  11 |
+  | Random forests | Dual use |  11 |
+  |----------------+----------+-----|
 
-* ML with R - R packages
+* ML WITH R - R PACKAGES
 
 - R is free, open source software (FOSS) for statistical programming
+
 - Many ML algorithms must be installed on top of base R as packages
+
 - Both base R and packages can be obtained from CRAN, the
   Comprehensive R Archive Network (CRAN), at [[https://cran.r-project.org][cran.r-project.org]]
-- There is a [[https://cran.r-project.org/web/views/MachineLearning.html][separate /task view/ for ML on CRAN]]
 
-* The ~RWeka~ package
+- There is a [[https://cran.r-project.org/web/views/MachineLearning.html][separate /task view/ for ML on CRAN]]
+  #+attr_latex: :width 400px
+  [[../img/3_ml_taskview.png]]
+  
+* THE ~RWeka~ PACKAGE
 
 - ~RWeka~ was developed by Hornik et al (2009). [[http://www.cs.waikato.ac.nz/~ml/weka/][See here]] for more
   information on ~weka~) - you also need to have [[http://www.java.com/][Java]] installed
@@ -258,7 +275,7 @@ an essential first step toward using data to drive the desired action.
   [13] "Autoloads"         "package:base"
   #+end_example
 
-* RStudio
+* THE RStudio IDE
 
 - RStudio is an additional interface to R available at
   https://www.rstudio.com
@@ -274,17 +291,22 @@ an essential first step toward using data to drive the desired action.
   8) compilation of R output to HTML, PDF, WORD
 
 - RStudio Notebook formats allow for literate programming
-
-* Summary
+  #+attr_latex: :width 400px
+  #+caption: RStudio implementation of an R practice file
+  [[../img/3_rstudio1.png]]
+* SUMMARY
 
 - The ML model is used for prescriptive or descriptive purposes
+
 - ML purposes can be: category classification, numeric prediction,
   pattern detection, and clustering
+
 - Algorithms are chosen based on input data and learning task
+
 - R supports ML through community-authored, FOSS packages that need to
   be installed and loaded
 
-* References
+* REFERENCES
 
 - Anderson (2017). Twenty years on from Deep Blue vs Kasparov: how a
   chess match started the big data revolution. [[https://theconversation.com/twenty-years-on-from-deep-blue-vs-kasparov-how-a-chess-match-started-the-big-data-revolution-76882][@theconversation.com.]]
@@ -298,7 +320,15 @@ an essential first step toward using data to drive the desired action.
 
 - Lantz (2019). Machine Learning with R. Packt.
 
+- Lardinois (February 8, 2023). Hands-on with Bing's new ChatGPT-like
+  features. [[https://techcrunch.com/2023/02/08/hands-on-with-the-new-bing/][Online: techcrunch.com]].
+
 - Roiger (2020). Just Enough R!. CRC Press.
 
 - Serrano (2021). Grokking Machine Learning.
 
+* Footnotes
+
+[fn:1] Meanwhile (Feb 8, 2023), Microsoft, the main sponsor of OpenAI,
+the developers of ChatGPT, have integrated the bot in their Bing
+search engine (Lardinois, 2023).

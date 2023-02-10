@@ -212,7 +212,7 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 #+attr_latex: :width 400px
 [[../img/icestorm.jpg]]
 
-* Week 5 - ML models overview & Review of R (Part III)
+* Week 5 - Review of R (Part III)
 #+attr_latex: :width 400px
 [[../img/ml_types2.png]]
 
@@ -296,7 +296,7 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
   [[../img/emacs.png]]
 - Finish practice files started in class on your own by the deadline
 
-* READ Understanding R startup
+** READ Understanding R startup
 #+attr_latex: :width 400px
 #+caption: From "R for Enterprise: Understanding R's Startup (Lopp, 2019)
 [[../img/rstartup.jpeg]]
@@ -306,7 +306,7 @@ settings. Includes an explanation why the ~.Rprofile~ startup file was
 not read when some of you opened the R console in the shell (you
 should probably try ~Rgui~ on the command line, too).
 
-* NEW Get bonus points when practicing
+** NEW Get bonus points when practicing
 #+attr_latex: :width 200px
 [[../img/datacamp2.png]]
 - You can get 10 bonus points if you keep a practice streak of 10 days
@@ -319,9 +319,9 @@ should probably try ~Rgui~ on the command line, too).
 - This option ends on May 3rd (last day of spring term)
 - You can get this bonus only in one of my courses (if you attend > 1)
 #+attr_latex: :width 400p
-[[../img/datacamp1.png]]
+[[../img/datacamp3.png]]
 
-* NEW GNU Treats: ~speed-type~, ~treemacs~ and ~gtypist~
+** NEW GNU Treats: ~speed-type~, ~treemacs~ and ~gtypist~
 
 - An attractive alternative to ~Dired~ is the ~treemacs~ package. It
   looks like this on my PC (and also works for the terminal Emacs):
@@ -338,6 +338,10 @@ should probably try ~Rgui~ on the command line, too).
   package-list-packages~, then find the package in the list and install
   with ~i~ and ~x~. [[https://github.com/dakra/speed-type][More information on GitHub.]]
     
+* Week 6 - ML models overview
+
+- [ ] Open ~2_R_explore_practice.org~ and load the data
+
 * References
 
 - Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –
