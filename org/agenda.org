@@ -1,4 +1,4 @@
-#+TITLE:Agenda - Machine Learning (DSC 305)
+
 #+AUTHOR: MARCUS BIRKENKRAHE (pledged)
 #+SUBTITLE: Machine Learning (DSC 305) Spring 2023
 #+STARTUP:overview hideblocks indent inlineimages
@@ -214,7 +214,7 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 
 * Week 5 - Review of R (Part III)
 #+attr_latex: :width 400px
-[[../img/ml_types2.png]]
+[[../img/TourDeFrance.jpg]]
 
 ** DONE Upload practice files 2 GDrive (or 2 stick)
 #+attr_latex: :width 400px
@@ -339,9 +339,13 @@ should probably try ~Rgui~ on the command line, too).
   with ~i~ and ~x~. [[https://github.com/dakra/speed-type][More information on GitHub.]]
     
 * Week 6 - ML models overview
+#+attr_latex: :width 400px
+[[../img/ml_types2.png]]
 
 - [ ] Open ~2_R_explore_practice.org~ and load the data
-
+- [ ] Let's finish the review and upload the completed file to Canvas
+- [ ] What is R? Good overview [[https://www.datacamp.com/blog/all-about-r][in this DataCamp blog post]] (05/22)
+  
 * References
 
 - Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –
@@ -353,6 +357,9 @@ should probably try ~Rgui~ on the command line, too).
 
 - Stokes, Jon (Jan 4, 2023). The Fourth Age Of Programming
   [Blog]. URL: [[https://blog.replit.com/fourth][blog.repolit.com]]
+
+- Worsley, S (Mar 2022). What is R? The Statistical Computing
+  Powerhouse. [[https://www.datacamp.com/blog/all-about-r][Online: datacamp.com/blog.]]
 
 - Ying, K. @freeCodeCamp.org (Sep 26, 2022). Machine Learning for
   Everybody - Full Course. Online: [[https://youtu.be/i_LwzRVP7bg][youtube.com]].
