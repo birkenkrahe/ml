@@ -58,34 +58,47 @@
 * UNITS OF OBSERVATION VS. ANALYSIS
 
 - A *unit of observation* is the smallest entity with measured
-  properties of interest for a study. Commonly, the unit of
-  observation is in the form of persons, objects or things,
-  transactions, time points, geographic regions, or
-  measurements. Sometimes, units of observation are combined to form
-  units, such as person-years, which denote cases where the same
-  person is tracked over multiple years, and each person-year
-  comprises a person's data for one year.
+  properties of interest for a study.
 
+- Examples: The unit of observation is in the form of persons, objects
+  or things, transactions, time points, geographic regions, or
+  measurements.
+
+- Sometimes, units of observation are combined to form units, such as
+  person-years, which denote cases where the same person is tracked
+  over multiple years, and each person-year comprises a person's data
+  for one year.
+
+- When *visualizing data*, you always need to add the unit to the axis
+  label information!
+  
 - The *unit of analysis* is the smallest unit from which inference is
-  made. Although it is often the case, the observed and analyzed units
-  are not always the same. For example, data observed from people (the
-  unit of observation) might be used to analyze trends across
-  countries (the unit of analysis).
+  made. This is not always the same as the unit of observation.
 
-- Distinguish *example*, instances of the unit of observation for which
+- Example: data observed from people (= unit of observation) might
+  be used to analyze trends across countries (= unit of analysis).
+
+- Distinguish *examples*, instances of the unit of observation for which
   properties were recorded, and *features*, the recorded properties or
   attributes of examples that may be useful for ML
 
-- Use case: *spam email identification*. The unit of observation could be
-  email messages, examples would be specific individual messages, and
-  the features might consist of the words used in the messages.
+* Use cases: spam / cancer detection
 
-- Use case: *cancer detection*. The unit of observation could be
-  patients, the examples might be a random sample of cancer patients,
-  and the features genomic markers from biopsied cells, and patient
+- *Spam email identification*:
+  1) Unit of observation: email messages
+  2) Examples: specific individual messages
+  3) Features: words used in the messages
+
+- *Cancer detection*.
+  1) Unit of observation: patients
+  2) Examples: a random sample of cancer patients
+  3) Features: genomic markers from biopsied cells, and patient
   characteristics like weight, height, blood pressure.
 
 * STRUCTURED VS. UNSTRUCTURED DATA
+#+attr_latex: :width 400px
+#+caption: "Examples" = vehicles for sale, "features" = car properties
+[[../img/3_table.jpg]]
 
 - Humans can consume /unstructured/ data - free-form text, pictures,
   sound, and they can handle cases with many or few features
