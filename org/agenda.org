@@ -1,4 +1,4 @@
-
+#+TITLE: AGENDA - MACHINE LEARNING
 #+AUTHOR: MARCUS BIRKENKRAHE (pledged)
 #+SUBTITLE: Machine Learning (DSC 305) Spring 2023
 #+STARTUP:overview hideblocks indent inlineimages
@@ -338,14 +338,63 @@ should probably try ~Rgui~ on the command line, too).
   package-list-packages~, then find the package in the list and install
   with ~i~ and ~x~. [[https://github.com/dakra/speed-type][More information on GitHub.]]
     
-* Week 6 - ML models overview
+* NEW AI's Bid for Freedom
+#+attr_latex: :width 400px
+[[../img/freedom.png]]
+
+- My courses for Fall 2023:
+  
+  1) Artificial Intelligence (DSC 482.01) - seminar. The 2023 edition
+     will include deep learning with R/Python and more code poetry.
+
+  2) Data and process modeling (DSC 482.02) - seminar. The 2023
+     edition will include exploring differential equations with R
+     
+  3) Introduction to data science (DSC 105): The 2023 edition will
+     include R and Python.
+
+- All courses are for everybody who's interested in data science: tell
+  your friends!
+     
+* TODO Week 6 - ML models overview
 #+attr_latex: :width 400px
 [[../img/ml_types2.png]]
 
+- [ ] Remember to uppload practice (there are deadlines) [[https://lyon.instructure.com/courses/1021/assignments][to Canvas]]
 - [ ] Open ~2_R_explore_practice.org~ and load the data
 - [ ] Let's finish the review and upload the completed file to Canvas
 - [ ] What is R? Good overview [[https://www.datacamp.com/blog/all-about-r][in this DataCamp blog post]] (05/22)
-  
+- [ ] [[https://lyon.instructure.com/courses/1021/assignments/6997][Test 2 (open book) is live online until Fri 17-Feb, 11:59 pm]].
+* Review: exploring numerical data structure:
+
+Open an Org-mode file if you want to code along.
+
+1) [ ] How can you get an overview of statistical information for ~Nile~?
+   #+begin_src R :results output
+     summary(Nile)
+   #+end_src
+2) [ ] What about the ~time~ of the ~Nile~ observations?
+   #+begin_src R :results output
+     summary(time(Nile))
+   #+end_src
+3) [ ] How many values of ~Nile~ are outliers? Which values are these?
+   #+begin_src R :results output
+     length(which(Nile > (IQR(Nile) * 1.5)))
+     Nile[which(Nile > (IQR(Nile) * 1.5))]
+   #+end_src
+4) [ ] How would you make a boxplot of the values of ~Nile~?
+   #+begin_src R :results graphics file output :file ../img/Rbox.png
+     boxplot(Nile)
+   #+end_src
+5) [ ] How would you visualize how often certain values of ~Nile~ occur?
+   #+begin_src R :results graphics file output :file ../img/Rhist.png
+     hist(Nile)
+   #+end_src
+6) [ ] How many observations of the ~Nile~ flow are between 800 and 1000
+   mio cubic metres?
+   #+begin_src R
+     length(Nile[which(Nile > 800 & Nile < 1000)])
+   #+end_src
 * References
 
 - Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –
