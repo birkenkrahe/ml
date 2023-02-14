@@ -360,7 +360,7 @@ should probably try ~Rgui~ on the command line, too).
 #+attr_latex: :width 400px
 [[../img/ml_types2.png]]
 
-- [ ] Remember to uppload practice (there are deadlines) [[https://lyon.instructure.com/courses/1021/assignments][to Canvas]]
+- [ ] Remember to upload practice (there are deadlines) [[https://lyon.instructure.com/courses/1021/assignments][to Canvas]]
 - [ ] Open ~2_R_explore_practice.org~ and load the data
 - [ ] Let's finish the review and upload the completed file to Canvas
 - [ ] What is R? Good overview [[https://www.datacamp.com/blog/all-about-r][in this DataCamp blog post]] (05/22)
@@ -369,32 +369,81 @@ should probably try ~Rgui~ on the command line, too).
 
 Open an Org-mode file if you want to code along.
 
-1) [ ] How can you get an overview of statistical information for ~Nile~?
+1) [X] How can you get an overview of statistical information for ~Nile~?
    #+begin_src R :results output
      summary(Nile)
    #+end_src
-2) [ ] What about the ~time~ of the ~Nile~ observations?
+
+   #+RESULTS:
+   :    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   :   456.0   798.5   893.5   919.4  1032.5  1370.0
+
+2) [X] What about the ~time~ of the ~Nile~ observations?
    #+begin_src R :results output
      summary(time(Nile))
    #+end_src
+
+   #+RESULTS:
+   :    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   :    1871    1896    1920    1920    1945    1970
+
 3) [ ] How many values of ~Nile~ are outliers? Which values are these?
    #+begin_src R :results output
-     length(which(Nile > (IQR(Nile) * 1.5)))
+     summary(Nile)
+     IQR(Nile) * 1.5
+   #+end_src
+
+   #+RESULTS:
+   :    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   :   456.0   798.5   893.5   919.4  1032.5  1370.0
+   : [1] 351
+   
+   #+begin_src R :results output
+     length(Nile > (IQR(Nile) * 1.5))
      Nile[which(Nile > (IQR(Nile) * 1.5))]
    #+end_src
+
+   #+RESULTS:
+   : [1] 100
+   :   [1] 1120 1160  963 1210 1160 1160  813 1230 1370 1140  995  935 1110  994 1020
+   :  [16]  960 1180  799  958 1140 1100 1210 1150 1250 1260 1220 1030 1100  774  840
+   :  [31]  874  694  940  833  701  916  692 1020 1050  969  831  726  456  824  702
+   :  [46] 1120 1100  832  764  821  768  845  864  862  698  845  744  796 1040  759
+   :  [61]  781  865  845  944  984  897  822 1010  771  676  649  846  812  742  801
+   :  [76] 1040  860  874  848  890  744  749  838 1050  918  986  797  923  975  815
+   :  [91] 1020  906  901 1170  912  746  919  718  714  740
+
 4) [ ] How would you make a boxplot of the values of ~Nile~?
    #+begin_src R :results graphics file output :file ../img/Rbox.png
      boxplot(Nile)
    #+end_src
+
+   #+RESULTS:
+   [[file:../img/Rbox.png]]
+
 5) [ ] How would you visualize how often certain values of ~Nile~ occur?
    #+begin_src R :results graphics file output :file ../img/Rhist.png
      hist(Nile)
    #+end_src
+
+   #+RESULTS:
+   [[file:../img/Rhist.png]]
+
 6) [ ] How many observations of the ~Nile~ flow are between 800 and 1000
    mio cubic metres?
    #+begin_src R
-     length(Nile[which(Nile > 800 & Nile < 1000)])
+     length(
+       Nile[
+         which(
+           Nile > 800 & Nile < 1000
+           )
+         ]
+       )
    #+end_src
+
+   #+RESULTS:
+   : 44
+
 * References
 
 - Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –

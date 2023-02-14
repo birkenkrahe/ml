@@ -87,13 +87,13 @@
 - *Spam email identification*:
   1) Unit of observation: email messages
   2) Examples: specific individual messages
-  3) Features: words used in the messages
+  3) Features: words, punctuation marks used in the messages etc.
 
 - *Cancer detection*.
   1) Unit of observation: patients
   2) Examples: a random sample of cancer patients
   3) Features: genomic markers from biopsied cells, and patient
-  characteristics like weight, height, blood pressure.
+  characteristics like weight, height, blood pressure etc.
 
 * STRUCTURED VS. UNSTRUCTURED DATA
 #+attr_latex: :width 400px
