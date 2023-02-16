@@ -1,0 +1,40 @@
+#+TITLE: ML Project Proposal
+#+AUTHOR: [Marlon Durand, Hunter Perkins, Jordan Deuley]  PLEDGED
+#+STARTUP: overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+
+* Problem
+We want to make a prediction model using machine learning packages in
+R. We havent settled on a data set but we are looking at using Twitter
+data and having it seperated by views, likes, comments, and
+retweets. To get the data we would need a webscrapping algorithim to
+get the data and make the data set. We really just want to try and
+combine all we've been learning over the years.
+* Reason
+Twitter is a really popular social media site/app and is extremmly
+relivent in today's climate. We wanted to work with something well
+known and that can be easily be checked and updated. It also makes
+checking how close the prediction is easy.
+* Constraints
+TIME we need to put in alot of time just for the data alone adding the
+machine learning to it makes this a really time consumming
+project. It's very possible that we dont figure out how to get the
+data efficently and have to change the data we want to work
+with. Learning the packages required will also prove to be a posible
+bump in the road.
+* Goals & Non-Goals
+ * Goals
+   - Make a Machine learining Model
+   - Use relivent data
+ * Non-Goals
+   - not really sure
+* Metrics
+If we make a machine learning model using relevent data and
+present/visualize it in an impactful way.
+* References
+ - NetSuite.com. “Predicting Your Business's Future.” Oracle NetSuite,
+   https://www.netsuite.com/portal/resource/articles/financial-management/predictive-modeling.shtml.
+ - “Machine Learning in R - next Generation.” Machine Learning in R -
+   Next Generation •, https://mlr3.mlr-org.com/.
+  

@@ -1,0 +1,53 @@
+#+TITLE: $sauceFactory 3.0_Too_Lost_To_Sauce
+#+AUTHOR: Wyatt Frerichs Payne Moser Spencer Rhoden
+#+Subtitle: CSC 482
+*PROBLEM
+ Intelligence begins with learning to do things such as simple games or tasks. To the human mind learning games such as snake, tic tac toe, or battleship is as easy as playing a few rounds. This process however becomes much more complicated when attempting to train a model to be equal or better than the human mind at these games. 
+
+* REASON: 
+
+The reasons behind this project is to learn how neural networks function and understand the process of building and training a given model.
+A project like this under our belt would be a good showcase of our ability to work with neural networks.
+
+* CONSTRAINTS: 
+
+Time management with our other classes and projects
+I DON'T KNOW PYTHON AND REFUSE TO LEARN – Wyatt
+Group Knowledge basis
+
+
+ * Goals and Non-goals: ???
+Goals
+ESTABLISH MEETING TIMES
+Further establish our goals 
+Gain a basic understanding of how neural networks in order to implement our own 
+Train a neural network to play snake 
+BEAT THE GAME OF SNAKE.
+Collect the data from the training of the model including time it took to learn how to avoid walls, turn, and eat apples.
+Create a visualization of the data collected and build a presentation for the class
+Non-goals
+ Making a neural network that is capable of playing advanced games.
+ Training two models to play against each other
+* Metrics: ???
+
+Are we able to successfully train a neural network with supervised learning to play a game such as snake 
+
+
+
+* Helpful LInks: 
+
+**https://medium.com/@jayceesansom/using-supervised-training-to-teach-a-network-to-play-bat tleship-7522f28c52ca
+
+https://towardsdatascience.com/how-to-teach-an-ai-to-play-games-deep-reinforcement-learning-28f9b920440a
+
+https://www.ibm.com/topics/neural-networks
+
+https://news.mit.edu/2017/explained-neural-networks-deep-learning-0414
+
+
+
+
+
+
+
+

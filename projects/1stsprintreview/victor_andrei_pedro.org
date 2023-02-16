@@ -1,0 +1,78 @@
+#+TITLE: Linear Regression and Random Forest Model from SKlearn
+#+AUTHOR: Victor Noppe, Andrei Galca, and Pedro Mota
+#+SUBTITLE: Sprint review one
+
+* Problem
+
+  Evaluate the performance of Linear Regression and Random Forest models.
+  
+* Reason
+
+  To get a better understanding of how machine learning models work
+  and how to evaluate their accuracy.
+  
+* Constraints
+
+  1. Since the team is currently working on multiple projects, time to
+  meet will be a challenge to overcome.
+  
+  2. Limited experience with Python.
+
+  3. Limited experience with Machine Learning.
+  
+* Goals and Non-goals
+** Goals
+
+   1. To better understand Machine Learning and how Machine Learning
+      models are implemented.
+
+   2. To create an engaging and informative presentation.
+
+   3. To be abble to illustrate the comparison between Linear
+      Regression and Random Forest (non-linear regression) models in a
+      clear and understandable manner.
+   
+** Non-goals
+
+   1. Becoming more confortable with presenting from a professional
+      standpoint.
+
+   2. Becoming more familiar with Python.
+   
+* Plan
+
+  1. Complete the youtube guide found for this project.
+
+  2. Meet on a regular basis to discuss the research found on Linear
+     Regression model and Random Forest Model.
+
+  3. Help each other obtain the same confort with the proposed topic
+     for this project.
+
+  4. Find literature to help develop and reinforce the topic of our
+     project.
+  
+* Metrics
+
+  1. The amount of knowledge we are able to obtain and relay to or classmates.
+
+  2. How engaged our classmates are with our presentation.
+
+  3. Were we able to fit the presentation to the allotted time frame.   
+
+  4. The overall grade we obtain for this project.
+  
+* Questions
+
+  
+  1. Is this a valid idea for a project?
+
+  2. What is the proper citation for the emacs and org-mode software?
+
+  3. Are there any source that you could recommend on Linear
+     Regression models and Random Forest models?
+  
+* References
+
+  Chanin Nantasenamat Ph.D., 2022, Build your first machine learning model in Python,
+  https://www.youtube.com/watch?v=29ZQ3TDGgRQ

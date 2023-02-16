@@ -1,0 +1,44 @@
+#+TITLE: Using machine learning to predict who will win March Madness
+#+AUTHORS: Nick Chaney, Thomas Lingren, Nikola Sasaroga
+#+SUBTITLE: Machine Learning
+
+* Problems
+  We will try to find a model that will determine who has the best
+  shot at winning the NCAA basketball tournament.
+  
+* Reason
+  We are all athletes and March Madness is very popular. It will also
+  be taking place soon.
+  
+* Constraints
+  Data is going to be the hardest part, finding it and how to use
+  it. As of right now we are looking for the data to use. Another
+  constraint would be choosing which type of machine learning we will
+  use.
+  
+* Goals and Non-goals
+  1. Predicting the overall winner
+  2. Predicting winners at each round of the tournament
+
+  1. How many people will be in attendance
+  2. Average point difference
+
+* Metrics
+  Our metrics would be the percentage of succesfully predicted winners
+  in the model. Our goal for success is 70% correctly predicted.
+  
+* References
+  Gumm, Jordan, et al. “A Machine Learning Strategy for Predicting March Madness Winners.”
+     2015 IEEE/ACIS 16th International Conference on Software
+     Engineering, Artificial Intelligence, Networking and Parallel/Distributed Computing (SNPD), 2015,
+     https://doi.org/10.1109/snpd.2015.7176206. 
+  
+  Sundberg, Andrew. “College Basketball Dataset.”
+  Kaggle, 16 Mar. 2021,
+     https://www.kaggle.com/datasets/andrewsundberg/college-basketball-dataset.
+ 
+     
+
+
+
+

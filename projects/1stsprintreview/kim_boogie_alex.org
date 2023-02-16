@@ -1,0 +1,65 @@
+#+TITLE: Cer-AI-mics
+#+AUTHOR: Kim Ho, Jackson Harrod, Alex Banag [Pledged]
+#+SUBTITLE: Machine Learning
+#+STARTUP:overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+
+* Problem
+
+-How can AI’s influence on art affect the world of ceramics?
+
+* Reason
+
+-Since AI art has been a hot topic of discussion in recent years, it
+would be interesting to learn more about the history of AI art and
+explore various AI art generators. The process of making a ceramic
+piece and of generating AI art is vastly different, so we are curious
+to see what the intersection of ceramics and AI art could conceive.
+
+* Constraints 
+
+-Time is a constraint since we have other classes and projects to
+manage.  Since our application of AI art onto a ceramic piece will be
+experimental, we could have some technical difficulties in the
+process.
+
+* Goals and Non-goals 
+** Goals
+-Explain a basic timeline of the history of AI art
+-Explore at least 3 different AI art generators
+-Transfer AI generated art onto a ceramic piece
+-Get a good grade for the project
+-Add the project to our resume/LinkedIn
+** Non-goals
+-Deciding which AI art generator is the best, or ranking generators based on personal opinion and experience 
+-Designing and creating our own AI art generator
+* Metrics: 
+-We will measure our success by our ability to outline the history of
+AI art and whether we can answer questions about our project during
+the presentation.  Another measurement of success is if we are able to
+transfer AI generated art onto a ceramic piece.
+
+* References: 
+
+Dominik, Carsten. “Org Mode.” Org Mode, 2013, https://orgmode.org/
+
+Duke, Katherine. "AI of the Beholder." Amherst College News Releases,
+Amherst College, 8 Dec 2022,
+www.amherst.edu/news/news_releases/2022/december/ai-of-the-beholder,
+https://www.amherst.edu/news/news_releases/2022/december/ai-of-the-beholder
+
+gnu.org (n.d.). GNU Emacs manuals [website]. URL: www.gnu.org.
+
+He, Yueming. "Research on Innovative Thinking of Ceramic Art Design
+Based on Artificial Intelligence." Hindawi, 16 Mar 2022,
+https://www.hindawi.com/journals/misy/2022/3381042/
+
+Jochim, Beth. "When a Tradiional Artist Meets AI for the First Time:
+An Experiment." Medium, 11 Sept 2019,
+https://medium.com/cuevagallery/when-a-traditional-artist-meets-ai-for-the-first-time-an-experiment-ea3ead9abd01
+
+Rea, Naomi. "How Did A.I. Art Evolve? Here's a 5,000-Year Timeline of
+Artists Employing Artificial Intelligence, From the Ancient Inca to
+Modern-Day GANs" Artnet, 16 Dec 2021,
+https://news.artnet.com/art-world/artificial-intelligence-art-history-2045520

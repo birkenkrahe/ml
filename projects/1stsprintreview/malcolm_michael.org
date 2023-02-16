@@ -1,0 +1,28 @@
+#+title: Machine learning and trends with marketplace
+#+author: Malcolm Howard Jr. & Michael Hullett
+#+subtitle: Machine Learning
+* Problem
+We are trying to figure out how much does trends affect the
+marketplace by the algorithims of machine learning on social media (tik tok).
+
+* Reason
+We are curious on how much does companies or things increase or
+decrease due to the trends of social media.
+
+* Constraints
+Some difficulties I can see right now is other factors like
+advertisements, celebrities marketing, and other things that can cause
+the number to go up or down instead and intefere with the accuracy.
+
+* Goals & Non-goals
+The goals we want to achieve from this project is to see how the
+algorithims correlate to the rise and decline of companies or anything
+else like phrases or even people.
+
+* Metrics
+We would measure our success of the project on how much information we
+end up getting and on how much we do not have to alter our
+project. The less we have to alter, the more accomplish we will feel.
+
+* References
+ No references as of right now
