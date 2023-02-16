@@ -4,7 +4,7 @@
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
 #+attr_latex: :width 400px
-#+caption: DataCamp "Understanding ML" course
+#+caption: The big cat is ready to pounce
 [[../img/leopard.jpg]]
 * ML IN PRACTICE - PROCESS
 #+attr_latex: :width 400px
@@ -124,7 +124,7 @@ Machine learning algorithms are divided into categories according to
 their purpose. Understanding the categories of learning algorithms is
 an essential first step toward using data to drive the desired action.
 
-* PREDICTIVE MODELS - SUPERVISED LEARNING - CLASSIFICATION
+* PREDICTIVE MODELS-SUPERVISED LEARNING-CLASSIFICATION
 
 - *Predictive models* involve prediction of one value using other values
   in the same dataset. The algorithm models the relationship between
@@ -157,7 +157,7 @@ an essential first step toward using data to drive the desired action.
 - Since discrete numbers can be converted to categories, the boundary
   between classification and numeric prediction models is blurry
 
-* DESCRIPTIVE MODELS - UNSUPERVISED LEARNING - CLUSTERING
+* DESCRIPTIVE MODELS-UNSUPERVISED LEARNING-CLUSTERING
 
 - *Descriptive models* are used to summarize data in new and interesting
   ways. No single feature is more important than any other.
@@ -180,9 +180,9 @@ an essential first step toward using data to drive the desired action.
   demographics, e.g. to create a "people like you have
   bought this item, too" type of promotion.
 
-* META-LEARNERS - ENSEMBLES - REINFORCEMENT LEARNING
+* META-LEARNERS-ENSEMBLES-REINFORCEMENT LEARNING
 
-- *Meta-learners* are models that learn how to learn more effectively by
+- *"Meta-learners"* are models that learn how to learn more effectively by
   using the result of past learning to inform additional learning
 
 - *Ensembles* are algorithms that work in teams, and algorithms that
@@ -192,7 +192,7 @@ an essential first step toward using data to drive the desired action.
   order to harden it against malicious attacks
 
 - The popular *ChatGPT* model is a natural-language processing (NLP)
-  variant of the GPT-3 (Generative Pertained Transformer 3) model,
+  variant of the GPT-3 (Generative Pretained Transformer 3) model,
   which was trained in massive amount of text data to generate
   human-like responses to a given input.
   #+attr_latex: :width 400px
@@ -200,6 +200,9 @@ an essential first step toward using data to drive the desired action.
 
   The image shows ChatGPT output via Google Chrome extension (right)
   next to "classic" Google search engine output (left)[fn:1].
+
+- [[https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/][Here is an excellent overview article]] (75p.) on ChatGPT's architecture by
+  Stephen Wolfram (who created Wolfram language - not unlike R).
 
 * ALGORITHMS
 

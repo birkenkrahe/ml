@@ -445,6 +445,7 @@ Open an Org-mode file if you want to code along.
 - All courses are for everybody who's interested in data science: tell
   your friends!
      
+* TODO Mid-term grades: send me DataCamp screenshots
 * References
 
 - Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –
