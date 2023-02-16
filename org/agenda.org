@@ -446,6 +446,8 @@ Open an Org-mode file if you want to code along.
   your friends!
      
 * TODO Mid-term grades: send me DataCamp screenshots
+* TODO Project proposal feedback in the classroom
+* TODO Week 7: k-Nearest-Neighbor (k-NN) algorithms
 * References
 
 - Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –

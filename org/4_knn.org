@@ -91,7 +91,143 @@ nearest neighbor algorithms may struggle to identify the class
 boundaries.
 #+end_notes
 
-** The ~k~-NN algorithm
+* The ~k~-NN algorithm
+#+attr_html: :width 500px
+[[../img/4_knn_cat_dog.png]]
+
+1) Pick number of nearest neighbors k
+2) Use labeled training data set
+3) Identify k nearest records in test data
+4) Assign class to unlabeled test instance
+
+#+begin_notes
+- k-NN uses information about a sample's k nearest neigbors to
+  classify unlabeled examples
+- k is the number of nearest neighbors (could be any number)
+- After choosing k, use training set labeled by nominal variable
+- For each unlabeled record in test set, k-NN identifies similar
+  records
+- Unlabeled test instance is assigned the majority class
+#+end_notes
+** Workflow
+#+attr_html: :width 500px
+[[../img/4_knn_algorithm.png]]
+#+begin_notes
+Classification with the "trained" model:
+- Calculate distances to all other points (records)
+- Rank points according to k
+- Vote: Put test record into majority class
+#+end_notes
+** Example: blind tasting
+#+attr_html: :width 600px
+[[../img/4_knn_food.png]]
+
+#+begin_notes
+- We want to predict/classify food that we cannot see based on
+  similarity to other foods.
+- Prior to eating we recorded previously-tasted ingredients.
+- We rated two features of each ingredient from 1 to 10.
+- We labeled each ingredient as one of 3 food types.
+#+end_notes
+
+** Training: feature space
+#+attr_html: :width 600px
+[[../img/4_knn_plot.png]]
+
+#+begin_notes
+- The k-NN algorithm treats the features as coordinates in a
+  multi-dimensional *feature space*. In our example: d=2.
+- To plot features, we use a *scatterplot* crunchiness vs. sweetness
+- The plot shows this after adding a few more ingredients
+- constructing the dataset in this way is the "training"
+#+end_notes
+** Patterns in feature space
+#+attr_html: :width 600px
+[[../img/4_knn_patterns.png]]
+#+begin_notes
+Similar types of food are grouped closely together:
+- Vegetables are crunchy but not sweet
+- Fruits are sweet and either crunchy or not crunchy
+- Proteins are neither crunchy nor sweet
+#+end_notes
+
+** Testing: label instances
+#+attr_html: :width 600px
+[[../img/4_knn_tomato.png]]
+#+begin_notes
+- Locating the tomato's nearest neighbors requires a *distance function*
+- A distance function measures the "similarity" between two instances
+- Traditionally, k-NN uses *Euclidean distance*, measuring "by ruler"
+- Other common measures: check out ~help(dist)~
+#+end_notes
+** Euclidean distance
+#+attr_html: :width 600px
+[[../img/4_knn_euclid.png]]
+
+- p, q: examples to be compared
+- 1..n: example features
+
+#+attr_html: :width 600px
+[[../img/4_knn_euclid1.png]]
+
+** Calculate distances
+#+attr_html: :width 700px
+[[../img/4_knn_distances.png]]
+
+- 1-NN: "The tomato is a fruit"
+- 2-NN: "The tomato is a fruit or a protein"
+- 3-NN: "The tomato is a fruit"
+
+#+begin_notes
+To classify the tomato as a vegetable, protein, or fruit, we'll begin
+by assigning the tomato the food type of its single nearest
+neighbor. This is called 1-NN classification because k = 1. The orange
+is the single nearest neighbor to the tomato, with a distance of
+1.4. As orange is a fruit, the 1-NN algorithm would classify a tomato
+as a fruit.
+
+Using k=2 creates unclear decision boundaries. There is no winner.
+
+If we use the k-NN algorithm with k = 3 instead, it performs a vote
+among the three nearest neighbors: orange, grape, and nuts. Now,
+because the majority class among these neighbors is fruit (two of the
+three votes), the tomato again is classified as a fruit.
+#+end_notes  
+
+** Choice of k
+#+attr_html: :width 600px
+[[../img/4_knn_k.png]]
+#+begin_notes
+
+#+end_notes
+** Data preparation
+#+attr_html: :width 400px
+[[../img/4_minmax.png]]
+
+#+attr_html: :width 350px
+[[../img/4_zscore.png]]
+
+#+begin_notes
+
+#+end_notes
+** Dummy coding
+#+attr_html: :width 300px
+[[../img/4_dummy.png]]
+
+#+attr_html: :width 350px
+[[../img/4_dummy1.png]]
+#+begin_notes
+
+#+end_notes
+** Why is k-NN "lazy learning"?
+#+attr_html: :width 700px
+[[../img/4_lazy.png]]
+
+#+begin_notes
+
+#+end_notes
+
+** Strengths and Weaknesses
 | STRENGTHS            | WEAKNESSES            |
 | Simple and effective | No model              |
 | No assumptions       | Selection of k        |
@@ -102,19 +238,20 @@ boundaries.
 | Makes no assumptions about the underlying data distribution | Requires selection of an appropriate k                                             |
 | Fast training phase                                         | Slow classification phase                                                          |
 |                                                             | Nominal features and missing data require additional processing                    |
-
-- k-NN uses information about a sample's k nearest neigbors to
-  classify unlabeled examples
-- k is the number of nearest neighbors (could be any number)
-
 #+end_notes
 
-* SUMMARY
-* GLOSSARY OF CONCEPTS
-* GLOSSARY OF CODE
-* REFERENCES
+* Summary
+
+
+
+* Glossary of concepts
+* Glossary of code
+* References
 
 - ~4_knn.jpg~: Photo by Beth Macdonald on Unsplash.
 - ~4_darkrestaurant.png~: [[https://www.nytimes.com/2007/07/22/travel/22surfacing.html][Patrons at the Whale Inside Dark Restaurant]].
 - ~4_nn_applications.jpg~: Photo by George Prentzas on Unsplash.
+- ~4_knn_cat_dog.png~, ~4_knn_algorithm.png~ - Christopher (Feb 2, 2021).
+
 - Lantz (2019). Machine Learning with R (3e). Packt.
+- Christopher (2021). K-Nearest Neighbor. [[https://medium.com/swlh/k-nearest-neighbor-ca2593d7a3c4][URL: medium.com]].
