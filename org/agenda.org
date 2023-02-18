@@ -338,7 +338,7 @@ should probably try ~Rgui~ on the command line, too).
   package-list-packages~, then find the package in the list and install
   with ~i~ and ~x~. [[https://github.com/dakra/speed-type][More information on GitHub.]]
     
-* IN PROGRESS Week 6 - ML models overview
+* Week 6 - ML models overview
 #+attr_latex: :width 400px
 [[../img/ml_types2.png]]
 
@@ -445,9 +445,10 @@ Open an Org-mode file if you want to code along.
 - All courses are for everybody who's interested in data science: tell
   your friends!
      
-* TODO Mid-term grades: send me DataCamp screenshots
-* TODO Project proposal feedback in the classroom
-* TODO Week 7: k-Nearest-Neighbor (k-NN) algorithms
+** Project proposal feedback in the classroom
+** You can submit an improved proposal by Fri-Feb-24
+
+* Week 7: k-Nearest-Neighbor (k-NN) algorithms
 * References
 
 - Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –

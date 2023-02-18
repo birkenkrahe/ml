@@ -2,7 +2,8 @@
 #+AUTHOR: Wyatt Frerichs Payne Moser Spencer Rhoden
 #+Subtitle: CSC 482
 *PROBLEM
- Intelligence begins with learning to do things such as simple games or tasks. To the human mind learning games such as snake, tic tac toe, or battleship is as easy as playing a few rounds. This process however becomes much more complicated when attempting to train a model to be equal or better than the human mind at these games. 
+
+Intelligence begins with learning to do things such as simple games or tasks. To the human mind learning games such as snake, tic tac toe, or battleship is as easy as playing a few rounds. This process however becomes much more complicated when attempting to train a model to be equal or better than the human mind at these games. 
 
 * REASON: 
 

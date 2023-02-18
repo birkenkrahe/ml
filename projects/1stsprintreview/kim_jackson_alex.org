@@ -31,9 +31,11 @@ process.
 -Transfer AI generated art onto a ceramic piece
 -Get a good grade for the project
 -Add the project to our resume/LinkedIn
+
 ** Non-goals
 -Deciding which AI art generator is the best, or ranking generators based on personal opinion and experience 
 -Designing and creating our own AI art generator
+
 * Metrics: 
 -We will measure our success by our ability to outline the history of
 AI art and whether we can answer questions about our project during

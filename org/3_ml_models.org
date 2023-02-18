@@ -30,7 +30,7 @@
    learning from the data. The specific machine learning task chosen
    will inform the selection of an appropriate algorithm, and the
    algorithm will represent the data in the form of a model.
-
+   
 4. *Model evaluation*: Each machine learning model results in a biased
    solution to the learning problem, which means that it is important
    to evaluate how well the algorithm learned from its
@@ -82,16 +82,16 @@
   properties were recorded, and *features*, the recorded properties or
   attributes of examples that may be useful for ML
 
-* Use cases: spam / cancer detection
+* USE CASES: SPAM / CANCER DETECTION
 
 - *Spam email identification*:
   1) Unit of observation: email messages
-  2) Examples: specific individual messages
+  2) Examples or instances: specific individual messages
   3) Features: words, punctuation marks used in the messages etc.
 
 - *Cancer detection*.
   1) Unit of observation: patients
-  2) Examples: a random sample of cancer patients
+  2) Examples or instance: a random sample of cancer patients
   3) Features: genomic markers from biopsied cells, and patient
   characteristics like weight, height, blood pressure etc.
 
@@ -258,6 +258,7 @@ an essential first step toward using data to drive the desired action.
   /dependencies/ (other packages) will also be installed
 
 - When installing, pick a mirror near you for greater download speed
+  or (better) put "https://cloud.r-project.org/" into your ~.Rprofile~
 
 - The /default/ location will be announced at the end of the install, or
   your system may ask you to specify a location (accept the default)
