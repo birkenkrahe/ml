@@ -196,6 +196,7 @@ an essential first step toward using data to drive the desired action.
   which was trained in massive amount of text data to generate
   human-like responses to a given input.
   #+attr_latex: :width 400px
+  #+captions; ChatGPT output next to Google.com output in browser
   [[../img/ml_chatgpt.png]]
 
   The image shows ChatGPT output via Google Chrome extension (right)
@@ -203,7 +204,18 @@ an essential first step toward using data to drive the desired action.
 
 - [[https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/][Here is an excellent overview article]] (75p.) on ChatGPT's architecture by
   Stephen Wolfram (who created Wolfram language - not unlike R).
+   #+attr_latex: :width 400px
+  #+captions; ChatGPT mechanics vs. Wolfram|Alpha mechanics
+  [[../img/ChatGPT-hero-v4.png]]
 
+  The image contrasts Wolfram language with ChatGPT from another
+  article ([[https://writings.stephenwolfram.com/2023/01/wolframalpha-as-the-way-to-bring-computational-knowledge-superpowers-to-chatgpt/][Wolfram, 2023]]). By the way, I don't agree with the author's
+  conclusion that "human language is somehow simpler and more 'law
+  like' in it structure than we thought". I think the opposite is the
+  case and ChatGPT shows exactly that. But the article still does its
+  job in explaining the mechanics of neural nets and transformer
+  technology.
+  
 * ALGORITHMS
 
 - List of Supervised Learning algorithms (Lantz, 2019):
