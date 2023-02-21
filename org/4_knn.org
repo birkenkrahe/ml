@@ -11,10 +11,13 @@
 #+REVEAL_THEME: black
 :END:
 * k-nearest neighbors
-#+attr_latex: :width 200px
-#+attr_html: :width 300px
-
+#+attr_latex: :width 300px
+#+attr_html: :width 400px
 [[../img/4_knn.jpg]]
+
+- Lecture notes in Markdown file (~4_knn.md~)
+- Source: Lantz (2019), chapter 3, pp. 65-89
+- See also: DataCamp assignment chapter 1
 
 * What you will learn
 
@@ -25,22 +28,31 @@
 - Solutions in GitHub as PDF files
 
 #+begin_notes
-The basic idea of this class of "lazy learners" is that things are
-alike are likely to have properties that are alike.
+The basic idea of this class of "lazy learners" is that things that
+are alike are likely to have properties that are alike.
 
 ML uses this principle to classify data by placing it in the same
 category as similar, or "nearest" neighbors.
+
+The choice of similarity measure and the choice of the parameter k are
+crucial.
 #+end_notes
 
 * Nearest neighbor classification
 #+attr_html: :width 400px
 [[../img/4_darkrestaurant.png]]
 
-- Classify unlabeled examples by assigning similar labeled examples
+- Classify unlabeled (unknown) examples
+- Assign similar labeled (known) examples
 - Human examples: reading, eating, meeting
 - Simple but powerful methods
 
 #+begin_notes
+Remember our terminology:
+1) Unit of observation, e.g. email/patients
+2) Examples or instances, e.g. message/patient sample
+3) Features: e.g. words/characteristics of message/patient
+
 With nearest-neighbor classification, computers apply a human-like
 ability to recall past experiences to make conclusions about current
 circumstances. Human examples:
@@ -49,7 +61,7 @@ circumstances. Human examples:
 - Meeting: making connections based on who's next to whom
 #+end_notes
 
-** Nearest-neighbor appliations
+** Nearest-neighbor applications
 #+attr_html: :width 400px
 [[../img/4_nn_applications.jpg]]
 
@@ -76,13 +88,17 @@ circumstances. Human examples:
 
 #+begin_notes
 Well suited for classification tasks where relationships among the
-features and the target classes are numerous, complicated, or
-otherwise extremely difficult to understand, yet the items of similar
+features and the target classes are *numerous*, *complicated*, or
+otherwise extremely *difficult to understand*, yet the items of similar
 class type tend to be fairly homogeneous.
 
-if a concept is difficult to define, but *you know it when you see it*,
+E.g. a *stroke event*: unit of observation = person, example = a person
+with a problem, features: face, arms and speech symptomps. Note that
+we could also treat the "stroke prediction" with decision trees.
+
+If a concept is difficult to define, but *you know it when you see it*,
 then nearest neighbors might be appropriate. On the other hand, if the
-data is noisy and thus no clear distinction exists among the groups,
+data is *noisy* and thus no clear distinction exists among the groups,
 nearest neighbor algorithms may struggle to identify the class
 boundaries.
 #+end_notes
@@ -100,7 +116,8 @@ boundaries.
 - k-NN uses information about a sample's k nearest neigbors to
   classify unlabeled examples
 - k is the number of nearest neighbors (could be any number)
-- After choosing k, use training set labeled by nominal variable
+- After choosing k, use training set labeled by nominal categorical
+  variables (the classes or groups to choose from)
 - For each unlabeled record in test set, k-NN identifies similar
   records
 - Unlabeled test instance is assigned the majority class
@@ -124,6 +141,10 @@ Classification with the "trained" model:
 - Prior to eating we recorded previously-tasted ingredients.
 - We rated two features of each ingredient from 1 to 10.
 - We labeled each ingredient as one of 3 food types.
+
+This is just like the "workflow" example shown before - instead of
+three color classes, we now have three food type classes, protein,
+fruit and vegetable.
 #+end_notes
 
 ** Training: feature space
@@ -132,39 +153,66 @@ Classification with the "trained" model:
 
 #+begin_notes
 - The k-NN algorithm treats the features as coordinates in a
-  multi-dimensional *feature space*. In our example: d=2.
-- To plot features, we use a *scatterplot* crunchiness vs. sweetness
-- The plot shows this after adding a few more ingredients
-- constructing the dataset in this way is the "training"
+  multi-dimensional *feature space*.
+- Visualized in our example: d=2 with a few more features added.
+- What kind of plot is this? A *scatterplot*!
+- To plot features, which are column vectors in our table, we use a
+  *scatterplot* of crunchiness vs. sweetness
+- Constructing the dataset in this way is part of the *"training"*:
+  building a feature space of known, labeled features for
+  classification of unlabeled, unknown features.
+- Our third feature, the *food type* is the class for classification.
 #+end_notes
-** Patterns in feature space
+** Training: feature patterns
 #+attr_html: :width 600px
 [[../img/4_knn_patterns.png]]
 #+begin_notes
+The third feature is represented here as a grouping - when plotting
+this in R, how would you represent it?
+
+Answer: as a factor vector with three (nominal) levels, vegetables,
+fruits, and proteins. In the plot, you could color the groups
+according to this category (we'll plot an example later).
+
 Similar types of food are grouped closely together:
 - Vegetables are crunchy but not sweet
 - Fruits are sweet and either crunchy or not crunchy
 - Proteins are neither crunchy nor sweet
 #+end_notes
 
-** Testing: label instances
+** Testing: label examples
 #+attr_html: :width 600px
 [[../img/4_knn_tomato.png]]
 #+begin_notes
 - Locating the tomato's nearest neighbors requires a *distance function*
+- The tomato sits conveniently between our classes.
 - A distance function measures the "similarity" between two instances
 - Traditionally, k-NN uses *Euclidean distance*, measuring "by ruler"
-- Other common measures: check out ~help(dist)~
+- Other common measures: check out ~help(dist)~, which lists 6 different
+  types.
 #+end_notes
 ** Euclidean distance
 #+attr_html: :width 600px
 [[../img/4_knn_euclid.png]]
 
-- p, q: examples to be compared
-- 1..n: example features
+- $p$, $q$: examples to be compared
+- e.g. p=tomato, q=grape
+- $1...n$: example features
+- e.g. $1$ = sweetness, $2$ = crunchiness
 
 #+attr_html: :width 600px
 [[../img/4_knn_euclid1.png]]
+
+#+begin_notes
+- The general formula allows for $n$-dimensional feature vectors.
+- In our food example, $p$ corresponds to the tomato, and $q$ to any
+  other labeled object, e.g. a grape, a green bean etc.
+- The index corresponds to the recorded features with whom the
+  examples were labeled: here, we only have d=2, sweetness and
+  crunchiness.
+- The last formula shows the computed Euclidean distance for the
+  tomato and the green bean examples.
+#+end_notes
 
 ** Calculate distances
 #+attr_html: :width 700px
@@ -177,68 +225,175 @@ Similar types of food are grouped closely together:
 #+begin_notes
 To classify the tomato as a vegetable, protein, or fruit, we'll begin
 by assigning the tomato the food type of its single nearest
-neighbor. This is called 1-NN classification because k = 1. The orange
+neighbor. This is called 1-NN classification because k = 1. The *orange*
 is the single nearest neighbor to the tomato, with a distance of
 1.4. As orange is a fruit, the 1-NN algorithm would classify a tomato
 as a fruit.
 
-Using k=2 creates unclear decision boundaries. There is no winner.
+Using k=2 creates unclear decision boundaries. There is no winner
+between orange and nuts.
 
 If we use the k-NN algorithm with k = 3 instead, it performs a vote
 among the three nearest neighbors: orange, grape, and nuts. Now,
 because the majority class among these neighbors is fruit (two of the
-three votes), the tomato again is classified as a fruit.
+three votes), the tomato again is classified as a *fruit*.
 #+end_notes  
+
+** Underfitting vs. overfitting
+#+attr_html: :width 600px
+[[../img/4_knn_fit.png]]
+
+Underfitting | Perfect fit | Overfitting
+
+#+begin_notes
+In the image (by Viktor Lavrenko, 2014), the "predictor" is the set of
+features used for prediction of the trend line (in the regression
+example), and for the prediction of the two classes.
+- *Underfitting:* boundary ignores points. Points do not clearly fall on
+  either side of the line. Both training and test data have large
+  errors.
+- *Perfect fit:* the line segments the classes clearly - only a couple
+  of noisy examples contaminate it and can be identified by distance
+  from the line.
+- *Overfitting:* noise data dominate the classification. The test data
+  error will be large while the training data error is small.
+#+end_notes
 
 ** Choice of k
 #+attr_html: :width 600px
 [[../img/4_knn_k.png]]
-#+begin_notes
 
+- $k$ determines performance on future data
+- Danger of underfitting or overfitting
+- "Bias-variance" tradeoff
+  
+#+begin_notes
+- *Underfitting:* boundaries do not capture many relationships well -
+  high error rate = large k (large neighborhood) ignores samples
+- *Overfitting*: class boundaries too small, local neighborhoods
+  dominate.
+- *"Bias-variance" tradeoff*: large k reduces the impact of variance
+  (data spread) caused by noisy data but can bias the learner so that
+  small but important patterns are ignored.
+- *Very large k*: then the majority class would always dominate the
+  voting regardless of the nearest neighbors.
+- *Very small k*: now nearest neighbors dominate even if they
+  are just noise - e.g. *mislabeled* data - see English corpus
 #+end_notes
 ** Data preparation
 #+attr_html: :width 400px
 [[../img/4_minmax.png]]
 
-#+attr_html: :width 350px
+min-max normalization
+
+#+attr_html: :width 400px
 [[../img/4_zscore.png]]
 
-#+begin_notes
+z-score standardization
 
+#+begin_notes
+- The distance formula depends on the range: if you add a feature with
+  a large scale, it will dominate the results (e.g. "spiciness" via
+  Scoville scale - differences are much greater than sweet/crunchy).
+- Rescale features to equal scales with min-max normalization (all
+  values in 0 to 1) = how far (0 to 100%) did the original value fall
+  along the original data range?
+- z-score standardization: how many standard deviations (distance from
+  the mean) do data fall above or below the mean? Unlike the normal
+  distribution, the values are unbounded.
+- Rescaling must be applied to training and test data (tricky - might
+  be out of range - you may not know the maximum or minimum).
 #+end_notes
+
 ** Dummy coding
-#+attr_html: :width 300px
+#+attr_html: :width 250px
 [[../img/4_dummy.png]]
 
-#+attr_html: :width 350px
-[[../img/4_dummy1.png]]
-#+begin_notes
+2-category (binary) variable (male, female)
 
+#+attr_html: :width 300px
+[[../img/4_dummy1.png]]
+
+3-category variable (hot, medium, cold)
+
+#+begin_notes
+- Euclidean distance is not defined for nominal ~categorical~ data
+  ("characters") - need to convert data to ~numeric~ format.
+- *Dummy coding* = split category set in binary values, if the values
+  are exclusive (like ~male~ vs ~female~).
+- An n-category nominal feature can be dummy coded by creating binary
+  indicator variables for n-1 levels of the feature.
+- Example: knowing that ~hot~ and ~medium~ are both ~0~ means that ~cold~ is
+  ~1~ - it it's not hot or medium, it must be cold.
+- Dummy coded data always fall on 0 or 1, so there is no need for
+  min-max normalization.
+- Ordinal categorical data could be numbered: this works only if the
+  steps between categories are equivalent, e.g. "lower", "middle",
+  "upper" class - distance between them not equal.
 #+end_notes
 ** Why is k-NN "lazy learning"?
-#+attr_html: :width 700px
-[[../img/4_lazy.png]]
+#+attr_html: :width 600px
+[[../img/1_lantz_3.jpg]]
+
+- k-NN has no generalization/abstraction
+- Data are stored verbatim (rapid training)
+- Test/production relies on training data (slow)
 
 #+begin_notes
-
+- Abstraction is minimal - no detail is suppressed.
+- Generalization (imposing rules) is not there at all.
+- The training consists in putting the data together.
+- The testing uses all training data so it can be slow.
 #+end_notes
 
-** Strengths and Weaknesses
+** Rote learning
+#+attr_html: :width 600px
+[[../img/4_lazy.png]]
+
+- Instance-based learners build no models
+- Non-parametric methods learn no parameters
+- Rote learners find natural bias-free patterns
+
+#+begin_notes
+- Alternative name: instance-based learners
+- No model is built, no parameters are learnt
+- We do not really understand how the classifier uses the data
+- Instead, everything depends on choice of k and choice of similarity
+  measure
+- Upside: the learner can find "natural" patterns rather than trying
+  to fit the data into a biased and potentially flawed functional form.
+#+end_notes  
+  
+* Strengths and Weaknesses
+
 | STRENGTHS            | WEAKNESSES            |
 | Simple and effective | No model              |
 | No assumptions       | Selection of k        |
 | Fast training        | Slow classification   |
-|                      | Additional processing |
+| Natural, no bias     | Additional processing |
 #+begin_notes
-| Simple and effective                                        | Does not produce a model, limiting the ability to understand how the features are related to the class |
-| Makes no assumptions about the underlying data distribution | Requires selection of an appropriate k                                             |
-| Fast training phase                                         | Slow classification phase                                                          |
-|                                                             | Nominal features and missing data require additional processing                    |
+STRENGTHS:
+- Simple and effective: Does not produce a model, limiting the ability
+  to understand how the features are related to the class
+- Makes no assumptions about the underlying data distribution:
+  bias-free, favors natural patterns
+- Fast training phase since generalization (finding rules) is bypassed.
+
+WEAKNESSES:
+- No model is being built (no mathematical analysis of the model)
+- Requires selection of an appropriate k - dangers of over- or underfitting
+- Slow classification phase because all training data instances are used
+- Nominal features and missing data require additional processing,
+  e.g. min-max normalization or z-score standardization
 #+end_notes
 
 * Summary
 
-
+- k-nearest neighbors does no learning at all
+- k-NN stores training data, matches test data to most similar records
+  in training set using a distance function
+- Unlabeled example is assigned neighbor's label
+- Though simple, k-NN performs well for extremely complex tasks
 
 * Glossary of concepts
 * Glossary of code

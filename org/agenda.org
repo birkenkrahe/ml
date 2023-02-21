@@ -454,8 +454,23 @@ Open an Org-mode file if you want to code along.
 [[../img/tomato.jpg]]
 
 - [ ] Test 2 now open for late attempts (partial credit)
-- [ ] [[https://www.ft.com/content/175e5314-a7f7-4741-a786-273219f433a1][Man beats machine at Go in human victory over AI]]
-- [ ] k-nearest-neighbor (knn) models: lecture & practice & exercises
+
+- [ ] [[https://arstechnica.com/information-technology/2023/02/man-beats-machine-at-go-in-human-victory-over-ai/][Man beats machine at Go in human victory over AI]] (Waters, 2023)
+  #+begin_quote
+  "The discovery of a weakness in some of the most advanced Go-playing
+  machines points to a fundamental flaw in the deep-learning systems
+  that underpin today’s most advanced AI [...]: The systems can
+  “understand” only specific situations they have been exposed to in
+  the past and are unable to *generalize* in a way that humans find
+  easy. It shows once again we’ve been far too hasty to ascribe
+  superhuman levels of intelligence to machines.” - Russell[fn:1]
+  #+end_quote
+- [ ] k-nearest-neighbor (knn) models:
+  1) lecture (HTML, Org-mode or [[https://github.com/birkenkrahe/ml/blob/main/md/4_knn.md][Markdown]] in GitHub)
+  2) practice (demo: cancer classification with k-nn)
+  3) exercise (bonus assignment in R)
+  4) test 3 (opens next week)
+
 * References
 
 - Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –
@@ -468,10 +483,17 @@ Open an Org-mode file if you want to code along.
 - Stokes, Jon (Jan 4, 2023). The Fourth Age Of Programming
   [Blog]. URL: [[https://blog.replit.com/fourth][blog.repolit.com]]
 
+- Waters, Richard (Feb 19, 2023). Man beats machine at Go in human
+  victory over AI. URL: [[https://arstechnica.com/information-technology/2023/02/man-beats-machine-at-go-in-human-victory-over-ai/][arstechnica.com]].
+
 - Worsley, S (Mar 2022). What is R? The Statistical Computing
   Powerhouse. [[https://www.datacamp.com/blog/all-about-r][Online: datacamp.com/blog.]]
 
 - Ying, K. @freeCodeCamp.org (Sep 26, 2022). Machine Learning for
   Everybody - Full Course. Online: [[https://youtu.be/i_LwzRVP7bg][youtube.com]].
 
+* Footnotes
 
+[fn:1]Russell is a coauthor of AIMA, one of the textbooks we're going
+to use for my fall seminar on "Artificial Intelligence" (DSC/CSC
+482.01).
