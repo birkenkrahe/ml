@@ -449,6 +449,7 @@ Open an Org-mode file if you want to code along.
 ** You can submit an improved proposal by Fri-Feb-24
 
 * Week 7: k-Nearest-Neighbor (k-NN) algorithms
+* Test 2 now open for late attempts (partial credit)
 * NEW [[https://www.ft.com/content/175e5314-a7f7-4741-a786-273219f433a1][Man beats machine at Go in human victory over AI]]
 * References
 
