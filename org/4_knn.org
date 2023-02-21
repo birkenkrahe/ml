@@ -19,13 +19,9 @@
 * What you will learn
 
 - Concepts for "lazy learners" classifiers
-
 - How to easure similarity using distance
-
 - Demo: cancer classification using R
-
-- Practice file in GitHub as Org-files
-
+- Exercises in GitHub as Org-mode file
 - Solutions in GitHub as PDF files
 
 #+begin_notes
