@@ -466,10 +466,10 @@ Open an Org-mode file if you want to code along.
   superhuman levels of intelligence to machines.” - Russell[fn:1]
   #+end_quote
 - [ ] k-nearest-neighbor (knn) models:
-  1) lecture (HTML, Org-mode or [[https://github.com/birkenkrahe/ml/blob/main/md/4_knn.md][Markdown]] in GitHub)
-  2) practice (demo: cancer classification with k-nn)
-  3) exercise (bonus assignment in R)
-  4) test 3 (opens next week)
+  1) Lecture (HTML, Org-mode or [[https://github.com/birkenkrahe/ml/blob/main/md/4_knn.md][Markdown]] with notes in GitHub)
+  2) Practice (demo: cancer classification with k-NN)
+  3) Exercise (bonus assignment in R)
+  4) Test 3 (opens next week)
 
 * References
 
