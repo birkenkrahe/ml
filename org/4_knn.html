@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>k-NEAREST-NEIGBORS</title>
+<meta name="author" content="Marcus Birkenkrahe"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css" id="theme"/>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1 class="title">k-NEAREST-NEIGBORS</h1><p class="subtitle">Supervised lazy learner classifiers</p>
+<h2 class="author">Marcus Birkenkrahe</h2><p class="date">Created: 2023-02-21 Tue 13:05</p>
+</section>
+<section>
+<section id="slide-org2c777fd">
+<h2 id="org2c777fd">k-nearest neighbors</h2>
+
+<div id="orgb311600" class="figure">
+<p><img src="../img/4_knn.jpg" alt="4_knn.jpg" width="400px" />
+</p>
+</div>
+
+<ul>
+<li>Lecture notes in Markdown file (<code>4_knn.md</code>)</li>
+<li>Source: Lantz (2019), chapter 3, pp. 65-89</li>
+<li>See also: DataCamp assignment chapter 1</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orge0cd65d">
+<h2 id="orge0cd65d">What you will learn</h2>
+<ul>
+<li>Concepts for "lazy learners" classifiers</li>
+<li>How to easure similarity using distance</li>
+<li>Demo: cancer classification using R</li>
+<li>Exercises in GitHub as Org-mode file</li>
+<li>Solutions in GitHub as PDF files</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+The basic idea of this class of "lazy learners" is that things that
+are alike are likely to have properties that are alike.
+</p>
+
+<p>
+ML uses this principle to classify data by placing it in the same
+category as similar, or "nearest" neighbors.
+</p>
+
+<p>
+The choice of similarity measure and the choice of the parameter k are
+crucial.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org41666bd">
+<h2 id="org41666bd">Nearest neighbor classification</h2>
+
+<div id="org7023eb8" class="figure">
+<p><img src="../img/4_darkrestaurant.png" alt="4_darkrestaurant.png" width="400px" />
+</p>
+</div>
+
+<ul>
+<li>Classify unlabeled (unknown) examples</li>
+<li>Assign similar labeled (known) examples</li>
+<li>Human examples: reading, eating, meeting</li>
+<li>Simple but powerful methods</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Remember our terminology:
+</p>
+<ol>
+<li>Unit of observation, e.g. email/patients</li>
+<li>Examples or instances, e.g. message/patient sample</li>
+<li>Features: e.g. words/characteristics of message/patient</li>
+
+</ol>
+
+<p>
+With nearest-neighbor classification, computers apply a human-like
+ability to recall past experiences to make conclusions about current
+circumstances. Human examples:
+</p>
+<ul>
+<li>Reading: making sense of sentences and words by context.</li>
+<li>Eating: "dark restaurants" where you are totally blind</li>
+<li>Meeting: making connections based on who's next to whom</li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-orgd67b76e">
+<h3 id="orgd67b76e">Nearest-neighbor applications</h3>
+
+<div id="org2fd3195" class="figure">
+<p><img src="../img/4_nn_applications.jpg" alt="4_nn_applications.jpg" width="400px" />
+</p>
+</div>
+
+<ul>
+<li>Computer vision and facial recognition</li>
+<li>Recommender systems</li>
+<li>Genetic data pattern matching</li>
+
+</ul>
+
+<aside class="notes">
+<ul>
+<li>Computer vision applications, including optical character
+recognition and facial recognition in both still images and video</li>
+<li>Recommendation systems that predict whether a person will enjoy a
+movie or song</li>
+<li>Identifying patterns in genetic data to detect specific proteins or
+diseases</li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-orge161ce9">
+<h3 id="orge161ce9">Applicability</h3>
+
+<div id="orgb6f9b09" class="figure">
+<p><img src="../img/4_stroke.jpg" alt="4_stroke.jpg" width="600px" />
+</p>
+</div>
+
+<ul>
+<li>Features related in complex ways</li>
+<li>Similar items homogeneous</li>
+<li>"You know it when you see it"</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+Well suited for classification tasks where relationships among the
+features and the target classes are <b>numerous</b>, <b>complicated</b>, or
+otherwise extremely <b>difficult to understand</b>, yet the items of similar
+class type tend to be fairly homogeneous.
+</p>
+
+<p>
+E.g. a <b>stroke event</b>: unit of observation = person, example = a person
+with a problem, features: face, arms and speech symptomps. Note that
+we could also treat the "stroke prediction" with decision trees.
+</p>
+
+<p>
+If a concept is difficult to define, but <b>you know it when you see it</b>,
+then nearest neighbors might be appropriate. On the other hand, if the
+data is <b>noisy</b> and thus no clear distinction exists among the groups,
+nearest neighbor algorithms may struggle to identify the class
+boundaries.
+</p>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orge0540d1">
+<h2 id="orge0540d1">The <code>k</code>-NN algorithm</h2>
+
+<div id="org0f648aa" class="figure">
+<p><img src="../img/4_knn_cat_dog.png" alt="4_knn_cat_dog.png" width="500px" />
+</p>
+</div>
+
+<ol>
+<li>Pick number of nearest neighbors k</li>
+<li>Use labeled training data set</li>
+<li>Identify k nearest records in test data</li>
+<li>Assign class to unlabeled test instance</li>
+
+</ol>
+
+<aside class="notes">
+<ul>
+<li>k-NN uses information about a sample's k nearest neigbors to
+classify unlabeled examples</li>
+<li>k is the number of nearest neighbors (could be any number)</li>
+<li>After choosing k, use training set labeled by nominal categorical
+variables (the classes or groups to choose from)</li>
+<li>For each unlabeled record in test set, k-NN identifies similar
+records</li>
+<li>Unlabeled test instance is assigned the majority class</li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-org00b3952">
+<h3 id="org00b3952">Workflow</h3>
+
+<div id="orgd7bee75" class="figure">
+<p><img src="../img/4_knn_algorithm.png" alt="4_knn_algorithm.png" width="500px" />
+</p>
+</div>
+<aside class="notes">
+<p>
+Classification with the "trained" model:
+</p>
+<ul>
+<li>Calculate distances to all other points (records)</li>
+<li>Rank points according to k</li>
+<li>Vote: Put test record into majority class</li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-org8b5b291">
+<h3 id="org8b5b291">Example: blind tasting</h3>
+
+<div id="orgb399779" class="figure">
+<p><img src="../img/4_knn_food.png" alt="4_knn_food.png" width="600px" />
+</p>
+</div>
+
+<aside class="notes">
+<ul>
+<li>We want to predict/classify food that we cannot see based on
+similarity to other foods.</li>
+<li>Prior to eating we recorded previously-tasted ingredients.</li>
+<li>We rated two features of each ingredient from 1 to 10.</li>
+<li>We labeled each ingredient as one of 3 food types.</li>
+
+</ul>
+
+<p>
+This is just like the "workflow" example shown before - instead of
+three color classes, we now have three food type classes, protein,
+fruit and vegetable.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-org1cfd056">
+<h3 id="org1cfd056">Training: feature space</h3>
+
+<div id="org5b7d303" class="figure">
+<p><img src="../img/4_knn_plot.png" alt="4_knn_plot.png" width="600px" />
+</p>
+</div>
+
+<aside class="notes">
+<ul>
+<li>The k-NN algorithm treats the features as coordinates in a
+multi-dimensional <b>feature space</b>.</li>
+<li>Visualized in our example: d=2 with a few more features added.</li>
+<li>What kind of plot is this? A <b>scatterplot</b>!</li>
+<li>To plot features, which are column vectors in our table, we use a
+<b>scatterplot</b> of crunchiness vs. sweetness</li>
+<li>Constructing the dataset in this way is part of the <b>"training"</b>:
+building a feature space of known, labeled features for
+classification of unlabeled, unknown features.</li>
+<li>Our third feature, the <b>food type</b> is the class for classification.</li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-org9fa5f2d">
+<h3 id="org9fa5f2d">Training: feature patterns</h3>
+
+<div id="orga997f2b" class="figure">
+<p><img src="../img/4_knn_patterns.png" alt="4_knn_patterns.png" width="600px" />
+</p>
+</div>
+<aside class="notes">
+<p>
+The third feature is represented here as a grouping - when plotting
+this in R, how would you represent it?
+</p>
+
+<p>
+Answer: as a factor vector with three (nominal) levels, vegetables,
+fruits, and proteins. In the plot, you could color the groups
+according to this category (we'll plot an example later).
+</p>
+
+<p>
+Similar types of food are grouped closely together:
+</p>
+<ul>
+<li>Vegetables are crunchy but not sweet</li>
+<li>Fruits are sweet and either crunchy or not crunchy</li>
+<li>Proteins are neither crunchy nor sweet</li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-orgbf11c2f">
+<h3 id="orgbf11c2f">Testing: label examples</h3>
+
+<div id="orgfd9a9c2" class="figure">
+<p><img src="../img/4_knn_tomato.png" alt="4_knn_tomato.png" width="600px" />
+</p>
+</div>
+<aside class="notes">
+<ul>
+<li>Locating the tomato's nearest neighbors requires a <b>distance function</b></li>
+<li>The tomato sits conveniently between our classes.</li>
+<li>A distance function measures the "similarity" between two instances</li>
+<li>Traditionally, k-NN uses <b>Euclidean distance</b>, measuring "by ruler"</li>
+<li>Other common measures: check out <code>help(dist)</code>, which lists 6 different
+types.</li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-org0b87d15">
+<h3 id="org0b87d15">Euclidean distance</h3>
+
+<div id="org8d27ad2" class="figure">
+<p><img src="../img/4_knn_euclid.png" alt="4_knn_euclid.png" width="600px" />
+</p>
+</div>
+
+<ul>
+<li>\(p\), \(q\): examples to be compared</li>
+<li>e.g. p=tomato, q=grape</li>
+<li>\(1...n\): example features</li>
+<li>e.g. \(1\) = sweetness, \(2\) = crunchiness</li>
+
+</ul>
+
+
+<div id="org53adf88" class="figure">
+<p><img src="../img/4_knn_euclid1.png" alt="4_knn_euclid1.png" width="600px" />
+</p>
+</div>
+
+<aside class="notes">
+<ul>
+<li>The general formula allows for $n$-dimensional feature vectors.</li>
+<li>In our food example, \(p\) corresponds to the tomato, and \(q\) to any
+other labeled object, e.g. a grape, a green bean etc.</li>
+<li>The index corresponds to the recorded features with whom the
+examples were labeled: here, we only have d=2, sweetness and
+crunchiness.</li>
+<li>The last formula shows the computed Euclidean distance for the
+tomato and the green bean examples.</li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-org829645b">
+<h3 id="org829645b">Calculate distances</h3>
+
+<div id="orgf9ad259" class="figure">
+<p><img src="../img/4_knn_distances.png" alt="4_knn_distances.png" width="700px" />
+</p>
+</div>
+
+<ul>
+<li>1-NN: "The tomato is a fruit"</li>
+<li>2-NN: "The tomato is a fruit or a protein"</li>
+<li>3-NN: "The tomato is a fruit"</li>
+
+</ul>
+
+<aside class="notes">
+<p>
+To classify the tomato as a vegetable, protein, or fruit, we'll begin
+by assigning the tomato the food type of its single nearest
+neighbor. This is called 1-NN classification because k = 1. The <b>orange</b>
+is the single nearest neighbor to the tomato, with a distance of
+1.4. As orange is a fruit, the 1-NN algorithm would classify a tomato
+as a fruit.
+</p>
+
+<p>
+Using k=2 creates unclear decision boundaries. There is no winner
+between orange and nuts.
+</p>
+
+<p>
+If we use the k-NN algorithm with k = 3 instead, it performs a vote
+among the three nearest neighbors: orange, grape, and nuts. Now,
+because the majority class among these neighbors is fruit (two of the
+three votes), the tomato again is classified as a <b>fruit</b>.
+</p>
+
+</aside>
+
+</section>
+<section id="slide-orgf74050f">
+<h3 id="orgf74050f">Underfitting vs. overfitting</h3>
+
+<div id="org0594416" class="figure">
+<p><img src="../img/4_knn_fit.png" alt="4_knn_fit.png" width="600px" />
+</p>
+</div>
+
+<p>
+Underfitting | Perfect fit | Overfitting
+</p>
+
+<aside class="notes">
+<p>
+In the image (by Viktor Lavrenko, 2014), the "predictor" is the set of
+features used for prediction of the trend line (in the regression
+example), and for the prediction of the two classes.
+</p>
+<ul>
+<li><b>Underfitting:</b> boundary ignores points. Points do not clearly fall on
+either side of the line. Both training and test data have large
+errors.</li>
+<li><b>Perfect fit:</b> the line segments the classes clearly - only a couple
+of noisy examples contaminate it and can be identified by distance
+from the line.</li>
+<li><b>Overfitting:</b> noise data dominate the classification. The test data
+error will be large while the training data error is small.</li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-org9e6b00c">
+<h3 id="org9e6b00c">Choice of k</h3>
+
+<div id="org8612c51" class="figure">
+<p><img src="../img/4_knn_k.png" alt="4_knn_k.png" width="600px" />
+</p>
+</div>
+
+<ul>
+<li>\(k\) determines performance on future data</li>
+<li>Danger of underfitting or overfitting</li>
+<li>"Bias-variance" tradeoff</li>
+
+</ul>
+
+<aside class="notes">
+<ul>
+<li><b>Underfitting:</b> boundaries do not capture many relationships well -
+high error rate = large k (large neighborhood) ignores samples</li>
+<li><b>Overfitting</b>: class boundaries too small, local neighborhoods
+dominate.</li>
+<li><b>"Bias-variance" tradeoff</b>: large k reduces the impact of variance
+(data spread) caused by noisy data but can bias the learner so that
+small but important patterns are ignored.</li>
+<li><b>Very large k</b>: then the majority class would always dominate the
+voting regardless of the nearest neighbors.</li>
+<li><b>Very small k</b>: now nearest neighbors dominate even if they
+are just noise - e.g. <b>mislabeled</b> data - see English corpus</li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-org7957031">
+<h3 id="org7957031">Data preparation</h3>
+
+<div id="org40c50b1" class="figure">
+<p><img src="../img/4_minmax.png" alt="4_minmax.png" width="400px" />
+</p>
+</div>
+
+<p>
+min-max normalization
+</p>
+
+
+<div id="org0e5aad3" class="figure">
+<p><img src="../img/4_zscore.png" alt="4_zscore.png" width="400px" />
+</p>
+</div>
+
+<p>
+z-score standardization
+</p>
+
+<aside class="notes">
+<ul>
+<li>The distance formula depends on the range: if you add a feature with
+a large scale, it will dominate the results (e.g. "spiciness" via
+Scoville scale - differences are much greater than sweet/crunchy).</li>
+<li>Rescale features to equal scales with min-max normalization (all
+values in 0 to 1) = how far (0 to 100%) did the original value fall
+along the original data range?</li>
+<li>z-score standardization: how many standard deviations (distance from
+the mean) do data fall above or below the mean? Unlike the normal
+distribution, the values are unbounded.</li>
+<li>Rescaling must be applied to training and test data (tricky - might
+be out of range - you may not know the maximum or minimum).</li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-orged8e914">
+<h3 id="orged8e914">Dummy coding</h3>
+
+<div id="org6a68360" class="figure">
+<p><img src="../img/4_dummy.png" alt="4_dummy.png" width="250px" />
+</p>
+</div>
+
+<p>
+2-category (binary) variable (male, female)
+</p>
+
+
+<div id="orgb0a3689" class="figure">
+<p><img src="../img/4_dummy1.png" alt="4_dummy1.png" width="300px" />
+</p>
+</div>
+
+<p>
+3-category variable (hot, medium, cold)
+</p>
+
+<aside class="notes">
+<ul>
+<li>Euclidean distance is not defined for nominal <code>categorical</code> data
+("characters") - need to convert data to <code>numeric</code> format.</li>
+<li><b>Dummy coding</b> = split category set in binary values, if the values
+are exclusive (like <code>male</code> vs <code>female</code>).</li>
+<li>An n-category nominal feature can be dummy coded by creating binary
+indicator variables for n-1 levels of the feature.</li>
+<li>Example: knowing that <code>hot</code> and <code>medium</code> are both <code>0</code> means that <code>cold</code> is
+<code>1</code> - it it's not hot or medium, it must be cold.</li>
+<li>Dummy coded data always fall on 0 or 1, so there is no need for
+min-max normalization.</li>
+<li>Ordinal categorical data could be numbered: this works only if the
+steps between categories are equivalent, e.g. "lower", "middle",
+"upper" class - distance between them not equal.</li>
+
+</ul>
+
+</aside>
+</section>
+<section id="slide-orga593cb7">
+<h3 id="orga593cb7">Why is k-NN "lazy learning"?</h3>
+
+<div id="org0aae1f2" class="figure">
+<p><img src="../img/1_lantz_3.jpg" alt="1_lantz_3.jpg" width="600px" />
+</p>
+</div>
+
+<ul>
+<li>k-NN has no generalization/abstraction</li>
+<li>Data are stored verbatim (rapid training)</li>
+<li>Test/production relies on training data (slow)</li>
+
+</ul>
+
+<aside class="notes">
+<ul>
+<li>Abstraction is minimal - no detail is suppressed.</li>
+<li>Generalization (imposing rules) is not there at all.</li>
+<li>The training consists in putting the data together.</li>
+<li>The testing uses all training data so it can be slow.</li>
+
+</ul>
+
+</aside>
+
+</section>
+<section id="slide-orgcec5035">
+<h3 id="orgcec5035">Rote learning</h3>
+
+<div id="orgc9e195c" class="figure">
+<p><img src="../img/4_lazy.png" alt="4_lazy.png" width="600px" />
+</p>
+</div>
+
+<ul>
+<li>Instance-based learners build no models</li>
+<li>Non-parametric methods learn no parameters</li>
+<li>Rote learners find natural bias-free patterns</li>
+
+</ul>
+
+<aside class="notes">
+<ul>
+<li>Alternative name: instance-based learners</li>
+<li>No model is built, no parameters are learnt</li>
+<li>We do not really understand how the classifier uses the data</li>
+<li>Instead, everything depends on choice of k and choice of similarity
+measure</li>
+<li>Upside: the learner can find "natural" patterns rather than trying
+to fit the data into a biased and potentially flawed functional form.</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-orgbb9d337">
+<h2 id="orgbb9d337">Strengths and Weaknesses</h2>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">STRENGTHS</td>
+<td class="org-left">WEAKNESSES</td>
+</tr>
+
+<tr>
+<td class="org-left">Simple and effective</td>
+<td class="org-left">No model</td>
+</tr>
+
+<tr>
+<td class="org-left">No assumptions</td>
+<td class="org-left">Selection of k</td>
+</tr>
+
+<tr>
+<td class="org-left">Fast training</td>
+<td class="org-left">Slow classification</td>
+</tr>
+
+<tr>
+<td class="org-left">Natural, no bias</td>
+<td class="org-left">Additional processing</td>
+</tr>
+</tbody>
+</table>
+<aside class="notes">
+<p>
+STRENGTHS:
+</p>
+<ul>
+<li>Simple and effective: Does not produce a model, limiting the ability
+to understand how the features are related to the class</li>
+<li>Makes no assumptions about the underlying data distribution:
+bias-free, favors natural patterns</li>
+<li>Fast training phase since generalization (finding rules) is bypassed.</li>
+
+</ul>
+
+<p>
+WEAKNESSES:
+</p>
+<ul>
+<li>No model is being built (no mathematical analysis of the model)</li>
+<li>Requires selection of an appropriate k - dangers of over- or underfitting</li>
+<li>Slow classification phase because all training data instances are used</li>
+<li>Nominal features and missing data require additional processing,
+e.g. min-max normalization or z-score standardization</li>
+
+</ul>
+
+</aside>
+
+</section>
+</section>
+<section>
+<section id="slide-org31740fb">
+<h2 id="org31740fb">Summary</h2>
+<ul>
+<li>k-nearest neighbors does no learning at all</li>
+<li>k-NN stores training data, matches test data to most similar records
+in training set using a distance function</li>
+<li>Unlabeled example is assigned neighbor's label</li>
+<li>Though simple, k-NN performs well for extremely complex tasks</li>
+
+</ul>
+
+</section>
+</section>
+<section>
+<section id="slide-orge0915d0">
+<h2 id="orge0915d0">Glossary of concepts</h2>
+</section>
+</section>
+<section>
+<section id="slide-org3346ef8">
+<h2 id="org3346ef8">Glossary of code</h2>
+</section>
+</section>
+<section>
+<section id="slide-org6bd07e1">
+<h2 id="org6bd07e1">References</h2>
+<ul>
+<li><code>4_knn.jpg</code>: Photo by Beth Macdonald on Unsplash.</li>
+<li><code>4_darkrestaurant.png</code>: <a href="https://www.nytimes.com/2007/07/22/travel/22surfacing.html">Patrons at the Whale Inside Dark Restaurant</a>.</li>
+<li><code>4_nn_applications.jpg</code>: Photo by George Prentzas on Unsplash.</li>
+<li><code>4_knn_cat_dog.png</code>, <code>4_knn_algorithm.png</code> - Christopher (Feb 2, 2021).</li>
+
+<li>Lantz (2019). Machine Learning with R (3e). Packt.</li>
+<li>Christopher (2021). K-Nearest Neighbor. <a href="https://medium.com/swlh/k-nearest-neighbor-ca2593d7a3c4">URL: medium.com</a>.</li>
+
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes],
+transition: 'cube'
+});
+
+</script>
+</body>
+</html>
