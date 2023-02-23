@@ -34,11 +34,17 @@ abnormal breast masses.
 [[../img/1_lantz_3.jpg]]
 
 - Collecting the data (Data)
+
 - Exploring and preparing the data (D)
+
 - Normalizing (rescaling) numeric data (A)
+
 - Creating training and test data sets (A)
+
 - Training a model on the data (G)
+
 - Evaluating model performance (E)
+
 - Improving model performance (E)
 
 * Collecting the data
@@ -75,7 +81,7 @@ abnormal breast masses.
 
 - Unless you're an oncologist, you won't know how each feature relates
   to benign or malignant masses. What does this mean for the
-  data?[fn:7]
+  data?[fn:1]
 
 * Importing the data
 
@@ -86,12 +92,15 @@ abnormal breast masses.
   #+begin_src R
     args(read.csv)
   #+end_src
+
   #+name: get_wbcd
   #+begin_src R
     wbcd <- read.csv(
       file="http://bit.ly/3khqmkp",
       stringsAsFactors=FALSE)
   #+end_src
+
+  #+RESULTS: get_wbcd
 
 - Check the structure of the data frame:
   #+begin_src R
@@ -102,15 +111,23 @@ abnormal breast masses.
 
 - Regardless of ML method, ID variables *should always be excluded*: a
   model that includes an ID column will suffer from overfitting and
-  generalize poor data - can you think why?[fn:8].
+  generalize poor data - can you think why?[fn:2].
 
 - Overwrite the data frame with itself after removing the first
   column, then check the first four examples and features only:
+  #+name: remove_id
   #+begin_src R
     <<get_wbcd>>
     wbcd <- wbcd[-1]
     wbcd[1:4,1:4]
   #+end_src
+
+  #+RESULTS:
+  :   diagnosis radius_mean texture_mean perimeter_mean
+  : 1         B       12.32        12.39          78.85
+  : 2         B       10.60        18.95          69.28
+  : 3         B       11.04        16.83          70.92
+  : 4         B       11.28        13.39          73.00
 
 * Exploring the ~diagnosis~ target data
 
@@ -122,16 +139,31 @@ abnormal breast masses.
     table(wbcd$diagnosis)
   #+end_src
 
+  #+RESULTS:
+  : 
+  :   B   M 
+  : 357 212
+
 - kNN like many other ML classifiers require the target feature (aka
   class) to be coded as ~factor~ with ~levels~.
 
 - We recode ~diagnosis~ as a ~factor~ and add the ~labels~ "Benign" and
-  "Malignant":
-  #+begin_src R :results silent
+  "Malignant" -  if you cannot remember ~factor~, run ~args~ on it!
+  #+begin_src R
+    <<remove_id>>
     wbcd$diagnosis <- factor(wbcd$diagnosis,
                              levels=c("B","M"),
                              labels=c("Benign","Malignant"))
+    str(wbcd$diagnosis)
   #+end_src
+
+  #+RESULTS:
+  :   diagnosis radius_mean texture_mean perimeter_mean
+  : 1         B       12.32        12.39          78.85
+  : 2         B       10.60        18.95          69.28
+  : 3         B       11.04        16.83          70.92
+  : 4         B       11.28        13.39          73.00
+  :  Factor w/ 2 levels "Benign","Malignant": 1 1 1 1 1 1 1 2 1 1 ...
 
 - We visualize the frequencies of the two diagnoses in a barplot,
   coloring the benign results green, and the malignant results red:
@@ -161,6 +193,12 @@ abnormal breast masses.
     wbcd[1:3,c("radius_mean","area_mean","smoothness_mean")]
   #+end_src
 
+  #+RESULTS:
+  :   radius_mean area_mean smoothness_mean
+  : 1       12.32     464.1         0.10280
+  : 2       10.60     346.4         0.09688
+  : 3       11.04     373.2         0.10770
+
 - Compute a statistical ~summary~ of these three features:
   #+begin_src R
     summary(wbcd[c("radius_mean","area_mean","smoothness_mean")])
@@ -168,13 +206,13 @@ abnormal breast masses.
 
 - What do you notice when looking at the values? Remember that
   distance calculation for k-NN depends on the measurement scale of
-  the input.[fn:9]
+  the input.[fn:3]
   #+begin_src R
     range(wbcd["area_mean"])
     range(wbcd["smoothness_mean"])
   #+end_src
 
-* Interlude: ~function~
+* NEXT Interlude: ~function~
 
 - We normalize the data using the min-max normalization formula, which
   we encapsulate in a ~function~.
@@ -373,7 +411,7 @@ abnormal breast masses.
   #+end_src
 
 - What data structure do you expect as a result, and what will be its
-  size?[fn:10] How can you check?
+  size?[fn:4] How can you check?
   #+begin_src R
     str(wbcd_test_pred)
     length(wbcd_test_pred)
@@ -463,5 +501,24 @@ What do these results mean?
 
 * TODO Summary
 
+* Footnotes
 
+[fn:1]The data contain expertise bias from the oncologists who
+labelled them, i.e. who made the measurements, and potential
+mislabelling of the diagnosis label. The extent of these can only be
+estimated from reading the research papers that accompany the data and
+contain information about the methodology of data collection and
+coding.
 
+[fn:2] The identity column is a perfect predictor of the output
+variable. The model will learn to associate specific IDs with certain
+outcomes, instead of learning general patterns that apply to all data:
+this is overfitting.
+
+[fn:3]  Area has a much larger range than smoothness - it will
+dominate the distance calculation and could confuse our classifier. We
+need to rescale, normalize or standardize the values.
+
+[fn:4] A ~factor~ vector, of course: one entry for each of the 100
+values of the test data set, classified according to one of the
+levels/labels.
