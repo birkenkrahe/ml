@@ -395,8 +395,6 @@ WEAKNESSES:
 - Unlabeled example is assigned neighbor's label
 - Though simple, k-NN performs well for extremely complex tasks
 
-* Glossary of concepts
-* Glossary of code
 * References
 
 - ~4_knn.jpg~: Photo by Beth Macdonald on Unsplash.

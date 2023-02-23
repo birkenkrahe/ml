@@ -1,0 +1,467 @@
+#+TITLE: k-NEAREST-NEIGBORS - BREAST CANCER PREDICTION
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: Case Study - Supervised lazy learner classifiers
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+* README
+#+attr_latex: :width 400px
+#+caption: Info graphic - breast cancer awareness month (October)
+[[../img/5_breast_cancer_awareness.jpg]]
+
+We will investigate the utility of ML for detecting cancer by applying
+the k-NN algorithm to measurements of biopsied cells from women with
+abnormal breast masses.
+
+* Plan
+#+attr_latex: :width 400px
+#+caption: Fine needle aspiration using ultrasound (Source: Collins)
+[[../img/5_biopsy.jpeg]]
+
+- Routine breast cancer screening looks for abnormal lumps or masses
+
+- Small cell samples are extracted via [[https://www.cancer.org/cancer/breast-cancer/screening-tests-and-early-detection/breast-biopsy/fine-needle-aspiration-biopsy-of-the-breast.html][fine-needle aspiration biopsy]]
+
+- Cells are examined to determine if the mass is benign or malignant
+
+- Machine learning could automate cancerous cell identification
+
+- Potential benefits: efficiency/time savings, detection accuracy
+
+* ML workflow
+#+attr_latex: :width 600px
+#+caption: General machine learning process (Source: Lantz, 2019)
+[[../img/1_lantz_3.jpg]]
+
+- Collecting the data (Data)
+- Exploring and preparing the data (D)
+- Normalizing (rescaling) numeric data (A)
+- Creating training and test data sets (A)
+- Training a model on the data (G)
+- Evaluating model performance (E)
+- Improving model performance (E)
+
+* Collecting the data
+#+attr_latex: :width 400px
+#+caption: Ductal carcinoma in situ (Source: pathology.jhu.edu)
+[[../img/5_ductal_carcinoma.jpg]]
+
+- Measurements from digitized images of fine-needle aspirate of a
+  breast mass
+
+- The data values represent characteristics of the cell nuclei present
+  in the digital image
+
+- Data were donated by researchers of the University of Wisconsin
+
+* Getting the data
+#+attr_latex: :width 400px
+#+caption: UCI Machine Learning Repository - Breast Cancer WI data set
+[[../img/5_uci.png]]
+
+- Origin: [[http://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+%28Diagnostic%29][Univ of CA at Irvine (UCI) ML Repository]]
+
+- Breast cancer data included 569 *examples* (aka instances, rows) of
+  cancer biopsies (our data have header and randomized records)
+
+- For each example 32 *features* (aka attributes, columns) were
+  recorded:
+  1) *Identity* number
+  2) Cancer *diagnosis* (~M~ for "malignant" or ~B~ for "benign")
+  3) 30 Numeric laboratory measurements: *mean*, *standard error*, and
+     *largest* value for 10 different cell nuclei characteristics:
+     Radius, texture, perimeter, area, smoothness, compactness,
+     concavity, concave points, symmetry, and fractal dimension.
+
+- Unless you're an oncologist, you won't know how each feature relates
+  to benign or malignant masses. What does this mean for the
+  data?[fn:7]
+
+* Importing the data
+
+- Import the CSV data file to a dataframe ~wbcd~ from url=[[http://bit.ly/3khqmkp][bit.ly/3khqmkp]]
+  1) assume that the data have a header
+  2) do not automatically convert strings (~chr~) into factors
+  3) check the ~args~ of the importing function if you're not sure
+  #+begin_src R
+    args(read.csv)
+  #+end_src
+  #+name: get_wbcd
+  #+begin_src R
+    wbcd <- read.csv(
+      file="http://bit.ly/3khqmkp",
+      stringsAsFactors=FALSE)
+  #+end_src
+
+- Check the structure of the data frame:
+  #+begin_src R
+    str(wbcd)
+  #+end_src
+
+- The variable ~id~ is a unique identifier for each patient in the data.
+
+- Regardless of ML method, ID variables *should always be excluded*: a
+  model that includes an ID column will suffer from overfitting and
+  generalize poor data - can you think why?[fn:8].
+
+- Overwrite the data frame with itself after removing the first
+  column, then check the first four examples and features only:
+  #+begin_src R
+    <<get_wbcd>>
+    wbcd <- wbcd[-1]
+    wbcd[1:4,1:4]
+  #+end_src
+
+* Exploring the ~diagnosis~ target data
+
+- The ~wbcd[,2] = diagnosis~, is the outcome we want to predict: this
+  feature indicates if the example is from a benign or malignant mass.
+
+- How many examples are benign or malignant, respectively?
+  #+begin_src R
+    table(wbcd$diagnosis)
+  #+end_src
+
+- kNN like many other ML classifiers require the target feature (aka
+  class) to be coded as ~factor~ with ~levels~.
+
+- We recode ~diagnosis~ as a ~factor~ and add the ~labels~ "Benign" and
+  "Malignant":
+  #+begin_src R :results silent
+    wbcd$diagnosis <- factor(wbcd$diagnosis,
+                             levels=c("B","M"),
+                             labels=c("Benign","Malignant"))
+  #+end_src
+
+- We visualize the frequencies of the two diagnoses in a barplot,
+  coloring the benign results green, and the malignant results red:
+  #+begin_src R :results graphics file :file data/5_diagnosis.png
+    barplot(table(wbcd$diagnosis),
+            col=c("green","red"),
+            main=
+              "Results of fine-needle biopsy in the\nWisconsin breast cancer data set")
+  #+end_src
+
+- To obtain the relative percentage of the diagnosis results, we look
+  at the proportions table:
+  #+begin_src R
+    cat("Relative percentages of breast cancer\n")
+    cat("masses in the Wisconsin data set:\n")
+    round(prop.table(table(wbcd$diagnosis)) * 100, digits = 1)
+  #+end_src
+
+* Exploring the predictors
+
+- The remaining 30 features are ~numeric~ and consist of
+  different measurements of the 10 characteristics.
+
+- List the first 3 rows of three of these predictors: ~radius_mean~,
+  ~area_mean~, and ~smoothness_mean~:
+  #+begin_src R
+    wbcd[1:3,c("radius_mean","area_mean","smoothness_mean")]
+  #+end_src
+
+- Compute a statistical ~summary~ of these three features:
+  #+begin_src R
+    summary(wbcd[c("radius_mean","area_mean","smoothness_mean")])
+  #+end_src
+
+- What do you notice when looking at the values? Remember that
+  distance calculation for k-NN depends on the measurement scale of
+  the input.[fn:9]
+  #+begin_src R
+    range(wbcd["area_mean"])
+    range(wbcd["smoothness_mean"])
+  #+end_src
+
+* Interlude: ~function~
+
+- We normalize the data using the min-max normalization formula, which
+  we encapsulate in a ~function~.
+
+- User-defined functions work like other R functions: they take
+  arguments and ~return~ the result of their computations.
+
+- Example: defining a ~hello~ world ~function~ in R
+  #+begin_src R
+    helloWorld <- function() {
+      return ("hello world")
+    }
+    helloWorld()
+  #+end_src
+
+- Example: ~hello~ world ~function~ with an argument in R
+  #+begin_src R
+    hello <- function(name) {
+      paste("Hello,", name)  # without return, the last result is returned
+    }
+    hello("Marcus")
+  #+end_src
+
+* Transforming - numeric data normalization
+
+- To apply the min-max formula to the whole dataset, we define a function
+  ~normalize~:
+  #+begin_src R :results silent
+    normalize <- function(x) {
+      return ((x-min(x))/(max(x)-min(x)))
+    }
+  #+end_src
+
+- We test the function on some vectors:
+  #+begin_src R
+    normalize(c(1,2,3,4,5))
+    normalize(c(10,20,30,40,50))
+  #+end_src
+
+- Looking good! The normalized scale values are identical.
+
+* Interlude: ~lapply~
+
+- One reason to define a function is that R offers implicit looping
+  with the ~apply~ family of functions.
+
+- The ~lapply~ function takes a list and applies an argument to each
+  list element and returns a list. A data frame is a list:
+  #+begin_src R
+    is.list(wbcd)
+    args(lapply)
+  #+end_src
+
+- Example: What are the mean values of the variables in the ~airquality~
+  data frame?
+  #+begin_src R
+    str(airquality)
+    lapply(X=airquality[1:4],FUN=mean, na.rm=TRUE)
+  #+end_src
+
+* Applying ~normalize~ to the data frame
+
+- We apply the ~normalize~ function to all elements of ~wbcd~ and convert
+  the resulting ~list~ to a data frame ~wcbd_n~ using ~as.data.frame~:
+  #+begin_src R
+    wbcd_n <- as.data.frame(lapply(wbcd[2:31],FUN=normalize))
+    ## show the first 3 x 4 results
+    wbcd_n[1:3,2:4]
+  #+end_src
+
+- To confirm that the transformation worked, let's look at the summary
+  stats for ~area_mean~ and ~smoothness_mean~ again:
+  #+begin_src R
+    summary(wbcd_n$area_mean)
+    summary(wbcd_n$smoothness_mean)
+  #+end_src
+
+* Simulating new patient scenario
+
+- All our 569 biopsies are already labelled so we know which are
+  benign or malignant.
+
+- Using all data for training leaves us not knowing if the data has
+  been overfitted or how well the generalization to new cases works.
+
+- We want to know how our learner performs on *unseen* data: unless you
+  have access to new patients, you need to simulate this scenario.
+
+- Simulation means splitting the data randomly in two sets:
+  1) a *training data* set used to build the k-NN model
+  2) a *test data* set used to estimate its predictive accuracy
+
+- We'll use 469 records (82%) for the training dataset and the
+  remaining 100 records (18%) to simulate new patients.
+
+- For the simulation to work, it is important that each dataset is a
+  *representative subset* of the full set of data.
+
+- The data would not be representative if it was ordered
+  chronologically or grouped by similar values.
+
+* Creating training and test data sets
+
+- Split the normalized data frame, ~wbcd_n~ into two sets ~wbcd_train~ and
+  ~wbcd_test~ using the first 469 and the next 100 values, respectively,
+  and display the length of the results:
+  #+begin_src R
+    wbcd_train <- wbcd_n[1:469,]   # all normalized columns
+    wbcd_test <- wbcd_n[470:569,]  # all normalized columns
+    nrow(wbcd_train)
+    nrow(wbcd_test)
+  #+end_src
+
+- To normalize the data, we excluded the target variable
+  ~diagnosis~. For training and testing, it needs to be stored.
+
+- The ~diagnosis~ is the *class* that we want the learner to
+  predict. Class variables are stored in ~factor~ vectors or labels,
+  split between both data sets.
+
+- Create ~wbcd_train_labels~ and ~wbcd_test_labels~ from ~wcbd[,1]~ by
+  splitting the records in 469 training and 100 test records, then
+  display the structure of the resulting vectors.
+  #+begin_src R :result silent
+    wbcd_train_labels <- wbcd[1:469,1]  # from the original dataset
+    wbcd_test_labels <- wbcd[470:569,1]  # from the original dataset
+    str(wbcd_train_labels)
+    str(wbcd_test_labels)
+  #+end_src
+
+* Getting the k-NN algorithm
+
+- For the k-NN algorithm, the training phase involves no model
+  building: training a "lazy learner" means storing the input data in
+  a structured format.
+
+- To classify the test instances, we use the ~knn~ function from the
+  ~class~ package. Install and load it, then list all loaded packages:
+  #+begin_src R
+    install.packages("class")
+    library(class)
+    search()
+  #+end_src
+
+- Look at the arguments of ~knn~: 
+  #+begin_src R
+    args(knn)
+  #+end_src
+
+- Look at the ~help~ for ~knn~:
+  #+begin_src 
+    help(knn)
+  #+end_src  
+
+- You can check in the R console if there are any other ~knn~ like
+  functions available to you already, with the fuzzy search ~??~. You
+  can also search for kNN in the [[https://cran.r-project.org][CRAN package repository]].
+
+- You can run the examples for ~knn~ (listed at the end of the
+  ~help~) file, with ~example(knn)~:
+  #+begin_src R
+    example(knn)
+  #+end_src
+* Classification with ~class::knn~
+  
+- For each instance/row/record in the test data, ~knn~ will identify the
+  ~k~ nearest neighbors using Euclidean distance, where ~k~ is a
+  user-specified number.
+
+- The test instance is classified by taking a "vote" among the ~k~
+  nearest neighbors - this involves assigning the class of the
+  majority of the neighbors. A tie vote is broken at random.
+
+- Training and classification is performed in a single command - we
+  only use four of the available 7 parameters:
+  #+attr_latex: :width 400px
+  #+caption: kNN classification syntax (Source: Lantz p. 83) 
+  [[../img/5_knn.png]]
+
+- The only parameter not discussed or set is ~k~, the number of
+  neighbors to include in the vote - a standard initial choice is to
+  take the square root of the training data set size:
+  #+begin_src R
+    as.integer(sqrt(469))
+  #+end_src
+
+- With a 2-category (benign or malignant) outcome, using an odd number
+  eliminates the chance of ending with a tie vote.
+
+- Use ~knn~ to classify the test data:
+  #+begin_src R 
+    wbcd_test_pred <- knn(train = wbcd_train, # training data
+                          test = wbcd_test,  # test data
+                          cl = wbcd_train_labels, # class factor
+                          k = 21)  # nearest neighbors
+  #+end_src
+
+- What data structure do you expect as a result, and what will be its
+  size?[fn:10] How can you check?
+  #+begin_src R
+    str(wbcd_test_pred)
+    length(wbcd_test_pred)
+  #+end_src
+
+* Evaluating model performance  
+
+- A performing model will have identified the labels in the test data
+  set with high accuracy. Low accuracy means mis-identified labels.
+
+- The tool to show accuracy is the *confusion table*, which shows the
+  number of true and false positive and negative classification
+  results.
+  
+- To build this table, we use the ~CrossTable~ function of the ~gmodels~
+  package. After installing the package, we can load it, look at the
+  loaded packages.
+  #+begin_src R
+    install.packages("gmodels")
+    libray(gmodels)
+    search()
+  #+end_src
+
+- Look at the arguments of the function ~CrossTable~:
+  #+begin_src R
+    args(CrossTable)
+  #+end_src
+
+- Fortunately, we only need two arguments (x,y). We also exclude the
+  chi-square values from the output to make it more readable:
+  1) x is the set of test data set labels used for classification
+  2) y is the data set of predicted labels by ~knn~ 
+  #+begin_src R
+    CrossTable(x = wbcd_test_labels,
+               y = wbcd_test_pred,
+               prop.chisq = FALSE)
+  #+end_src
+
+* Analyze the confusion table
+#+attr_latex: :width 400px
+[[../img/5_confusion.png]]
+
+1) Top-left: TRUE NEGATIVE results - 61/100
+2) Bottom-right: TRUE POSITIVE results - 37/100
+3) Bottom-left: FALSE NEGATIVE results - 2/100
+4) Top-right: FALSE POSITIVES  results - 0/100
+
+What do these results mean?  
+#+begin_notes
+1) "True negative" means that the patient had no tumor and the model
+   recognized this.
+2) "True positive" means that the patient had a tumor and the model
+   recognized this.
+3) "False negative" means that the patient had a tumor but the model 
+  did not recognize it.
+4) "False positive" means that the patient had no tumor but the model
+   found one.
+#+end_notes
+
+* Improving model performance
+
+- Alternative rescaling of numeric features
+
+- Different ~k~ values
+
+* Exercises
+
+1) Use the z-score standardization to transform the data, check and
+   interpret the predictions.
+
+2) Use different values of ~k~, check and interpret the predictions: k =
+   1, 5, 11, 15, 21, 27.
+
+* References
+
+- Image: Ductal carcinoma in situ (URL: [[https://pathology.jhu.edu/breast/types-of-breast-cancer][pathology.jhu.edu]])
+
+- Image: Fine-needle aspiration using ultrasound (URL: [[https://www.cancer.org/cancer/breast-cancer/screening-tests-and-early-detection/breast-biopsy/fine-needle-aspiration-biopsy-of-the-breast.html][cancer.org]])
+
+- Data: Breast Cancer Diagnosis and Prognosis via Linear Programming,
+  Mangasarian OL, Street WN, Wolberg WH, Operations Research, 1995,
+  Vol. 43, pp. 570-577. URL: [[http://archive.ics.uci.edu/ml/index.php][archive.ics.uci.edu/ml/]]
+
+- Lantz (2019). Machine Learning with R (3e). Packt.
+
+* TODO Glossary of Code
+
+* TODO Summary
+
+
+

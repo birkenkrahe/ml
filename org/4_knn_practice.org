@@ -1,0 +1,252 @@
+#+TITLE: k-NEAREST-NEIGBORS - BREAST CANCER PREDICTION
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: Case Study - Supervised lazy learner classifiers
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+* README
+
+Illustration of the kNN algorithm using Wisconsin breast cancer data
+as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
+
+* TODO Identify and pledge yourself
+
+1) In Emacs, replace the placeholder ~[yourname]~ at the top of this
+   file by your own name and write ~(pledged)~ next to it
+2) Go with the cursor on the headline and hange the ~TODO~ label to ~DONE~
+   by entering ~S-<right>~ ("Shift + right-arrow").
+
+* Importing the data
+
+- Import the CSV data file to a dataframe ~wbcd~ from url=[[http://bit.ly/3khqmkp][bit.ly/3khqmkp]]
+  1) assume that the data have a header
+  2) do not automatically convert strings (~chr~) into factors
+  3) check the ~args~ of the importing function if you're not sure
+  #+begin_src R
+    args(read.csv)
+  #+end_src
+  #+name: get_wbcd
+  #+begin_src R
+
+  #+end_src
+
+- Check the structure of the data frame:
+  #+begin_src R
+
+  #+end_src
+
+- Overwrite the data frame with itself after removing the first
+  column, then check the first four examples and features only:
+  #+begin_src R
+    <<get_wbcd>>
+
+  #+end_src
+
+* Exploring the ~diagnosis~ target data
+
+- How many examples are benign or malignant, respectively?
+  #+begin_src R
+
+  #+end_src
+
+- We recode ~diagnosis~ as a ~factor~ and add the ~labels~ "Benign" and
+  "Malignant":
+  #+begin_src R :results silent
+
+  #+end_src
+
+- We visualize the frequencies of the two diagnoses in a barplot,
+  coloring the benign results green, and the malignant results red:
+  #+begin_src R :results graphics file :file data/5_diagnosis.png
+
+  #+end_src
+
+- To obtain the relative percentage of the diagnosis results, we look
+  at the proportions table:
+  #+begin_src R
+
+  #+end_src
+
+* Exploring the predictors
+
+- List the first 3 rows of three of these predictors: ~radius_mean~,
+  ~area_mean~, and ~smoothness_mean~:
+  #+begin_src R
+
+  #+end_src
+
+- Compute a statistical ~summary~ of these three features:
+  #+begin_src R
+
+  #+end_src
+
+- What do you notice when looking at the values? Remember that
+  distance calculation for k-NN depends on the measurement scale of
+  the input.[fn:9]
+  #+begin_src R
+
+  #+end_src
+
+* Interlude: ~function~
+
+- Example: defining a ~hello~ world ~function~ in R
+  #+begin_src R
+
+  #+end_src
+
+- Example: ~hello~ world ~function~ with an argument in R
+  #+begin_src R
+
+  #+end_src
+
+* Transforming - numeric data normalization
+
+- To apply the min-max formula to the whole dataset, we define a function
+  ~normalize~:
+  #+begin_src R :results silent
+
+  #+end_src
+
+- We test the function on some vectors:
+  #+begin_src R
+
+  #+end_src
+
+* Interlude: ~lapply~
+
+- The ~lapply~ function takes a list and applies an argument to each
+  list element and returns a list. A data frame is a list:
+  #+begin_src R
+
+  #+end_src
+
+- Example: What are the mean values of the variables in the ~airquality~
+  data frame?
+  #+begin_src R
+
+  #+end_src
+
+* Applying ~normalize~ to the data frame
+
+- Apply the ~normalize~ function to all elements of ~wbcd~ and convert
+  the resulting ~list~ to a data frame ~wcbd_n~ using ~as.data.frame~:
+  #+begin_src R
+
+    ## show the first 3 x 4 results
+
+  #+end_src
+
+- To confirm that the transformation worked, let's look at the summary
+  stats for ~area_mean~ and ~smoothness_mean~ again:
+  #+begin_src R
+
+  #+end_src
+
+* Creating training and test data sets
+
+- Split the normalized data frame, ~wbcd_n~ into two sets ~wbcd_train~ and
+  ~wbcd_test~ using the first 469 and the next 100 values, respectively,
+  and display the length of the results:
+  #+begin_src R
+    ... # all normalized columns for training
+    ...   # all normalized columns for testing
+    ...
+    ...
+  #+end_src
+
+- Create ~wbcd_train_labels~ and ~wbcd_test_labels~ from ~wcbd[,1]~ by
+  splitting the records in 469 training and 100 test records, then
+  display the structure of the resulting vectors.
+  #+begin_src R :result silent
+
+  #+end_src
+
+* Getting the k-NN algorithm
+
+- To classify the test instances, we use the ~knn~ function from the
+  ~class~ package. Install and load it, then list all loaded packages:
+  #+begin_src R
+
+  #+end_src
+
+- Look at the arguments of ~knn~: 
+  #+begin_src R
+
+  #+end_src
+
+- Look at the ~help~ for ~knn~:
+  #+begin_src 
+
+  #+end_src  
+
+- You can run the examples for ~knn~ (listed at the end of the
+  ~help~) file, with ~example(knn)~:
+  #+begin_src R
+
+  #+end_src
+
+* Classification with ~class::knn~
+  
+- The only parameter not discussed or set is ~k~, the number of
+  neighbors to include in the vote - a standard initial choice is to
+  take the square root of the training data set size:
+  #+begin_src R
+
+  #+end_src
+
+- Use ~knn~ to classify the test data:
+  #+begin_src R 
+    ... # training data
+    ... # test data
+    ... # class factor
+    ... # nearest neighbors
+  #+end_src
+
+- What data structure do you expect as a result, and what will be its
+  size? How can you check?
+  #+begin_src R
+
+  #+end_src
+
+* Evaluating model performance
+
+- To build this table, we use the ~CrossTable~ function of the ~gmodels~
+  package. After installing the package, we can load it, look at the
+  loaded packages.
+  #+begin_src R
+
+  #+end_src
+
+- Look at the arguments of the function ~CrossTable~:
+  #+begin_src R
+
+  #+end_src
+
+- Fortunately, we only need two arguments (x,y). We also exclude the
+  chi-square values from the output to make it more readable:
+  1) x is the set of test data set labels used for classification
+  2) y is the data set of predicted labels by ~knn~ 
+  #+begin_src R
+
+  #+end_src
+
+What do these results mean?  
+
+* References
+
+- Image: Ductal carcinoma in situ (URL: [[https://pathology.jhu.edu/breast/types-of-breast-cancer][pathology.jhu.edu]])
+
+- Image: Fine-needle aspiration using ultrasound (URL: [[https://www.cancer.org/cancer/breast-cancer/screening-tests-and-early-detection/breast-biopsy/fine-needle-aspiration-biopsy-of-the-breast.html][cancer.org]])
+
+- Data: Breast Cancer Diagnosis and Prognosis via Linear Programming,
+  Mangasarian OL, Street WN, Wolberg WH, Operations Research, 1995,
+  Vol. 43, pp. 570-577. URL: [[http://archive.ics.uci.edu/ml/index.php][archive.ics.uci.edu/ml/]]
+
+- Lantz (2019). Machine Learning with R (3e). Packt.
+
+* TODO Glossary of Code
+
+* TODO Summary
+
+
+
