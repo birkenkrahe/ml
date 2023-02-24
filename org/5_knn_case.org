@@ -13,6 +13,9 @@ We will investigate the utility of ML for detecting cancer by applying
 the k-NN algorithm to measurements of biopsied cells from women with
 abnormal breast masses.
 
+To code along with the lecture, download ~5_knn_case_practice.or~ from
+GitHub, complete the file and upload it to Canvas by the deadline.
+
 * Plan
 #+attr_latex: :width 400px
 #+caption: Fine needle aspiration using ultrasound (Source: Collins)
