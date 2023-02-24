@@ -452,10 +452,10 @@ Open an Org-mode file if you want to code along.
 #+attr_latex: :width 400px
 #+caption: Photo by Avin CP on Unsplash
 [[../img/tomato.jpg]]
+5_ductal_carcinoma.jpg
+- [X] Test 2 now open for late attempts (partial credit)
 
-- [ ] Test 2 now open for late attempts (partial credit)
-
-- [ ] [[https://arstechnica.com/information-technology/2023/02/man-beats-machine-at-go-in-human-victory-over-ai/][Man beats machine at Go in human victory over AI]] (Waters, 2023)
+- [X] [[https://arstechnica.com/information-technology/2023/02/man-beats-machine-at-go-in-human-victory-over-ai/][Man beats machine at Go in human victory over AI]] (Waters, 2023)
   #+begin_quote
   "The discovery of a weakness in some of the most advanced Go-playing
   machines points to a fundamental flaw in the deep-learning systems
@@ -466,11 +466,26 @@ Open an Org-mode file if you want to code along.
   superhuman levels of intelligence to machines.” - Russell[fn:1]
   #+end_quote
 
-- [ ] k-nearest-neighbor (knn) models:
-  1) Lecture (HTML, Org-mode or [[https://github.com/birkenkrahe/ml/blob/main/md/4_knn.md][Markdown]] with notes in GitHub)
-  2) Practice (demo: cancer classification with k-NN)
-  3) Exercise (bonus assignment in R)
-  4) Test 3 (opens next week)
+- [-] k-nearest-neighbor (knn) models:
+  1) [X] Lecture (HTML, Org-mode or [[https://github.com/birkenkrahe/ml/blob/main/md/4_knn.md][Markdown]] with notes in GitHub)
+  2) [X] Practice (demo: cancer classification with k-NN)
+  3) [ ] Exercise (bonus assignment in R)
+  4) [ ] Test 3 (opens next week)
+
+* Week 8: k-NN case study - cancer prediction (cont'd)
+#+attr_latex: :width 400px
+#+caption: Ductal Carcinoma in situ (Source: jhp.edu)
+[[../img/5_ductal_carcinoma.jpg]]
+
+- If you missed the last session, download ~5_knn_case_practice.org~
+  fromGitHub and head to the chapter *Intermission* to catch up.
+
+- We cover today:
+  1) Normalizing (rescaling) numeric data
+  2) Creating training and test data sets
+  3) Training a model on the data
+  4) Evaluating model performance
+  5) Exercises: improve the model! (bonus)
 
 * References
 
