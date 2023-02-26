@@ -258,7 +258,7 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 
 - You can complete the test at your leisure (within the set time
   limit) but you must complete it before the deadline (Tue-14-Feb)
-  
+
 ** DONE Home assignments - project and DataCamp
 #+attr_latex: :width 400px
 #+caption: Image by Feliphe Schiarolli via Unsplash.com
@@ -274,7 +274,7 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 
 3) We'll review the DataCamp sessions in class and in the tests (I'll
    announce tests 1 week in advance)
-     
+
 ** DONE R review: structures/management/exploration
 #+attr_latex: :width 250px
 [[../img/rlogo.png]]
@@ -312,7 +312,7 @@ should probably try ~Rgui~ on the command line, too).
 - You can get 10 bonus points if you keep a practice streak of 10 days
 - You can do this up to 3 times for a maximum of 30 points, which will
   be applied to your weakest final grade category
-- Submit a screenshot of your mobile (or desktop) streak in Canvas 
+- Submit a screenshot of your mobile (or desktop) streak in Canvas
 - If you lose your streak between day 5 and 10, you still get 5 points
 - On the dashboard, DataCamp will suggest practice categories for you,
   and also in the mobile app
@@ -337,7 +337,7 @@ should probably try ~Rgui~ on the command line, too).
   Emacs called ~speed-type~. You have to install it with ~M-x
   package-list-packages~, then find the package in the list and install
   with ~i~ and ~x~. [[https://github.com/dakra/speed-type][More information on GitHub.]]
-    
+
 * Week 6 - ML models overview
 #+attr_latex: :width 400px
 [[../img/ml_types2.png]]
@@ -358,7 +358,7 @@ Open an Org-mode file if you want to code along.
    #+end_src
 
    #+RESULTS:
-   :    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   :    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
    :   456.0   798.5   893.5   919.4  1032.5  1370.0
 
 2) [X] What about the ~time~ of the ~Nile~ observations?
@@ -367,7 +367,7 @@ Open an Org-mode file if you want to code along.
    #+end_src
 
    #+RESULTS:
-   :    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   :    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.
    :    1871    1896    1920    1920    1945    1970
 
 3) [X] How many values of ~Nile~ are outliers? Which values are these?
@@ -375,7 +375,7 @@ Open an Org-mode file if you want to code along.
    *Update:* as the computation of ~IQR*1.5~ for ~Nile~ shows, there are no
    outliers in the data set - the boxplot (below) shows this,
    too. Tukey's method (~car::outlier~) is not applicable to time
-   series, alas. 
+   series, alas.
    #+end_quote
 
    Various tests:
@@ -388,7 +388,7 @@ Open an Org-mode file if you want to code along.
    #+begin_src R :results output
      library(car)
      any(ls('package:car')=="outlier")
-     # outlierTest(Nile)  ## not applicable to time series
+                                             # outlierTest(Nile)  ## not applicable to time series
      library(qdap)
      outlier_detect(as.character(Nile))
    #+end_src
@@ -419,9 +419,9 @@ Open an Org-mode file if you want to code along.
        Nile[
          which(
            Nile > 800 & Nile < 1000
-           )
-         ]
-       )
+         )
+       ]
+     )
    #+end_src
 
    #+RESULTS:
@@ -432,19 +432,19 @@ Open an Org-mode file if you want to code along.
 [[../img/freedom.png]]
 
 - My courses for Fall 2023:
-  
+
   1) Artificial Intelligence (DSC 482.01) - seminar. The 2023 edition
      will include deep learning with R/Python and more code poetry.
 
   2) Data and process modeling (DSC 482.02) - seminar. The 2023
      edition will include exploring differential equations with R
-     
+
   3) Introduction to data science (DSC 105): The 2023 edition will
      include R and Python.
 
 - All courses are for everybody who's interested in data science: tell
   your friends!
-     
+
 ** Project proposal feedback in the classroom
 ** You can submit an improved proposal by Fri-Feb-24
 
@@ -477,6 +477,84 @@ Open an Org-mode file if you want to code along.
 #+caption: Ductal Carcinoma in situ (Source: jhp.edu)
 [[../img/5_ductal_carcinoma.jpg]]
 
+* Review: kNN DataCamp lesson
+
+1) [ ] Load the ~signs~ dataset from the lesson - how can you get it?
+   #+begin_src R :results output
+     signs <- read.csv(file="../data/knn_traffic_signs.csv",
+                       stringsAsFactors=TRUE)
+     str(signs[1:4])
+   #+end_src
+
+2) [ ] What information does the dataset ~signs~ contain?
+   #+attr_latex: :width 400px
+   [[../img/stop.png]]
+   #+begin_notes
+   - Street signs were divided into 4x4=16 panel grids
+   - Each grid's RGB levels, location and type were recorded
+   #+end_notes
+
+3) [ ] For the classification task, what is the class?
+
+4) [ ] How many types of ~signs~, how many of each sign type are there?
+   #+begin_src R :results output
+     table(signs$sign_type)
+   #+end_src
+
+5) [ ] Which function and which package was used for kNN?
+   #+begin_src R :results output
+     library(class)  # load package
+     search()  # check package search path
+     ls('package:class') # check package functions
+   #+end_src
+
+   #+RESULTS:
+   :  [1] ".GlobalEnv"        "package:class"     "ESSR"             
+   :  [4] "package:stats"     "package:graphics"  "package:grDevices"
+   :  [7] "package:utils"     "package:datasets"  "package:methods"  
+   : [10] "Autoloads"         "package:base"
+   :  [1] "batchSOM"  "condense"  "knn"       "knn.cv"    "knn1"      "lvq1"     
+   :  [7] "lvq2"      "lvq3"      "lvqinit"   "lvqtest"   "multiedit" "olvq1"    
+   : [13] "reduce.nn" "SOM"       "somgrid"
+
+6) [ ] What were the three arguments for the classifier?
+   #+begin_src R
+     knn(train = signs[-c(1:3)],     # training data
+         test = signs[206, -c(1:3)], # test data
+         cl = sign_types)            # class
+   #+end_src
+
+   #+RESULTS:
+   : stop
+
+7) [ ] Which conditions should the training/test data fulfil?
+   #+begin_notes
+   - They should be randomized and not grouped or ordered
+   - The id column needs to be removed
+   - Each subset needs to be representative of the full dataset
+   #+end_notes
+
+8) [ ] Which condition should the features fulfil?
+   #+begin_notes
+     - They need to be normalized or standardized by scale.
+     - They need to be independent of one another.
+     - They need to be characteristic of the class levels
+   #+end_notes
+
+9) [ ] What are characteristics of the target class?
+   #+begin_notes
+     The class is a ~factor~ vector whose ~levels~ are the class values.
+   #+end_notes
+
+10) [ ] In the ~r10~ feature (10th grid location), what are the average
+    values in each target class? 
+    #+begin_src R :results output
+      tapply(X = signs$r10,
+             INDEX = signs$sign_type,
+             FUN = mean)
+    #+end_src
+
+* Continue: kNN case study
 - If you missed the last session, download ~5_knn_case_practice.org~
   fromGitHub and head to the chapter *Intermission* to catch up!
 
@@ -486,8 +564,17 @@ Open an Org-mode file if you want to code along.
   3) Training a model on the data
   4) Evaluating model performance
   5) Exercises: improve the model! (bonus)
+* Next assignment - submit by March 7
+#+attr_latex: :width 400px
+#+caption: Photo by Andrew Neel, Unsplash.com
+[[../img/assignment.jpg]]
 
 - [[https://lyon.instructure.com/courses/1021/assignments/8405][Next assignment: NAIVE BAYES method - deadline MARCH 7, 11:59 pm]]
+
+* Next test - submit by March 7
+#+attr_latex: :width 400px
+#+caption: Photo by Ben Mullins, Unsplash.com
+[[../img/0_test.jpg]]
 
 - [[https://lyon.instructure.com/courses/1021/assignments/8789/edit?quiz_lti][Next test (topic: kNN) is live now until Tuesday, MARCH 7, 11:59pm.]]
 
@@ -502,7 +589,7 @@ Open an Org-mode file if you want to code along.
 
 - [[https://app.datacamp.com/learn/projects/552][DataCamp guided project "Clustering Heart Disease Patient Data"]]
 
-* TODO Week 14: Dimensionality reduction with PCA 
+* TODO Week 14: Dimensionality reduction with PCA
 * TODO Week 15: Case study: breast cancer data
 * TODO Week 16: Project presentations
 * TODO What next?
@@ -511,7 +598,7 @@ Open an Org-mode file if you want to code along.
   #+attr_latex: :width 200px
   #+caption: Cover, Deep learning with R by Chollet/Allaire (Manning, 2022)
   [[../img/cholletallaire.png]]
-  
+
 - [[https://www.manning.com/books/grokking-machine-learning][Grokking machine learning (Manning, 2022)]]
   #+attr_latex: :width 200px
   #+caption: Cover, Grokking machine learning by Serrano (Manning, 2022)
@@ -521,7 +608,7 @@ Open an Org-mode file if you want to code along.
   #+attr_latex: :width 200px
   #+caption: Cover, Automate the boring stuff with Python by Sweigart (Manning, 2022)
   [[../img/python.jpg]]
-  
+
 
 * References
 
