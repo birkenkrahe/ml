@@ -1,0 +1,163 @@
+#+Title: An Exploration of the Use of the Langragian Polynomial for Regression
+#+Author: Jacob Wolfrom (pledged)
+#+Subtitle: Machine Learning
+
+* Problem
+The Lagrangian polynomial is a important concept in the field of
+Numerical Analysis for the accurate approximation of functions over
+some domain given discrete values. This is a very useful function
+primarily for the fact that polynomial are famously easy to manipulate
+especially and use, especially for the purposes of derivation and
+integration.
+
+However, the Lagrangian polynomial has a number of issues that make
+using it for regression non-trivial. Firstly, it must be competitive
+with other existing regression models, otherwise it would be nothing
+more than an intellectual exercise to apply it. This means it must
+either be as efficient as models of the same accuracy or be
+significantly simpler than them. Secondly, the Lagrangian polynomial
+cannot be used directly for most data sets. The work needed to
+calculate the Lagragian polynomial scales non-linearly with the number
+of nodes (data points), so for large data sets, this is not a viable
+method without some tweaking. This means that the data must be
+clustered in some way which may potentially lead to significant loss
+in efficiency compared to other methods. If the Lagrangian polynomial
+proves to be too inefficient compared to other models, then I think
+this will be a significant cause. Additionally, the Lagragian
+polynomial is extremely sensitive to outliers, meaning the outliers
+need to be identified beforehand. Lastly, the Lagrangian polynomial is
+intended for univariate functions. There is an extension of it to
+multivariate functions; however, the number of points needed for it
+grows quickly, potentially leading to problems in the clustering step
+of the process [fn:1].
+
+If these problems can be resolved at least partially, the Langrangian
+polynomial may find its niche among regression methods.
+
+* Reason
+This problem is interesting to me for a number of reasons. Firstly, I
+find the lagrangian polynomial itself very interesting and I am
+surprised I have not learned about it until recently given how well
+known the Taylor polynomial is. I want to find out more about the
+Lagrangian polynomial and how it used, and I can't think of a better
+way than trying to implement it in a new way. Secondly, this kind of
+project is intellectual and is something I can use in my portfolio in
+the future. Thirdly, at a first glance, this appears to have the
+potential to be quite difficult, and I want experience with dealing
+with complex algorithms and complicated manipulation of data. Lastly,
+I plan on going to grad school for a PhD in mathematics, and while
+this will not be solely focused on mathematics, it is close enough
+that it will be a nice test on whether or not I enjoy serious
+mathematical research as all of the other research based projects I've
+done in the past have not had mathematical concepts as a focus.
+
+The best case scenario is that I uncover something that warrants
+further research for a research paper, but I'm not counting on it at
+this stage in the project.
+* Constraints
+The primary constraint for me will be time and effort, especially
+considering my recent health. I have other classes that require my
+attention, so I can't devote as much time as I wish I could for this
+project, but this is potentially something that I will research after
+I graduate anyways, so this constraint is only applicable to the
+sprint reviews. Additionally, my recent pains will make it very
+difficult to focus on my work until my Sciatica episode passes. This
+is fortunately a temporary constraint, but it is important to note
+notheless.
+
+Another constraint will actually be my able to understand the material
+and concepts I find. This is mostly undiscovered territory for me
+intellectually, and while I am typically excellent when it comes to
+mathematics and related topics, I imagine there is much I need to
+learn which only further stresses the previous constraint.
+
+Lastly, the Lagrangian polynomial is an interpolation method, not a
+regression method this means a number of things, but primarily, it
+means that it requires careful curation and manipulation of the data
+to implement. I have no idea of the difficulty that this will cause
+right now as I have not done so before, and I feel my inexperience
+will work against me greatly here.
+* Goals and Non-Goals
+Goals:
+- Evaluate the viablility of using the Lagrangian polynomial as a
+  regression method. If possible, I may generalize this to viability
+  of the manipulation of data for the use of interpolation instead of
+  regression, but I feel that sticking to a specific case is better
+  for the final presentation, so this is unlikely.
+
+- Show my thought process throughout the project and the many
+  difficulties that arise and how I solved them. This is arguably more
+  important than the actual research and analysis done because problem
+  solving, prediction, and recognition are more important than an
+  analysis and algorithm that would be reduced to one function call
+  and a documentation page in practice.
+
+- Implement the presentation using org-present. I have some
+  proficiency modifying my emacs configuration, and any examples or
+  code used will be greatly benefitted by the use of org mode
+  presentation.
+
+Non-Goals:
+- I do not plan to go through the entirety of the mathematics
+  involved. While I personally enjoy going through rigorous
+  mathematical derivations and proofs, I do not want to leave the
+  audience confused or asleep. It suffices to explain the importance
+  of mathematical concepts or objects.
+* Metrics
+My success does not hinge on the efficiency of this method,
+only my ability to develop and analyze it. If it turns out that there
+is something intrinsically flawed about this approach, then that is of
+no fault of mine unless I can't find that fault. This kind of research
+is required to find these answers, so if I discover and competently
+show that this method is utter garbage, then that is still a great
+success. I only require a definitive answer to the merit of this method
+* References
+I have few references as of the proposal, but this will inevitably
+change after I complete a full literature review. I could not easily
+find sources for the use of Lagrangian interpolation in
+regression. The most promising article I could find is locked behind a
+$40 paywall, and most others are difficult to interpret due to their
+grounding in other fields of study and require much deeper study to
+determine their worth to this project.
+
+R 4.1.2: [fn:R412]
+This is the version used in the computer lab
+
+R 4.2.2: [fn:R422]
+This is the version on my personal computer
+
+emacs: [fn:emacs]
+
+baeldung: [fn:baeldung]
+This is an interesting article concerning the difference between
+interpolation and regression. It also includes some example methods of
+both. This was useful for me to predict some of the difficulties with
+adapting interpolation methods for regression.
+
+* Footnotes
+
+[fn:1] The number of points needed to define a polynomial with m
+variables of degree n is (m+n)Cn which grows somewhat
+factorially. Finding a 2nd degree polynomial of 5 variables requires
+21 datapoints, finding a 5th degree polynomial of 5 variables requires
+252 datapoints, finding a 10th degree polynomial of 5 variables
+requires 3003 datapoints, and so on. Higher degree polynomial give
+better approximations, so this is problematic
+
+[fn:R412]
+R 4.1.2 [Computer software]. (2021). Retrieved from
+https://www.R-project.org/R
+
+[fn:R422]
+R 4.2.2 [Computer software]. (2021). Retrieved from
+https://www.R-project.org/R
+
+[fn:emacs]
+GNU Emacs 27.2 [Computer software]. (2021). Retrieved from
+https://ftp.gnu.org/gnu/emacs/windows/
+
+[fn:baeldung]
+baeldung, W. by: (2022, May 22). Interpolation and regression:
+Similarities and differences. Baeldung on Computer Science. Retrieved
+February 23, 2023, from
+https://www.baeldung.com/cs/interpolation-vs-regression

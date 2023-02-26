@@ -478,14 +478,50 @@ Open an Org-mode file if you want to code along.
 [[../img/5_ductal_carcinoma.jpg]]
 
 - If you missed the last session, download ~5_knn_case_practice.org~
-  fromGitHub and head to the chapter *Intermission* to catch up.
+  fromGitHub and head to the chapter *Intermission* to catch up!
 
-- We cover today:
+- *We hope to cover today:*
   1) Normalizing (rescaling) numeric data
   2) Creating training and test data sets
   3) Training a model on the data
   4) Evaluating model performance
   5) Exercises: improve the model! (bonus)
+
+- [[https://lyon.instructure.com/courses/1021/assignments/8405][Next assignment: NAIVE BAYES method - deadline MARCH 7, 11:59 pm]]
+
+- [[https://lyon.instructure.com/courses/1021/assignments/8789/edit?quiz_lti][Next test (topic: kNN) is live now until Tuesday, MARCH 7, 11:59pm.]]
+
+* TODO Week 9: Naive Bayes
+* TODO Week 10: Logistic regression
+* TODO Week 11: Classification trees
+* TODO Week 12: k-means
+
+- [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]]
+
+* TODO Week 13: Hierarchical clustering
+
+- [[https://app.datacamp.com/learn/projects/552][DataCamp guided project "Clustering Heart Disease Patient Data"]]
+
+* TODO Week 14: Dimensionality reduction with PCA 
+* TODO Week 15: Case study: breast cancer data
+* TODO Week 16: Project presentations
+* TODO What next?
+
+- Deep learning with R -  (Manning, 2022)
+  #+attr_latex: :width 200px
+  #+caption: Cover, Deep learning with R by Chollet/Allaire (Manning, 2022)
+  [[../img/cholletallaire.png]]
+  
+- [[https://www.manning.com/books/grokking-machine-learning][Grokking machine learning (Manning, 2022)]]
+  #+attr_latex: :width 200px
+  #+caption: Cover, Grokking machine learning by Serrano (Manning, 2022)
+  [[../img/serrano.png]]
+
+- Learn Python (@DataCamp | CSC 109 @Lyon)
+  #+attr_latex: :width 200px
+  #+caption: Cover, Automate the boring stuff with Python by Sweigart (Manning, 2022)
+  [[../img/python.jpg]]
+  
 
 * References
 
