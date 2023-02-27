@@ -13,7 +13,7 @@ We will investigate the utility of ML for detecting cancer by applying
 the k-NN algorithm to measurements of biopsied cells from women with
 abnormal breast masses.
 
-To code along with the lecture, download ~5_knn_case_practice.or~ from
+To code along with the lecture, download ~5_knn_practice.org~ from
 GitHub, complete the file and upload it to Canvas by the deadline.
 
 * Plan
@@ -257,7 +257,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
 
 - Looking good! The normalized scale values are identical.
 
-* Interlude: ~lapply~
+* Interlude: ~lapply~ and ~tapply~
 
 - One reason to define a function is that R offers implicit looping
   with the ~apply~ family of functions.
@@ -274,6 +274,17 @@ GitHub, complete the file and upload it to Canvas by the deadline.
   #+begin_src R
     str(airquality)
     lapply(X=airquality[1:4],FUN=mean, na.rm=TRUE)
+  #+end_src
+
+- Another useful function is ~tapply~: it allows running a function on
+  any feature of a dataframe grouped by ~factor~ levels.
+
+- Example: what is the average (~mean~) of the largest cell radius
+  measurements (~radius_worst~) for ~Benign~ and ~Malignant~ labels?
+  #+begin_src R
+    tapply(X = wbcd$radius_worst,   # subset = largest cell radius
+           INDEX = wbcd$diagnosis,  # group by = diagnosis label
+           FUN = mean)              # function = average values
   #+end_src
 
 * Applying ~normalize~ to the data frame
@@ -425,7 +436,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
 - A performing model will have identified the labels in the test data
   set with high accuracy. Low accuracy means mis-identified labels.
 
-- The tool to show accuracy is the *confusion table*, which shows the
+- The tool to show accuracy is the *confusion matrix*, which shows the
   number of true and false positive and negative classification
   results.
   
@@ -476,18 +487,25 @@ What do these results mean?
 
 * Improving model performance
 
-- Alternative rescaling of numeric features
+- Perform an alternative rescaling of numeric features
 
-- Different ~k~ values
+- Run the model for different ~k~ values
 
-* Exercises
+* Exercises - improve the model performance
 
-1) Use the z-score standardization to transform the data, check and
-   interpret the predictions.
+1) Rescaling: Use the z-score standardization to transform
+   the data, check and interpret the predictions.
+   #+attr_latex: :width 400px
+   #+caption: Sample results - Confusion matrix after z-score standardization
+   [[../img/5_z_exercise.png]]
 
-2) Use different values of ~k~, check and interpret the predictions: k =
-   1, 5, 11, 15, 21, 27.
-
+2) Measuring: Use different values of ~k~, check and interpret the
+   predictions: k = 1, 5, 11, 15, 21, 27.
+   #+attr_latex: :width 400px
+   #+caption: Sample results - kNN On wbcd for different k
+   [[../img/5_k_exercise.png]]
+   
+   
 * References
 
 - Image: Ductal carcinoma in situ (URL: [[https://pathology.jhu.edu/breast/types-of-breast-cancer][pathology.jhu.edu]])

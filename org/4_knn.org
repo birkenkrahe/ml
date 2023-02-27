@@ -304,7 +304,6 @@ z-score standardization
 - Rescaling must be applied to training and test data (tricky - might
   be out of range - you may not know the maximum or minimum).
 #+end_notes
-
 ** Dummy coding
 #+attr_html: :width 250px
 [[../img/4_dummy.png]]

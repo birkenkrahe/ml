@@ -477,84 +477,62 @@ Open an Org-mode file if you want to code along.
 #+caption: Ductal Carcinoma in situ (Source: jhp.edu)
 [[../img/5_ductal_carcinoma.jpg]]
 
-* Review: kNN DataCamp lesson
+** NEXT Test 3 preview
 
-1) [ ] Load the ~signs~ dataset from the lesson - how can you get it?
-   #+begin_src R :results output
-     signs <- read.csv(file="../data/knn_traffic_signs.csv",
-                       stringsAsFactors=TRUE)
-     str(signs[1:4])
-   #+end_src
-
-2) [ ] What information does the dataset ~signs~ contain?
-   #+attr_latex: :width 400px
-   [[../img/stop.png]]
+1) [ ] How is similarity measured in k-NN?
+2) [ ] What is used for "training" the k-NN classifier?
+3) [ ] What is used to test the "trained" k-NN classifier?
+4) [ ] What is the meaning of the parameter 'k'?
    #+begin_notes
-   - Street signs were divided into 4x4=16 panel grids
-   - Each grid's RGB levels, location and type were recorded
+    - The number of nearest neigbors when computing distance
+    - A measure of the size of the classification neighborhood
+    - An argument in the ~class::knn~ function
    #+end_notes
-
-3) [ ] For the classification task, what is the class?
-
-4) [ ] How many types of ~signs~, how many of each sign type are there?
-   #+begin_src R :results output
-     table(signs$sign_type)
-   #+end_src
-
-5) [ ] Which function and which package was used for kNN?
-   #+begin_src R :results output
-     library(class)  # load package
-     search()  # check package search path
-     ls('package:class') # check package functions
-   #+end_src
-
-   #+RESULTS:
-   :  [1] ".GlobalEnv"        "package:class"     "ESSR"             
-   :  [4] "package:stats"     "package:graphics"  "package:grDevices"
-   :  [7] "package:utils"     "package:datasets"  "package:methods"  
-   : [10] "Autoloads"         "package:base"
-   :  [1] "batchSOM"  "condense"  "knn"       "knn.cv"    "knn1"      "lvq1"     
-   :  [7] "lvq2"      "lvq3"      "lvqinit"   "lvqtest"   "multiedit" "olvq1"    
-   : [13] "reduce.nn" "SOM"       "somgrid"
-
-6) [ ] What were the three arguments for the classifier?
+5) [ ] What are the arguments of ~knn~?
    #+begin_src R
-     knn(train = signs[-c(1:3)],     # training data
-         test = signs[206, -c(1:3)], # test data
-         cl = sign_types)            # class
+     args(knn)
    #+end_src
-
-   #+RESULTS:
-   : stop
-
-7) [ ] Which conditions should the training/test data fulfil?
+6) [ ] What is the purpose of splitting the data in training and test
+   data?
+7) [ ] What happens when voting is tied after measuring the distances?
+8) [ ] If I have 10 features q_{1}...q_{10} and 1 target label
+   - How many dimensions does the feature space have?
+   - How many terms under the square root of the distance formula?
+   - How many variables are used for classification of p?
    #+begin_notes
-   - They should be randomized and not grouped or ordered
-   - The id column needs to be removed
-   - Each subset needs to be representative of the full dataset
+   - 10 features, hence 10-dim feature space
+   - Each point has 10 coordinates. The distance formula has 10 terms
+     p_{i}-q_{ij}, one for each i-th coordinate of q_{j}, and 11 variables are
+     involved: 10 features (predictor) and 1 target variable
+     (predicted).
    #+end_notes
-
-8) [ ] Which condition should the features fulfil?
+9) [ ] Is a bigger ~k~ always better? Why or why not?
    #+begin_notes
-     - They need to be normalized or standardized by scale.
-     - They need to be independent of one another.
-     - They need to be characteristic of the class levels
+   Optimal k depends on noise in the data, on the pattern to be
+   identified, one starts off with the square root of the number of
+   training examples, to find the optimal k, try different values.
    #+end_notes
+10) [ ] Measuring model performance:
+    - What is the confusion matrix? What's its dimension?
+    - How can you compute the confusion matrix for kNN?
+    - How can you assess the accuracy numerically?
+    #+begin_notes
+    - The confusion matrix is a 2 x 2 cross-table if the target
+      feature had 2 labels/categories (e.g. male/female or
+      benign/malignant), or a 3 x 3 for 3 labels. It shows, which
+      levels were accurately identified and which were not.
+    - With the ~table~ function and the ~factor~ levels or ~character~
+      values as arguments, e.g. ~table(signs_pred,signs_actual)~.
+    - With the ~mean~ function by averaging over the vector resulting
+      from comparing original and predicted values:
+      ~mean(sign_actual==~sign_pred)~.
+    #+end_notes
+   
+** NEXT Continue: kNN case study
+#+attr_latex: :width 600px
+#+caption: k-NN workflow (Gavagsaz, 2022)
+[[../img/knn.jpg]]
 
-9) [ ] What are characteristics of the target class?
-   #+begin_notes
-     The class is a ~factor~ vector whose ~levels~ are the class values.
-   #+end_notes
-
-10) [ ] In the ~r10~ feature (10th grid location), what are the average
-    values in each target class? 
-    #+begin_src R :results output
-      tapply(X = signs$r10,
-             INDEX = signs$sign_type,
-             FUN = mean)
-    #+end_src
-
-* Continue: kNN case study
 - If you missed the last session, download ~5_knn_case_practice.org~
   fromGitHub and head to the chapter *Intermission* to catch up!
 
@@ -564,14 +542,15 @@ Open an Org-mode file if you want to code along.
   3) Training a model on the data
   4) Evaluating model performance
   5) Exercises: improve the model! (bonus)
-* Next assignment - submit by March 7
+
+** NEXT assignment - submit by March 7
 #+attr_latex: :width 400px
 #+caption: Photo by Andrew Neel, Unsplash.com
 [[../img/assignment.jpg]]
 
 - [[https://lyon.instructure.com/courses/1021/assignments/8405][Next assignment: NAIVE BAYES method - deadline MARCH 7, 11:59 pm]]
 
-* Next test - submit by March 7
+** NEXT test - submit by March 7
 #+attr_latex: :width 400px
 #+caption: Photo by Ben Mullins, Unsplash.com
 [[../img/0_test.jpg]]
@@ -612,6 +591,10 @@ Open an Org-mode file if you want to code along.
 
 * References
 
+- Gavagsaz, Elaheh (May 2022). Efficient Parallel Processing of
+  k-Nearest Neighbor Queries by Using a Centroid-based and
+  Hierarchical Clustering Algorithm, DOI: 10.30564/aia.v4i1.4668
+
 - Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –
   All Advanced Search Operators Tutorial [2023 Tips]. Online:
   [[https://youtu.be/BRiNw490Eq0][youtube.com]].
@@ -632,6 +615,11 @@ Open an Org-mode file if you want to code along.
   Everybody - Full Course. Online: [[https://youtu.be/i_LwzRVP7bg][youtube.com]].
 
 * Footnotes
+[fn:2]The data sets are listed at the bottom of all DataCamp courses,
+e.g. "[[https://app.datacamp.com/learn/courses/supervised-learning-in-r-classification][Supervised learning in R]]" the link opens to the [[https://app.datacamp.com/learn/courses/supervised-learning-in-r-classification][raw CSV file]],
+which you can either download and read the CSV file from your PC, or
+use the URL as ~filename~. If you get a "cannot open connection" error,
+check the URL or try again.
 
 [fn:1]Russell is a coauthor of AIMA, one of the textbooks we're going
 to use for my fall seminar on "Artificial Intelligence" (DSC/CSC

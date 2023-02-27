@@ -87,7 +87,23 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
 
   #+end_src
 
-* Interlude: ~function~
+* TODO Intermission - Review from Thu 23-Feb-23
+
+- Run the code from the last session so that you're caught up:
+  #+begin_src R
+    ## get the Wisconsin breast cancer data as data frame:
+    wbcd <- read.csv(file="http://bit.ly/3khqmkp")
+    ## drop the first (ID) column:
+    wbcd <- wbcd[-1] 
+    ## recode target class as labeled 2-level factor
+    wbcd$diagnosis |> factor(c("B","M"),c("Benign","Malignant")) -> wbcd$diagnosis
+    wbcd$diagnosis |>  str()
+#+end_src
+
+#+RESULTS:
+:  Factor w/ 2 levels "Benign","Malignant": 1 1 1 1 1 1 1 2 1 1 ...
+
+* NEXT Interlude: ~function~
 
 - Example: defining a ~hello~ world ~function~ in R
   #+begin_src R
@@ -112,7 +128,7 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
 
   #+end_src
 
-* Interlude: ~lapply~
+* Interlude: ~lapply~ and ~tapply~
 
 - The ~lapply~ function takes a list and applies an argument to each
   list element and returns a list. A data frame is a list:
@@ -124,6 +140,12 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
   data frame?
   #+begin_src R
 
+  #+end_src
+
+- Example: what is the average (~mean~) of the largest cell radius
+  measurements (~radius_worst~) for ~Benign~ and ~Malignant~ labels?
+  #+begin_src R
+  
   #+end_src
 
 * Applying ~normalize~ to the data frame
