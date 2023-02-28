@@ -143,8 +143,8 @@ GitHub, complete the file and upload it to Canvas by the deadline.
   #+end_src
 
   #+RESULTS:
-  : 
-  :   B   M 
+  :
+  :   B   M
   : 357 212
 
 - kNN like many other ML classifiers require the target feature (aka
@@ -215,6 +215,20 @@ GitHub, complete the file and upload it to Canvas by the deadline.
     range(wbcd["smoothness_mean"])
   #+end_src
 
+* TODO Intermission - Review from Thu 23-Feb-23
+
+- Run the code from the last session so that you're caught up:
+  #+name: restart
+  #+begin_src R
+    ## get the Wisconsin breast cancer data as data frame:
+    wbcd <- read.csv(file="http://bit.ly/3khqmkp")
+    ## drop the first (ID) column:
+    wbcd <- wbcd[-1]
+    ## recode target class as labeled 2-level factor
+    wbcd$diagnosis |> factor(c("B","M"),c("Benign","Malignant")) -> wbcd$diagnosis
+    wbcd$diagnosis |>  str()
+  #+end_src
+  
 * NEXT Interlude: ~function~
 
 - We normalize the data using the min-max normalization formula, which
@@ -371,15 +385,15 @@ GitHub, complete the file and upload it to Canvas by the deadline.
     search()
   #+end_src
 
-- Look at the arguments of ~knn~: 
+- Look at the arguments of ~knn~:
   #+begin_src R
     args(knn)
   #+end_src
 
 - Look at the ~help~ for ~knn~:
-  #+begin_src 
+  #+begin_src
     help(knn)
-  #+end_src  
+  #+end_src
 
 - You can check in the R console if there are any other ~knn~ like
   functions available to you already, with the fuzzy search ~??~. You
@@ -391,7 +405,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
     example(knn)
   #+end_src
 * Classification with ~class::knn~
-  
+
 - For each instance/row/record in the test data, ~knn~ will identify the
   ~k~ nearest neighbors using Euclidean distance, where ~k~ is a
   user-specified number.
@@ -403,7 +417,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
 - Training and classification is performed in a single command - we
   only use four of the available 7 parameters:
   #+attr_latex: :width 400px
-  #+caption: kNN classification syntax (Source: Lantz p. 83) 
+  #+caption: kNN classification syntax (Source: Lantz p. 83)
   [[../img/5_knn.png]]
 
 - The only parameter not discussed or set is ~k~, the number of
@@ -417,7 +431,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
   eliminates the chance of ending with a tie vote.
 
 - Use ~knn~ to classify the test data:
-  #+begin_src R 
+  #+begin_src R
     wbcd_test_pred <- knn(train = wbcd_train, # training data
                           test = wbcd_test,  # test data
                           cl = wbcd_train_labels, # class factor
@@ -431,7 +445,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
     length(wbcd_test_pred)
   #+end_src
 
-* Evaluating model performance  
+* Evaluating model performance
 
 - A performing model will have identified the labels in the test data
   set with high accuracy. Low accuracy means mis-identified labels.
@@ -439,7 +453,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
 - The tool to show accuracy is the *confusion matrix*, which shows the
   number of true and false positive and negative classification
   results.
-  
+
 - To build this table, we use the ~CrossTable~ function of the ~gmodels~
   package. After installing the package, we can load it, look at the
   loaded packages.
@@ -457,7 +471,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
 - Fortunately, we only need two arguments (x,y). We also exclude the
   chi-square values from the output to make it more readable:
   1) x is the set of test data set labels used for classification
-  2) y is the data set of predicted labels by ~knn~ 
+  2) y is the data set of predicted labels by ~knn~
   #+begin_src R
     CrossTable(x = wbcd_test_labels,
                y = wbcd_test_pred,
@@ -473,25 +487,28 @@ GitHub, complete the file and upload it to Canvas by the deadline.
 3) Bottom-left: FALSE NEGATIVE results - 2/100
 4) Top-right: FALSE POSITIVES  results - 0/100
 
-What do these results mean?  
+What do these results mean?
 #+begin_notes
 1) "True negative" means that the patient had no tumor and the model
    recognized this.
 2) "True positive" means that the patient had a tumor and the model
    recognized this.
-3) "False negative" means that the patient had a tumor but the model 
-  did not recognize it.
+3) "False negative" means that the patient had a tumor but the model
+   did not recognize it.
 4) "False positive" means that the patient had no tumor but the model
    found one.
 #+end_notes
 
 * Improving model performance
 
-- Perform an alternative rescaling of numeric features
+- Perform an alternative rescaling of numeric features (z-score)
 
-- Run the model for different ~k~ values
+- Run the model for different ~k~ values to find the optium value
 
 * Exercises - improve the model performance
+
+You find these exercises in GitHub as ~5_knn_exercise_1.org~ and
+~5_knn_exercise_2.org~.
 
 1) Rescaling: Use the z-score standardization to transform
    the data, check and interpret the predictions.
@@ -504,8 +521,8 @@ What do these results mean?
    #+attr_latex: :width 400px
    #+caption: Sample results - kNN On wbcd for different k
    [[../img/5_k_exercise.png]]
-   
-   
+
+
 * References
 
 - Image: Ductal carcinoma in situ (URL: [[https://pathology.jhu.edu/breast/types-of-breast-cancer][pathology.jhu.edu]])

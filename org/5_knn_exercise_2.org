@@ -1,0 +1,103 @@
+#+TITLE: k-NEAREST-NEIGBORS - BREAST CANCER PREDICTION - EXERCISE 2
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: Case Study - Supervised lazy learner classifiers
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+* README
+
+Exercise to test k-NN classification of Wisconsin breast cancer data
+with a range of k values.
+
+* TODO Identify and pledge yourself
+
+1) In Emacs, replace the placeholder ~[yourname]~ at the top of this
+   file by your own name and write ~(pledged)~ next to it
+2) Go with the cursor on the headline and hange the ~TODO~ label to ~DONE~
+   by entering ~S-<right>~ ("Shift + right-arrow").
+
+* Classifying with different ~k~ values
+
+Use different values of ~k~, check and interpret the predictions: k =
+1, 5, 11, 15, 21, 27. [[https://github.com/birkenkrahe/ml/blob/main/img/5_k_exercise.png][This image shows the result you're aiming for]].
+
+1) Get the data and transform the dataframe for classification:
+   #+name: restart
+   #+begin_src R :results silent
+     wbcd <- read.csv(file="http://bit.ly/3khqmkp")
+     wbcd <- wbcd[-1]
+     wbcd$diagnosis <-
+       factor(x=wbcd$diagnosis,
+              levels=c("B","M"),
+              labels=c("Benign","Malignant"))
+   #+end_src
+
+2) ~normalize~ it to obtain ~wbcd_n~ and run it on the features with
+   ~lapply~:
+   #+name: normalize
+   #+begin_src R :results silent
+     normalize <- function(x) {
+       return (...)
+     }
+     wbcd_n <- as.data.frame(
+       lapply(X = ...
+              FUN = ...))
+   #+end_src
+
+3) split ~wbcd_n~ in training data (rows 1 to 469) and test data (last
+   100 rows):
+   #+name: split
+   #+begin_src R :results silent
+     wbcd_train <- ...
+     wbcd_test <- ...
+   #+end_src
+
+4) create training and testing labels
+   #+name: labels
+   #+begin_src R :result silent
+     wbcd_train_labels <- ...
+     wbcd_test_labels <- ...
+   #+end_src
+
+5) define function with ~k~ as argument
+   #+name: wbcd_check_k
+   #+begin_src R :results silent
+     wbcd_check_k <- function(x=1) {
+       wbcd_test_pred <- knn(train = ...,
+                             test = ...,
+                             cl = ...,
+                             k = x)
+       CrossTable(x = ...,
+                  y = ...,
+                  prop.chisq = FALSE)
+       mean(...)
+     }
+   #+end_src
+
+6) loop over the ~k~ values 1,5,11,15,21,27:
+   #+begin_src R :noweb yes
+     <<restart>>
+     <<normalize>>
+     <<split>>
+     <<labels>>
+     k_vals <- ... ## vector with the k values to test
+     result <- rep(NA,length(k_vals))  ## initialize result
+     for (i in k_vals) {
+       result[i] <- wbcd_check_k(i)   # run function
+       print(paste("Accuracy for k =", i, ":",
+                   format(result[i],digits=6)))
+     }
+   #+end_src
+
+7) Put your resulting values in this table:
+   #+name: table
+   | ~k~ value | False negatives | False positives | % correct |
+   |---------+-----------------+-----------------+-----------|
+   |         |                 |                 |           |
+   |         |                 |                 |           |
+   |         |                 |                 |           |
+   |         |                 |                 |           |
+   |         |                 |                 |           |
+   |         |                 |                 |           |
+
+8) Submit completed file to Canvas.

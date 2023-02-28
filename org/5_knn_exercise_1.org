@@ -1,0 +1,75 @@
+#+TITLE: k-NEAREST-NEIGBORS - BREAST CANCER PREDICTION - EXERCISE 1
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: Case Study - Supervised lazy learner classifiers
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+* README
+
+Exercise to apply z-score standardization to the kNN algorithm used to
+predict Wisconsin breast cancer data.
+
+* TODO Identify and pledge yourself
+
+1) In Emacs, replace the placeholder ~[yourname]~ at the top of this
+   file by your own name and write ~(pledged)~ next to it
+2) Go with the cursor on the headline and hange the ~TODO~ label to ~DONE~
+   by entering ~S-<right>~ ("Shift + right-arrow").
+
+* Rescaling with z-core standardisation
+
+Rescaling: Use the z-score standardization to transform the data,
+check and interpret the predictions. [[https://github.com/birkenkrahe/ml/blob/main/img/5_z_exercise.png][Here is the confusion matrix]] that
+you should get as a result.
+
+1) Get the data and transform the dataframe for classification:
+   #+name: restart
+   #+begin_src R :results silent
+     wbcd <- read.csv(file="http://bit.ly/3khqmkp")
+     wbcd <- wbcd[-1]
+     wbcd$diagnosis <-
+       factor(x=wbcd$diagnosis,
+              levels=c("B","M"),
+              labels=c("Benign","Malignant"))
+   #+end_src
+
+2) To standardize a vector, use ~base::scale~, which centers and scales
+   the columns of a ~numeric~ ~matrix~. Display the arguments of this
+   function:
+   #+begin_src R
+     ...
+   #+end_src
+
+3) Apply ~scale~ directly to the feature vectors of ~wbcd~:
+   #+begin_src R :results silent
+     wbcd_z <- as.data.frame(...)
+   #+end_src
+
+4) Check the transformation by running ~summary~ on ~area_mean~ for the
+   original, and for the standardized data frame:
+   #+begin_src R
+
+
+   #+end_src
+
+5) The ~mean~ of a z-score standardized variable should always be (close
+   to) 0, and the range should be compact: compute ~mean~ and
+   ~diff(range())~ for both original and standardized dataframe
+   #+begin_src R
+
+   #+end_src
+
+6) To see the effect of this transformation in the confusion matrix:
+   1) Load ~class~ and ~gmodels~ packages
+   2) split the standardized data in training and test data
+   3) define training and test labels (classes)
+   4) run ~knn~ with ~k=21~ on the data
+   5) evaluate the performance with ~CrossTable~:
+   #+begin_src R
+     ...
+     CrossTable(x = ...,
+                y = ...,
+                prop.chisq = FALSE)
+   #+end_src
+
+7) Submit completed file to Canvas.
