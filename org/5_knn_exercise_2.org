@@ -62,30 +62,34 @@ Use different values of ~k~, check and interpret the predictions: k =
 5) define function with ~k~ as argument
    #+name: wbcd_check_k
    #+begin_src R :results silent
+     library(class)
      wbcd_check_k <- function(x=1) {
        wbcd_test_pred <- knn(train = ...,
                              test = ...,
                              cl = ...,
                              k = x)
-       CrossTable(x = ...,
-                  y = ...,
-                  prop.chisq = FALSE)
+       print(table(x = ...,
+                   y = ...))
        mean(...)
      }
-   #+end_src
+                   #+end_src
 
 6) loop over the ~k~ values 1,5,11,15,21,27:
    #+begin_src R :noweb yes
+     ## setup - runs previous code blocks
      <<restart>>
      <<normalize>>
      <<split>>
      <<labels>>
+     <<define_wbcd_check_k>>
      k_vals <- ... ## vector with the k values to test
      result <- rep(NA,length(k_vals))  ## initialize result
+     j <- 0 # initialize dummy index
      for (i in k_vals) {
-       result[i] <- wbcd_check_k(i)   # run function
+       j <- j + 1
+       result[j] <- wbcd_check_k(i)   # run knn for current k value
        print(paste("Accuracy for k =", i, ":",
-                   format(result[i],digits=6)))
+                   format(result[j],digits=6)))
      }
    #+end_src
 

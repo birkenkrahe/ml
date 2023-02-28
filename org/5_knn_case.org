@@ -431,7 +431,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
   eliminates the chance of ending with a tie vote.
 
 - Use ~knn~ to classify the test data:
-  #+begin_src R
+  #+begin_src R :results silent
     wbcd_test_pred <- knn(train = wbcd_train, # training data
                           test = wbcd_test,  # test data
                           cl = wbcd_train_labels, # class factor
@@ -473,9 +473,16 @@ GitHub, complete the file and upload it to Canvas by the deadline.
   1) x is the set of test data set labels used for classification
   2) y is the data set of predicted labels by ~knn~
   #+begin_src R
+    library(gmodels)
     CrossTable(x = wbcd_test_labels,
                y = wbcd_test_pred,
                prop.chisq = FALSE)
+  #+end_src
+
+- You can also just replace ~gmodels::CrossTable~ by ~base::table~
+  #+begin_src R
+    table(x = wbcd_test_labels,
+          y = wbcd_test_pred)
   #+end_src
 
 * Analyze the confusion table
