@@ -479,7 +479,8 @@ Open an Org-mode file if you want to code along.
 
 ** NEXT Test 3 preview
 
-*When prompted, write down your answer or keywords to the answer.*
+- Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-3-preview][10 questions]] that preview the next (graded) ML test
+- *When prompted, write down your answer or keywords to the answer.*
 
 1) [ ] How is similarity measured in k-NN?
    #+begin_notes
@@ -551,9 +552,9 @@ Open an Org-mode file if you want to code along.
      ~mean(sign_actual==~sign_pred)~.
    #+end_notes
 10) [ ] What does bias-tradeoff refer to?
+    #+begin_notes
     #+attr_latex: :width 400px
     [[../img/bias_tradeoff.png]]
-    #+begin_notes
     The image shows subsequent classification attempts. Perfect
     prediction corresponds to the bulls-eye. The further away a point
     is, the worse the prediction.
