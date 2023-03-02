@@ -540,8 +540,9 @@ Open an Org-mode file if you want to code along.
    - The confusion matrix is a 2 x 2 cross-table if the target feature
      had 2 labels/categories (e.g. male/female or benign/malignant),
      or a 3 x 3 for 3 labels. It shows, which levels were accurately
-     identified and which were not (solution).
+     identified and which were not ([[https://github.com/birkenkrahe/ml/blob/main/img/confusion1.png][solution]]).
      #+attr_latex: :width 400px
+     #+caption: Confusion matrix (empty) and classification results
      [[../img/confusion.png]]
    - With the ~table~ function and the ~factor~ levels or ~character~
      values as arguments, e.g. ~table(signs_pred,signs_actual)~.
@@ -565,7 +566,6 @@ Open an Org-mode file if you want to code along.
     - The best case is low bias and low variance: low error, points
       close together, the worst is high bias and high variance.
     #+end_notes
-
 ** NEXT Continue: kNN case study
 #+attr_latex: :width 600px
 #+caption: k-NN workflow (Gavagsaz, 2022)
