@@ -367,8 +367,8 @@ GitHub, complete the file and upload it to Canvas by the deadline.
   #+begin_src R :result silent
     wbcd_train_labels <- wbcd[1:469,1]  # from the original dataset
     wbcd_test_labels <- wbcd[470:569,1]  # from the original dataset
-    str(wbcd_train_labels)
-    str(wbcd_test_labels)
+    str(wbcd_train_labels[1:3])
+    str(wbcd_test_labels[1:3])
   #+end_src
 
 * Getting the k-NN algorithm
@@ -426,6 +426,9 @@ GitHub, complete the file and upload it to Canvas by the deadline.
   #+begin_src R
     as.integer(sqrt(469))
   #+end_src
+
+  #+RESULTS:
+  : [1] 21
 
 - With a 2-category (benign or malignant) outcome, using an odd number
   eliminates the chance of ending with a tie vote.

@@ -477,83 +477,87 @@ Open an Org-mode file if you want to code along.
 #+caption: Ductal Carcinoma in situ (Source: jhp.edu)
 [[../img/5_ductal_carcinoma.jpg]]
 
-** NEXT Test 3 preview
+* NEXT Test 3 preview
 
-- Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-3-preview][10 questions]] that preview the next (graded) ML test
-- *When prompted, write down your answer or keywords to the answer.*
+Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-3-preview][10 questions]] that preview the next (graded) ML test
+*When prompted, write down your answer or keywords to the answer.*
 
-1) [ ] How is similarity measured in k-NN?
-   #+begin_notes
+1) [X] How is similarity measured in k-NN?
+     #+begin_notes
    By computing a distance measure, e.g. Euclidean distance, the usual
    distance between two vectors, see ~dist~.
-   #+end_notes
-2) [ ] What is used for "training" and "testing" the k-NN classifier?
-   #+begin_notes
+     #+end_notes
+2) [X] What is used for "training" and "testing" the k-NN classifier?
+     #+begin_notes
    Two data sets, one known, labelled data to train the model on a
    label, the other one unseen, unlabelled data to test the trained
    model. The training and test data should be of comparable
    quality and randomized.
-   #+end_notes
-3) [ ] What is the meaning of the parameter 'k'? (4)
-   #+begin_notes
+     #+end_notes
+3) [X] What is the meaning of the parameter 'k'? (4)
+     #+begin_notes
    - The number of nearest neigbors after computing distance
    - A measure of the size of the classification neighborhood
    - A measure for the degree of over- or underfitting
    - An argument in the ~class::knn~ function
-   #+end_notes
-4) [ ] What are the arguments of ~knn~? (4)
-   #+begin_src R :results output :exports none
+     #+end_notes
+4) [X] What are the arguments of ~knn~? (4)
+     #+begin_src R :results output :exports none
+     library(class); args(knn)
+     #+end_src
 
-   #+end_src
-5) [ ] What is the purpose of splitting the data in training and test
+  #+RESULTS:
+  : function (train, test, cl, k = 1, l = 0, prob = FALSE, use.all = TRUE) 
+  : NULL
+5) [X] What is the purpose of splitting the data in training and test
    data? Why don't we just use ALL available data for training?
-   #+begin_notes
+     #+begin_notes
    - To avoid overfitting: without testing, it is not clear to which
      extent the model will generalize to unseen data. We split one
      data set because the data are of comparable quality/structure.
-   #+end_notes
-6) [ ] What happens when voting is tied after measuring the distances?
-   #+begin_notes
+     #+end_notes
+6) [X] What happens when voting is tied after measuring the distances?
+     #+begin_notes
    In ~class::knn~, the class is decided at random. Use odd ~k~ to avoid this.
-   #+end_notes
-7) [ ] If I have 10 features q_{1}...q_{10} and 1 target label
+     #+end_notes
+7) [X] If I have 10 features q_{1}...q_{10} and 1 target label
    - How many dimensions does the feature space have?
    - How many terms under the square root of the distance formula?
    - How many variables are used for classification of p?
-   #+begin_notes
+     #+begin_notes
    - 10 features, hence 10-dim feature space
    - Each point has 10 coordinates. The distance formula has 10 terms
      p_{i}-q_{ij}, one for each i-th coordinate of q_{j}, and 11
      variables are involved: 10 features (predictors) and 1 target
      variable (predicted).
-   #+end_notes
-8) [ ] Is a bigger ~k~ always better? Why or why not?
-   #+begin_notes
+     #+end_notes
+8) [X] Is a bigger ~k~ always better? Why or why not?
+       #+begin_notes
    Optimal k depends on noise in the data, on the pattern to be
    identified, one starts off with the square root of the number of
    training examples, to find the optimal k, try different values.
-   #+end_notes
-9) [ ] Measuring model performance:
+       #+end_notes
+9) [X] Measuring model performance:
    - What is the confusion matrix? What's its *dimension*?
    - How can you *compute* the confusion matrix for kNN in R?
    - How can you assess the accuracy *numerically*?
-   #+begin_notes
+       #+begin_notes
    - The confusion matrix is a 2 x 2 cross-table if the target feature
      had 2 labels/categories (e.g. male/female or benign/malignant),
      or a 3 x 3 for 3 labels. It shows, which levels were accurately
      identified and which were not ([[https://github.com/birkenkrahe/ml/blob/main/img/confusion1.png][solution]]).
-     #+attr_latex: :width 400px
-     #+caption: Confusion matrix (empty) and classification results
+         #+attr_latex: :width 400px
+         #+caption: Confusion matrix (empty) and classification results
      [[../img/confusion.png]]
    - With the ~table~ function and the ~factor~ levels or ~character~
      values as arguments, e.g. ~table(signs_pred,signs_actual)~.
    - With the ~mean~ function by averaging over the vector resulting
      from comparing original and predicted values:
-     ~mean(sign_actual==~sign_pred)~.
-   #+end_notes
-10) [ ] What does bias-tradeoff refer to?
-    #+begin_notes
-    #+attr_latex: :width 400px
+     ~mean(sign_actual==sign_pred)~.
+       #+end_notes
+10) [X] What does bias-tradeoff refer to?
+        #+begin_notes
+        #+attr_latex: :width 400px
     [[../img/bias_tradeoff.png]]
     The image shows subsequent classification attempts. Perfect
     prediction corresponds to the bulls-eye. The further away a point
@@ -566,36 +570,39 @@ Open an Org-mode file if you want to code along.
       leaves the results together, high variance blows them up.
     - The best case is low bias and low variance: low error, points
       close together, the worst is high bias and high variance.
-    #+end_notes
-** NEXT Continue: kNN case study
-#+attr_latex: :width 600px
-#+caption: k-NN workflow (Gavagsaz, 2022)
-[[../img/knn.jpg]]
-
-- If you missed the last session, download ~5_knn_case_practice.org~
-  fromGitHub and head to the chapter *Intermission* to catch up!
-
-- *We hope to cover today:*
-  1) Normalizing (rescaling) numeric data
-  2) Creating training and test data sets
-  3) Training a model on the data
-  4) Evaluating model performance
-  5) Exercises: improve the model! (bonus)
-
-** NEXT assignment - submit by March 7
+        #+end_notes
+* NEXT Assignment - submit by March 10
 #+attr_latex: :width 400px
 #+caption: Photo by Andrew Neel, Unsplash.com
 [[../img/assignment.jpg]]
 
 - [[https://lyon.instructure.com/courses/1021/assignments/8405][Next assignment: NAIVE BAYES method - deadline MARCH 7, 11:59 pm]]
 
-** NEXT test - submit by March 7
+* NEXT Test - submit by March 10
 #+attr_latex: :width 400px
 #+caption: Photo by Ben Mullins, Unsplash.com
 [[../img/0_test.jpg]]
 
-- [[https://lyon.instructure.com/courses/1021/assignments/8789/edit?quiz_lti][Next test (topic: kNN) is live now until Tuesday, MARCH 7, 11:59pm.]]
+- [[https://lyon.instructure.com/courses/1021/assignments/8789/edit?quiz_lti][Test 3 is live from later today until Friday, MARCH 10, 11:59pm.]]
 
+* NEXT Project - 2nd sprint review by March 13
+
+* NEXT Continue: kNN case study
+#+attr_latex: :width 600px
+#+caption: k-NN workflow (Gavagsaz, 2022)
+[[../img/knn.jpg]]
+
+- If you missed the last session, *download* ~5_knn_practice.org~
+  fromGitHub and head to the chapter *Intermission* to catch up!
+
+- Lecture: ~5_knn_case.org~ & 2 bonus exercises 
+  
+- *We hope to cover today:*
+  1) Normalizing (rescaling) numeric data
+  2) Creating training and test data sets
+  3) Training a model on the data
+  4) Evaluating model performance
+  5) Exercises: improve the model! (bonus)
 
 * TODO Week 9: Naive Bayes
 * TODO Week 10: Logistic regression
