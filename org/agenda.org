@@ -479,21 +479,42 @@ Open an Org-mode file if you want to code along.
 
 ** NEXT Test 3 preview
 
+*When prompted, write down your answer or keywords to the answer.*
+
 1) [ ] How is similarity measured in k-NN?
-2) [ ] What is used for "training" and "testing" the k-NN classifier?
-3) [ ] What is the meaning of the parameter 'k'?
    #+begin_notes
-    - The number of nearest neigbors when computing distance
-    - A measure of the size of the classification neighborhood
-    - An argument in the ~class::knn~ function
+   By computing a distance measure, e.g. Euclidean distance, the usual
+   distance between two vectors, see ~dist~.
    #+end_notes
-4) [ ] What are the arguments of ~knn~?
-   #+begin_src R
+2) [ ] What is used for "training" and "testing" the k-NN classifier?
+   #+begin_notes
+   Two data sets, one known, labelled data to train the model on a
+   label, the other one unseen, unlabelled data to test the trained
+   model. The training and test data should be of comparable
+   quality and randomized.
+   #+end_notes
+3) [ ] What is the meaning of the parameter 'k'? (4)
+   #+begin_notes
+   - The number of nearest neigbors after computing distance
+   - A measure of the size of the classification neighborhood
+   - A measure for the degree of over- or underfitting
+   - An argument in the ~class::knn~ function
+   #+end_notes
+4) [ ] What are the arguments of ~knn~? (4)
+   #+begin_src R :results output
      args(knn)
    #+end_src
 5) [ ] What is the purpose of splitting the data in training and test
-   data?
+   data? Why don't we just use ALL available data for training?
+   #+begin_notes
+   - To avoid overfitting: without testing, it is not clear to which
+     extent the model will generalize to unseen data. We split one
+     data set because the data are of comparable quality/structure.
+   #+end_notes
 6) [ ] What happens when voting is tied after measuring the distances?
+   #+begin_notes
+   In ~class::knn~, the class is decided at random. Use odd ~k~ to avoid this.
+   #+end_notes
 7) [ ] If I have 10 features q_{1}...q_{10} and 1 target label
    - How many dimensions does the feature space have?
    - How many terms under the square root of the distance formula?
@@ -501,9 +522,9 @@ Open an Org-mode file if you want to code along.
    #+begin_notes
    - 10 features, hence 10-dim feature space
    - Each point has 10 coordinates. The distance formula has 10 terms
-     p_{i}-q_{ij}, one for each i-th coordinate of q_{j}, and 11 variables are
-     involved: 10 features (predictor) and 1 target variable
-     (predicted).
+     p_{i}-q_{ij}, one for each i-th coordinate of q_{j}, and 11
+     variables are involved: 10 features (predictors) and 1 target
+     variable (predicted).
    #+end_notes
 8) [ ] Is a bigger ~k~ always better? Why or why not?
    #+begin_notes
@@ -512,14 +533,16 @@ Open an Org-mode file if you want to code along.
    training examples, to find the optimal k, try different values.
    #+end_notes
 9) [ ] Measuring model performance:
-   - What is the confusion matrix? What's its dimension?
-   - How can you compute the confusion matrix for kNN?
-   - How can you assess the accuracy numerically?
+   - What is the confusion matrix? What's its *dimension*?
+   - How can you *compute* the confusion matrix for kNN in R?
+   - How can you assess the accuracy *numerically*?
    #+begin_notes
-   - The confusion matrix is a 2 x 2 cross-table if the target
-     feature had 2 labels/categories (e.g. male/female or
-     benign/malignant), or a 3 x 3 for 3 labels. It shows, which
-     levels were accurately identified and which were not.
+   - The confusion matrix is a 2 x 2 cross-table if the target feature
+     had 2 labels/categories (e.g. male/female or benign/malignant),
+     or a 3 x 3 for 3 labels. It shows, which levels were accurately
+     identified and which were not (solution).
+     #+attr_latex: :width 400px
+     [[../img/confusion.png]]
    - With the ~table~ function and the ~factor~ levels or ~character~
      values as arguments, e.g. ~table(signs_pred,signs_actual)~.
    - With the ~mean~ function by averaging over the vector resulting
@@ -542,7 +565,7 @@ Open an Org-mode file if you want to code along.
     - The best case is low bias and low variance: low error, points
       close together, the worst is high bias and high variance.
     #+end_notes
-    
+
 ** NEXT Continue: kNN case study
 #+attr_latex: :width 600px
 #+caption: k-NN workflow (Gavagsaz, 2022)
@@ -571,6 +594,7 @@ Open an Org-mode file if you want to code along.
 [[../img/0_test.jpg]]
 
 - [[https://lyon.instructure.com/courses/1021/assignments/8789/edit?quiz_lti][Next test (topic: kNN) is live now until Tuesday, MARCH 7, 11:59pm.]]
+
 
 * TODO Week 9: Naive Bayes
 * TODO Week 10: Logistic regression
