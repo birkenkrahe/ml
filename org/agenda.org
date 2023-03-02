@@ -501,8 +501,8 @@ Open an Org-mode file if you want to code along.
    - An argument in the ~class::knn~ function
    #+end_notes
 4) [ ] What are the arguments of ~knn~? (4)
-   #+begin_src R :results output
-     args(knn)
+   #+begin_src R :results output :exports none
+
    #+end_src
 5) [ ] What is the purpose of splitting the data in training and test
    data? Why don't we just use ALL available data for training?
