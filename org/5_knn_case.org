@@ -215,7 +215,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
     range(wbcd["smoothness_mean"])
   #+end_src
 
-* TODO Intermission - Review from Thu 23-Feb-23
+* Intermission - Review from Thu 23-Feb-23
 
 - Run the code from the last session so that you're caught up:
   #+name: restart
@@ -229,7 +229,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
     wbcd$diagnosis |>  str()
   #+end_src
   
-* NEXT Interlude: ~function~
+* Interlude: ~function~
 
 - We normalize the data using the min-max normalization formula, which
   we encapsulate in a ~function~.
@@ -448,7 +448,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
     length(wbcd_test_pred)
   #+end_src
 
-* Evaluating model performance
+* NEXT Evaluating model performance
 
 - A performing model will have identified the labels in the test data
   set with high accuracy. Low accuracy means mis-identified labels.
