@@ -1,0 +1,57 @@
+#+TITLE: Naive Bayes 
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: Supervised Naive Bayes Prediction
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_INIT_OPTIONS: transition: 'cube'
+#+REVEAL_THEME: black
+:END:
+* Naive Bayes
+#+attr_latex: :width 300px
+#+attr_html: :width 400px
+[[../img/4_knn.jpg]]
+
+- Lecture notes in Markdown file (~4_knn.md~)
+- Source: Lantz (2019), chapter 3, pp. 65-89
+- See also: DataCamp assignment chapter 1
+
+* What you will learn
+
+#+begin_notes
+...
+#+end_notes
+* The ~naivebayes~ package
+
+- How should one cite this package?[fn:1]
+
+* Strengths and Weaknesses
+
+| STRENGTHS            | WEAKNESSES            |
+|----------------------+-----------------------|
+
+#+begin_notes
+STRENGTHS:
+- 
+
+WEAKNESSES:
+- 
+
+#+end_notes
+
+* Summary
+
+* References
+
+- Lantz (2019). Machine Learning with R (3e). Packt.
+- Majka M (2019). naivebayes: High Performance Implementation of the
+  Naive Bayes Algorithm in R. R package version 0.9.7,
+  https://CRAN.R-project.org/package=naivebayes.
+
+* Footnotes
+
+[fn:1] The help lists the author's website. In the sidebar of that
+site, you find a link to [[https://majkamichal.github.io/naivebayes/authors.html][citing naivebayes]].

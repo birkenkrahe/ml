@@ -16,7 +16,7 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
 2) Go with the cursor on the headline and hange the ~TODO~ label to ~DONE~
    by entering ~S-<right>~ ("Shift + right-arrow").
 
-* Importing the data
+* TODO Importing the data
 
 - Import the CSV data file to a dataframe ~wbcd~ from url=[[http://bit.ly/3khqmkp][bit.ly/3khqmkp]]
   1) assume that the data have a header
@@ -42,7 +42,7 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
 
   #+end_src
 
-* Exploring the ~diagnosis~ target data
+* TODO Exploring the ~diagnosis~ target data
 
 - How many examples are benign or malignant, respectively?
   #+begin_src R
@@ -67,7 +67,7 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
 
   #+end_src
 
-* Exploring the predictors
+* TODO Exploring the predictors
 
 - List the first 3 rows of three of these predictors: ~radius_mean~,
   ~area_mean~, and ~smoothness_mean~:
@@ -103,7 +103,7 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
 #+RESULTS:
 :  Factor w/ 2 levels "Benign","Malignant": 1 1 1 1 1 1 1 2 1 1 ...
 
-* NEXT Interlude: ~function~
+* TODO Interlude: ~function~
 
 - Example: defining a ~hello~ world ~function~ in R
   #+begin_src R
@@ -115,7 +115,7 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
 
   #+end_src
 
-* Transforming - numeric data normalization
+* TODO Transforming - numeric data normalization
 
 - To apply the min-max formula to the whole dataset, we define a function
   ~normalize~:
@@ -128,7 +128,7 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
 
   #+end_src
 
-* Interlude: ~lapply~ and ~tapply~
+* TODO Interlude: ~lapply~ and ~tapply~
 
 - The ~lapply~ function takes a list and applies an argument to each
   list element and returns a list. A data frame is a list:
@@ -148,7 +148,7 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
   
   #+end_src
 
-* Applying ~normalize~ to the data frame
+* TODO Applying ~normalize~ to the data frame
 
 - Apply the ~normalize~ function to all elements of ~wbcd~ and convert
   the resulting ~list~ to a data frame ~wcbd_n~ using ~as.data.frame~:
@@ -164,7 +164,7 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
 
   #+end_src
 
-* Creating training and test data sets
+* TODO Creating training and test data sets
 
 - Split the normalized data frame, ~wbcd_n~ into two sets ~wbcd_train~ and
   ~wbcd_test~ using the first 469 and the next 100 values, respectively,
@@ -183,7 +183,7 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
 
   #+end_src
 
-* Getting the k-NN algorithm
+* TODO Getting the k-NN algorithm
 
 - To classify the test instances, we use the ~knn~ function from the
   ~class~ package. Install and load it, then list all loaded packages:
@@ -207,7 +207,7 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
 
   #+end_src
 
-* Classification with ~class::knn~
+* TODO Classification with ~class::knn~
   
 - The only parameter not discussed or set is ~k~, the number of
   neighbors to include in the vote - a standard initial choice is to
@@ -230,7 +230,7 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
 
   #+end_src
 
-* Evaluating model performance
+* TODO Evaluating model performance
 
 - To build this table, we use the ~CrossTable~ function of the ~gmodels~
   package. After installing the package, we can load it, look at the
@@ -253,22 +253,4 @@ as an example. Presentation follow Lantz, ch. 3, pp. 67-88.
   #+end_src
 
 What do these results mean?  
-
-* References
-
-- Image: Ductal carcinoma in situ (URL: [[https://pathology.jhu.edu/breast/types-of-breast-cancer][pathology.jhu.edu]])
-
-- Image: Fine-needle aspiration using ultrasound (URL: [[https://www.cancer.org/cancer/breast-cancer/screening-tests-and-early-detection/breast-biopsy/fine-needle-aspiration-biopsy-of-the-breast.html][cancer.org]])
-
-- Data: Breast Cancer Diagnosis and Prognosis via Linear Programming,
-  Mangasarian OL, Street WN, Wolberg WH, Operations Research, 1995,
-  Vol. 43, pp. 570-577. URL: [[http://archive.ics.uci.edu/ml/index.php][archive.ics.uci.edu/ml/]]
-
-- Lantz (2019). Machine Learning with R (3e). Packt.
-
-* TODO Glossary of Code
-
-* TODO Summary
-
-
 
