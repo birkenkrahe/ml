@@ -49,7 +49,6 @@ you should get as a result.
    original, and for the standardized data frame:
    #+begin_src R
 
-
    #+end_src
 
 5) The ~mean~ of a z-score standardized variable should always be (close

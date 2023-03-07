@@ -624,10 +624,32 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - Regression methods: linear and logistic methods
 - Regression use case: predicting medical expenses
 
+* TODO Review: kNN case study (continued)
 
-* TODO Week 10: Logistic regression
-* TODO Week 11: Classification trees
-* TODO Week 12: k-means
+- [ ] What are we trying to do?
+  
+- [ ] What does "training a kNN learner" mean?
+
+- [ ] What have we done so far?
+  #+begin_quotes
+  1) Data collection and storage (data frame)
+  2) Exploration of the class/target label and predictors/features
+  3) Cleaning, randomization and normalization of the data
+  4) Splitting of the dataset into training and test data
+  5) Isolating the training and test labels
+  6) Running the ~class:knn~ function with set ~k~ value
+  #+end_quotes
+
+- [ ] What's left?
+  #+begin_quotes
+  - Evaluating the performance of the model (confusion matrix, accuracy)
+  - Improving the performance (standardization, varying k-values)
+  - Running the model on new datasets (prepare data, run ~predict~)
+  #+end_quotes
+  
+* TODO Week 10: Regression
+* TODO Week 11: Decision trees
+* TODO Week 12: k-means clustering
 
 - [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]]
 
