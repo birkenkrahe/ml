@@ -11,19 +11,93 @@
 #+REVEAL_THEME: black
 :END:
 * Naive Bayes
-#+attr_latex: :width 300px
-#+attr_html: :width 400px
-[[../img/4_knn.jpg]]
+#+attr_html: :width 300px
+[[../img/ThomasBayes.png]]
 
-- Lecture notes in Markdown file (~4_knn.md~)
-- Source: Lantz (2019), chapter 3, pp. 65-89
-- See also: DataCamp assignment chapter 1
+#+begin_example
+- Lecture notes in Markdown file (4_naive_bayes.md)
+- Source: Lantz (2019), chapter 4, pp. 89-123
+- DataCamp assignment: "Supervised learning with R", ch. 2
+#+end_example
 
 * What you will learn
+- Classification using Naive Bayes
+- Bayes' theorem and naive assumptions
+- Text classification use case
+- R packages for text mining and visualization
+- SMS junk message filter
 
 #+begin_notes
-...
+A little bit of math in here, but nothing more than basic
+arithmetic. The main complexity is to understand the relationship
+between features, class, and probability measures, which are our
+"similarity" measure for this type of classifier.
 #+end_notes
+* Probabilistic methods
+#+attr_latex: :width 400px
+[[../img/6_weather.png]]
+#+begin_example
+- Probabilistic methods describe uncertainty
+- They use data on past events to extrapolate future events
+- Such predictions are subject to many assumptions
+#+end_example
+#+begin_notes
+- The chance of rain for example describes the proportion of prior
+  days with similar atmospheric conditions in which in rained.
+- A 70 percent chance of rain implies that in 7 out of 10 past cases
+  with similar conditions, it rained somewhere in the area.
+- The Naive Bayes algorithm uses probabilities in a similar way to a
+  weather forecast.
+#+end_notes
+
+* Probability
+
+#+begin_example
+- A probability P is a number between 0 and 1 (0% to 100%)
+- P captures the chance that an event will occur based on evidence
+- P = 0 indicates that the event will definitely not occur
+- P = 1 indicates that the event will occur with absolute certainty
+#+end_example
+
+* Bayesian methods
+
+#+begin_example
+- Training data are used to calculate outcome probability
+- Evidence is provided by labeled feature values
+- Classifier uses calculated probabilities to estimate class
+#+end_example
+
+* Applications 
+#+attr_html: :width 400px
+[[../img/ids-in-security.png]]
+
+- Text classification, e.g. spam filter
+- Anomaly detection in computer networks
+- Diagnosing medical conditions
+
+#+begin_notes
+- Best for problems where information from numerous attributes should
+  be considered simultaneously to estimate overall probability of an
+  outcome.
+- E.g. spam filter: various words found in an example/message instance
+- Unlike other ML methods, Bayesian methods use all available evidence
+  to make predictions.
+- Even if a large number of features have minor effects, their
+  combined impact in a Bayesian model could have a major impact.
+#+end_notes  
+  
+* Basic idea
+
+
+
+The estimated likelihood of an *event* or potential outcome is based on
+the evidence from multiple *trials* or opportunities for the event to occur.
+
+#+begin_notes
+| *Event* |
+|         |
+#+end_notes
+
 * The ~naivebayes~ package
 
 - How should one cite this package?[fn:1]

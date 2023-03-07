@@ -477,7 +477,7 @@ Open an Org-mode file if you want to code along.
 #+caption: Ductal Carcinoma in situ (Source: jhp.edu)
 [[../img/5_ductal_carcinoma.jpg]]
 
-* NEXT Test 3 preview
+** Test 3 preview
 
 Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-3-preview][10 questions]] that preview the next (graded) ML test
 *When prompted, write down your answer or keywords to the answer.*
@@ -571,23 +571,23 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
     - The best case is low bias and low variance: low error, points
       close together, the worst is high bias and high variance.
         #+end_notes
-* NEXT Assignment - submit by March 10
+** Assignment - submit by March 10
 #+attr_latex: :width 400px
 #+caption: Photo by Andrew Neel, Unsplash.com
 [[../img/assignment.jpg]]
 
 - [[https://lyon.instructure.com/courses/1021/assignments/8405][Next assignment: NAIVE BAYES method - deadline MARCH 7, 11:59 pm]]
 
-* NEXT Test - submit by March 10
+** Test - submit by March 10
 #+attr_latex: :width 400px
 #+caption: Photo by Ben Mullins, Unsplash.com
 [[../img/0_test.jpg]]
 
 - [[https://lyon.instructure.com/courses/1021/assignments/8789/edit?quiz_lti][Test 3 is live from later today until Friday, MARCH 10, 11:59pm.]]
 
-* NEXT Project - 2nd sprint review by March 13
+** Project - 2nd sprint review by March 17
 
-* NEXT Continue: kNN case study
+** Continue: kNN case study
 #+attr_latex: :width 600px
 #+caption: k-NN workflow (Gavagsaz, 2022)
 [[../img/knn.jpg]]
@@ -604,7 +604,27 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
   4) Evaluating model performance
   5) Exercises: improve the model! (bonus)
 
-* TODO Week 9: Naive Bayes
+* TODO Week 9: k-NN improvement & Naive Bayes
+#+attr_latex: :width 400px
+[[../img/amazing-thomas-bayes-illustration.jpg]]
+
+*REMINDERS* (check your Canvas calendar):
+- Complete *test 3* by Friday 11:59 pm this week!
+- Complete *DataCamp assignment* "Naive Bayes" by Friday this week!
+- [[https://lyon.instructure.com/courses/1021/assignments/9116][Literature review (2nd sprint review) by end of next week]]!
+
+*THIS WEEK*:
+- Evaluating kNN performance (practice)
+- Improving kNN performance (2 x exercise)
+- Lecture and practice: supervised learning with Naive Bayes 
+
+*UPCOMING TOPICS*:
+- Text mining to build spam filter with Naive Bayes
+- Word cloud visualization
+- Regression methods: linear and logistic methods
+- Regression use case: predicting medical expenses
+
+
 * TODO Week 10: Logistic regression
 * TODO Week 11: Classification trees
 * TODO Week 12: k-means
