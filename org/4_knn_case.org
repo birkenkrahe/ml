@@ -13,7 +13,7 @@ We will investigate the utility of ML for detecting cancer by applying
 the k-NN algorithm to measurements of biopsied cells from women with
 abnormal breast masses.
 
-To code along with the lecture, download ~5_knn_practice.org~ from
+To code along with the lecture, download ~4_knn_practice.org~ from
 GitHub, complete the file and upload it to Canvas by the deadline.
 
 * Plan
@@ -762,8 +762,8 @@ What do these results mean?
 [[../img/5_upload.png]]
 * Bonus exercises - improve the model performance
 
-You find these exercises in GitHub as ~5_knn_exercise_1.org~ and
-~5_knn_exercise_2.org~.
+You find these exercises in GitHub as ~4_knn_exercise_1.org~ and
+~4_knn_exercise_2.org~.
 
 1) Rescaling: Use the z-score standardization to transform
    the data, check and interpret the predictions.

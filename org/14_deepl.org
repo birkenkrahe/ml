@@ -1,0 +1,18 @@
+#+TITLE: Artificial Neural Networks - Deep Learning
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: Black-Box learning with neural networks and Deep Learning
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+:REVEAL_PROPERTIES:
+#+REVEAL_ROOT: https://cdn.jsdelivr.net/npm/reveal.js
+#+REVEAL_REVEAL_JS_VERSION: 4
+#+REVEAL_INIT_OPTIONS: transition: 'cube'
+#+REVEAL_THEME: black
+:END:
+* Summary
+
+* References
+
+- Lantz (2019). Machine Learning with R (3e). Packt.
+
