@@ -624,6 +624,10 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - Regression methods: linear and logistic methods
 - Regression use case: predicting medical expenses
 
+*Program games in Snap! (from Academic Day):*
+- https://github.com/birkenkrahe/snap (HTML, PDF, Org, md)
+- Next fall: [[https://ecraft2learn.github.io/ai/][AI extensions to Snap!]] with [[https://ecraft2learn.github.io/ai/student-projects/][student project examples]]
+
 * TODO Review: kNN case study (continued)
 
 - [ ] What are we trying to do?
