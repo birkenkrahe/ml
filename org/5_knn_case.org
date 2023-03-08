@@ -539,9 +539,9 @@ GitHub, complete the file and upload it to Canvas by the deadline.
   : NULL
 
 - Look at the ~help~ for ~knn~:
-  #+begin_src
+  #+begin_example R
     help(knn)
-  #+end_src
+  #+end_example
 
 - You can check in the R console if there are any other ~knn~ like
   functions available to you already, with the fuzzy search ~??~. You
@@ -549,9 +549,9 @@ GitHub, complete the file and upload it to Canvas by the deadline.
 
 - You can run the examples for ~knn~ (listed at the end of the
   ~help~) file, with ~example(knn)~:
-  #+begin_src R
+  #+begin_example R
     example(knn)
-  #+end_src
+  #+end_example
 * Classification with ~class::knn~
 
 - For each instance/row/record in the test data, ~knn~ will identify the
@@ -633,7 +633,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
   package 'gmodels' successfully unpacked and MD5 sums checked
 
   The downloaded binary packages are in
-          C:\Users\birkenkrahe\AppData\Local\Temp\RtmpO6yGNl\downloaded_packages
+          C:\Users\birkenkrahe\AppData\Local\Temp\RtmpM3iUNS\downloaded_packages
    [1] ".GlobalEnv"        "package:gmodels"   "package:class"    
    [4] "ESSR"              "package:stats"     "package:graphics" 
    [7] "package:grDevices" "package:utils"     "package:datasets" 
@@ -721,6 +721,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
 4) Top-right: FALSE POSITIVES  results - 0/100
 
 What do these results mean?
+
 #+begin_notes
 1) "True negative" means that the patient had no tumor and the model
    recognized this.
@@ -732,16 +733,28 @@ What do these results mean?
    found one.
 #+end_notes
 
+* Computing accuracy as an average
+
+- The arithmetic average between the predicted and the original labels
+  for the test data set corresponds to the percentage of cells
+  correctly identified:
+  #+begin_src R
+    mean(wbcd_test_pred==wbcd_test_labels)
+  #+end_src
+
+  #+RESULTS:
+  : [1] 0.98
+
 * Improving model performance
 
 - Perform an alternative rescaling of numeric features (z-score)
 
 - Run the model for different ~k~ values to find the optium value
 
-* TODO [[https://lyon.instructure.com/courses/1021/assignments/8758][Upload the completed practice file to Canvas]]
+* [[https://lyon.instructure.com/courses/1021/assignments/8758][Upload the completed practice file to Canvas]]
 #+attr_latex: :width 400px
 [[../img/5_upload.png]]
-* TODO Bonus exercises - improve the model performance
+* Bonus exercises - improve the model performance
 
 You find these exercises in GitHub as ~5_knn_exercise_1.org~ and
 ~5_knn_exercise_2.org~.
@@ -758,7 +771,7 @@ You find these exercises in GitHub as ~5_knn_exercise_1.org~ and
    #+caption: Sample results - kNN On wbcd for different k
    [[../img/5_k_exercise.png]]
 
-* TODO Upload the completed exercise files to Canvas
+* Upload the completed exercise files to Canvas
 #+attr_latex: :width 400px
 [[../img/5_bonus.png]]
 * References

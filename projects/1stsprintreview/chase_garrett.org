@@ -1,0 +1,61 @@
+#+PROPOSAL : Legality and Morality of AI based in creating artwork
+#+AUTHOR   : Chase Griffith, Garrett Russell
+
+* Problem
+  In the last year multiple different AI based image generators
+  (Midjourney, Craiyon, DALL-E 2, Dream) have cropped up and gone
+  exceedingly viral on social media sites like Twitter.
+
+  Initially used to generate different memes and funny images, people
+  also began to use them to generate artwork of their favorite
+  characters, or just aesthetically pleasing artwork in general. They
+  would then move to post them as their own artwork/discoveries.
+
+  An unfortunate aspect of how most of these AI's work, is that they
+  pull from a library of images online, with little to no discretion
+  if the image is in the public domain or not. It then uses a series
+  of algorithms to combine these images into something "new." This is
+  similar to a process called photo-bashing, where an artist picks out
+  several images and mushes them together into a new image; most
+  commonly seen in concept art.
+
+  Many artists online have cited that this is a violation of
+  copyright, as it is not human made and as such not creatively
+  transformative in anyway, and as such violates fair use
+  laws. Propenents of these AI image generators state that their
+  involvement in giving the machine prompts IS human involvement and
+  thus is creative transformation
+
+  * Reason
+  AI is a fantastic research tool and is already used in entertainment all
+  over the place in video games, search and watch algorithms for video
+  websites.
+
+  * Constraints
+  Neither Garrett nor myself are lawyers and as such will mostly be reviewing
+  what real lawyers and experts in tech are saying about this. In addition
+  explaining the material by simplification can and will lose the majority of
+  the nuance
+
+  * Goals and non-goals
+    *Goals
+    -Explain with enough detail the facts to give the class a genuine
+    understanding of the situation and why it is important
+    -Somewhat predict the outcome of the class-action lawsuits against the
+    major companies using Stable Diffusion
+    -And explain why this is important
+    *Non-goals
+    -Influence the outcomes of the lawsuits/get involved with them in any way.
+
+  * Measure
+  The project success would be measured by class and professor interest in
+  the developing situation. Also a lack of questions about expounding on the
+  material we cover, but rather questions fueled by the material
+
+  * References
+    https://www.youtube.com/watch?v=gv9cdTh8cUo
+    This youtube video has large amount of the information we'll be covering
+    but we'll be going over individual pieces of it ourselves and expounding
+    upon it.
+
+  

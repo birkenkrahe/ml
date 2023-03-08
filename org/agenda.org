@@ -637,8 +637,8 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
   3) Cleaning, randomization and normalization of the data
   4) Splitting of the dataset into training and test data
   5) Isolating the training and test labels
-  6) Running the ~class:knn~ function with set ~k~ value
-  #+end_quotes
+  6) Running the ~class::knn~ function with set ~k~ value
+
 
 - [ ] What's left?
   #+begin_quotes
