@@ -32,7 +32,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
 - Potential benefits: efficiency/time savings, detection accuracy
 
 * ML workflow
-#+attr_latex: :width 600px
+#+attr_latex: :width 400px
 #+caption: General machine learning process (Source: Lantz, 2019)
 [[../img/1_lantz_3.jpg]]
 
@@ -219,7 +219,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
 
 - We visualize the frequencies of the two diagnoses in a barplot,
   coloring the benign results green, and the malignant results red:
-  #+begin_src R :results graphics file :file data/5_diagnosis.png
+  #+begin_src R :results graphics file :file ../data/5_diagnosis.png
     barplot(table(wbcd$diagnosis),
             col=c("green","red"),
             main=
@@ -602,7 +602,7 @@ GitHub, complete the file and upload it to Canvas by the deadline.
   :  Factor w/ 2 levels "Benign","Malignant": 1 1 1 1 1 1 1 2 1 1 ...
   : [1] 100
 
-* NEXT Evaluating model performance
+* Evaluating model performance
 
 - A performing model will have identified the labels in the test data
   set with high accuracy. Low accuracy means mis-identified labels:
@@ -739,11 +739,17 @@ What do these results mean?
   for the test data set corresponds to the percentage of cells
   correctly identified:
   #+begin_src R
-    mean(wbcd_test_pred==wbcd_test_labels)
+    mean(wbcd_test_pred==wbcd_test_labels, na.rm=TRUE)
   #+end_src
 
   #+RESULTS:
   : [1] 0.98
+
+- This works because the ~TRUE~ and ~FALSE~ values of the ~logical~ argument
+  are interpreted as ~1~ and ~0~ by the ~mean~ function:
+  #+begin_src R
+    wbcd_test_pred==wbcd_test_labels
+  #+end_src
 
 * Improving model performance
 
@@ -786,8 +792,70 @@ You find these exercises in GitHub as ~5_knn_exercise_1.org~ and
 
 - Lantz (2019). Machine Learning with R (3e). Packt.
 
-* TODO Glossary of Code
-* TODO Summary
+* Glossary of Code
+
+| COMMAND             | MEANING                                     |
+|---------------------+---------------------------------------------|
+| ~args~                | function arguments                          |
+| ~read.csv~            | read CSV file into data frame               |
+| ~stringsAsFactors~    | ~read.csv~ argument to turn char into factors |
+| ~str~                 | structure of R object                       |
+| ~df[-1]~              | remove first column from data frame ~df~      |
+| ~table(x)~            | frequency table for categorical vector ~x~    |
+| ~table(x,y)~          | cross table for vectors ~x~ and ~y~             |
+| ~labels~              | ~factor~ labels                               |
+| ~levels~              | ~factor~ levels                               |
+| ~cat~                 | paste strings to screen                     |
+| ~prop.table~          | proportions for frequency table             |
+| ~round~               | rounding function                           |
+| ~summary~             | statistical summary                         |
+| ~range~               | difference between min and max              |
+| ~function~            | create function                             |
+| ~return~              | return function argument                    |
+| ~normalize~           | user-defined function to normalize list     |
+| ~unlist~              | turn ~list~ into vector                       |
+| ~lapply~              | apply ~FUN~ to all ~list~ argument members      |
+| ~nrow~                | number of rows                              |
+| ~search~              | R environment (session) search path         |
+| ~library~             | load package                                |
+| ~as.integer~          | turn argument into ~integer~                  |
+| ~sqrt~                | square root                                 |
+| ~length~              | length of vector                            |
+| ~gmodels::CrossTable~ | cross tabulation                            |
+| ~class::knn~          | k-Nearest Neighbor model building           |
+| ~scale~               | z-score standardization                     |
+
+* Summary
+
+- The case study used the Wisconsin Breast Cancer Dataset of cell data
+  obtained from The UCI Machine Learning repository and randomized
+  thereafter.
+- The target class (2-category cancer diagnosis) was converted to a
+  nominal, labelled factor vector, while the predictors were
+  normalized using the min-max normalization method.
+- Data were split in training and test data (80/20) and classified
+  using the ~knn~ function from the ~class~ package.
+- Model performance was evaluated using ~base::table~ and ~CrossTable~
+  from the ~gmodels~ package to create a confusion matrix.
+- Model improvements were attempted with z-score standardization and
+  by testing a variety of k values.
+
+* References
+
+- Lantz (2019). Machine learning with R (3e). Packt. URL:
+  [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][packtpub.com]].
+
+- R Core Team (2022). R: A language and environment for statistical
+  computing. R Foundation for Statistical Computing, Vienna, Austria.
+  URL https://www.R-project.org/.
+
+- Ripley/Venables (January 23, 2023). Package 'class': Various
+  functions for classification, including k-nearest neighbour,
+  Learning Vector Quantization, and Self-Organizing Maps.  URL:
+  [[https://cran.r-project.org/web/packages/class/class.pdf][cran.r-project.org]].
+
+- Warnes (October 13, 2022). Package 'gmodels': Various R Programming
+  Tools for Model Fitting. URL: [[https://cran.r-project.org/web/packages/gmodels/gmodels.pdf][cran.r-project.org]].
 
 * Footnotes
 

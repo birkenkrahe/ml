@@ -18,7 +18,7 @@
 -   Exercises in GitHub as Org-mode file
 -   Solutions in GitHub as PDF files
 
-<div class="notes" id="org3af3f5f">
+<div class="notes" id="org1aae0f7">
 <p>
 The basic idea of this class of "lazy learners" is that things that
 are alike are likely to have properties that are alike.
@@ -46,7 +46,7 @@ crucial.
 -   Human examples: reading, eating, meeting
 -   Simple but powerful methods
 
-<div class="notes" id="org61b9a06">
+<div class="notes" id="org0c0cfac">
 <p>
 Remember our terminology:
 </p>
@@ -80,7 +80,7 @@ circumstances. Human examples:
 -   Recommender systems
 -   Genetic data pattern matching
 
-<div class="notes" id="orgec3cc68">
+<div class="notes" id="org43072ea">
 <ul class="org-ul">
 <li>Computer vision applications, including optical character
 recognition and facial recognition in both still images and video</li>
@@ -101,7 +101,7 @@ diseases</li>
 -   Similar items homogeneous
 -   "You know it when you see it"
 
-<div class="notes" id="orga32d464">
+<div class="notes" id="org237070d">
 <p>
 Well suited for classification tasks where relationships among the
 features and the target classes are <b>numerous</b>, <b>complicated</b>, or
@@ -135,7 +135,7 @@ boundaries.
 3.  Identify k nearest records in test data
 4.  Assign class to unlabeled test instance
 
-<div class="notes" id="org3ca09f0">
+<div class="notes" id="org10b0ead">
 <ul class="org-ul">
 <li>k-NN uses information about a sample's k nearest neigbors to
 classify unlabeled examples</li>
@@ -154,7 +154,7 @@ records</li>
 
 ![img](../img/4_knn_algorithm.png)
 
-<div class="notes" id="org8e99212">
+<div class="notes" id="org4ee790b">
 <p>
 Classification with the "trained" model:
 </p>
@@ -172,7 +172,7 @@ Classification with the "trained" model:
 
 ![img](../img/4_knn_food.png)
 
-<div class="notes" id="org7be0c64">
+<div class="notes" id="org94331b2">
 <ul class="org-ul">
 <li>We want to predict/classify food that we cannot see based on
 similarity to other foods.</li>
@@ -194,7 +194,7 @@ fruit and vegetable.
 
 ![img](../img/4_knn_plot.png)
 
-<div class="notes" id="org67937dd">
+<div class="notes" id="orga5e2760">
 <ul class="org-ul">
 <li>The k-NN algorithm treats the features as coordinates in a
 multi-dimensional <b>feature space</b>.</li>
@@ -215,7 +215,7 @@ classification of unlabeled, unknown features.</li>
 
 ![img](../img/4_knn_patterns.png)
 
-<div class="notes" id="orgd31aa4b">
+<div class="notes" id="org6509182">
 <p>
 The third feature is represented here as a grouping - when plotting
 this in R, how would you represent it?
@@ -244,7 +244,7 @@ Similar types of food are grouped closely together:
 
 ![img](../img/4_knn_tomato.png)
 
-<div class="notes" id="org40d54eb">
+<div class="notes" id="orgc98f6b3">
 <ul class="org-ul">
 <li>Locating the tomato's nearest neighbors requires a <b>distance function</b></li>
 <li>The tomato sits conveniently between our classes.</li>
@@ -268,7 +268,7 @@ types.</li>
 
 ![img](../img/4_knn_euclid1.png)
 
-<div class="notes" id="org572d0d7">
+<div class="notes" id="orgc3e233d">
 <ul class="org-ul">
 <li>The general formula allows for $n$-dimensional feature vectors.</li>
 <li>In our food example, \(p\) corresponds to the tomato, and \(q\) to any
@@ -291,7 +291,7 @@ tomato and the green bean examples.</li>
 -   2-NN: "The tomato is a fruit or a protein"
 -   3-NN: "The tomato is a fruit"
 
-<div class="notes" id="org4ba66ad">
+<div class="notes" id="org96bf5c8">
 <p>
 To classify the tomato as a vegetable, protein, or fruit, we'll begin
 by assigning the tomato the food type of its single nearest
@@ -322,7 +322,7 @@ three votes), the tomato again is classified as a <b>fruit</b>.
 
 Underfitting | Perfect fit | Overfitting
 
-<div class="notes" id="org3dd4875">
+<div class="notes" id="orgc4eeb47">
 <p>
 In the image (by Viktor Lavrenko, 2014), the "predictor" is the set of
 features used for prediction of the trend line (in the regression
@@ -351,7 +351,7 @@ error will be large while the training data error is small.</li>
 -   Danger of underfitting or overfitting
 -   "Bias-variance" tradeoff
 
-<div class="notes" id="org050d5ee">
+<div class="notes" id="orgb65e783">
 <ul class="org-ul">
 <li><b>Underfitting:</b> boundaries do not capture many relationships well -
 high error rate = large k (large neighborhood) ignores samples</li>
@@ -379,7 +379,7 @@ min-max normalization
 
 z-score standardization
 
-<div class="notes" id="org108f34d">
+<div class="notes" id="org0976540">
 <ul class="org-ul">
 <li>The distance formula depends on the range: if you add a feature with
 a large scale, it will dominate the results (e.g. "spiciness" via
@@ -407,7 +407,7 @@ be out of range - you may not know the maximum or minimum).</li>
 
 3-category variable (hot, medium, cold)
 
-<div class="notes" id="orgcae1f49">
+<div class="notes" id="org83589ff">
 <ul class="org-ul">
 <li>Euclidean distance is not defined for nominal <code>categorical</code> data
 ("characters") - need to convert data to <code>numeric</code> format.</li>
@@ -435,7 +435,7 @@ steps between categories are equivalent, e.g. "lower", "middle",
 -   Data are stored verbatim (rapid training)
 -   Test/production relies on training data (slow)
 
-<div class="notes" id="orgd91d9e5">
+<div class="notes" id="org51211d6">
 <ul class="org-ul">
 <li>Abstraction is minimal - no detail is suppressed.</li>
 <li>Generalization (imposing rules) is not there at all.</li>
@@ -454,7 +454,7 @@ steps between categories are equivalent, e.g. "lower", "middle",
 -   Non-parametric methods learn no parameters
 -   Rote learners find natural bias-free patterns
 
-<div class="notes" id="org72a8caf">
+<div class="notes" id="org44d87a9">
 <ul class="org-ul">
 <li>Alternative name: instance-based learners</li>
 <li>No model is built, no parameters are learnt</li>
@@ -510,7 +510,7 @@ to fit the data into a biased and potentially flawed functional form.</li>
 </tbody>
 </table>
 
-<div class="notes" id="orgc638b6a">
+<div class="notes" id="org3a0fe4c">
 <p>
 STRENGTHS:
 </p>
@@ -545,12 +545,6 @@ e.g. min-max normalization or z-score standardization</li>
     in training set using a distance function
 -   Unlabeled example is assigned neighbor's label
 -   Though simple, k-NN performs well for extremely complex tasks
-
-
-# Glossary of concepts
-
-
-# Glossary of code
 
 
 # References

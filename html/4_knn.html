@@ -19,13 +19,13 @@
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide"><h1 class="title">k-NEAREST-NEIGBORS</h1><p class="subtitle">Supervised lazy learner classifiers</p>
-<h2 class="author">Marcus Birkenkrahe</h2><p class="date">Created: 2023-02-21 Tue 12:18</p>
+<h2 class="author">Marcus Birkenkrahe</h2><p class="date">Created: 2023-03-07 Tue 22:18</p>
 </section>
 <section>
-<section id="slide-org50aefbe">
-<h2 id="org50aefbe">k-nearest neighbors</h2>
+<section id="slide-org879423b">
+<h2 id="org879423b">k-nearest neighbors</h2>
 
-<div id="org917bcc9" class="figure">
+<div id="org48824e3" class="figure">
 <p><img src="../img/4_knn.jpg" alt="4_knn.jpg" width="400px" />
 </p>
 </div>
@@ -40,8 +40,8 @@
 </section>
 </section>
 <section>
-<section id="slide-org58e16b6">
-<h2 id="org58e16b6">What you will learn</h2>
+<section id="slide-orgcc183dd">
+<h2 id="orgcc183dd">What you will learn</h2>
 <ul>
 <li>Concepts for "lazy learners" classifiers</li>
 <li>How to easure similarity using distance</li>
@@ -72,10 +72,10 @@ crucial.
 </section>
 </section>
 <section>
-<section id="slide-org055f4ff">
-<h2 id="org055f4ff">Nearest neighbor classification</h2>
+<section id="slide-org9cf5540">
+<h2 id="org9cf5540">Nearest neighbor classification</h2>
 
-<div id="orgc551439" class="figure">
+<div id="orgcb62945" class="figure">
 <p><img src="../img/4_darkrestaurant.png" alt="4_darkrestaurant.png" width="400px" />
 </p>
 </div>
@@ -114,10 +114,10 @@ circumstances. Human examples:
 </aside>
 
 </section>
-<section id="slide-org9299062">
-<h3 id="org9299062">Nearest-neighbor applications</h3>
+<section id="slide-orgc188b15">
+<h3 id="orgc188b15">Nearest-neighbor applications</h3>
 
-<div id="orgd5059e7" class="figure">
+<div id="orge94b854" class="figure">
 <p><img src="../img/4_nn_applications.jpg" alt="4_nn_applications.jpg" width="400px" />
 </p>
 </div>
@@ -143,10 +143,10 @@ diseases</li>
 </aside>
 
 </section>
-<section id="slide-orgac04201">
-<h3 id="orgac04201">Applicability</h3>
+<section id="slide-orgdfffaf4">
+<h3 id="orgdfffaf4">Applicability</h3>
 
-<div id="org646ca4e" class="figure">
+<div id="orgd7c41c2" class="figure">
 <p><img src="../img/4_stroke.jpg" alt="4_stroke.jpg" width="600px" />
 </p>
 </div>
@@ -185,10 +185,10 @@ boundaries.
 </section>
 </section>
 <section>
-<section id="slide-org4189f77">
-<h2 id="org4189f77">The <code>k</code>-NN algorithm</h2>
+<section id="slide-orgb200141">
+<h2 id="orgb200141">The <code>k</code>-NN algorithm</h2>
 
-<div id="org4aaf83d" class="figure">
+<div id="org16e7d1e" class="figure">
 <p><img src="../img/4_knn_cat_dog.png" alt="4_knn_cat_dog.png" width="500px" />
 </p>
 </div>
@@ -216,10 +216,10 @@ records</li>
 
 </aside>
 </section>
-<section id="slide-orge932148">
-<h3 id="orge932148">Workflow</h3>
+<section id="slide-org46b33c2">
+<h3 id="org46b33c2">Workflow</h3>
 
-<div id="org275bdc0" class="figure">
+<div id="orgf2db565" class="figure">
 <p><img src="../img/4_knn_algorithm.png" alt="4_knn_algorithm.png" width="500px" />
 </p>
 </div>
@@ -236,10 +236,10 @@ Classification with the "trained" model:
 
 </aside>
 </section>
-<section id="slide-org05d4139">
-<h3 id="org05d4139">Example: blind tasting</h3>
+<section id="slide-orgfe270e3">
+<h3 id="orgfe270e3">Example: blind tasting</h3>
 
-<div id="org3a9c3f5" class="figure">
+<div id="org58d93fb" class="figure">
 <p><img src="../img/4_knn_food.png" alt="4_knn_food.png" width="600px" />
 </p>
 </div>
@@ -263,10 +263,10 @@ fruit and vegetable.
 </aside>
 
 </section>
-<section id="slide-orgaa8dbf0">
-<h3 id="orgaa8dbf0">Training: feature space</h3>
+<section id="slide-orge068e1e">
+<h3 id="orge068e1e">Training: feature space</h3>
 
-<div id="org8931f6a" class="figure">
+<div id="org79c131f" class="figure">
 <p><img src="../img/4_knn_plot.png" alt="4_knn_plot.png" width="600px" />
 </p>
 </div>
@@ -288,10 +288,10 @@ classification of unlabeled, unknown features.</li>
 
 </aside>
 </section>
-<section id="slide-orga38779f">
-<h3 id="orga38779f">Training: feature patterns</h3>
+<section id="slide-org1bb3925">
+<h3 id="org1bb3925">Training: feature patterns</h3>
 
-<div id="org7e403e4" class="figure">
+<div id="org9cdf652" class="figure">
 <p><img src="../img/4_knn_patterns.png" alt="4_knn_patterns.png" width="600px" />
 </p>
 </div>
@@ -320,10 +320,10 @@ Similar types of food are grouped closely together:
 </aside>
 
 </section>
-<section id="slide-orgc2ed8ee">
-<h3 id="orgc2ed8ee">Testing: label examples</h3>
+<section id="slide-org019e75d">
+<h3 id="org019e75d">Testing: label examples</h3>
 
-<div id="org93bc7e5" class="figure">
+<div id="org4f4bb7b" class="figure">
 <p><img src="../img/4_knn_tomato.png" alt="4_knn_tomato.png" width="600px" />
 </p>
 </div>
@@ -340,10 +340,10 @@ types.</li>
 
 </aside>
 </section>
-<section id="slide-org2d4382f">
-<h3 id="org2d4382f">Euclidean distance</h3>
+<section id="slide-org52f37ca">
+<h3 id="org52f37ca">Euclidean distance</h3>
 
-<div id="org8ceb1cc" class="figure">
+<div id="org33cf15c" class="figure">
 <p><img src="../img/4_knn_euclid.png" alt="4_knn_euclid.png" width="600px" />
 </p>
 </div>
@@ -357,7 +357,7 @@ types.</li>
 </ul>
 
 
-<div id="orgd463c21" class="figure">
+<div id="orgc0c1d6e" class="figure">
 <p><img src="../img/4_knn_euclid1.png" alt="4_knn_euclid1.png" width="600px" />
 </p>
 </div>
@@ -378,10 +378,10 @@ tomato and the green bean examples.</li>
 </aside>
 
 </section>
-<section id="slide-org111dbd5">
-<h3 id="org111dbd5">Calculate distances</h3>
+<section id="slide-org0e96e2d">
+<h3 id="org0e96e2d">Calculate distances</h3>
 
-<div id="org2a0263e" class="figure">
+<div id="orged5302f" class="figure">
 <p><img src="../img/4_knn_distances.png" alt="4_knn_distances.png" width="700px" />
 </p>
 </div>
@@ -418,10 +418,10 @@ three votes), the tomato again is classified as a <b>fruit</b>.
 </aside>
 
 </section>
-<section id="slide-orgda28245">
-<h3 id="orgda28245">Underfitting vs. overfitting</h3>
+<section id="slide-orga3b4078">
+<h3 id="orga3b4078">Underfitting vs. overfitting</h3>
 
-<div id="org9a13d2e" class="figure">
+<div id="org79e98b3" class="figure">
 <p><img src="../img/4_knn_fit.png" alt="4_knn_fit.png" width="600px" />
 </p>
 </div>
@@ -451,10 +451,10 @@ error will be large while the training data error is small.</li>
 </aside>
 
 </section>
-<section id="slide-org48570cd">
-<h3 id="org48570cd">Choice of k</h3>
+<section id="slide-orgfb45a6d">
+<h3 id="orgfb45a6d">Choice of k</h3>
 
-<div id="org6904fcc" class="figure">
+<div id="orgfeae1b8" class="figure">
 <p><img src="../img/4_knn_k.png" alt="4_knn_k.png" width="600px" />
 </p>
 </div>
@@ -484,10 +484,10 @@ are just noise - e.g. <b>mislabeled</b> data - see English corpus</li>
 
 </aside>
 </section>
-<section id="slide-orgb7208fc">
-<h3 id="orgb7208fc">Data preparation</h3>
+<section id="slide-org29d1dd7">
+<h3 id="org29d1dd7">Data preparation</h3>
 
-<div id="org3bc6866" class="figure">
+<div id="org9b0a15b" class="figure">
 <p><img src="../img/4_minmax.png" alt="4_minmax.png" width="400px" />
 </p>
 </div>
@@ -497,7 +497,7 @@ min-max normalization
 </p>
 
 
-<div id="org99ad8b6" class="figure">
+<div id="org9518c8c" class="figure">
 <p><img src="../img/4_zscore.png" alt="4_zscore.png" width="400px" />
 </p>
 </div>
@@ -523,12 +523,11 @@ be out of range - you may not know the maximum or minimum).</li>
 </ul>
 
 </aside>
-
 </section>
-<section id="slide-org11fe52e">
-<h3 id="org11fe52e">Dummy coding</h3>
+<section id="slide-org467c7bd">
+<h3 id="org467c7bd">Dummy coding</h3>
 
-<div id="org463b027" class="figure">
+<div id="org3415ff4" class="figure">
 <p><img src="../img/4_dummy.png" alt="4_dummy.png" width="250px" />
 </p>
 </div>
@@ -538,7 +537,7 @@ be out of range - you may not know the maximum or minimum).</li>
 </p>
 
 
-<div id="orge2361ee" class="figure">
+<div id="orgeaa0e6f" class="figure">
 <p><img src="../img/4_dummy1.png" alt="4_dummy1.png" width="300px" />
 </p>
 </div>
@@ -567,10 +566,10 @@ steps between categories are equivalent, e.g. "lower", "middle",
 
 </aside>
 </section>
-<section id="slide-orga9d5046">
-<h3 id="orga9d5046">Why is k-NN "lazy learning"?</h3>
+<section id="slide-org9d3fc2f">
+<h3 id="org9d3fc2f">Why is k-NN "lazy learning"?</h3>
 
-<div id="org59e2447" class="figure">
+<div id="org4df9639" class="figure">
 <p><img src="../img/1_lantz_3.jpg" alt="1_lantz_3.jpg" width="600px" />
 </p>
 </div>
@@ -594,10 +593,10 @@ steps between categories are equivalent, e.g. "lower", "middle",
 </aside>
 
 </section>
-<section id="slide-org0c43787">
-<h3 id="org0c43787">Rote learning</h3>
+<section id="slide-orgf9176b9">
+<h3 id="orgf9176b9">Rote learning</h3>
 
-<div id="orgdae7d4c" class="figure">
+<div id="org71c30c6" class="figure">
 <p><img src="../img/4_lazy.png" alt="4_lazy.png" width="600px" />
 </p>
 </div>
@@ -623,12 +622,11 @@ to fit the data into a biased and potentially flawed functional form.</li>
 
 </aside>
 
-
 </section>
 </section>
 <section>
-<section id="slide-org9862291">
-<h2 id="org9862291">Strengths and Weaknesses</h2>
+<section id="slide-org4103f3f">
+<h2 id="org4103f3f">Strengths and Weaknesses</h2>
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -694,8 +692,8 @@ e.g. min-max normalization or z-score standardization</li>
 </section>
 </section>
 <section>
-<section id="slide-orgb38e017">
-<h2 id="orgb38e017">Summary</h2>
+<section id="slide-orgb856c5f">
+<h2 id="orgb856c5f">Summary</h2>
 <ul>
 <li>k-nearest neighbors does no learning at all</li>
 <li>k-NN stores training data, matches test data to most similar records
@@ -708,18 +706,8 @@ in training set using a distance function</li>
 </section>
 </section>
 <section>
-<section id="slide-org10c33e6">
-<h2 id="org10c33e6">Glossary of concepts</h2>
-</section>
-</section>
-<section>
-<section id="slide-orgdd49963">
-<h2 id="orgdd49963">Glossary of code</h2>
-</section>
-</section>
-<section>
-<section id="slide-org296c49f">
-<h2 id="org296c49f">References</h2>
+<section id="slide-org3f004d8">
+<h2 id="org3f004d8">References</h2>
 <ul>
 <li><code>4_knn.jpg</code>: Photo by Beth Macdonald on Unsplash.</li>
 <li><code>4_darkrestaurant.png</code>: <a href="https://www.nytimes.com/2007/07/22/travel/22surfacing.html">Patrons at the Whale Inside Dark Restaurant</a>.</li>
