@@ -624,11 +624,9 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - Regression methods: linear and logistic methods
 - Regression use case: predicting medical expenses
 
-*Program games in Snap! (from Academic Day):*
-- https://github.com/birkenkrahe/snap (HTML, PDF, Org, md)
-- Next fall: [[https://ecraft2learn.github.io/ai/][AI extensions to Snap!]] with [[https://ecraft2learn.github.io/ai/student-projects/][student project examples]]
-
-* TODO Review: kNN case study (continued)
+* DONE Review: kNN case study (continued)
+#+attr_latex: :width 400px
+[[../img/rapid_review.jpg]]
 
 - [ ] What are we trying to do?
   
@@ -651,7 +649,31 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
   - Running the model on new datasets (prepare data, run ~predict~)
   #+end_quotes
   
+* TODO Game programming in Snap! with AI
+#+attr_latex: :width 400px
+[[../img/snap.png]]
+
+- https://github.com/birkenkrahe/snap (HTML, PDF, Org, md)
+- Next fall: [[https://ecraft2learn.github.io/ai/][AI extensions to Snap!]] with [[https://ecraft2learn.github.io/ai/student-projects/][student project examples]]
+
+* TODO Bonus exercise & March assignments
+#+attr_latex: :width 400px
+[[../img/bonus.png]]
+
+- Remember how to compute the prediction accuracy: as the ~mean~ over
+  the values of the original and the predicted ~factor~ vector ([[https://github.com/birkenkrahe/ml/blob/main/org/4_knn_case.org#computing-accuracy-as-an-average][GitHub]])
+
 * TODO Week 10: Regression
+* TODO Reading therapy for spring break: ELIZA
+
+- ELIZA - A Computer Program For the Study of Natural Language
+  Communication Between Man And Machine - Weizenbaum, CACM 9(1)
+  (1966):36-46. URL: [[https://dl.acm.org/doi/pdf/10.1145/365153.365168][dl.acm.org]].
+
+- The computational therapeutic: exploring Weizenbaum’s ELIZA as a
+  history of the present - Bassett, AI & Society 34
+  (2019):803-812. URL: [[https://link.springer.com/article/10.1007/s00146-018-0825-9][link.springer.com]].
+
 * TODO Week 11: Decision trees
 * TODO Week 12: k-means clustering
 
