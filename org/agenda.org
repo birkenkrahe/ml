@@ -666,21 +666,36 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 * TODO Week 10: Naive Bayes algorithm and case study
 #+attr_latex: :width 400px
 #+caption: Illustration by Peter Eich (2006), Wikimedia (CC BY-SA 2.5)
-[[../img/6_Spamfilter.jpg]]
+[[../img/5_Spamfilter.jpg]]
 
 - Naive Bayes review and algorithm
 - Naive Bayes case study: spam filter
 - Naive Bayes test 5 (due March 31)
 
-* TODO Results: test 3
+* TODO Pie Day!
+#+attr_html: :width 300px
+[[../img/pi.jpg]] [[../img/limerick.png]]
+
+* TODO Results: Test 3 and Tsunami of assignments
 #+attr_latex: :width 400px
 [[../img/mlTestBox.png]]
 
 - Feel free to complete test 3 by Friday for partial credit (60%)
 
+- [[https://github.com/birkenkrahe/org/blob/master/pdf/midterm.pdf][How to improve your mid-term grades if you choose to do so]]. The link
+  to [[https://www.quora.com/Why-are-computer-science-degrees-so-math-intensive-when-the-field-doesnt-seem-to-use-much-math-at-all][this Quora comment]] is not available in the document, alas.
+  
+- Do not forget that there are *three DataCamp lessons* waiting for
+  completion by March 31, 2023: Naive Bayes, Logistic Regression, and
+  Classification Trees.
+
+- I'll decide over spring break which of these (if any) we'll pick up
+  for detailed treatment in class. In any case: more certificates 4U!
+  
 * TODO Review: Simple Naive Bayes
-#+attr_html: :width 400px
-[[../img/bavarian.jpg]]
+#+attr_html: :width 300px
+#+caption: Photo by Ben Mullins on Unsplash
+[[../img/review.jpg]]
 
 1) Which evidence (in the data) is used for Naive Bayes?
    #+begin_notes
@@ -691,6 +706,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
    - Spam message
    - Lottery win
    - Sunny weather
+     
 3) What determines the class our classifier is trying to predict?
    #+begin_notes
    Answer: 1) our observational data (e.g. recorded labels spam
@@ -799,6 +815,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
   history of the present - Bassett, AI & Society 34
   (2019):803-812. URL: [[https://link.springer.com/article/10.1007/s00146-018-0825-9][link.springer.com]].
 
+
 * TODO Week 11: Regression
 * TODO Week 12: Decision trees
 * TODO Week 13: k-means clustering
@@ -854,6 +871,9 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - Ying, K. @freeCodeCamp.org (Sep 26, 2022). Machine Learning for
   Everybody - Full Course. Online: [[https://youtu.be/i_LwzRVP7bg][youtube.com]].
 
+- Photos by: Ben Mullins, Katarzyna Pe, Benjamin Davies, Grovemade,
+  Feliphe Schiarolli, Avin CP, Andrew Neel, on Unsplash.com
+  
 * Footnotes
 [fn:2]The data sets are listed at the bottom of all DataCamp courses,
 e.g. "[[https://app.datacamp.com/learn/courses/supervised-learning-in-r-classification][Supervised learning in R]]" the link opens to the [[https://app.datacamp.com/learn/courses/supervised-learning-in-r-classification][raw CSV file]],
@@ -864,3 +884,4 @@ check the URL or try again.
 [fn:1]Russell is a coauthor of AIMA, one of the textbooks we're going
 to use for my fall seminar on "Artificial Intelligence" (DSC/CSC
 482.01).
+

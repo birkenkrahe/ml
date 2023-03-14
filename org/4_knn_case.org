@@ -16,7 +16,7 @@ abnormal breast masses.
 To code along with the lecture, download ~4_knn_practice.org~ from
 GitHub, complete the file and upload it to Canvas by the deadline.
 
-* Plan
+* Rationale
 #+attr_latex: :width 400px
 #+caption: Fine needle aspiration using ultrasound (Source: Collins)
 [[../img/5_biopsy.jpeg]]

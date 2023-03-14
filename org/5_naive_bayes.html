@@ -13,203 +13,64 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css" id="theme"/>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide"><h1 class="title">Understanding Naive Bayes</h1><p class="subtitle">Supervised Naive Bayes Prediction</p>
-<h2 class="author">Marcus Birkenkrahe</h2><p class="date">Created: 2023-03-13 Mon 23:53</p>
+<h2 class="author">Marcus Birkenkrahe</h2><p class="date">Created: 2023-03-14 Tue 08:30</p>
 </section>
 <section>
-<section id="slide-org44582c2">
-<h2 id="org44582c2">Naïvety of the algorithm</h2>
-
-<div id="org2d1586d" class="figure">
-<p><img src="../img/5_candide.png" alt="5_candide.png" width="400px" />
-</p>
-</div>
-
-<ul>
-<li>All features are equally important and independent</li>
-<li>Is this justified in real datasets?</li>
-<li><p>
-Examples: spam / sentiment analysis
-</p>
+<section id="slide-orgc9c2ee3">
+<h2 id="orgc9c2ee3">Strength and Weaknesses</h2>
+<pre class="example" id="orgd6239e9">
+| Strengths                     | Weaknesses                         |
+|-------------------------------+------------------------------------|
+| Simple, fast, effective       | Feature independence and equity    |
+| Good for noisy, missing data  | Not good for numeric features      |
+| Works few few or many samples | Unreliable estimated probabilities |
+| Easy to obtain probability    |                                    |
+</pre>
 
 <aside class="notes">
-<p>
-The question is always what we want to classify: if we're after
-spam, some features are more <b>important</b> than others, e.g. the email
-sender or the subject line. Words in the message body are not
-<b>independent</b> from one another - e.g. "Viagra" will be accompanied by
-"drugs", "cash" by "free" etc.
-</p>
-
-<p>
-If we analyze for sentiment (categories: good, bad, neutral, etc.)
-in online reviews, then length of the review is more <b>important</b> than
-the (anonymous) sender. The sentiment features are not <b>independent</b>
-of the time of the review - it is related to the product launch
-time, the time of day, etc.
-</p>
-
-<p>
-NB performs well even when these assumptions are violated, even if
-there are strong feature dependencies, especially with smaller
-datasets. The exact reason for this success is not known.
-</p>
-
-</aside></li>
-
-</ul>
-</section>
-</section>
-<section>
-<section id="slide-org4e529bf">
-<h2 id="org4e529bf">Adding more features</h2>
-
-<div id="orgda3f6c2" class="figure">
-<p><img src="../img/5_features.png" alt="5_features.png" width="800px" />
-</p>
-</div>
-
-<p>
-Is the message spam given that it contains the terms "Viagra" and
-"unsubscribe", but not "Money" or "Groceries"?
-</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
-<div id="orgf58eb7f" class="figure">
-<p><img src="../img/5_longform.png" alt="5_longform.png" width="800px" />
-</p>
-</div>
+<colgroup>
+<col  class="org-left" />
 
-<p>
-Cp. "<a href="https://blog.hubspot.com/blog/tabid/6307/bid/30684/the-ultimate-list-of-email-spam-trigger-words.aspx">The Ultimate List of 394 Email Spam Trigger Words to Avoid in
-2023</a>"
-</p>
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Strengths</th>
+<th scope="col" class="org-left">Weaknesses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Simple, fast, effective</td>
+<td class="org-left">Relies on feature independence and equity</td>
+</tr>
 
-<aside class="notes">
-<p>
-As new messages are received, we need to calculate the posterior
-probability to determine whether they are more likely spam or ham,
-given the likelihood of the words being found in the message text.
-</p>
+<tr>
+<td class="org-left">Good for noisy, missing data</td>
+<td class="org-left">Not ideal for data with many numeric features</td>
+</tr>
 
-<p>
-Computational complexity is enormous: probabilities for possible
-intersecting events need to be stored. Imagine the Venn diagram of
-four overlapping circles - in reality, we have hundreds of features.
-</p>
+<tr>
+<td class="org-left">Works few few or many samples</td>
+<td class="org-left">Estimated probabilities less reliable than predictions</td>
+</tr>
+
+<tr>
+<td class="org-left">Easy to obtain probability for prediction</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
 
 </aside>
-
-</section>
-</section>
-<section>
-<section id="slide-org8df2634">
-<h2 id="org8df2634">Core assumptions</h2>
-<ul>
-<li>Class-conditional independence</li>
-<li>Constant marginal likelihood</li>
-
-</ul>
-
-<div id="org2f94d84" class="figure">
-<p><img src="../img/5_spamshort.png" alt="5_spamshort.png" width="800px" />
-</p>
-</div>
-
-<div id="org3b85503" class="figure">
-<p><img src="../img/5_hamshort.png" alt="5_hamshort.png" width="800px" />
-</p>
-</div>
-
-<aside class="notes">
-<ul>
-<li>Events are <b>independent</b> as long as they are conditioned on the same
-class value: for example, "Money" and "Unsubscribe" are considered
-independent when found in a spam message. Reduces the numerator term
-to a product of probabilities.</li>
-<li>Denominator does not depend on the target class (spam or ham) and is
-treated as <b>constant</b> and can be ignored.</li>
-<li>The equation has become a proportion</li>
-<li>To convert the likelihoods to probabilities, the denominator needs
-to be re-introduced (rescale likelihood of each outcome by total
-likelihood across all possible outcomes).</li>
-
-</ul>
-
-</aside>
-</section>
-</section>
-<section>
-<section id="slide-org6f9fe42">
-<h2 id="org6f9fe42">Formula</h2>
-
-<div id="org8786d29" class="figure">
-<p><img src="../img/5_formula.png" alt="5_formula.png" width="600px" />
-</p>
-</div>
-
-<ul>
-<li>Class levels \(L\) (e.g. spam vs. ham)</li>
-<li>Features \(F\) (e.g. "Money", "Urgent")</li>
-<li>Scaling factor \(Z\)</li>
-
-</ul>
-
-<aside class="notes">
-<p>
-Z converts the likelihood values to probabilities.
-</p>
-
-</aside>
-
-</section>
-</section>
-<section>
-<section id="slide-orgd720836">
-<h2 id="orgd720836">Workflow</h2>
-
-<div id="org96e2157" class="figure">
-<p><img src="../img/5_Spamfilter.jpg" alt="5_Spamfilter.jpg" width="300px" />
-</p>
-</div>
-
-<ol>
-<li>compute frequency table</li>
-<li>compute likelihood table</li>
-<li>multiply probabilities "naively"</li>
-<li>rescale likelihood to probability</li>
-
-</ol>
-
-<aside class="notes">
-<p>
-Process:
-</p>
-<ol>
-<li>frequency table,</li>
-<li>likelihood table,</li>
-<li>multiply conditional probabilities with "naive" assumption of independence,</li>
-<li>divide by total likelihood to transform each class likelihood to a
-probability.</li>
-
-</ol>
-
-</aside>
-</section>
-</section>
-<section>
-<section id="slide-org2ccc3da">
-<h2 id="org2ccc3da">Laplace correction</h2>
-</section>
-</section>
-<section>
-<section id="slide-org2ef7352">
-<h2 id="org2ef7352">Numeric features</h2>
 </section>
 </section>
 </div>

@@ -368,7 +368,32 @@ Process:
   and "overfitting".
 #+end_notes
 
+* Strength and Weaknesses
+#+begin_example
+| Strengths                     | Weaknesses                         |
+|-------------------------------+------------------------------------|
+| Simple, fast, effective       | Feature independence and equity    |
+| Good for noisy, missing data  | Not good for numeric features      |
+| Works few few or many samples | Unreliable estimated probabilities |
+| Easy to obtain probability    |                                    |
+#+end_example
 
+#+begin_notes
+| Strengths:                                |
+|-------------------------------------------+
+| Simple, fast, effective                   |
+| Good for noisy, missing data              |
+| Works few few or many samples             |
+| Easy to obtain probability for prediction |
+
+| Weaknesses                                             |
+|--------------------------------------------------------|
+| Relies on feature independence and equity              |
+| Not ideal for data with many numeric features          |
+| Estimated probabilities less reliable than predictions |
+#+end_notes
+
+* TODO Glossary
 * References
 
 - Lantz (2019). Machine Learning with R (3e). Packt.

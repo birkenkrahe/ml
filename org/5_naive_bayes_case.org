@@ -1,0 +1,328 @@
+#+TITLE: Supervised Learning with Naive Bayes
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: Case Study - Filtering mobile phone spam
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+* README
+#+attr_latex: :width 400px
+#+caption: Bag of words technique illustrated
+[[../img/5_bagofwords.png]]
+
+- This lecture and practice follows the case developed by Lantz (2019)
+  and the Bag-of-Words method detailed in Kwartler (2017).
+
+- We use the ~tm~ R package for text mining originally developed by
+  Feinerer (2008).
+
+- To code along with the lecture, download ~5_naive_bayes_practice.org~
+  from GitHub, complete the file and upload it to Canvas by the
+  deadline.
+
+- Exercises for extra credit will be provided, as well as a graded
+  test.
+
+* Rationale
+#+attr_latex: :width 400px
+#+caption: Classifier as AI agent. Illustration from: Deep, 2020
+[[../img/5_agent.png]]
+
+- SMS spam is particularly disruptive because phones are "always
+  on". Cellular phone providers and private users need protection!
+
+- SMS messages are limited to 160 characters: less text available and
+  shorthand lingo makes spam identification more difficult.
+
+- In addition to the regular ML workflow, we meet a multitude of text
+  mining methods needed to prepare the data before we can train a
+  model - these same methods are used to "data engineer" ChatGPT.
+  
+- There are many different approaches to solving this problem -
+  e.g. using a Random Forest Algorithm (a supervised decision tree),
+  see Sjarif et al (2019).
+  
+- For more details on the text mining methods employed, see Kwartler
+  (2017).
+
+* ML workflow = Text Mining + Naive Bayes
+#+attr_latex: :width 400px
+#+caption: Basic (technical) text processing pipeline (Harris, 2016)
+[[../img/5_text-mining-pipeline.png]]
+
+1) Getting the data (CSV to data frame)
+2) Formatting - remove punctuation, whitespace, make lower case etc.
+3) Tokenization - split messages into individual words
+4) Stemming - remove word endings and re-complete
+5) Stopwords - remove unnecessary words
+6) Analytics - Document Term and Term Document matrices
+7) Visualization - Word clouds and barcharts
+8) Training the model
+9) Testing the model
+10) Improving the model
+
+* SMS Spam Collection Data
+#+attr_latex: :width 400px
+#+caption: Sample spam vs. sample ham messages (Lantz, 2019).
+[[../img/5_sms.png]]
+
+- The SMS spam collection contains 5,574 SMS messages in English
+  tagged as "spam" or "ham"[fn:1].
+
+- [ ] Do you notice any distinguishing spam signals in the table?[fn:2]
+
+- The spam vs. ham labelling relies on word frequency and context
+  detection to identify potentially malicious patterns.
+
+- Ask ChatGPT what the "SMS Spam Collection" is:
+  #+begin_src R
+    ask_chatgpt("What is the SMS Spam Collection?")
+  #+end_src
+  #+begin_quote
+  "The SMS Spam Collection is a dataset consisting of text messages that
+  have been identified as spam. It was created to help researchers
+  develop spam detection techniques and improve the accuracy of existing
+  algorithms. The dataset includes over 5,500 messages in English and
+  has been tagged with labels indicating whether each message is spam or
+  not. The SMS Spam Collection is widely used in the research community
+  and has helped advance the field of spam detection in recent years."
+  #+end_quote
+  
+* Collecting the data
+
+- Take a look at the raw file to check if there's a header:
+  [[https://bit.ly/sms_spam_csv][bit.ly/sms_spam_csv]]
+
+- Import the CSV data and save them to a data frame ~sms_raw~. Do not
+  automatically convert ~character~ to ~factor~ vectors. Use the
+  appropriate function arguments:
+  #+begin_src R :results silent
+      ## save CSV data as data frame sms_raw
+  #+end_src
+
+- Check that the data frame was loaded:
+  #+begin_src R
+    
+  #+end_src
+  
+- Solutions:
+  #+name: get_sms_raw
+  #+begin_src R
+    sms_raw <- read.csv(file = "https://bit.ly/sms_spam_csv",
+                        header = TRUE,  # this is not the default
+                        stringsAsFactors = FALSE) # this is the default
+    ls()
+  #+end_src  
+
+* Exploring the data
+
+- Check the data structure:
+  #+begin_src R
+    ## check the data structure
+  #+end_src
+
+- Convert the spam vs. ham label to a ~factor~ and confirm the
+  conversion:
+  #+begin_src R
+    ## convert class character vector to factor
+    ## confirm conversion to factor
+  #+end_src
+
+- Examine the frequency of spam vs. ham messages in the dataset:
+  #+begin_src R
+    ## examine frequency of spam vs ham
+  #+end_src
+
+- Solutions:
+  #+begin_src R
+    <<get_sms_raw>>
+    str(sms_raw)  # data frame structure
+    factor(sms_raw$type) -> sms_raw$type   # converting type to factor
+    is.factor(sms_raw$type)  # logical check if type is now factor
+    str(sms_raw)  # structure after conversion
+    table(sms_raw$type)   # frequency table for all levels in type
+    prop.table(table(sms_raw$type))  # proportions
+    paste(format(prop.table(table(sms_raw$type)) * 100, digits=4),"%")
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  [1] "api_key"     "ask_chatgpt" "sms_raw"
+  'data.frame':	5559 obs. of  2 variables:
+   $ type: chr  "ham" "ham" "ham" "spam" ...
+   $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
+  [1] TRUE
+  'data.frame':	5559 obs. of  2 variables:
+   $ type: Factor w/ 2 levels "ham","spam": 1 1 1 2 2 1 1 1 2 1 ...
+   $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
+
+   ham spam 
+  4812  747
+
+        ham      spam 
+  0.8656233 0.1343767
+  [1] "86.56 %" "13.44 %"
+  #+end_example
+
+* Getting the ~tm~ R package
+#+attr_latex: :width 400px
+#+caption: tm is a tools package for text mining
+[[../img/5_tools.jpg]]
+
+- SMS messages are /strings/ of text composed of words, spaces, numbers,
+  and punctuation, with many uninteresting words like /but/, /and/ etc.
+
+- The text mining package ~tm~ (Feinerer et al, 2008) provides a bunch
+  of functions to deconstruct text.
+
+- Install and load ~tm~ (load it from the terminal if you haven't set
+  ~options()$repos~ in your ~~/.Rprofile~ file). This is an actively
+  developed package so re-installation will never do any harm:
+  #+begin_src R
+    ## install tm
+    ## load tm
+  #+end_src
+
+- Check that the package has been loaded and look at the methods
+  (functions) included in ~tm~:
+  #+begin_src R
+    ## check package has been loaded
+    ## list functions in tm
+  #+end_src
+
+- Solutions:
+  #+begin_src R
+    install.packages("tm") ## install tm
+    library(tm) ## load tm
+    search() ## check package has been loaded
+    ls('package:tm') ## list functions in tm    
+  #+end_src
+
+* Building a document text corpus
+#+attr_latex: :width 400px
+#+caption: Tex mining workflow from Kwartler (2019)
+[[../img/1_workflow.png]]
+
+- A /corpus/ is a collection of text documents. It is a list of lists
+  with a meta data rich label slapped on it.
+
+- In order to be able to work with large text corpora, they need to be
+  suitably organized and cleaned.
+
+- Example: [[https://www.english-corpora.org/googlebooks/x.asp][this corpus]] contains 150 billion Google Book documents.
+
+- Three steps lead from a data frame with text to a corpus:
+  1) Isolate the text vector
+  2) Turn the vector into a source
+  3) Turn the source into a corpus
+  4) Check that the corpus is there
+  #+begin_src R
+    sms_corpus <- VCorpus(VectorSource(sms_raw$text))
+    ls()
+  #+end_src
+
+- The ~VCorpus~ function creates a volatile, in-memory list that is
+  not permanent (not for writing to an external database):
+  #+begin_src R
+    sms_corpus
+  #+end_src
+
+- The corpus is a list (~class~ will not reveal this but ~typeof~ will):
+  #+begin_src R
+    typeof(sms_corpus)
+  #+end_src
+
+- You can see its content element-wise using list indexing. For
+  example for message no. 999, ~tm::inspect~ returns meta data + content:
+  #+begin_src R
+    inspect(sms_corpus[[999]])
+  #+end_src
+
+  #+RESULTS:
+  : <<PlainTextDocument>>
+  : Metadata:  7
+  : Content:  chars: 86
+  : 
+  : Yeah, in fact he just asked if we needed anything like an hour ago. When and how much?
+
+- ~tm::content~ returns just the content, but you can also use ~[[~ to
+  extract a message:
+  #+begin_src R
+    content(sms_corpus[[999]])   ## extract msg content from corpus
+    unlist(sms_corpus[[999]][1])  ## extract msg content from corpus
+  #+end_src
+
+
+* TODO Explore the text corpus
+
+* TODO Cleaning the text corpus
+
+* TODO Word stemming and re-completion
+
+* TODO Tokenization - word splitting 
+
+* TODO Building a Document Term Matrix
+
+* TODO Visualizing with word clouds
+
+* TODO Creating training and test data
+
+* TODO Training a model on the data
+
+* TODO Evaluating model performance
+
+* TODO Improving model performance
+
+* TODO Glossary of Code
+
+| COMMAND | MEANING |
+|---------+---------|
+|         |         |
+
+* TODO Summary
+* References
+
+- Data:
+
+- Deep (2020). The Ultimate Guide TO SMS: Spam or Ham Classifier Using
+  Python. URL: [[https://towardsdatascience.com/the-ultimate-guide-to-sms-spam-or-ham-detector-aec467aecd85][towardsdatascience.com]].
+
+- Feinerer et al (2008). Text mining infrastructure in R. In: J Stat
+  Software 25:1-54. URL: [[https://cran.r-project.org/web/packages/tm/index.html][cran.r-project.org]].
+
+- Gomez et al (2012). On the Validity of a New SMS Spam
+  Collection. In: Proceedings of the 11th IEEE International
+  Conference on Machine Learning and Applications. URL: [[https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset][kaggle.com]].
+  
+- Harris (Oct 3, 2016). What Is Text Analytics? We Analyze the
+  Jargon. URL: [[https://www.softwareadvice.com/resources/what-is-text-analytics/][softwareadvice.com]].
+  
+- Kwartler (2017). Text Mining in Practice with R. Wiley. URL:
+  [[https://www.wiley.com/en-us/Text+Mining+in+Practice+with+R-p-9781119282013][wiley.com]].
+
+- Lantz (2019). Machine learning with R (3e). Packt. URL:
+  [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][packtpub.com]].
+
+- R Core Team (2022). R: A language and environment for statistical
+  computing. R Foundation for Statistical Computing, Vienna, Austria.
+  URL https://www.R-project.org/.
+
+- Ripley/Venables (January 23, 2023). Package 'class': Various
+  functions for classification, including k-nearest neighbour,
+  Learning Vector Quantization, and Self-Organizing Maps.  URL:
+  [[https://cran.r-project.org/web/packages/class/class.pdf][cran.r-project.org]].
+
+- Sjarif et al (January, 2019). SMS Spam Message Detection using Term
+  Frequency-Inverse Document Frequency and Random Forest
+  Algorithm. In: Procedia Comp Sci 161:509-515. DOI:
+  10.1016/j.procs.2019.11.150. URL: [[https://www.researchgate.net/publication/338350636_SMS_Spam_Message_Detection_using_Term_Frequency-Inverse_Document_Frequency_and_Random_Forest_Algorithm][researchgate.net]].
+    
+- Warnes (October 13, 2022). Package 'gmodels': Various R Programming
+  Tools for Model Fitting. URL: [[https://cran.r-project.org/web/packages/gmodels/gmodels.pdf][cran.r-project.org]].
+
+* Footnotes
+[fn:2]Two of three spam messages use the word "free". Two of the ham
+messages cite specific days of the week, none of the spam.
+
+[fn:1]The spam collection used here was modified by Lantz (2019). The
+original is from Gomez (2012) - the URL is no longer accessible, and I
+referenced the dataset from kaggle.com instead.
