@@ -1,0 +1,105 @@
+#+TITLE: Supervised Learning with Naive Bayes
+#+AUTHOR: [yourname] [pledge]
+#+SUBTITLE: Case Study - Filtering mobile phone spam
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+* README
+#+attr_latex: :width 400px
+#+caption: Bag of words technique illustrated
+[[../img/5_bagofwords.png]]
+
+- This lecture and practice follows the case developed by Lantz (2019)
+  and the Bag-of-Words method detailed in Kwartler (2017).
+
+- We use the ~tm~ R package for text mining originally developed by
+  Feinerer (2008).
+
+* Collecting the data
+
+- Take a look at the raw file to check if there's a header:
+  [[https://bit.ly/sms_spam_csv][bit.ly/sms_spam_csv]]
+
+- Import the CSV data and save them to a data frame ~sms_raw~. Do not
+  automatically convert ~character~ to ~factor~ vectors. Use the
+  appropriate function arguments:
+  #+begin_src R :results silent
+      ## save CSV data as data frame sms_raw
+  #+end_src
+
+- Check that the data frame was loaded:
+  #+begin_src R
+    
+  #+end_src
+  
+* Exploring the data
+
+- Check the data structure:
+  #+begin_src R
+    ## check the data structure
+  #+end_src
+
+- Convert the spam vs. ham label to a ~factor~ and confirm the
+  conversion:
+  #+begin_src R
+    ## convert class character vector to factor
+    ## confirm conversion to factor
+  #+end_src
+
+- Examine the frequency of spam vs. ham messages in the dataset:
+  #+begin_src R
+    ## examine frequency of spam vs ham
+  #+end_src
+
+* Getting the ~tm~ R package
+
+- Install and load ~tm~ (load it from the terminal if you haven't set
+  ~options()$repos~ in your ~~/.Rprofile~ file). This is an actively
+  developed package so re-installation will never do any harm:
+  #+begin_src R
+    ## install tm
+    ## load tm
+  #+end_src
+
+- Check that the package has been loaded and look at the methods
+  (functions) included in ~tm~:
+  #+begin_src R
+    ## check package has been loaded
+    ## list functions in tm
+  #+end_src
+
+* Building a document text corpus
+
+- Three steps lead from a data frame with text to a corpus:
+  1) Isolate the text vector
+  2) Turn the vector into a source
+  3) Turn the source into a corpus
+  4) Check that the corpus is there
+  #+begin_src R
+    
+  #+end_src
+
+- The ~VCorpus~ function creates a volatile, in-memory list that is
+  not permanent (not for writing to an external database):
+  #+begin_src R
+    
+  #+end_src
+
+- The corpus is a list (~class~ will not reveal this but ~typeof~ will):
+  #+begin_src R
+    
+  #+end_src
+
+- You can see its content element-wise using list indexing. For
+  example for message no. 999, ~tm::inspect~ returns meta data + content:
+  #+begin_src R
+    
+  #+end_src
+
+- ~tm::content~ returns just the content, but you can also use ~[[~ to
+  extract a message:
+  #+begin_src R
+
+  #+end_src
+
+
