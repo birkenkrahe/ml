@@ -13,55 +13,94 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js/dist/theme/black.css" id="theme"/>
 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </head>
 <body>
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide"><h1 class="title">Understanding Naive Bayes</h1><p class="subtitle">Supervised Naive Bayes Prediction</p>
-<h2 class="author">Marcus Birkenkrahe</h2><p class="date">Created: 2023-03-09 Thu 13:10</p>
+<h2 class="author">Marcus Birkenkrahe</h2><p class="date">Created: 2023-03-13 Mon 23:53</p>
 </section>
 <section>
-<section id="slide-orgb00ac44">
-<h2 id="orgb00ac44">Naive Bayes</h2>
+<section id="slide-org44582c2">
+<h2 id="org44582c2">Naïvety of the algorithm</h2>
 
-<div id="orge60ffa7" class="figure">
-<p><img src="../img/ThomasBayes.png" alt="ThomasBayes.png" width="300px" />
+<div id="org2d1586d" class="figure">
+<p><img src="../img/5_candide.png" alt="5_candide.png" width="400px" />
 </p>
-</div>
-
-<pre class="example" id="org78f253e">
-- Lecture notes in Markdown file (4_naive_bayes.md)
-- Source: Lantz (2019), chapter 4, pp. 89-123
-- DataCamp assignment: "Supervised learning with R", ch. 2
-</pre>
-
-</section>
-</section>
-<section>
-<section id="slide-orgd4324f8">
-<h2 id="orgd4324f8">What you will learn</h2>
-
-<div id="orgb1f41bb" class="figure">
-<p><img src="../img/learning.jpg" alt="learning.jpg" width="400px" />
-</p>
-<p><span class="figure-number">Figure 1: </span>Photo by Dmitry Ratushny on Unsplash</p>
 </div>
 
 <ul>
-<li>Classification using Naive Bayes</li>
-<li>Bayes' theorem and naive assumptions</li>
-<li>Text classification use case</li>
-<li>R packages for text mining &amp; visualization</li>
-<li>Application: SMS junk message filter</li>
-
-</ul>
+<li>All features are equally important and independent</li>
+<li>Is this justified in real datasets?</li>
+<li><p>
+Examples: spam / sentiment analysis
+</p>
 
 <aside class="notes">
 <p>
-A little bit of math in here, but nothing more than basic
-arithmetic. The main complexity is to understand the relationship
-between features, class, and probability measures, which are our
-"similarity" measure for this type of classifier.
+The question is always what we want to classify: if we're after
+spam, some features are more <b>important</b> than others, e.g. the email
+sender or the subject line. Words in the message body are not
+<b>independent</b> from one another - e.g. "Viagra" will be accompanied by
+"drugs", "cash" by "free" etc.
+</p>
+
+<p>
+If we analyze for sentiment (categories: good, bad, neutral, etc.)
+in online reviews, then length of the review is more <b>important</b> than
+the (anonymous) sender. The sentiment features are not <b>independent</b>
+of the time of the review - it is related to the product launch
+time, the time of day, etc.
+</p>
+
+<p>
+NB performs well even when these assumptions are violated, even if
+there are strong feature dependencies, especially with smaller
+datasets. The exact reason for this success is not known.
+</p>
+
+</aside></li>
+
+</ul>
+</section>
+</section>
+<section>
+<section id="slide-org4e529bf">
+<h2 id="org4e529bf">Adding more features</h2>
+
+<div id="orgda3f6c2" class="figure">
+<p><img src="../img/5_features.png" alt="5_features.png" width="800px" />
+</p>
+</div>
+
+<p>
+Is the message spam given that it contains the terms "Viagra" and
+"unsubscribe", but not "Money" or "Groceries"?
+</p>
+
+
+<div id="orgf58eb7f" class="figure">
+<p><img src="../img/5_longform.png" alt="5_longform.png" width="800px" />
+</p>
+</div>
+
+<p>
+Cp. "<a href="https://blog.hubspot.com/blog/tabid/6307/bid/30684/the-ultimate-list-of-email-spam-trigger-words.aspx">The Ultimate List of 394 Email Spam Trigger Words to Avoid in
+2023</a>"
+</p>
+
+<aside class="notes">
+<p>
+As new messages are received, we need to calculate the posterior
+probability to determine whether they are more likely spam or ham,
+given the likelihood of the words being found in the message text.
+</p>
+
+<p>
+Computational complexity is enormous: probabilities for possible
+intersecting events need to be stored. Imagine the Venn diagram of
+four overlapping circles - in reality, we have hundreds of features.
 </p>
 
 </aside>
@@ -69,167 +108,36 @@ between features, class, and probability measures, which are our
 </section>
 </section>
 <section>
-<section id="slide-orgd8f9f9f">
-<h2 id="orgd8f9f9f">Probabilistic methods</h2>
-
-<div id="org549b3aa" class="figure">
-<p><img src="../img/6_weather.png" alt="6_weather.png" />
-</p>
-</div>
-<pre class="example" id="org313d9fe">
-- Probabilistic methods describe uncertainty
-- They use data on past events to extrapolate future events
-- Such predictions are subject to many assumptions
-</pre>
-<aside class="notes">
+<section id="slide-org8df2634">
+<h2 id="org8df2634">Core assumptions</h2>
 <ul>
-<li>The chance of rain for example describes the proportion of prior
-days with similar atmospheric conditions in which in rained.</li>
-<li>A 70 percent chance of rain implies that in 7 out of 10 past cases
-with similar conditions, it rained somewhere in the area.</li>
-<li>The Naive Bayes algorithm uses probabilities in a similar way to a
-weather forecast.</li>
+<li>Class-conditional independence</li>
+<li>Constant marginal likelihood</li>
 
 </ul>
 
-</aside>
-
-</section>
-</section>
-<section>
-<section id="slide-org54d469d">
-<h2 id="org54d469d">Probability</h2>
-
-<div id="org9577837" class="figure">
-<p><img src="../img/prob.jpg" alt="prob.jpg" width="400px" />
-</p>
-<p><span class="figure-number">Figure 2: </span>Photo by Naser Tamimi on Unsplash</p>
-</div>
-
-<pre class="example" id="org9850cf3">
-- A probability P is a number between 0 and 1 (0% to 100%)
-- P captures the chance that an event will occur based on evidence
-- P = 0 indicates that the event will definitely not occur
-- P = 1 indicates that the event will occur with absolute certainty
-</pre>
-
-</section>
-</section>
-<section>
-<section id="slide-orgc59dfd5">
-<h2 id="orgc59dfd5">Bayesian methods</h2>
-
-<div id="org781388c" class="figure">
-<p><img src="../img/bavarian.jpg" alt="bavarian.jpg" width="400px" />
-</p>
-<p><span class="figure-number">Figure 3: </span>Photo by Markus Spiske on Unsplash</p>
-</div>
-
-<pre class="example" id="orgb47a5ec">
-- Training data are used to calculate outcome probability
-- Evidence is provided by labeled feature values
-- Classifier uses calculated probabilities to estimate class
-</pre>
-
-</section>
-</section>
-<section>
-<section id="slide-org2969d1b">
-<h2 id="org2969d1b">Applications</h2>
-
-<div id="org8fcf52c" class="figure">
-<p><img src="../img/ids-in-security.png" alt="ids-in-security.png" width="400px" />
+<div id="org2f94d84" class="figure">
+<p><img src="../img/5_spamshort.png" alt="5_spamshort.png" width="800px" />
 </p>
 </div>
 
-<ul>
-<li>Text classification, e.g. spam filter</li>
-<li>Anomaly detection in computer networks</li>
-<li>Diagnosing medical conditions</li>
-
-</ul>
+<div id="org3b85503" class="figure">
+<p><img src="../img/5_hamshort.png" alt="5_hamshort.png" width="800px" />
+</p>
+</div>
 
 <aside class="notes">
 <ul>
-<li>Best for problems where information from numerous attributes should
-be considered simultaneously to estimate overall probability of an
-outcome.</li>
-<li>E.g. spam filter: various words found in an example/message instance</li>
-<li>Unlike other ML methods, Bayesian methods use all available evidence
-to make predictions.</li>
-<li>Even if a large number of features have minor effects, their
-combined impact in a Bayesian model could have a major impact.</li>
-
-</ul>
-
-</aside>
-
-</section>
-</section>
-<section>
-<section id="slide-org0fa7197">
-<h2 id="org0fa7197">Basic idea</h2>
-
-<div id="orgfafc44c" class="figure">
-<p><img src="../img/6_events.png" alt="6_events.png" width="500px" />
-</p>
-</div>
-
-<p>
-The estimated likelihood of an <b>event</b> or potential outcome is based on
-the evidence from multiple <b>trials</b> or opportunities for the event to
-occur.
-</p>
-
-<aside class="notes">
-<p>
-The more trials the better for the accuracy of the estimate - by way
-of the <b>law of large numbers</b>: if you repeat an experiment independently
-a large number of times and average the result, your result is close to
-the expected value (the arithmetic mean):
-</p>
-<ul>
-<li>Large number of coin flips - P(head) = P(tail) = 50%</li>
-<li>Large number of observed days - weather averages</li>
-<li>Large number of email messages - certain spam prediction</li>
-<li>Large number of elections - certain presidential prediction</li>
-<li>Large number of lottery tickets - certain win</li>
-
-</ul>
-
-<p>
-But: real events are never mathematically independent.
-</p>
-
-</aside>
-
-</section>
-</section>
-<section>
-<section id="slide-org7bec5a8">
-<h2 id="org7bec5a8">Spam vs. Ham</h2>
-
-<div id="org2410cc8" class="figure">
-<p><img src="../img/6_spam_ham.png" alt="6_spam_ham.png" width="600px" />
-</p>
-</div>
-
-<p>
-In email trials, spam and ham are mutually exclusive and exhaustive
-events.
-</p>
-
-<aside class="notes">
-<ul>
-<li>P(event) = no. of occurrences / no. of trials</li>
-<li>Rain on 3/10 days w/similar conditions: 30% prob today</li>
-<li>Adding all P =&gt; 100% of the data or &sum; P(event)=1 because a trial
-always results in an outcome.</li>
-<li>P(spam) + P(ham) = 1 implies that spam/ham <b>mutually exclusive and
-exhaustive</b>.</li>
-<li>An alternative way of saying this uses a table of records: if you
-record many, many instances, say 1000, you have 200 lines marked as
-'spam' and 800 lines marked as 'ham'.</li>
+<li>Events are <b>independent</b> as long as they are conditioned on the same
+class value: for example, "Money" and "Unsubscribe" are considered
+independent when found in a spam message. Reduces the numerator term
+to a product of probabilities.</li>
+<li>Denominator does not depend on the target class (spam or ham) and is
+treated as <b>constant</b> and can be ignored.</li>
+<li>The equation has become a proportion</li>
+<li>To convert the likelihoods to probabilities, the denominator needs
+to be re-introduced (rescale likelihood of each outcome by total
+likelihood across all possible outcomes).</li>
 
 </ul>
 
@@ -237,174 +145,71 @@ record many, many instances, say 1000, you have 200 lines marked as
 </section>
 </section>
 <section>
-<section id="slide-org23f5be1">
-<h2 id="org23f5be1">Joint probability</h2>
+<section id="slide-org6f9fe42">
+<h2 id="org6f9fe42">Formula</h2>
 
-<div id="orga5953fd" class="figure">
-<p><img src="../img/6_joint.png" alt="6_joint.png" width="600px" />
+<div id="org8786d29" class="figure">
+<p><img src="../img/5_formula.png" alt="5_formula.png" width="600px" />
 </p>
 </div>
 
-<p>
-'Viagra' is a non-mutually exclusive event. Its overlap with 'spam'
-is large than its overlap with 'ham'.
-</p>
-
-</section>
-</section>
-<section>
-<section id="slide-org6c35d8c">
-<h2 id="org6c35d8c">Venn diagrams</h2>
-
-<div id="org3c31619" class="figure">
-<p><img src="../img/6_venn.png" alt="6_venn.png" width="600px" />
-</p>
-</div>
-
-<p>
-Calculating P(spam &cap; Viagra) depends on the joint probabilities of the
-two events, on their <b>dependency</b>. 
-</p>
-<aside class="notes">
 <ul>
-<li>The Venn diagram illustrates instances that are only spam, only
-Viagra but not spam and spam with Viagra messages.</li>
-<li>Named after 19th century mathematician John Venn</li>
-<li>If the circles aren't touching, the joint prob is 0 and the events
-are said to be <b>independent</b>. They can still occur simultaneously.</li>
-<li>A &cap; B = 0: Knowing something about the outcome of A reveals nothing
-about the outcome of B. Hard to illustrate in the real world, but:</li>
-<li>The outcome of a coin flip is unlikely to depend on the weather
-being sunny or rainy on any given day.</li>
-<li><b>Dependent events are the basis of predictive modeling.</b></li>
-<li>The appearance of clouds is predictive of rain, the appearance of
-the word 'Viagra' is predictive of spam.</li>
+<li>Class levels \(L\) (e.g. spam vs. ham)</li>
+<li>Features \(F\) (e.g. "Money", "Urgent")</li>
+<li>Scaling factor \(Z\)</li>
 
 </ul>
-
-</aside>
-</section>
-</section>
-<section>
-<section id="slide-org6f9503e">
-<h2 id="org6f9503e">Bayes' theorem</h2>
-
-<div id="org07234fb" class="figure">
-<p><img src="../img/6_bayes_simple.png" alt="6_bayes_simple.png" width="250px" />
-</p>
-</div>
-<ul>
-<li>For independent events, P(A &cap; B) = P(A) * P(B)</li>
-<li>P(Viagra AND spam) = (5/100) * (20/100) = 0.01</li>
-<li>P(A|B) is the probability of A given B occurred</li>
-<li>P(A|B) is the probability of A conditional on B</li>
-
-</ul>
-
-<div id="org16567a2" class="figure">
-<p><img src="../img/6_bayes.png" alt="6_bayes.png" width="400px" />
-</p>
-</div>
 
 <aside class="notes">
-<ul>
-<li>Recall: we're trying to predict the chance that a message that
-contains the word 'Viagra' (B) is spam (A).</li>
-<li>The formula states that the best estimate of P(A|B) is the
-proportion of trials in which A occurred with B, P(A &cap; B), out of
-all trials in which B occurred (all 'Viagra' messages).</li>
-<li>Extreme cases: if B is very rare, P(B) is small and the correction
-to P(A) is negligible (independence)</li>
-<li>If A and B occur together very often, P(A|B) will be high regardless
-of P(B).</li>
-<li>If Viagra and spam were independent, P(A &cap; B) = 0.05 * 0.20 = 0.01</li>
-
-</ul>
-
-</aside>
-</section>
-</section>
-<section>
-<section id="slide-orge90a425">
-<h2 id="orge90a425">Bayesian spam filter</h2>
-
-<div id="orgea68469" class="figure">
-<p><img src="../img/6_bayes_spam_ham.png" alt="6_bayes_spam_ham.png" width="600px" />
-</p>
-</div>
-
 <p>
-To calculate the components, construct a frequency table that records
-how often 'Viagra' appeared in 'spam' and 'ham' messages.
+Z converts the likelihood values to probabilities.
 </p>
-
-<div id="org817d3e7" class="figure">
-<p><img src="../img/6_frequency.png" alt="6_frequency.png" width="600px" />
-</p>
-</div>
-<aside class="notes">
-<ul>
-<li>Without knowing anything about an incoming messages, our best
-estimate would be P(spam) - the <b>prior probability</b> (20%)</li>
-<li>The chance of having any 'Viagra' in a spam message is the <b>marginal
-likelihood</b> - having any 'Viagra' at all is the <b>marginal likelihood</b></li>
-<li>What we're after is a computation of the <b>posterior probability</b>
-(i.e. <b>after</b> applying the condition 'Viagra').</li>
-
-</ul>
-
-</aside>
-</section>
-</section>
-<section>
-<section id="slide-org6caa50d">
-<h2 id="org6caa50d">Likelihood table</h2>
-
-<div id="org45866aa" class="figure">
-<p><img src="../img/6_likelihood.png" alt="6_likelihood.png" width="600px" />
-</p>
-</div>
-
-<p>
-The rows of the likelihood table contain the conditional probabilities
-for "Viagra" (yes/no) given that an email was spam or ham:
-</p>
-<pre class="example" id="org77ae022">
-P(Viagra = Yes | spam) = 4/20 = 0.20
-P(spam &amp; Viagra) = P(Viagra|spam) * P(spam) = (4/20)*(20/100) = 0.04
-P(spam|Viagra) = (4/20) * (20/100) / (5/100) = 0.80
-</pre>
-<aside class="notes">
-<ul>
-<li>The computed chance of getting spam AND Viagra is FOUR times as
-large as the chance when independence was assumed
-(P(Viagra)*P(spam)=0.01)</li>
-<li>The posterior probability that a message containing Viagra is spam
-is 80% - any message containing this term should be filtered.</li>
-<li>This is how commercial spam filters work: they consider a much
-larger number of words simultaneously when computing frequency and
-likelihood tables.</li>
-<li>The Naive Bayes algorithm accounts for these additional
-difficulties. It also relies on careful text pre-processing of the
-message data.</li>
-
-</ul>
 
 </aside>
 
 </section>
 </section>
 <section>
-<section id="slide-orgbd20431">
-<h2 id="orgbd20431">References</h2>
-<ul>
-<li>Lantz (2019). Machine Learning with R (3e). Packt.</li>
+<section id="slide-orgd720836">
+<h2 id="orgd720836">Workflow</h2>
 
-<li>Majka M (2019). naivebayes: High Performance Implementation of the
-Naive Bayes Algorithm in R. R package version 0.9.7,
-<a href="https://cran.r-project.org/package=naivebayes">https://cran.r-project.org/package=naivebayes</a>.</li>
+<div id="org96e2157" class="figure">
+<p><img src="../img/5_Spamfilter.jpg" alt="5_Spamfilter.jpg" width="300px" />
+</p>
+</div>
 
-</ul>
+<ol>
+<li>compute frequency table</li>
+<li>compute likelihood table</li>
+<li>multiply probabilities "naively"</li>
+<li>rescale likelihood to probability</li>
+
+</ol>
+
+<aside class="notes">
+<p>
+Process:
+</p>
+<ol>
+<li>frequency table,</li>
+<li>likelihood table,</li>
+<li>multiply conditional probabilities with "naive" assumption of independence,</li>
+<li>divide by total likelihood to transform each class likelihood to a
+probability.</li>
+
+</ol>
+
+</aside>
+</section>
+</section>
+<section>
+<section id="slide-org2ccc3da">
+<h2 id="org2ccc3da">Laplace correction</h2>
+</section>
+</section>
+<section>
+<section id="slide-org2ef7352">
+<h2 id="org2ef7352">Numeric features</h2>
 </section>
 </section>
 </div>

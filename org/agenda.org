@@ -604,7 +604,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
   4) Evaluating model performance
   5) Exercises: improve the model! (bonus)
 
-* TODO Week 9: k-NN improvement & Naive Bayes
+* Week 9: k-NN improvement & Naive Bayes
 #+attr_latex: :width 400px
 [[../img/amazing-thomas-bayes-illustration.jpg]]
 
@@ -624,7 +624,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - Regression methods: linear and logistic methods
 - Regression use case: predicting medical expenses
 
-* DONE Review: kNN case study (continued)
+** DONE Review: kNN case study (continued)
 #+attr_latex: :width 400px
 [[../img/rapid_review.jpg]]
 
@@ -649,43 +649,168 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
   - Running the model on new datasets (prepare data, run ~predict~)
   #+end_quotes
   
-* TODO Game programming in Snap! with AI
+** TODO Game programming in Snap! with AI
 #+attr_latex: :width 400px
 [[../img/snap.png]]
 
 - https://github.com/birkenkrahe/snap (HTML, PDF, Org, md)
 - Next fall: [[https://ecraft2learn.github.io/ai/][AI extensions to Snap!]] with [[https://ecraft2learn.github.io/ai/student-projects/][student project examples]]
 
-* TODO Bonus exercise & March assignments
+** TODO Bonus exercise & March assignments
 #+attr_latex: :width 400px
 [[../img/bonus.png]]
 
 - Remember how to compute the prediction accuracy: as the ~mean~ over
   the values of the original and the predicted ~factor~ vector ([[https://github.com/birkenkrahe/ml/blob/main/org/4_knn_case.org#computing-accuracy-as-an-average][GitHub]])
 
-* TODO Week 10: Regression
+* TODO Week 10: Naive Bayes algorithm and case study
+#+attr_latex: :width 400px
+#+caption: Illustration by Peter Eich (2006), Wikimedia (CC BY-SA 2.5)
+[[../img/6_Spamfilter.jpg]]
+
+- Naive Bayes review and algorithm
+- Naive Bayes case study: spam filter
+- Naive Bayes test 5 (due March 31)
+
+* TODO Results: test 3
+#+attr_latex: :width 400px
+[[../img/mlTestBox.png]]
+
+- Feel free to complete test 3 by Friday for partial credit (60%)
+
+* TODO Review: Simple Naive Bayes
+#+attr_html: :width 400px
+[[../img/bavarian.jpg]]
+
+1) Which evidence (in the data) is used for Naive Bayes?
+   #+begin_notes
+   Answer: NB uses all available data with stochastic weights or
+   probabilities attached to individual features.
+   #+end_notes
+2) For these *events*, what's a suitable *trial* to establish probability?
+   - Spam message
+   - Lottery win
+   - Sunny weather
+3) What determines the class our classifier is trying to predict?
+   #+begin_notes
+   Answer: 1) our observational data (e.g. recorded labels spam
+   vs. ham), 2) our problem (e.g. reduce spam)
+   #+end_notes
+4) Can the same dataset be used to predict different things? For
+   example, could a dataset that contains spam vs. ham labels (in
+   addition to many other text features) be used for sentiment
+   analysis?
+5) Why are more trials better for the accuracy of a probabilistic
+   prediction?
+   #+begin_notes
+   Because of the "law of large numbers", which holds for independent
+   trials of the same experiment - the expected value (sum of all
+   values weighted by their individual probabilities) becomes the
+   sample mean (arithmetic average of all values).
+   #+end_notes
+6) What kind of events are "spam vs. ham", or "win vs. loss", 
+   "benign vs. malignant".
+   #+begin_notes
+   Answer: they are mutually exclusive and exhaustive events, i.e. an
+   event is either one or the other but never both, the sum of their
+   probabilities adds up to one, and their joint probability is zero.
+   #+end_notes
+7) What's is the joint probability of the events "being home" and
+   "being at the office"?
+   #+begin_notes
+   Answer: it is zero provided that these events are mutually
+   exclusive. 
+   #+end_notes
+8) What does the condition probability (or likelihood) of the events
+   "being home" and "being at work" mean?
+   #+begin_notes
+   Answer: it 
+   #+end_notes
+9) What is the basis of predictive, probabilistic modeling?
+   #+begin_notes
+   Answer: dependent events - dependency of events (recorded as
+   feature values) means that the occurrence of one event is
+   conditional on another: for example, clouds are a condition for
+   rain. The probability of rain is conditional on the probability of
+   clouds appearing - the latter reveals something about the future of
+   the former that we can use to predict the weather. Clouds are
+   predictors for rain.
+   #+end_notes
+10) What does independence of two events imply?
+    #+begin_notes
+    Answer: knowing something about one event reveals nothing about
+    the other event. Neither can be used as a predictor for the
+    other. Their joint probability (the probability that they occur
+    together) is the product of the individual probabilities.
+    #+end_notes
+11) You're trying to establish the probability that a message with the
+    word "URGENT" in upper case letters is a spam message. What else
+    do you need to compute this?
+    #+begin_notes
+    Answer: according to Bayes' theorem, the conditional probability
+    P(spam|URGENT) = P(URGENT|spam) * P(spam) / P(URGENT). You need:
+    - P(URGENT|spam): likelihood of finding URGENT in a spam message;
+    - P(spam): chance of spam in a given sample of messages (trials)
+    - P(URGENT): chance of finding "URGENT" in a sample of messages
+    #+end_notes
+12) Compute P(spam|URGENT) from the following *frequency* table:
+    | FREQUENCY | URGENT=YES | URGENT=NO | TOTAL |
+    |-----------+------------+-----------+-------|
+    | spam      |          9 |        16 |    25 |
+    | ham       |          5 |       120 |   125 |
+    |-----------+------------+-----------+-------|
+    | Total     |         14 |       136 |   150 |
+    #+begin_notes
+    Answer: create *likelihood* table - the conditional probabilities
+    | LIKELIHOOD | URGENT=YES | URGENT=NO | TOTAL |
+    |------------+------------+-----------+-------|
+    | spam       | 9/25       | 16/25     |    25 |
+    | ham        | 5/125      | 120/125   |   125 |
+    |------------+------------+-----------+-------|
+    | Total      | 14/150     | 136/150   |   150 |
+    
+    + ~P(URGENT|spam)~ = 9/25 (likelihood of URGENT in spam)
+    + ~P(spam)~ = 25/150 (prior probability - before URGENT)
+    + ~P(URGENT)~ = 14/150 (marginal likelihood)
+    #+end_notes
+    #+begin_src R
+      p <- (9/25) * (25/150) / (14/150)
+      paste("Posterior probability:",format(p*100,digits=2),"%")
+    #+end_src
+
+    #+RESULTS:
+    : Posterior probability: 64 %
+    
 * TODO Reading therapy for spring break: ELIZA
+#+attr_latex: :width 400px
+[[../img/eliza.png]]
+
+- You will get a print copy of this seminal article to read and
+  (perhaps) discuss.
+
+- Cool online implementation on a DEC VT100 terminal at
+  [[https://www.masswerk.at/eliza/][masswerk.at/eliza/]]
 
 - ELIZA - A Computer Program For the Study of Natural Language
   Communication Between Man And Machine - Weizenbaum, CACM 9(1)
   (1966):36-46. URL: [[https://dl.acm.org/doi/pdf/10.1145/365153.365168][dl.acm.org]].
 
-- The computational therapeutic: exploring Weizenbaum’s ELIZA as a
+- See also: The computational therapeutic: exploring Weizenbaum’s ELIZA as a
   history of the present - Bassett, AI & Society 34
   (2019):803-812. URL: [[https://link.springer.com/article/10.1007/s00146-018-0825-9][link.springer.com]].
 
-* TODO Week 11: Decision trees
-* TODO Week 12: k-means clustering
+* TODO Week 11: Regression
+* TODO Week 12: Decision trees
+* TODO Week 13: k-means clustering
 
 - [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]]
 
-* TODO Week 13: Hierarchical clustering
+* TODO Week 14: Hierarchical clustering
 
 - [[https://app.datacamp.com/learn/projects/552][DataCamp guided project "Clustering Heart Disease Patient Data"]]
 
-* TODO Week 14: Dimensionality reduction with PCA
-* TODO Week 15: Case study: breast cancer data
-* TODO Week 16: Project presentations
+* TODO Week 15: Dimensionality reduction with PCA
+* TODO Week 16: Case study: breast cancer data
 * TODO What next?
 
 - Deep learning with R -  (Manning, 2022)

@@ -22,7 +22,6 @@
 
 * What you will learn
 #+attr_html: :width 400px
-#+caption: Photo by Dmitry Ratushny on Unsplash
 [[../img/learning.jpg]]
 
 - Classification using Naive Bayes
@@ -40,7 +39,7 @@ between features, class, and probability measures, which are our
 
 * Probabilistic methods
 #+attr_latex: :width 400px
-[[../img/6_weather.png]]
+[[../img/5_weather.png]]
 #+begin_example
 - Probabilistic methods describe uncertainty
 - They use data on past events to extrapolate future events
@@ -57,7 +56,6 @@ between features, class, and probability measures, which are our
 
 * Probability
 #+attr_html: :width 400px
-#+caption: Photo by Naser Tamimi on Unsplash
 [[../img/prob.jpg]]
 
 #+begin_example
@@ -69,7 +67,6 @@ between features, class, and probability measures, which are our
 
 * Bayesian methods
 #+attr_html: :width 400px
-#+caption: Photo by Markus Spiske on Unsplash
 [[../img/bavarian.jpg]]
 
 #+begin_example
@@ -99,7 +96,7 @@ between features, class, and probability measures, which are our
 
 * Basic idea
 #+attr_html: :width 500px
-[[../img/6_events.png]]
+[[../img/5_events.png]]
 
 The estimated likelihood of an *event* or potential outcome is based on
 the evidence from multiple *trials* or opportunities for the event to
@@ -121,7 +118,7 @@ But: real events are never mathematically independent.
 
 * Spam vs. Ham
 #+attr_html: :width 600px
-[[../img/6_spam_ham.png]]
+[[../img/5_spam_ham.png]]
 
 In email trials, spam and ham are mutually exclusive and exhaustive
 events.
@@ -139,14 +136,14 @@ events.
 #+end_notes
 * Joint probability
 #+attr_html: :width 600px
-[[../img/6_joint.png]]
+[[../img/5_joint.png]]
 
-'Viagra' is a non-mutually exclusive event. Its overlap with 'spam'
-is large than its overlap with 'ham'.
+'Viagra' is a non-mutually exclusive event. Its overlap with 'spam' is
+larger than its overlap with 'ham'.
 
 * Venn diagrams
 #+attr_html: :width 600px
-[[../img/6_venn.png]]
+[[../img/5_venn.png]]
 
 Calculating P(spam \cap Viagra) depends on the joint probabilities of the
 two events, on their *dependency*. 
@@ -166,13 +163,13 @@ two events, on their *dependency*.
 #+end_notes
 * Bayes' theorem
 #+attr_html: :width 250px
-[[../img/6_bayes_simple.png]]
+[[../img/5_bayes_simple.png]]
 - For independent events, P(A \cap B) = P(A) * P(B)
 - P(Viagra AND spam) = (5/100) * (20/100) = 0.01
 - P(A|B) is the probability of A given B occurred
 - P(A|B) is the probability of A conditional on B
 #+attr_html: :width 400px
-[[../img/6_bayes.png]]
+[[../img/5_bayes.png]]
 
 #+begin_notes
 - Recall: we're trying to predict the chance that a message that
@@ -188,12 +185,12 @@ two events, on their *dependency*.
 #+end_notes
 * Bayesian spam filter
 #+attr_html: :width 600px
-[[../img/6_bayes_spam_ham.png]]
+[[../img/5_bayes_spam_ham.png]]
 
 To calculate the components, construct a frequency table that records
 how often 'Viagra' appeared in 'spam' and 'ham' messages.
 #+attr_html: :width 600px
-[[../img/6_frequency.png]]
+[[../img/5_frequency.png]]
 #+begin_notes
 - Without knowing anything about an incoming messages, our best
   estimate would be P(spam) - the *prior probability* (20%)
@@ -204,7 +201,7 @@ how often 'Viagra' appeared in 'spam' and 'ham' messages.
 #+end_notes
 * Likelihood table
 #+attr_html: :width 600px
-[[../img/6_likelihood.png]]
+[[../img/5_likelihood.png]]
 
 The rows of the likelihood table contain the conditional probabilities
 for "Viagra" (yes/no) given that an email was spam or ham:
@@ -227,11 +224,156 @@ P(spam|Viagra) = (4/20) * (20/100) / (5/100) = 0.80
   message data.
 #+end_notes
 
+* Naïvety of the algorithm
+#+attr_html: :width 400px
+[[../img/5_candide.png]]
+
+- All features are equally important and independent
+- Is this justified in real datasets?
+- Examples: spam / sentiment analysis
+
+  #+begin_notes
+  The question is always what we want to classify: if we're after
+  spam, some features are more *important* than others, e.g. the email
+  sender or the subject line. Words in the message body are not
+  *independent* from one another - e.g. "Viagra" will be accompanied by
+  "drugs", "cash" by "free" etc.
+
+  If we analyze for sentiment (categories: good, bad, neutral, etc.)
+  in online reviews, then length of the review is more *important* than
+  the (anonymous) sender. The sentiment features are not *independent*
+  of the time of the review - it is related to the product launch
+  time, the time of day, etc.
+
+  NB performs well even when these assumptions are violated, even if
+  there are strong feature dependencies, especially with smaller
+  datasets. The exact reason for this success is not known.
+  #+end_notes
+* Adding more features
+#+attr_html: :width 800px
+[[../img/5_features.png]]
+
+Is the message spam given that it contains the terms "Viagra" and
+"unsubscribe", but not "Money" or "Groceries"?
+
+#+attr_html: :width 800px
+[[../img/5_longform.png]]
+
+Cp. "[[https://blog.hubspot.com/blog/tabid/6307/bid/30684/the-ultimate-list-of-email-spam-trigger-words.aspx][The Ultimate List of 394 Email Spam Trigger Words to Avoid in
+2023]]"
+
+#+begin_notes
+As new messages are received, we need to calculate the posterior
+probability to determine whether they are more likely spam or ham,
+given the likelihood of the words being found in the message text.
+
+Computational complexity is enormous: probabilities for possible
+intersecting events need to be stored. Imagine the Venn diagram of
+four overlapping circles - in reality, we have hundreds of features.
+#+end_notes
+
+* Core assumptions
+- Class-conditional independence
+- Constant marginal likelihood
+#+attr_html: :width 800px
+[[../img/5_spamshort.png]]
+#+attr_html: :width 800px
+[[../img/5_hamshort.png]]
+
+#+begin_notes
+- Events are *independent* as long as they are conditioned on the same
+  class value: for example, "Money" and "Unsubscribe" are considered
+  independent when found in a spam message. Reduces the numerator term
+  to a product of probabilities.
+- Denominator does not depend on the target class (spam or ham) and is
+  treated as *constant* and can be ignored.
+- The equation has become a proportion
+- To convert the likelihoods to probabilities, the denominator needs
+  to be re-introduced (rescale likelihood of each outcome by total
+  likelihood across all possible outcomes).
+#+end_notes
+* Formula
+#+attr_html: :width 600px
+[[../img/5_formula.png]]
+
+- Class levels $L$ (e.g. spam vs. ham)
+- Features $F$ (e.g. "Money", "Urgent")
+- Scaling factor $Z$
+
+#+begin_notes
+Z converts the likelihood values to probabilities.
+#+end_notes
+
+* Workflow
+#+attr_html: :width 300px
+[[../img/5_Spamfilter.jpg]]
+
+1) compute frequency table
+2) compute likelihood table
+3) multiply probabilities "naively"
+4) rescale likelihood to probability
+
+#+begin_notes
+Process:
+1) frequency table,
+2) likelihood table,
+3) multiply conditional probabilities with "naive" assumption of independence,
+4) divide by total likelihood to transform each class likelihood to a
+   probability.
+#+end_notes
+* Laplace correction
+#+attr_html: :width 300px
+[[../img/5_laplace.jpg]]
+
+- What if an event never occurs for one or more levels
+- Joint probability P(spam|groceries) = 0%
+- Laplace estimator adds small number to counts
+
+#+begin_notes
+- If an event (e.g. "groceries") has never before occurred in a spam
+  message, the likelihood P(groceries|spam) = 0 and the chain product
+  to compute the posterior probability P(spam|....) is zero if
+  "groceries" is suddenly found in a message.
+- Add a small correction to the counts in the frequency table, so
+  instead of 0/20 compute 1/20 so that each feature has a non-zero
+  probability of occurring with each class.
+- If the estimator is 1 this assumes that each class-feature combination
+  is found in the data set at least once.
+- The correction does not have to be the same for each
+  feature. Additional assumptions about the coupling of class and
+  feature can be built in. This is not practical for large datasets.
+- Note that the prior probabilities P(spam) and P(ham) are not
+  affected or corrected because this is our best estimate for the
+  observations.
+#+end_notes  
+  
+* Numeric features
+#+attr_html: :width 600px
+
+[[../img/5_numbers.png]]
+
+#+begin_notes
+- Frequency tables require the features to be categorical
+- Numeric features do not have categories of values
+- The algorithm will not directly work with numeric data
+- Solution: discretize numeric features into *bins* ("binning")
+- Works best when there are large amounts of training data
+- Practice: cut points in the distribution, e.g. for continuous time
+  as a feature, the data could be divided into four levels.
+- If binning is not obvious, you can discretize using quantiles -
+  divide data into three bins with tertiles, four with quartiles etc.
+- Binning/discretizing always reduces information: too few could
+  obscure trends (e.g. in the diagram: 2 bins), twoo many increases
+  the sensitivity to noisy data - that's naive Bayes "underfitting"
+  and "overfitting".
+#+end_notes
+
+
 * References
 
 - Lantz (2019). Machine Learning with R (3e). Packt.
-
 - Majka M (2019). naivebayes: High Performance Implementation of the
-  Naive Bayes Algorithm in R. R package version 0.9.7,
-  https://CRAN.R-project.org/package=naivebayes.
-
+  Naive Bayes Algorithm in R. R package v0.9.7, URL: [[https://CRAN.R-project.org/package=naivebayes][r-project.org]].
+- [[https://unsplash.com/photos/O33IVNPb0RI][Photo by Dmitry Ratushny on Unsplash]]
+- [[https://unsplash.com/photos/yG9pCqSOrAg][Photo by Naser Tamimi on Unsplash]]
+- [[https://unsplash.com/@markusspiske][Photo by Markus Spiske on Unsplash]]
