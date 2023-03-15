@@ -363,7 +363,7 @@ Process:
 - If binning is not obvious, you can discretize using quantiles -
   divide data into three bins with tertiles, four with quartiles etc.
 - Binning/discretizing always reduces information: too few could
-  obscure trends (e.g. in the diagram: 2 bins), twoo many increases
+  obscure trends (e.g. in the diagram: 2 bins), too many increases
   the sensitivity to noisy data - that's naive Bayes "underfitting"
   and "overfitting".
 #+end_notes
@@ -394,6 +394,38 @@ Process:
 #+end_notes
 
 * TODO Glossary
+
+| TERM                      | MEANING                                        |
+|---------------------------+------------------------------------------------|
+| Probability P             | Number between 0 and 1                         |
+|                           | Chance of an event occurring                   |
+| P = 0                     | Event will definitely not occur                |
+| P = 1                     | Event will certainly occur                     |
+| Evidence                  | Labeled feature values                         |
+| Event                     | Something that happened or can happen          |
+| Trial                     | Sample of at least one event                   |
+| Spam                      | Malicious message                              |
+| Ham                       | Non-malicious message                          |
+| Mutually exclusive events | Events cannot happen in the same trial         |
+| Exhaustive events         | Events cover all possible events               |
+| Joint probability         | Chance for events to happen together           |
+| Independent events        | Joint probability is zero                      |
+| Dependent events          | Conditional probability is non-zero            |
+| Bayes' Theorem (simple)   | P(A \vert B) = P(A \cap B) / P(B)                     |
+| Bayes' Theorem (complete) | P(A \vert B) = P(B \vert A) * P(A) / P(B)              |
+|                           | Posterior P = likelihood * prior P /marginal P |
+| Conditional probability   | P(A \vert B) Probability of A given B occurred     |
+| Frequency table           | Counts features for each class level           |
+| Likelihood table          | Feature likelihood conditional on class levels |
+| Naivety of Naive Bayes    | All features are equally important             |
+|                           | All features are independent of one another    |
+| Naive Bayes simplified    | Class conditional independence                 |
+|                           | Constant marginal likelihood                   |
+| Laplace correction        | Likelihood 1 for events that never occur for   |
+|                           | one or more levels                             |
+| Numeric Bayes             | Discretized or binned feature values           |
+| Bayes' under/overfitting  | Too few/too many bins obscure/created trends   |
+
 * References
 
 - Lantz (2019). Machine Learning with R (3e). Packt.

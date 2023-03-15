@@ -42,14 +42,14 @@
   see Sjarif et al (2019).
   
 - For more details on the text mining methods employed, see Kwartler
-  (2017).
+  (2017) but also a complete DataCamp course.
 
 * ML workflow = Text Mining + Naive Bayes
 #+attr_latex: :width 400px
 #+caption: Basic (technical) text processing pipeline (Harris, 2016)
 [[../img/5_text-mining-pipeline.png]]
 
-1) Getting the data (CSV to data frame)
+1) Getting the data (CSV to data frame) and creating a text corpus
 2) Formatting - remove punctuation, whitespace, make lower case etc.
 3) Tokenization - split messages into individual words
 4) Stemming - remove word endings and re-complete
@@ -96,13 +96,19 @@
   automatically convert ~character~ to ~factor~ vectors. Use the
   appropriate function arguments:
   #+begin_src R :results silent
-      ## save CSV data as data frame sms_raw
+   ## save CSV data as data frame sms_raw
+    sms_raw <- read.csv(file="https://bit.ly/sms_spam_csv",
+                 header=TRUE,
+                 stringsAsFactors=FALSE)  
   #+end_src
 
 - Check that the data frame was loaded:
   #+begin_src R
-    
+    ls()
   #+end_src
+
+  #+RESULTS:
+  : [1] "api_key"     "ask_chatgpt" "sms_raw"
   
 - Solutions:
   #+name: get_sms_raw
@@ -117,20 +123,43 @@
 
 - Check the data structure:
   #+begin_src R
-    ## check the data structure
+   str(sms_raw) ## check the data structure
+   head(sms_raw,2)
   #+end_src
+
+  #+RESULTS:
+  : 'data.frame':	5559 obs. of  2 variables:
+  :  $ type: chr  "ham" "ham" "ham" "spam" ...
+  :  $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
+  :   type                                              text
+  : 1  ham Hope you are having a good week. Just checking in
+  : 2  ham                           K..give back my thanks.
 
 - Convert the spam vs. ham label to a ~factor~ and confirm the
   conversion:
   #+begin_src R
-    ## convert class character vector to factor
+   ## convert class character vector to factor
+   factor(sms_raw$type) -> sms_raw$type
     ## confirm conversion to factor
+   is.factor(sms_raw$type)
+   str(sms_raw)
   #+end_src
+
+  #+RESULTS:
+  : [1] TRUE
+  : 'data.frame':	5559 obs. of  2 variables:
+  :  $ type: Factor w/ 2 levels "ham","spam": 1 1 1 2 2 1 1 1 2 1 ...
+  :  $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
 
 - Examine the frequency of spam vs. ham messages in the dataset:
   #+begin_src R
-    ## examine frequency of spam vs ham
+  table(sms_raw$type)  ## examine frequency of spam vs ham
   #+end_src
+
+  #+RESULTS:
+  : 
+  :  ham spam 
+  : 4812  747
 
 - Solutions:
   #+begin_src R
@@ -163,6 +192,7 @@
   [1] "86.56 %" "13.44 %"
   #+end_example
 
+
 * Getting the ~tm~ R package
 #+attr_latex: :width 400px
 #+caption: tm is a tools package for text mining
@@ -179,15 +209,69 @@
   developed package so re-installation will never do any harm:
   #+begin_src R
     ## install tm
+    install.packages("tm")
     ## load tm
+    library(tm)
   #+end_src
+
+  #+RESULTS:
+  : Warning: package 'tm' is in use and will not be installed
 
 - Check that the package has been loaded and look at the methods
   (functions) included in ~tm~:
   #+begin_src R
-    ## check package has been loaded
-    ## list functions in tm
+    search() ## check package has been loaded
+    ls('package:tm') ## list functions in tm
   #+end_src
+
+  #+RESULTS:
+  #+begin_example
+   [1] ".GlobalEnv"        "package:tm"        "package:NLP"      
+   [4] "ESSR"              "package:stats"     "package:graphics" 
+   [7] "package:grDevices" "package:utils"     "package:datasets" 
+  [10] "package:stringr"   "package:httr"      "package:methods"  
+  [13] "Autoloads"         "package:base"
+   [1] "as.DocumentTermMatrix"   "as.TermDocumentMatrix"  
+   [3] "as.VCorpus"              "Boost_tokenizer"        
+   [5] "content_transformer"     "Corpus"                 
+   [7] "DataframeSource"         "DirSource"              
+   [9] "Docs"                    "DocumentTermMatrix"     
+  [11] "DublinCore"              "DublinCore<-"           
+  [13] "eoi"                     "findAssocs"             
+  [15] "findFreqTerms"           "findMostFreqTerms"      
+  [17] "FunctionGenerator"       "getElem"                
+  [19] "getMeta"                 "getReaders"             
+  [21] "getSources"              "getTokenizers"          
+  [23] "getTransformations"      "Heaps_plot"             
+  [25] "inspect"                 "MC_tokenizer"           
+  [27] "nDocs"                   "nTerms"                 
+  [29] "PCorpus"                 "pGetElem"               
+  [31] "PlainTextDocument"       "read_dtm_Blei_et_al"    
+  [33] "read_dtm_MC"             "readDataframe"          
+  [35] "readDOC"                 "reader"                 
+  [37] "readPDF"                 "readPlain"              
+  [39] "readRCV1"                "readRCV1asPlain"        
+  [41] "readReut21578XML"        "readReut21578XMLasPlain"
+  [43] "readTagged"              "readXML"                
+  [45] "removeNumbers"           "removePunctuation"      
+  [47] "removeSparseTerms"       "removeWords"            
+  [49] "scan_tokenizer"          "SimpleCorpus"           
+  [51] "SimpleSource"            "stemCompletion"         
+  [53] "stemDocument"            "stepNext"               
+  [55] "stopwords"               "stripWhitespace"        
+  [57] "TermDocumentMatrix"      "termFreq"               
+  [59] "Terms"                   "tm_filter"              
+  [61] "tm_index"                "tm_map"                 
+  [63] "tm_parLapply"            "tm_parLapply_engine"    
+  [65] "tm_reduce"               "tm_term_score"          
+  [67] "URISource"               "VCorpus"                
+  [69] "VectorSource"            "weightBin"              
+  [71] "WeightFunction"          "weightSMART"            
+  [73] "weightTf"                "weightTfIdf"            
+  [75] "writeCorpus"             "XMLSource"              
+  [77] "XMLTextDocument"         "Zipf_plot"              
+  [79] "ZipSource"
+  #+end_example
 
 - Solutions:
   #+begin_src R
@@ -251,18 +335,15 @@
     unlist(sms_corpus[[999]][1])  ## extract msg content from corpus
   #+end_src
 
-
 * TODO Explore the text corpus
-
 * TODO Cleaning the text corpus
 
 * TODO Word stemming and re-completion
-
 * TODO Tokenization - word splitting 
-
 * TODO Building a Document Term Matrix
 
 * TODO Visualizing with word clouds
+
 
 * TODO Creating training and test data
 
@@ -271,6 +352,7 @@
 * TODO Evaluating model performance
 
 * TODO Improving model performance
+
 
 * TODO Glossary of Code
 

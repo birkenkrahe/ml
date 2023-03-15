@@ -702,20 +702,23 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
    Answer: NB uses all available data with stochastic weights or
    probabilities attached to individual features.
    #+end_notes
+
 2) For these *events*, what's a suitable *trial* to establish probability?
    - Spam message
    - Lottery win
    - Sunny weather
-     
+
 3) What determines the class our classifier is trying to predict?
    #+begin_notes
    Answer: 1) our observational data (e.g. recorded labels spam
    vs. ham), 2) our problem (e.g. reduce spam)
    #+end_notes
+
 4) Can the same dataset be used to predict different things? For
    example, could a dataset that contains spam vs. ham labels (in
    addition to many other text features) be used for sentiment
    analysis?
+
 5) Why are more trials better for the accuracy of a probabilistic
    prediction?
    #+begin_notes
@@ -724,6 +727,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
    values weighted by their individual probabilities) becomes the
    sample mean (arithmetic average of all values).
    #+end_notes
+
 6) What kind of events are "spam vs. ham", or "win vs. loss", 
    "benign vs. malignant".
    #+begin_notes
@@ -737,10 +741,8 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
    Answer: it is zero provided that these events are mutually
    exclusive. 
    #+end_notes
-8) What does the condition probability (or likelihood) of the events
+8) What does the conditional probability (or likelihood) of the events
    "being home" and "being at work" mean?
-   #+begin_notes
-   Answer: it 
    #+end_notes
 9) What is the basis of predictive, probabilistic modeling?
    #+begin_notes

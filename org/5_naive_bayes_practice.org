@@ -68,7 +68,7 @@
     ## list functions in tm
   #+end_src
 
-* Building a document text corpus
+* NEXT Building a document text corpus
 
 - Three steps lead from a data frame with text to a corpus:
   1) Isolate the text vector
