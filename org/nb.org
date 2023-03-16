@@ -75,7 +75,7 @@
 
 - Ask ChatGPT what the "SMS Spam Collection" is:
   #+begin_example R
-    ask_chatgpt("What is the SMS Spam Collection?")
+#    ask_chatgpt("What is the SMS Spam Collection?")
   #+end_example
   #+begin_quote
   "The SMS Spam Collection is a dataset consisting of text messages that
@@ -107,6 +107,9 @@
     ls()
   #+end_src
 
+  #+RESULTS:
+  : [1] "api_key"     "ask_chatgpt" "sms_raw"
+
 * Exploring the data
 
 - Check the data structure:
@@ -116,7 +119,7 @@
   #+end_src
 
   #+RESULTS:
-  : 'data.frame':       5559 obs. of  2 variables:
+  : 'data.frame':	5559 obs. of  2 variables:
   :  $ type: chr  "ham" "ham" "ham" "spam" ...
   :  $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
   :   type                                              text
@@ -135,7 +138,7 @@
 
   #+RESULTS:
   : [1] TRUE
-  : 'data.frame':       5559 obs. of  2 variables:
+  : 'data.frame':	5559 obs. of  2 variables:
   :  $ type: Factor w/ 2 levels "ham","spam": 1 1 1 2 2 1 1 1 2 1 ...
   :  $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
 
@@ -145,8 +148,8 @@
   #+end_src
 
   #+RESULTS:
-  :
-  :  ham spam
+  : 
+  :  ham spam 
   : 4812  747
 
 * Getting the ~tm~ R package
@@ -183,11 +186,11 @@
 
   #+RESULTS:
   #+begin_example
-   [1] ".GlobalEnv"        "package:MASS"      "package:tm"       
-   [4] "package:NLP"       "ESSR"              "package:stats"    
-   [7] "package:graphics"  "package:grDevices" "package:utils"    
-  [10] "package:datasets"  "package:stringr"   "package:httr"     
-  [13] "package:methods"   "Autoloads"         "package:base"
+   [1] ".GlobalEnv"        "package:tm"        "package:NLP"      
+   [4] "ESSR"              "package:stats"     "package:graphics" 
+   [7] "package:grDevices" "package:utils"     "package:datasets" 
+  [10] "package:stringr"   "package:httr"      "package:methods"  
+  [13] "Autoloads"         "package:base"
    [1] "as.DocumentTermMatrix"   "as.TermDocumentMatrix"  
    [3] "as.VCorpus"              "Boost_tokenizer"        
    [5] "content_transformer"     "Corpus"                 
@@ -236,7 +239,18 @@
                           Reuters-21578 Data Set of Topic crude
   #+end_example
 
-* NEXT Building a document text corpus
+* Building a document text corpus
+#+attr_latex: :width 400px
+#+caption: Tex mining workflow from Kwartler (2019)
+[[../img/1_workflow.png]]
+
+- A /corpus/ is a collection of text documents. It is a list of lists
+  with a lot of meta-data slapped on to it.
+
+- In order to be able to work with large text corpora, they need to be
+  suitably organized and cleaned.
+
+- Example: [[https://www.english-corpora.org/googlebooks/x.asp][this corpus]] contains 150 billion Google Book documents.
 
 - Three steps lead from a data frame with text to a corpus:
   1) Isolate the text vector
@@ -244,31 +258,23 @@
   3) Turn the source into a corpus
   4) Check that the corpus is there
   #+begin_src R
-    
+    sms_corpus <- VCorpus(VectorSource(sms_raw$text))
+    ls()
   #+end_src
+
+  #+RESULTS:
+  : [1] "api_key"     "ask_chatgpt" "sms_corpus"  "sms_raw"
 
 - The ~VCorpus~ function creates a volatile, in-memory list that is
   not permanent (not for writing to an external database):
   #+begin_src R
-    
+    sms_corpus  # print the corpus label
   #+end_src
 
-- The corpus is a list (~class~ will not reveal this but ~typeof~ will):
-  #+begin_src R
-    
-  #+end_src
-
-- You can see its content element-wise using list indexing. For
-  example for message no. 999, ~tm::inspect~ returns meta data + content:
-  #+begin_src R
-    
-  #+end_src
-
-- ~tm::content~ returns just the content, but you can also use ~[[~ to
-  extract a message:
-  #+begin_src R
-
-  #+end_src
+  #+RESULTS:
+  : <<VCorpus>>
+  : Metadata:  corpus specific: 0, document level (indexed): 0
+  : Content:  documents: 5559
 
 * Explore the text corpus
 
@@ -277,11 +283,15 @@
 
   #+end_src
 
+  #+RESULTS:
+
 - You can see its content element-wise using list indexing. For
   example for message no. 1, ~tm::inspect~ returns meta data + content:
   #+begin_src R
 
   #+end_src
+
+  #+RESULTS:
 
 - To extract a message, e.g. the first message, you can use the index
   operator ~[[~ subset by ~[1]~, or you can use the function ~tm::content~,
@@ -292,6 +302,8 @@
 
   #+end_src
 
+  #+RESULTS:
+
 - While ~tm::meta~ returns only the meta information, which can be subset, too:
   #+begin_src R
     ## corpus metadata
@@ -299,11 +311,15 @@
     ## "datetimestamp" metadata of 1st element
   #+end_src
 
+  #+RESULTS:
+
 - To see several list elements at once, ~lapply~ will apply its ~FUN~
   argument to all ~list~ members - for the first three messages:
   #+begin_src R
 
   #+end_src
+
+  #+RESULTS:
 
 * Cleaning the text corpus: lower case, numbers
 
@@ -313,10 +329,14 @@
 
   #+end_src
 
+  #+RESULTS:
+
 - To transform words to lower case, we use ~base::tolower~
   #+begin_src R
 
   #+end_src
+
+  #+RESULTS:
 
 - Since ~tolower~ is not in ~tm~, we need to wrap it in another function,
   ~tm::content_transformer~:
@@ -331,6 +351,8 @@
 
   #+end_src
 
+  #+RESULTS:
+
 - To remove numbers from the SMS messages, use ~tm::removeNumbers~ on
   the new corpus object:
   #+begin_src R :results silent
@@ -343,6 +365,8 @@
 
   #+end_src
 
+  #+RESULTS:
+
 - To see all ~tm~ functions that can be used with ~tm_map~, check the *help*
   for ~getTransformations~.
 
@@ -354,6 +378,8 @@
 
   #+end_src
 
+  #+RESULTS:
+
 - Which language contains the most stopwords?  Compare the ~length~ of
   ~english~, ~spanish~ and ~german~ ~tm::stopword~ dictionaries:
   #+begin_src R
@@ -362,17 +388,23 @@
 
   #+end_src
 
+  #+RESULTS:
+
 - To apply ~stopwords~ to the corpus, run ~removeWords~ on it. The
   ~stopwords~ function is an additional parameter (cp. ~args(tm_map)~):
   #+begin_src R
 
   #+end_src
 
+  #+RESULTS:
+
 - Compare the ~content~ of the first message of the original and the
   cleaned corpus:
   #+begin_src R
 
   #+end_src
+
+  #+RESULTS:
 
 - Now remove the punctuation with ~removePunctuation~, save the result
   in a new ~sms_corpus_clean~ object, and compare before/after for
@@ -383,11 +415,16 @@
 
   #+end_src
 
+  #+RESULTS:
+
 - There are subtleties here: e.g. ~removePunctuation~ strips punctuation
   characters completely, with unintended consequences:
   #+begin_src R
     removePunctuation("hello...world")
   #+end_src
+
+  #+RESULTS:
+  : [1] "helloworld"
 
 * Word stemming with ~SnowballC~
 
@@ -406,10 +443,14 @@
     
   #+end_src
 
+  #+RESULTS:
+
 - Which languages are available for stemming?
   #+begin_src R
 
   #+end_src
+
+  #+RESULTS:
 
 - Let's check the ~SnowballC::wordStem~ function on an example:
   #+begin_src R
@@ -418,9 +459,9 @@
   #+end_src
 
   #+RESULTS:
-  : [1] "learn"   "learn"   "learn"   "learn"   "learner"
-  : function (words, language = "porter") 
-  : NULL
+  : Error in wordStem(c("learn", "learned", "learning", "learns", "learner")) : 
+  :   could not find function "wordStem"
+  : Error in args(wordStem) : object 'wordStem' not found
 
 - To apply ~wordStem~ to the cleaned corpus with ~tm_map~, use the
   ~stemDocument~ function, and check another message (25) for success:
@@ -430,6 +471,8 @@
 
   #+end_src
 
+  #+RESULTS:
+
 - Lastly, remove additional whitespace using ~stripWhitespace~, and
   check the first three messages for success using ~lapply~:
   #+begin_src R
@@ -437,6 +480,8 @@
 
 
   #+end_src
+
+  #+RESULTS:
 
 * Tokenization - word splitting
   
@@ -454,16 +499,22 @@
 
   #+end_src  
 
+  #+RESULTS:
+
 - How sparse exactly is ~m~?
   #+begin_src R
 
 
   #+end_src
 
+  #+RESULTS:
+
 - In fact, the sparsity is contained in the meta-data of the DTM:
   #+begin_src R
 
   #+end_src
+
+  #+RESULTS:
 
 - You can also create a DTM directly from the raw, unprocessed SMS
   corpus: check the dimensions of the result in the last line and run
@@ -479,6 +530,23 @@
     
   #+end_src
 
+  #+RESULTS:
+  : Error in TermDocumentMatrix(x, control) : object 'sms_corpus' not found
 
 
+
+
+
+#+begin_src R
+  ls()
+  search()
+#+end_src
+
+#+RESULTS:
+: [1] "api_key"     "ask_chatgpt" "sms_raw"
+:  [1] ".GlobalEnv"        "package:tm"        "package:NLP"      
+:  [4] "ESSR"              "package:stats"     "package:graphics" 
+:  [7] "package:grDevices" "package:utils"     "package:datasets" 
+: [10] "package:stringr"   "package:httr"      "package:methods"  
+: [13] "Autoloads"         "package:base"
 
