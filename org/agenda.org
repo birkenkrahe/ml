@@ -827,12 +827,11 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
    Answer: the data cleaning includes text formatting, tokenization,
    stemming, stopwords, corpus creation, and a term frequency table.
    #+end_notes
-2) How many features does the raw data set have? How many will the
-   cleaned data set have?
+2) How many features does the raw data set (SMS Spam Collection) have? How many  will the cleaned data set have?
    #+begin_notes
    Answer: the initial dataset has 2 features - class label (spam,
    ham), and message. The final dataset has as many features as spam
-   trigger terms (probably several hundred).
+   trigger terms (probably several hundred) - our example: > 6,000.
    #+end_notes
 3) You've just loaded the R package "tm". How would you check (1) that
    the package is loaded, (2) which functions and (3) which datasets
@@ -843,6 +842,61 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
      ls('package:tm') # check methods/functions inside tm
      data(package="tm") # list datasets contained in package
      #+end_src
+
+     #+RESULTS:
+     #+begin_example
+      [1] ".GlobalEnv"        "package:tm"        "package:NLP"      
+      [4] "ESSR"              "package:stats"     "package:graphics" 
+      [7] "package:grDevices" "package:utils"     "package:datasets" 
+     [10] "package:stringr"   "package:httr"      "package:methods"  
+     [13] "Autoloads"         "package:base"
+      [1] "as.DocumentTermMatrix"   "as.TermDocumentMatrix"  
+      [3] "as.VCorpus"              "Boost_tokenizer"        
+      [5] "content_transformer"     "Corpus"                 
+      [7] "DataframeSource"         "DirSource"              
+      [9] "Docs"                    "DocumentTermMatrix"     
+     [11] "DublinCore"              "DublinCore<-"           
+     [13] "eoi"                     "findAssocs"             
+     [15] "findFreqTerms"           "findMostFreqTerms"      
+     [17] "FunctionGenerator"       "getElem"                
+     [19] "getMeta"                 "getReaders"             
+     [21] "getSources"              "getTokenizers"          
+     [23] "getTransformations"      "Heaps_plot"             
+     [25] "inspect"                 "MC_tokenizer"           
+     [27] "nDocs"                   "nTerms"                 
+     [29] "PCorpus"                 "pGetElem"               
+     [31] "PlainTextDocument"       "read_dtm_Blei_et_al"    
+     [33] "read_dtm_MC"             "readDataframe"          
+     [35] "readDOC"                 "reader"                 
+     [37] "readPDF"                 "readPlain"              
+     [39] "readRCV1"                "readRCV1asPlain"        
+     [41] "readReut21578XML"        "readReut21578XMLasPlain"
+     [43] "readTagged"              "readXML"                
+     [45] "removeNumbers"           "removePunctuation"      
+     [47] "removeSparseTerms"       "removeWords"            
+     [49] "scan_tokenizer"          "SimpleCorpus"           
+     [51] "SimpleSource"            "stemCompletion"         
+     [53] "stemDocument"            "stepNext"               
+     [55] "stopwords"               "stripWhitespace"        
+     [57] "TermDocumentMatrix"      "termFreq"               
+     [59] "Terms"                   "tm_filter"              
+     [61] "tm_index"                "tm_map"                 
+     [63] "tm_parLapply"            "tm_parLapply_engine"    
+     [65] "tm_reduce"               "tm_term_score"          
+     [67] "URISource"               "VCorpus"                
+     [69] "VectorSource"            "weightBin"              
+     [71] "WeightFunction"          "weightSMART"            
+     [73] "weightTf"                "weightTfIdf"            
+     [75] "writeCorpus"             "XMLSource"              
+     [77] "XMLTextDocument"         "Zipf_plot"              
+     [79] "ZipSource"
+     Data sets in package 'tm':
+
+     acq                     50 Exemplary News Articles from the
+                             Reuters-21578 Data Set of Topic acq
+     crude                   20 Exemplary News Articles from the
+                             Reuters-21578 Data Set of Topic crude
+     #+end_example
 
 Now go to GitHub, save ~5.2.org~ to ~Downloads~ and insert the file to
 your practice file ~5_naive_bayes_practice.org~ with ~C-x i~.
