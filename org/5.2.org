@@ -1,0 +1,209 @@
+* Explore the text corpus
+
+- The corpus is a ~list~ structure and its own R object ~class~:
+  #+begin_src R
+
+  #+end_src
+
+- You can see its content element-wise using list indexing. For
+  example for message no. 1, ~tm::inspect~ returns meta data + content:
+  #+begin_src R
+
+  #+end_src
+
+- To extract a message, e.g. the first message, you can use the index
+  operator ~[[~ subset by ~[1]~, or you can use the function ~tm::content~,
+  or ~as.character~:
+  #+begin_src R
+      ## extract msg content from corpus with [ ]
+      ## extract msg content from corpus
+
+  #+end_src
+
+- While ~tm::meta~ returns only the meta information, which can be subset, too:
+  #+begin_src R
+    ## corpus metadata
+    ## metadata of first corpus element
+    ## "datetimestamp" metadata of 1st element
+  #+end_src
+
+- To see several list elements at once, ~lapply~ will apply its ~FUN~
+  argument to all ~list~ members - for the first three messages:
+  #+begin_src R
+
+  #+end_src
+
+* Cleaning the text corpus: lower case, numbers
+
+- Transformation of the whole corpus is done with the ~tm_map~ function,
+  which accepts a corpus and a function as an argument - check that:
+  #+begin_src R
+
+  #+end_src
+
+- To transform words to lower case, we use ~base::tolower~
+  #+begin_src R
+
+  #+end_src
+
+- Since ~tolower~ is not in ~tm~, we need to wrap it in another function,
+  ~tm::content_transformer~:
+  #+begin_src R :results silent
+    
+  #+end_src
+
+- Let's check that the transformation worked: print the ~content~ of the
+  first message from the original and the transformed corpus:
+  #+begin_src R
+
+
+  #+end_src
+
+- To remove numbers from the SMS messages, use ~tm::removeNumbers~ on
+  the new corpus object:
+  #+begin_src R :results silent
+
+  #+end_src
+
+- Compare the ~content~ of the original and transformed corpus for message 4:
+  #+begin_src R
+
+
+  #+end_src
+
+- To see all ~tm~ functions that can be used with ~tm_map~, check the *help*
+  for ~getTransformations~.
+
+* Removing stopwords and punctuation
+
+- The ~tm~ package provides a ~stopwords~ function to access various sets
+  of stop words from different languages. Check its arguments.
+  #+begin_src R
+
+  #+end_src
+
+- Which language contains the most stopwords?  Compare the ~length~ of
+  ~english~, ~spanish~ and ~german~ ~tm::stopword~ dictionaries:
+  #+begin_src R
+
+
+
+  #+end_src
+
+- To apply ~stopwords~ to the corpus, run ~removeWords~ on it. The
+  ~stopwords~ function is an additional parameter (cp. ~args(tm_map)~):
+  #+begin_src R
+
+  #+end_src
+
+- Compare the ~content~ of the first message of the original and the
+  cleaned corpus:
+  #+begin_src R
+
+  #+end_src
+
+- Now remove the punctuation with ~removePunctuation~, save the result
+  in a new ~sms_corpus_clean~ object, and compare before/after for
+  message 16 :
+  #+begin_src R
+
+
+
+  #+end_src
+
+- There are subtleties here: e.g. ~removePunctuation~ strips punctuation
+  characters completely, with unintended consequences:
+  #+begin_src R
+    removePunctuation("hello...world")
+  #+end_src
+
+* Word stemming with ~SnowballC~
+
+- Word stemming involves reducing words to their root form. It reduces
+  words like "learning", "learned", "learns" to "learn".
+
+- In this way, the classifier does not have to learn a pattern for
+  each variant of what is semantically the same feature.
+
+- ~tm~ integrates word-stemming with the ~SnowballC~ package which needs
+  to be installed separately, alas. Load the package and check its
+  content:
+  #+begin_src R
+
+
+    
+  #+end_src
+
+- Which languages are available for stemming?
+  #+begin_src R
+
+  #+end_src
+
+- Let's check the ~SnowballC::wordStem~ function on an example:
+  #+begin_src R
+    wordStem(c("learn", "learned", "learning", "learns", "learner"))
+    args(wordStem)
+  #+end_src
+
+  #+RESULTS:
+  : [1] "learn"   "learn"   "learn"   "learn"   "learner"
+  : function (words, language = "porter") 
+  : NULL
+
+- To apply ~wordStem~ to the cleaned corpus with ~tm_map~, use the
+  ~stemDocument~ function, and check another message (25) for success:
+  #+begin_src R
+
+
+
+  #+end_src
+
+- Lastly, remove additional whitespace using ~stripWhitespace~, and
+  check the first three messages for success using ~lapply~:
+  #+begin_src R
+
+
+
+  #+end_src
+
+* Tokenization - word splitting
+  
+- The ~DocumenTermMatrix~ function takes a corpus and creates a
+  document-term matrix (DTM) with rows as docs and columns as terms:
+  #+begin_src R :results silent
+
+  #+end_src
+  
+- To look at the DTM, transform to a matrix with ~as.matrix~, save the
+  matrix as ~m~ and display rows 100 through 105, and columns 100
+  through 108.
+  #+begin_src R
+
+
+  #+end_src  
+
+- How sparse exactly is ~m~?
+  #+begin_src R
+
+
+  #+end_src
+
+- In fact, the sparsity is contained in the meta-data of the DTM:
+  #+begin_src R
+
+  #+end_src
+
+- You can also create a DTM directly from the raw, unprocessed SMS
+  corpus: check the dimensions of the result in the last line and run
+  the code block:
+  #+begin_src R
+    sms_dtm2 <- DocumentTermMatrix(sms_corpus,
+                                   control = list(
+                                     tolower = TRUE,
+                                     removeNumbers = TRUE,
+                                     stopwords = TRUE,
+                                     removePunctuation = TRUE,
+                                     stemming = TRUE))
+    
+  #+end_src
+

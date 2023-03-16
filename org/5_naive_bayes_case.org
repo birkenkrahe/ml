@@ -36,11 +36,11 @@
 - In addition to the regular ML workflow, we meet a multitude of text
   mining methods needed to prepare the data before we can train a
   model - these same methods are used to "data engineer" ChatGPT.
-  
+
 - There are many different approaches to solving this problem -
   e.g. using a Random Forest Algorithm (a supervised decision tree),
   see Sjarif et al (2019).
-  
+
 - For more details on the text mining methods employed, see Kwartler
   (2017) but also a complete DataCamp course.
 
@@ -74,9 +74,9 @@
   detection to identify potentially malicious patterns.
 
 - Ask ChatGPT what the "SMS Spam Collection" is:
-  #+begin_src R
+  #+begin_example R
     ask_chatgpt("What is the SMS Spam Collection?")
-  #+end_src
+  #+end_example
   #+begin_quote
   "The SMS Spam Collection is a dataset consisting of text messages that
   have been identified as spam. It was created to help researchers
@@ -86,7 +86,7 @@
   not. The SMS Spam Collection is widely used in the research community
   and has helped advance the field of spam detection in recent years."
   #+end_quote
-  
+
 * Collecting the data
 
 - Take a look at the raw file to check if there's a header:
@@ -96,10 +96,10 @@
   automatically convert ~character~ to ~factor~ vectors. Use the
   appropriate function arguments:
   #+begin_src R :results silent
-   ## save CSV data as data frame sms_raw
+    ## save CSV data as data frame sms_raw
     sms_raw <- read.csv(file="https://bit.ly/sms_spam_csv",
-                 header=TRUE,
-                 stringsAsFactors=FALSE)  
+                        header=TRUE,
+                        stringsAsFactors=FALSE)
   #+end_src
 
 - Check that the data frame was loaded:
@@ -109,22 +109,13 @@
 
   #+RESULTS:
   : [1] "api_key"     "ask_chatgpt" "sms_raw"
-  
-- Solutions:
-  #+name: get_sms_raw
-  #+begin_src R
-    sms_raw <- read.csv(file = "https://bit.ly/sms_spam_csv",
-                        header = TRUE,  # this is not the default
-                        stringsAsFactors = FALSE) # this is the default
-    ls()
-  #+end_src  
 
 * Exploring the data
 
 - Check the data structure:
   #+begin_src R
-   str(sms_raw) ## check the data structure
-   head(sms_raw,2)
+    str(sms_raw) ## check the data structure
+    head(sms_raw,2)
   #+end_src
 
   #+RESULTS:
@@ -138,11 +129,11 @@
 - Convert the spam vs. ham label to a ~factor~ and confirm the
   conversion:
   #+begin_src R
-   ## convert class character vector to factor
-   factor(sms_raw$type) -> sms_raw$type
+    ## convert class character vector to factor
+    factor(sms_raw$type) -> sms_raw$type
     ## confirm conversion to factor
-   is.factor(sms_raw$type)
-   str(sms_raw)
+    is.factor(sms_raw$type)
+    str(sms_raw)
   #+end_src
 
   #+RESULTS:
@@ -153,45 +144,13 @@
 
 - Examine the frequency of spam vs. ham messages in the dataset:
   #+begin_src R
-  table(sms_raw$type)  ## examine frequency of spam vs ham
+    table(sms_raw$type)  ## examine frequency of spam vs ham
   #+end_src
 
   #+RESULTS:
   : 
   :  ham spam 
   : 4812  747
-
-- Solutions:
-  #+begin_src R
-    <<get_sms_raw>>
-    str(sms_raw)  # data frame structure
-    factor(sms_raw$type) -> sms_raw$type   # converting type to factor
-    is.factor(sms_raw$type)  # logical check if type is now factor
-    str(sms_raw)  # structure after conversion
-    table(sms_raw$type)   # frequency table for all levels in type
-    prop.table(table(sms_raw$type))  # proportions
-    paste(format(prop.table(table(sms_raw$type)) * 100, digits=4),"%")
-  #+end_src
-
-  #+RESULTS:
-  #+begin_example
-  [1] "api_key"     "ask_chatgpt" "sms_raw"
-  'data.frame':	5559 obs. of  2 variables:
-   $ type: chr  "ham" "ham" "ham" "spam" ...
-   $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
-  [1] TRUE
-  'data.frame':	5559 obs. of  2 variables:
-   $ type: Factor w/ 2 levels "ham","spam": 1 1 1 2 2 1 1 1 2 1 ...
-   $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
-
-   ham spam 
-  4812  747
-
-        ham      spam 
-  0.8656233 0.1343767
-  [1] "86.56 %" "13.44 %"
-  #+end_example
-
 
 * Getting the ~tm~ R package
 #+attr_latex: :width 400px
@@ -215,13 +174,32 @@
   #+end_src
 
   #+RESULTS:
-  : Warning: package 'tm' is in use and will not be installed
+  #+begin_example
+  Installing package into 'C:/Users/birkenkrahe/AppData/Local/R/win-library/4.2'
+  (as 'lib' is unspecified)
+  trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.2/tm_0.7-11.zip'
+  Content type 'application/zip' length 987549 bytes (964 KB)
+  downloaded 964 KB
+
+  package 'tm' successfully unpacked and MD5 sums checked
+
+  The downloaded binary packages are in
+	  C:\Users\birkenkrahe\AppData\Local\Temp\RtmpcRY6nn\downloaded_packages
+  Loading required package: NLP
+
+  Attaching package: 'NLP'
+
+  The following object is masked from 'package:httr':
+
+      content
+  #+end_example
 
 - Check that the package has been loaded and look at the methods
-  (functions) included in ~tm~:
+  (functions) and datasets included in ~tm~:
   #+begin_src R
     search() ## check package has been loaded
     ls('package:tm') ## list functions in tm
+    data(package="tm")
   #+end_src
 
   #+RESULTS:
@@ -271,15 +249,13 @@
   [75] "writeCorpus"             "XMLSource"              
   [77] "XMLTextDocument"         "Zipf_plot"              
   [79] "ZipSource"
-  #+end_example
+  Data sets in package 'tm':
 
-- Solutions:
-  #+begin_src R
-    install.packages("tm") ## install tm
-    library(tm) ## load tm
-    search() ## check package has been loaded
-    ls('package:tm') ## list functions in tm    
-  #+end_src
+  acq                     50 Exemplary News Articles from the
+			  Reuters-21578 Data Set of Topic acq
+  crude                   20 Exemplary News Articles from the
+			  Reuters-21578 Data Set of Topic crude
+  #+end_example
 
 * Building a document text corpus
 #+attr_latex: :width 400px
@@ -287,7 +263,7 @@
 [[../img/1_workflow.png]]
 
 - A /corpus/ is a collection of text documents. It is a list of lists
-  with a meta data rich label slapped on it.
+  with a lot of meta-data slapped on to it.
 
 - In order to be able to work with large text corpora, they need to be
   suitably organized and cleaned.
@@ -304,46 +280,389 @@
     ls()
   #+end_src
 
+  #+RESULTS:
+  : [1] "api_key"     "ask_chatgpt" "sms_corpus"  "sms_raw"
+
 - The ~VCorpus~ function creates a volatile, in-memory list that is
   not permanent (not for writing to an external database):
   #+begin_src R
-    sms_corpus
+    sms_corpus  # print the corpus label
   #+end_src
 
-- The corpus is a list (~class~ will not reveal this but ~typeof~ will):
+  #+RESULTS:
+  : <<VCorpus>>
+  : Metadata:  corpus specific: 0, document level (indexed): 0
+  : Content:  documents: 5559
+
+* Explore the text corpus
+
+- The corpus is a ~list~ structure and its own R object ~class~:
   #+begin_src R
     typeof(sms_corpus)
+    class(sms_corpus)
   #+end_src
 
+  #+RESULTS:
+  : [1] "list"
+  : [1] "VCorpus" "Corpus"
+
 - You can see its content element-wise using list indexing. For
-  example for message no. 999, ~tm::inspect~ returns meta data + content:
+  example for message no. 1, ~tm::inspect~ returns meta data + content:
   #+begin_src R
-    inspect(sms_corpus[[999]])
+    inspect(sms_corpus[[1]])
   #+end_src
 
   #+RESULTS:
   : <<PlainTextDocument>>
   : Metadata:  7
-  : Content:  chars: 86
+  : Content:  chars: 49
   : 
-  : Yeah, in fact he just asked if we needed anything like an hour ago. When and how much?
+  : Hope you are having a good week. Just checking in
 
-- ~tm::content~ returns just the content, but you can also use ~[[~ to
-  extract a message:
+- To extract a message, e.g. the first message, you can use the index
+  operator ~[[~ subset by ~[1]~, or you can use the function ~tm::content~,
+  or ~as.character~:
   #+begin_src R
-    content(sms_corpus[[999]])   ## extract msg content from corpus
-    unlist(sms_corpus[[999]][1])  ## extract msg content from corpus
+    sms_corpus[[1]][1]  ## extract msg content from corpus with [ ]
+    content(sms_corpus[[1]])   ## extrxact msg content from corpus
+    as.character(sms_corpus[[1]])
   #+end_src
 
-* TODO Explore the text corpus
-* TODO Cleaning the text corpus
+  #+RESULTS:
+  : $content
+  : [1] "Hope you are having a good week. Just checking in"
+  : [1] "Hope you are having a good week. Just checking in"
+  : [1] "Hope you are having a good week. Just checking in"
 
-* TODO Word stemming and re-completion
-* TODO Tokenization - word splitting 
-* TODO Building a Document Term Matrix
+- While ~tm::meta~ returns only the meta information, which can be subset, too:
+  #+begin_src R
+    meta(sms_corpus)          # corpus metadata
+    meta(sms_corpus[[1]])     # metadata of first corpus element
+    meta(sms_corpus[[1]])[2]  # "datetimestamp" metadata of 1st element
+  #+end_src
 
-* TODO Visualizing with word clouds
+  #+RESULTS:
+  #+begin_example
+  data frame with 0 columns and 5559 rows
+    author       : character(0)
+    datetimestamp: 2023-03-16 17:04:32
+    description  : character(0)
+    heading      : character(0)
+    id           : 1
+    language     : en
+    origin       : character(0)
+  $datetimestamp
+  [1] "2023-03-16 17:04:32 GMT"
+  #+end_example
 
+- To see several list elements at once, ~lapply~ will apply its ~FUN~
+  argument to all ~list~ members - for the first three messages:
+  #+begin_src R
+    lapply(sms_corpus[1:3], as.character)
+  #+end_src
+
+  #+RESULTS:
+  : $`1`
+  : [1] "Hope you are having a good week. Just checking in"
+  : 
+  : $`2`
+  : [1] "K..give back my thanks."
+  : 
+  : $`3`
+  : [1] "Am also doing in cbe only. But have to pay."
+
+* Cleaning the text corpus: lower case, numbers
+
+- The corpus contains the raw text of 5,559 messages. It needs to be
+  standardized, which includes transforming all words to lower case,
+  removing numbers and punctuation.
+
+- Transformation of the whole corpus is done with the ~tm_map~ function,
+  which accepts a corpus and a function as an argument:
+  #+begin_src R
+    args(tm_map)
+  #+end_src
+
+  #+RESULTS:
+  : function (x, FUN, ...) 
+  : NULL
+
+- To transform words to lower case, we use ~base::tolower~
+  #+begin_src R
+    tolower("WHY ARE YOU YELLING AT ME!?")
+  #+end_src
+
+  #+RESULTS:
+  : [1] "why are you yelling at me!?"
+
+- Since ~tolower~ is not in ~tm~, we need to wrap it in another function,
+  ~tm::content_transformer~:
+  #+begin_src R :results silent
+    tm_map(sms_corpus, content_transformer(tolower)) -> sms_corpus_clean
+  #+end_src
+
+- Let's check that the transformation worked: print the ~content~ of the
+  first message from the original and the transformed corpus:
+  #+begin_src R
+    content(sms_corpus[[1]])
+    content(sms_corpus_clean[[1]])
+  #+end_src
+
+  #+RESULTS:
+  : [1] "Hope you are having a good week. Just checking in"
+  : [1] "hope you are having a good week. just checking in"
+
+- To remove numbers from the SMS messages, use ~tm::removeNumbers~ on
+  the new corpus object:
+  #+begin_src R :results silent
+    tm_map(sms_corpus_clean, removeNumbers) -> sms_corpus_clean
+  #+end_src
+
+- Compare the ~content~ of the original and transformed corpus for message 4:
+  #+begin_src R
+    content(sms_corpus[[4]])
+    content(sms_corpus_clean[[4]])
+  #+end_src
+
+  #+RESULTS:
+  : [1] "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline not to lose out! Box434SK38WP150PPM18+"
+  : [1] "complimentary  star ibiza holiday or £, cash needs your urgent collection.  now from landline not to lose out! boxskwpppm+"
+
+- To see all ~tm~ functions that can be used with ~tm_map~, check the help
+  for ~getTransformations~. They are: ~removeNumbers~, ~removePunctuation~,
+  ~removeWords~ and ~stemDocument~ (in connection with a dictionary), and
+  ~stripWhitespace~.
+
+* Removing stopwords and punctuation
+
+- We need to remove filler words like /to/, /and/, /but/ etc. These are
+  known as /stopwords/ and are removed before text mining.
+
+- The ~tm~ package provides a ~stopwords~ function to access various sets
+  of stop words from different languages. Check its arguments.
+  #+begin_src R
+    args(stopwords)
+  #+end_src
+
+  #+RESULTS:
+  : function (kind = "en") 
+  : NULL
+
+- Which language contains the most stopwords?  Compare the ~length~ of
+  ~english~, ~spanish~ and ~german~ ~tm::stopword~ dictionaries:
+  #+begin_src R
+    length(stopwords("english"))
+    length(stopwords("spanish"))
+    length(stopwords("german"))
+  #+end_src
+
+  #+RESULTS:
+  : [1] 174
+  : [1] 308
+  : [1] 231
+
+- To apply ~stopwords~ to the corpus, run ~removeWords~ on it. The
+  ~stopwords~ function is an additional parameter (cp. ~args(tm_map)~):
+  #+begin_src R
+    tm_map(sms_corpus_clean,
+           removeWords,
+           stopwords("en")) -> sms_corpus_clean
+  #+end_src
+
+  #+RESULTS:
+
+- Compare the ~content~ of the first message of the original and the
+  cleaned corpus:
+  #+begin_src R
+    content(sms_corpus[[1]])
+    content(sms_corpus_clean[[1]])
+  #+end_src
+
+  #+RESULTS:
+  : [1] "Hope you are having a good week. Just checking in"
+  : [1] "hope     good week. just checking "
+
+- Now remove the punctuation with ~removePunctuation~, save the result
+  in a new ~sms_corpus_clean~ object, and compare before/after for
+  message 16 :
+  #+begin_src R
+    tm_map(sms_corpus_clean, removePunctuation) -> sms_corpus_clean
+    content(sms_corpus[[16]])
+    content(sms_corpus_clean[[16]])
+  #+end_src
+
+  #+RESULTS:
+  : [1] "Ha ha cool cool chikku chikku:-):-DB-)"
+  : [1] "ha ha cool cool chikku chikkudb"
+
+- There are subtleties here: e.g. ~removePunctuation~ strips punctuation
+  characters completely, with unintended consequences:
+  #+begin_src R
+    removePunctuation("hello...world")
+  #+end_src
+
+  #+RESULTS:
+  : [1] "helloworld"
+
+* Word stemming with ~SnowballC~
+
+- Word stemming involves reducing words to their root form. It reduces
+  words like "learning", "learned", "learns" to "learn".
+
+- In this way, the classifier does not have to learn a pattern for
+  each variant of what is semantically the same feature.
+
+- ~tm~ integrates word-stemming with the ~SnowballC~ package which needs
+  to be installed separately, alas. Load the package and check its
+  content:
+  #+begin_src R
+    library(SnowballC)
+    search()
+    ls('package:SnowballC')
+  #+end_src
+
+  #+RESULTS:
+  :  [1] ".GlobalEnv"        "package:SnowballC" "package:tm"       
+  :  [4] "package:NLP"       "ESSR"              "package:stats"    
+  :  [7] "package:graphics"  "package:grDevices" "package:utils"    
+  : [10] "package:datasets"  "package:stringr"   "package:httr"     
+  : [13] "package:methods"   "Autoloads"         "package:base"
+  : [1] "getStemLanguages" "wordStem"
+
+- Which languages are available for stemming?
+  #+begin_src R
+    getStemLanguages()
+  #+end_src
+
+  #+RESULTS:
+  :  [1] "arabic"     "basque"     "catalan"    "danish"     "dutch"     
+  :  [6] "english"    "finnish"    "french"     "german"     "greek"     
+  : [11] "hindi"      "hungarian"  "indonesian" "irish"      "italian"   
+  : [16] "lithuanian" "nepali"     "norwegian"  "porter"     "portuguese"
+  : [21] "romanian"   "russian"    "spanish"    "swedish"    "tamil"     
+  : [26] "turkish"
+
+- Let's check the ~SnowballC::wordStem~ function on an example:
+  #+begin_src R
+    library(SnowballC)
+    wordStem(c("learn", "learned", "learning", "learns", "learner"))
+    args(wordStem)
+  #+end_src
+
+  #+RESULTS:
+  : [1] "learn"   "learn"   "learn"   "learn"   "learner"
+  : function (words, language = "porter") 
+  : NULL
+
+- The Porter algorithm used by ~wordStem~ does not recognize "learner"
+  because it is not a word that can be broken down in its root and
+  affixes using the algorithm's rules!
+
+- To apply ~wordStem~ to the cleaned corpus with ~tm_map~, use the
+  ~stemDocument~ function, and check another message (25) for success:
+  #+begin_src R
+    tm_map(sms_corpus_clean, stemDocument) -> sms_corpus_clean
+    content(sms_corpus[[25]])
+    content(sms_corpus_clean[[25]])
+  #+end_src
+
+  #+RESULTS:
+  : [1] "Could you not read me, my Love ? I answered you"
+  : [1] "read love answer"
+
+- Lastly, remove additional whitespace using ~stripWhitespace~, and
+  check the first three messages for success:
+  #+begin_src R
+    tm_map(sms_corpus_clean, stripWhitespace) -> sms_corpus_clean
+    lapply(sms_corpus[1:3],content)
+    lapply(sms_corpus_clean[1:3],content)
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  $`1`
+  [1] "Hope you are having a good week. Just checking in"
+
+  $`2`
+  [1] "K..give back my thanks."
+
+  $`3`
+  [1] "Am also doing in cbe only. But have to pay."
+  $`1`
+  [1] "hope good week just check"
+
+  $`2`
+  [1] "kgive back thank"
+
+  $`3`
+  [1] "also cbe pay"
+  #+end_example
+
+* Tokenization - word splitting
+
+- The final step is to split the messages into individuals terms or
+  tokens, a single element of a text string - in this case, a word.
+  
+- The ~DocumenTermMatrix~ function takes a corpus and creates a
+  document-term matrix (DTM) with rows as docs and columns as terms:
+  #+begin_src R :results silent
+    sms_dtm <- DocumentTermMatrix(sms_corpus_clean)
+  #+end_src
+
+- The DTM's transpose is the TDM (term-document matrix) - if the list
+  of documents (columns) is small and the word list (rows) is large,
+  TDM displays more easily.
+
+- To look at the DTM, transform to a matrix:
+  #+begin_src R
+    m <- as.matrix(sms_dtm)
+    m[100:105, 100:108]
+  #+end_src  
+
+- Not much to see, is there? It's a sparse matrix with very few
+  non-zero entries. How sparse exactly?
+  #+begin_src R
+      dim(m)
+      100 * length(which(m!=0))/(nrow(m)*ncol(m))
+  #+end_src
+
+  #+RESULTS:
+  : [1] 5559 6529
+  : [1] 0.1157827
+
+- In fact, the sparsity is contained in the meta-data of the DTM:
+  #+begin_src R
+    sms_dtm
+  #+end_src
+
+  #+RESULTS:
+  : <<DocumentTermMatrix (documents: 5559, terms: 6529)>>
+  : Non-/sparse entries: 42023/36252688
+  : Sparsity           : 100%
+  : Maximal term length: 40
+  : Weighting          : term frequency (tf)
+
+- You can also create a DTM directly from the raw, unprocessed SMS
+  corpus:
+  #+begin_src R
+    sms_dtm2 <- DocumentTermMatrix(sms_corpus,
+                                   control = list(
+                                     tolower = TRUE,
+                                     removeNumbers = TRUE,
+                                     stopwords = TRUE,
+                                     removePunctuation = TRUE,
+                                     stemming = TRUE))
+    dim(sms_dtm2)
+  #+end_src
+
+  #+RESULTS:
+  : [1] 5559 6940
+
+- You notice a difference in the number of terms: this is due to the
+  fact that ~DocumentTermMatrix~ uses a different ~stopwords~ function.
+
+- This illustrates an important text mining principle: the order of
+  operations matters!
 
 * TODO Creating training and test data
 
@@ -353,7 +672,6 @@
 
 * TODO Improving model performance
 
-
 * TODO Glossary of Code
 
 | COMMAND | MEANING |
@@ -361,6 +679,230 @@
 |         |         |
 
 * TODO Summary
+* IN PROGRESS Solutions
+** Collecting the data
+#+name: get_sms_raw
+#+begin_src R
+  sms_raw <- read.csv(file = "https://bit.ly/sms_spam_csv",
+                      header = TRUE,  # this is not the default
+                      stringsAsFactors = FALSE) # this is the default
+  ls()
+#+end_src
+
+#+RESULTS: get_sms_raw
+: [1] "api_key"          "ask_chatgpt"      "sms_corpus"       "sms_corpus_clean"
+: [5] "sms_raw"
+
+** Exploring the data
+#+begin_src R
+  <<get_sms_raw>>
+  str(sms_raw)  # data frame structure
+  factor(sms_raw$type) -> sms_raw$type   # converting type to factor
+  is.factor(sms_raw$type)  # logical check if type is now factor
+  str(sms_raw)  # structure after conversion
+  table(sms_raw$type)   # frequency table for all levels in type
+  prop.table(table(sms_raw$type))  # proportions
+  ## fancy formatted proportions printout
+  paste(format(prop.table(table(sms_raw$type)) * 100, digits=4),"%")
+#+end_src
+
+#+RESULTS:
+#+begin_example
+[1] "api_key"          "ask_chatgpt"      "sms_corpus"       "sms_corpus_clean"
+[5] "sms_raw"
+'data.frame':	5559 obs. of  2 variables:
+ $ type: chr  "ham" "ham" "ham" "spam" ...
+ $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
+[1] TRUE
+'data.frame':	5559 obs. of  2 variables:
+ $ type: Factor w/ 2 levels "ham","spam": 1 1 1 2 2 1 1 1 2 1 ...
+ $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
+
+ ham spam 
+4812  747
+
+      ham      spam 
+0.8656233 0.1343767
+[1] "86.56 %" "13.44 %"
+#+end_example
+
+** Getting the ~tm~ package
+#+begin_src R
+  install.packages("tm") ## install tm
+  library(tm) ## load tm
+  search() ## check package has been loaded
+  ls('package:tm') ## list functions in tm
+  data(package='tm')  ## datasets in package
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Warning: package 'tm' is in use and will not be installed
+ [1] ".GlobalEnv"        "package:SnowballC" "package:tm"       
+ [4] "package:NLP"       "ESSR"              "package:stats"    
+ [7] "package:graphics"  "package:grDevices" "package:utils"    
+[10] "package:datasets"  "package:stringr"   "package:httr"     
+[13] "package:methods"   "Autoloads"         "package:base"
+ [1] "as.DocumentTermMatrix"   "as.TermDocumentMatrix"  
+ [3] "as.VCorpus"              "Boost_tokenizer"        
+ [5] "content_transformer"     "Corpus"                 
+ [7] "DataframeSource"         "DirSource"              
+ [9] "Docs"                    "DocumentTermMatrix"     
+[11] "DublinCore"              "DublinCore<-"           
+[13] "eoi"                     "findAssocs"             
+[15] "findFreqTerms"           "findMostFreqTerms"      
+[17] "FunctionGenerator"       "getElem"                
+[19] "getMeta"                 "getReaders"             
+[21] "getSources"              "getTokenizers"          
+[23] "getTransformations"      "Heaps_plot"             
+[25] "inspect"                 "MC_tokenizer"           
+[27] "nDocs"                   "nTerms"                 
+[29] "PCorpus"                 "pGetElem"               
+[31] "PlainTextDocument"       "read_dtm_Blei_et_al"    
+[33] "read_dtm_MC"             "readDataframe"          
+[35] "readDOC"                 "reader"                 
+[37] "readPDF"                 "readPlain"              
+[39] "readRCV1"                "readRCV1asPlain"        
+[41] "readReut21578XML"        "readReut21578XMLasPlain"
+[43] "readTagged"              "readXML"                
+[45] "removeNumbers"           "removePunctuation"      
+[47] "removeSparseTerms"       "removeWords"            
+[49] "scan_tokenizer"          "SimpleCorpus"           
+[51] "SimpleSource"            "stemCompletion"         
+[53] "stemDocument"            "stepNext"               
+[55] "stopwords"               "stripWhitespace"        
+[57] "TermDocumentMatrix"      "termFreq"               
+[59] "Terms"                   "tm_filter"              
+[61] "tm_index"                "tm_map"                 
+[63] "tm_parLapply"            "tm_parLapply_engine"    
+[65] "tm_reduce"               "tm_term_score"          
+[67] "URISource"               "VCorpus"                
+[69] "VectorSource"            "weightBin"              
+[71] "WeightFunction"          "weightSMART"            
+[73] "weightTf"                "weightTfIdf"            
+[75] "writeCorpus"             "XMLSource"              
+[77] "XMLTextDocument"         "Zipf_plot"              
+[79] "ZipSource"
+Data sets in package 'tm':
+
+acq                     50 Exemplary News Articles from the
+                        Reuters-21578 Data Set of Topic acq
+crude                   20 Exemplary News Articles from the
+                        Reuters-21578 Data Set of Topic crude
+#+end_example
+
+** Cleaning: lower case and numbers
+- Let's check that the transformation worked: print the ~content~ of the
+  first message from the original and the transformed corpus:
+  #+begin_src R
+    content(sms_corpus[[1]])
+    content(sms_corpus_clean[[1]])
+  #+end_src
+
+  #+RESULTS:
+  : [1] "Hope you are having a good week. Just checking in"
+  : [1] "hope good week just check"
+
+- To remove numbers from the SMS messages, use ~tm::removeNumbers~ on
+  the new corpus object:
+  #+begin_src R :results silent
+    tm_map(sms_corpus_clean, removeNumbers) -> sms_corpus_clean
+  #+end_src
+- Compare the ~content~ of the original and transformed corpus for message 4:
+  #+begin_src R
+    content(sms_corpus[[4]])
+    content(sms_corpus_clean[[4]])
+  #+end_src
+
+  #+RESULTS:
+  : [1] "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline not to lose out! Box434SK38WP150PPM18+"
+  : [1] "complimentari star ibiza holiday £ cash need urgent collect now landlin lose boxskwpppm"
+
+** Removing stopwords and punctuation
+- The ~tm~ package provides a ~stopwords~ function to access various sets
+  of stop words from different languages. Check its arguments.
+  #+begin_src R
+    args(stopwords)
+  #+end_src
+
+  #+RESULTS:
+  : function (kind = "en") 
+  : NULL
+- Which language contains the most stopwords?  Compare the ~length~ of
+  ~english~, ~spanish~ and ~german~ ~tm::stopword~ dictionaries:
+  #+begin_src R
+    length(stopwords("english"))
+    length(stopwords("spanish"))
+    length(stopwords("german"))
+  #+end_src
+
+  #+RESULTS:
+  : [1] 174
+  : [1] 308
+  : [1] 231
+- To apply ~stopwords~ to the corpus, run ~removeWords~ on it. The
+  ~stopwords~ function is an additional parameter (cp. ~args(tm_map)~):
+  #+begin_src R
+    tm_map(sms_corpus_clean,
+           removeWords,
+           stopwords("en")) -> sms_corpus_clean
+  #+end_src
+
+  #+RESULTS:
+
+- Compare the ~content~ of the first message of the original and the
+  cleaned corpus:
+  #+begin_src R
+    content(sms_corpus[[1]])
+    content(sms_corpus_clean[[1]])
+  #+end_src
+
+  #+RESULTS:
+  : [1] "Hope you are having a good week. Just checking in"
+  : [1] "hope good week just check"
+- Now remove the punctuation with ~removePunctuation~, save the result
+  in a new ~sms_corpus_clean~ object, and compare before/after for
+  message 16 :
+  #+begin_src R
+    tm_map(sms_corpus_clean, removePunctuation) -> sms_corpus_clean
+    content(sms_corpus[[16]])
+    content(sms_corpus_clean[[16]])
+  #+end_src
+
+  #+RESULTS:
+  : [1] "Ha ha cool cool chikku chikku:-):-DB-)"
+  : [1] "ha ha cool cool chikku chikkudb"
+** Word stemming
+- ~tm~ integrates word-stemming with the ~SnowballC~ package which needs
+  to be installed separately, alas. Load the package and check its
+  content:
+  #+begin_src R
+    library(SnowballC)
+    search()
+    ls('package:SnowballC')
+  #+end_src
+
+  #+RESULTS:
+  :  [1] ".GlobalEnv"        "package:SnowballC" "package:tm"       
+  :  [4] "package:NLP"       "ESSR"              "package:stats"    
+  :  [7] "package:graphics"  "package:grDevices" "package:utils"    
+  : [10] "package:datasets"  "package:stringr"   "package:httr"     
+  : [13] "package:methods"   "Autoloads"         "package:base"
+  : [1] "getStemLanguages" "wordStem"
+
+- Which languages are available for stemming?
+  #+begin_src R
+    getStemLanguages()
+  #+end_src
+
+  #+RESULTS:
+  :  [1] "arabic"     "basque"     "catalan"    "danish"     "dutch"     
+  :  [6] "english"    "finnish"    "french"     "german"     "greek"     
+  : [11] "hindi"      "hungarian"  "indonesian" "irish"      "italian"   
+  : [16] "lithuanian" "nepali"     "norwegian"  "porter"     "portuguese"
+  : [21] "romanian"   "russian"    "spanish"    "swedish"    "tamil"     
+  : [26] "turkish"
+
 * References
 
 - Data:
@@ -374,10 +916,10 @@
 - Gomez et al (2012). On the Validity of a New SMS Spam
   Collection. In: Proceedings of the 11th IEEE International
   Conference on Machine Learning and Applications. URL: [[https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset][kaggle.com]].
-  
+
 - Harris (Oct 3, 2016). What Is Text Analytics? We Analyze the
   Jargon. URL: [[https://www.softwareadvice.com/resources/what-is-text-analytics/][softwareadvice.com]].
-  
+
 - Kwartler (2017). Text Mining in Practice with R. Wiley. URL:
   [[https://www.wiley.com/en-us/Text+Mining+in+Practice+with+R-p-9781119282013][wiley.com]].
 
@@ -397,7 +939,7 @@
   Frequency-Inverse Document Frequency and Random Forest
   Algorithm. In: Procedia Comp Sci 161:509-515. DOI:
   10.1016/j.procs.2019.11.150. URL: [[https://www.researchgate.net/publication/338350636_SMS_Spam_Message_Detection_using_Term_Frequency-Inverse_Document_Frequency_and_Random_Forest_Algorithm][researchgate.net]].
-    
+
 - Warnes (October 13, 2022). Package 'gmodels': Various R Programming
   Tools for Model Fitting. URL: [[https://cran.r-project.org/web/packages/gmodels/gmodels.pdf][cran.r-project.org]].
 

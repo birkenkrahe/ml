@@ -663,7 +663,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - Remember how to compute the prediction accuracy: as the ~mean~ over
   the values of the original and the predicted ~factor~ vector ([[https://github.com/birkenkrahe/ml/blob/main/org/4_knn_case.org#computing-accuracy-as-an-average][GitHub]])
 
-* TODO Week 10: Naive Bayes algorithm and case study
+* IN PROGRESS Week 10: Naive Bayes algorithm and case study
 #+attr_latex: :width 400px
 #+caption: Illustration by Peter Eich (2006), Wikimedia (CC BY-SA 2.5)
 [[../img/5_Spamfilter.jpg]]
@@ -672,11 +672,11 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - Naive Bayes case study: spam filter
 - Naive Bayes test 5 (due March 31)
 
-* TODO Pie Day!
+* DONE Pie Day!
 #+attr_html: :width 300px
 [[../img/pi.jpg]] [[../img/limerick.png]]
 
-* TODO Results: Test 3 and Tsunami of assignments
+* DONE Results: Test 3 and Tsunami of assignments
 #+attr_latex: :width 400px
 [[../img/mlTestBox.png]]
 
@@ -692,7 +692,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - I'll decide over spring break which of these (if any) we'll pick up
   for detailed treatment in class. In any case: more certificates 4U!
   
-* TODO Review: Simple Naive Bayes
+* DONE Review: Simple Naive Bayes
 #+attr_html: :width 300px
 #+caption: Photo by Ben Mullins on Unsplash
 [[../img/review.jpg]]
@@ -817,6 +817,38 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
   history of the present - Bassett, AI & Society 34
   (2019):803-812. URL: [[https://link.springer.com/article/10.1007/s00146-018-0825-9][link.springer.com]].
 
+* TODO Review: Spam Filter I
+#+attr_html: :width 300px
+#+caption: Photo by Ben Mullins on Unsplash
+[[../img/review1.jpg]]
+
+1) How is the usual ML workflow altered for a message spam filter?
+   #+begin_notes
+   Answer: the data cleaning includes text formatting, tokenization,
+   stemming, stopwords, corpus creation, and a term frequency table.
+   #+end_notes
+2) How many features does the raw data set have? How many will the
+   cleaned data set have?
+   #+begin_notes
+   Answer: the initial dataset has 2 features - class label (spam,
+   ham), and message. The final dataset has as many features as spam
+   trigger terms (probably several hundred).
+   #+end_notes
+3) You've just loaded the R package "tm". How would you check (1) that
+   the package is loaded, (2) which functions and (3) which datasets
+   (if any) it contains?
+   #+begin_src R :results output
+     library(tm)   # load package provided it's been installed
+     search()  # check package environments search path
+     ls('package:tm') # check methods/functions inside tm
+     data(package="tm") # list datasets contained in package
+     #+end_src
+
+Now go to GitHub, save ~5.2.org~ to ~Downloads~ and insert the file to
+your practice file ~5_naive_bayes_practice.org~ with ~C-x i~.
+
+Save the file and run all code blocks: ~M-x org-babel-execute-buffer~,
+then check with ~ls~ and ~search~ that all is ready to move on.
 
 * TODO Week 11: Regression
 * TODO Week 12: Decision trees
@@ -829,7 +861,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - [[https://app.datacamp.com/learn/projects/552][DataCamp guided project "Clustering Heart Disease Patient Data"]]
 
 * TODO Week 15: Dimensionality reduction with PCA
-* TODO Week 16: Case study: breast cancer data
+* TODO Week 16: Case: Breast Cancer Data once more
 * TODO What next?
 
 - Deep learning with R -  (Manning, 2022)
