@@ -281,7 +281,7 @@
   #+end_src
 
   #+RESULTS:
-  : [1] "api_key"     "ask_chatgpt" "sms_corpus"  "sms_raw"
+  : [1] "api_key"     "ask_chatgpt" "sms_corpus"  "sms_dtm2"    "sms_raw"
 
 - The ~VCorpus~ function creates a volatile, in-memory list that is
   not permanent (not for writing to an external database):
@@ -345,20 +345,20 @@
   #+begin_example
   data frame with 0 columns and 5559 rows
     author       : character(0)
-    datetimestamp: 2023-03-16 17:04:32
+    datetimestamp: 2023-03-16 18:33:42
     description  : character(0)
     heading      : character(0)
     id           : 1
     language     : en
     origin       : character(0)
   $datetimestamp
-  [1] "2023-03-16 17:04:32 GMT"
+  [1] "2023-03-16 18:33:42 GMT"
   #+end_example
 
 - To see several list elements at once, ~lapply~ will apply its ~FUN~
   argument to all ~list~ members - for the first three messages:
   #+begin_src R
-    lapply(sms_corpus[1:3], as.character)
+    lapply(sms_corpus[1:3], FUN=as.character)
   #+end_src
 
   #+RESULTS:
@@ -398,7 +398,8 @@
 - Since ~tolower~ is not in ~tm~, we need to wrap it in another function,
   ~tm::content_transformer~:
   #+begin_src R :results silent
-    tm_map(sms_corpus, content_transformer(tolower)) -> sms_corpus_clean
+    tm_map(x=sms_corpus,
+           FUN = content_transformer(tolower)) -> sms_corpus_clean
   #+end_src
 
 - Let's check that the transformation worked: print the ~content~ of the
@@ -414,9 +415,12 @@
 
 - To remove numbers from the SMS messages, use ~tm::removeNumbers~ on
   the new corpus object:
-  #+begin_src R :results silent
-    tm_map(sms_corpus_clean, removeNumbers) -> sms_corpus_clean
+  #+begin_src R
+    tm_map(x=sms_corpus_clean,
+           FUN=removeNumbers) -> sms_corpus_clean
   #+end_src
+
+  #+RESULTS:
 
 - Compare the ~content~ of the original and transformed corpus for message 4:
   #+begin_src R
@@ -457,16 +461,80 @@
   #+end_src
 
   #+RESULTS:
-  : [1] 174
-  : [1] 308
-  : [1] 231
+  #+begin_example
+  [1] 174
+  [1] 308
+  [1] 231
+    [1] "de"           "la"           "que"          "el"           "en"          
+    [6] "y"            "a"            "los"          "del"          "se"          
+   [11] "las"          "por"          "un"           "para"         "con"         
+   [16] "no"           "una"          "su"           "al"           "lo"          
+   [21] "como"         "más"          "pero"         "sus"          "le"          
+   [26] "ya"           "o"            "este"         "sí"           "porque"      
+   [31] "esta"         "entre"        "cuando"       "muy"          "sin"         
+   [36] "sobre"        "también"      "me"           "hasta"        "hay"         
+   [41] "donde"        "quien"        "desde"        "todo"         "nos"         
+   [46] "durante"      "todos"        "uno"          "les"          "ni"          
+   [51] "contra"       "otros"        "ese"          "eso"          "ante"        
+   [56] "ellos"        "e"            "esto"         "mí"           "antes"       
+   [61] "algunos"      "qué"          "unos"         "yo"           "otro"        
+   [66] "otras"        "otra"         "él"           "tanto"        "esa"         
+   [71] "estos"        "mucho"        "quienes"      "nada"         "muchos"      
+   [76] "cual"         "poco"         "ella"         "estar"        "estas"       
+   [81] "algunas"      "algo"         "nosotros"     "mi"           "mis"         
+   [86] "tú"           "te"           "ti"           "tu"           "tus"         
+   [91] "ellas"        "nosotras"     "vosotros"     "vosotras"     "os"          
+   [96] "mío"          "mía"          "míos"         "mías"         "tuyo"        
+  [101] "tuya"         "tuyos"        "tuyas"        "suyo"         "suya"        
+  [106] "suyos"        "suyas"        "nuestro"      "nuestra"      "nuestros"    
+  [111] "nuestras"     "vuestro"      "vuestra"      "vuestros"     "vuestras"    
+  [116] "esos"         "esas"         "estoy"        "estás"        "está"        
+  [121] "estamos"      "estáis"       "están"        "esté"         "estés"       
+  [126] "estemos"      "estéis"       "estén"        "estaré"       "estarás"     
+  [131] "estará"       "estaremos"    "estaréis"     "estarán"      "estaría"     
+  [136] "estarías"     "estaríamos"   "estaríais"    "estarían"     "estaba"      
+  [141] "estabas"      "estábamos"    "estabais"     "estaban"      "estuve"      
+  [146] "estuviste"    "estuvo"       "estuvimos"    "estuvisteis"  "estuvieron"  
+  [151] "estuviera"    "estuvieras"   "estuviéramos" "estuvierais"  "estuvieran"  
+  [156] "estuviese"    "estuvieses"   "estuviésemos" "estuvieseis"  "estuviesen"  
+  [161] "estando"      "estado"       "estada"       "estados"      "estadas"     
+  [166] "estad"        "he"           "has"          "ha"           "hemos"       
+  [171] "habéis"       "han"          "haya"         "hayas"        "hayamos"     
+  [176] "hayáis"       "hayan"        "habré"        "habrás"       "habrá"       
+  [181] "habremos"     "habréis"      "habrán"       "habría"       "habrías"     
+  [186] "habríamos"    "habríais"     "habrían"      "había"        "habías"      
+  [191] "habíamos"     "habíais"      "habían"       "hube"         "hubiste"     
+  [196] "hubo"         "hubimos"      "hubisteis"    "hubieron"     "hubiera"     
+  [201] "hubieras"     "hubiéramos"   "hubierais"    "hubieran"     "hubiese"     
+  [206] "hubieses"     "hubiésemos"   "hubieseis"    "hubiesen"     "habiendo"    
+  [211] "habido"       "habida"       "habidos"      "habidas"      "soy"         
+  [216] "eres"         "es"           "somos"        "sois"         "son"         
+  [221] "sea"          "seas"         "seamos"       "seáis"        "sean"        
+  [226] "seré"         "serás"        "será"         "seremos"      "seréis"      
+  [231] "serán"        "sería"        "serías"       "seríamos"     "seríais"     
+  [236] "serían"       "era"          "eras"         "éramos"       "erais"       
+  [241] "eran"         "fui"          "fuiste"       "fue"          "fuimos"      
+  [246] "fuisteis"     "fueron"       "fuera"        "fueras"       "fuéramos"    
+  [251] "fuerais"      "fueran"       "fuese"        "fueses"       "fuésemos"    
+  [256] "fueseis"      "fuesen"       "siendo"       "sido"         "tengo"       
+  [261] "tienes"       "tiene"        "tenemos"      "tenéis"       "tienen"      
+  [266] "tenga"        "tengas"       "tengamos"     "tengáis"      "tengan"      
+  [271] "tendré"       "tendrás"      "tendrá"       "tendremos"    "tendréis"    
+  [276] "tendrán"      "tendría"      "tendrías"     "tendríamos"   "tendríais"   
+  [281] "tendrían"     "tenía"        "tenías"       "teníamos"     "teníais"     
+  [286] "tenían"       "tuve"         "tuviste"      "tuvo"         "tuvimos"     
+  [291] "tuvisteis"    "tuvieron"     "tuviera"      "tuvieras"     "tuviéramos"  
+  [296] "tuvierais"    "tuvieran"     "tuviese"      "tuvieses"     "tuviésemos"  
+  [301] "tuvieseis"    "tuviesen"     "teniendo"     "tenido"       "tenida"      
+  [306] "tenidos"      "tenidas"      "tened"
+  #+end_example
 
 - To apply ~stopwords~ to the corpus, run ~removeWords~ on it. The
   ~stopwords~ function is an additional parameter (cp. ~args(tm_map)~):
   #+begin_src R
-    tm_map(sms_corpus_clean,
-           removeWords,
-           stopwords("en")) -> sms_corpus_clean
+    tm_map(x=sms_corpus_clean,
+           FUN=removeWords,
+           c(stopwords("en"),"just")) -> sms_corpus_clean
   #+end_src
 
   #+RESULTS:
@@ -480,7 +548,7 @@
 
   #+RESULTS:
   : [1] "Hope you are having a good week. Just checking in"
-  : [1] "hope     good week. just checking "
+  : [1] "hope     good week.  checking "
 
 - Now remove the punctuation with ~removePunctuation~, save the result
   in a new ~sms_corpus_clean~ object, and compare before/after for
@@ -589,7 +657,7 @@
   $`3`
   [1] "Am also doing in cbe only. But have to pay."
   $`1`
-  [1] "hope good week just check"
+  [1] "hope good week check"
 
   $`2`
   [1] "kgive back thank"

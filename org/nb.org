@@ -531,7 +531,6 @@
   #+end_src
 
   #+RESULTS:
-  : Error in TermDocumentMatrix(x, control) : object 'sms_corpus' not found
 
 
 
@@ -543,7 +542,7 @@
 #+end_src
 
 #+RESULTS:
-: [1] "api_key"     "ask_chatgpt" "sms_raw"
+: [1] "api_key"     "ask_chatgpt" "sms_corpus"  "sms_dtm2"    "sms_raw"
 :  [1] ".GlobalEnv"        "package:tm"        "package:NLP"      
 :  [4] "ESSR"              "package:stats"     "package:graphics" 
 :  [7] "package:grDevices" "package:utils"     "package:datasets" 
