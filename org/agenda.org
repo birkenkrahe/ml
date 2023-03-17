@@ -672,11 +672,11 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - Naive Bayes case study: spam filter
 - Naive Bayes test 5 (due March 31)
 
-* DONE Pie Day!
+** Pie Day!
 #+attr_html: :width 300px
 [[../img/pi.jpg]] [[../img/limerick.png]]
 
-* DONE Results: Test 3 and Tsunami of assignments
+** Results: Test 3 and Tsunami of assignments
 #+attr_latex: :width 400px
 [[../img/mlTestBox.png]]
 
@@ -692,7 +692,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - I'll decide over spring break which of these (if any) we'll pick up
   for detailed treatment in class. In any case: more certificates 4U!
   
-* DONE Review: Simple Naive Bayes
+** Review: Simple Naive Bayes
 #+attr_html: :width 300px
 #+caption: Photo by Ben Mullins on Unsplash
 [[../img/review.jpg]]
@@ -799,7 +799,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
     #+RESULTS:
     : Posterior probability: 64 %
     
-* TODO Reading therapy for spring break: ELIZA
+** READ Reading therapy for spring break: ELIZA
 #+attr_latex: :width 400px
 [[../img/eliza.png]]
 
@@ -817,7 +817,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
   history of the present - Bassett, AI & Society 34
   (2019):803-812. URL: [[https://link.springer.com/article/10.1007/s00146-018-0825-9][link.springer.com]].
 
-* TODO Review: Spam Filter I
+** TODO Review: Spam Filter I
 #+attr_html: :width 300px
 #+caption: Photo by Ben Mullins on Unsplash
 [[../img/review1.jpg]]
@@ -904,7 +904,11 @@ your practice file ~5_naive_bayes_practice.org~ with ~C-x i~.
 Save the file and run all code blocks: ~M-x org-babel-execute-buffer~,
 then check with ~ls~ and ~search~ that all is ready to move on.
 
-* TODO Week 11: Regression
+* TODO Week 11: Finish Spam Filter & Start "Regression"
+
+** [[c:/Program Files/Emacs/emacs-28.2/bin/][RTextTools example]] for the UCI breast cancer data
+
+
 * TODO Week 12: Decision trees
 * TODO Week 13: k-means clustering
 
