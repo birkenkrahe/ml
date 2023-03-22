@@ -1,0 +1,82 @@
+#+TITLE: 2nd Sprint Review - Literature Review for Twitter Data
+#+AUTHOR: Hunter Perkins, Marlon Durand, Jordan Deuley [PLEDGED]
+#+STARTUP: entititespretty overview indent
+
+The three areas that we wanted to focus on were how we're going to
+scrape data from Twitter, what R  package we're going to use for
+our regression model, and what regression model will work best for our
+predictions.
+
+* Different Regression Models
+Our goal for this project is make a model that will correctly
+approximate the amount of views a Tweet on Twitter, depending on the
+number of likes, comments, and retweets a post has. There will also
+be some "boolean" variables involved with the project, such as if it
+was promoted or advertisement Tweet. We wanted to look past a linear
+regression model and find a more accurate one since we have more
+than one independent variable. Upon further research, we found three
+regression models that seem useful for this project: Ridge
+Regression, Lasso Regression, and Bayesian Linear Regression. The
+one that we're going to focus on is the Ridge Regression, due to it
+relying on independent variables having a high correlation with each
+other.
+
+Ridge Regression was the one that seemed most interesting, because
+it relies on independent variables that have a strong correlation
+with each other, which we're assuming the variables in our project
+will have a high correlation with because they all have to do with
+interactions of a Tweet. The model includes a bias matrix which
+causes it to be less likely to overfit the data. Below is the
+equation of the Ridge Regression, where λ "/solves the problem of/
+/multicollinerarity./" [1]
+
+β = (X^{T}X + λ*I)^{-1}X^{T}y
+
+* caret Package
+For our priject, we needed to look into R machine learning packages
+that would help us make whatever kind of model we decided on. There
+are plenty of packages in R that are used for machine learning, like
+mlr3, xgboost, etc. When comparing all the other packages to caret,
+it was clear that caret was a better choice. It had lots of
+documentation behind it which makes working with it much easier. It
+is also rather versatile with the 230+ models it supports.
+
+This article is meant to serve as an introduction/tutorial to the
+package and its features. The article serves as a tutorial on how to
+use the package and all it offers. In particular, it's great because
+it's give great ideas on how to structure the project
+effectively. The introduction explains how to data split,
+pre-process, select features, etc. There are also visual aspects of
+the caret package that work well with the rest of its functions. The
+sections regarding pre-processing, data splitting, and model
+training go into detail how to use the corresponding functions and
+which arguments are available. Overall, the caret everything we need
+for this project. It'll be interesting to see the power of the
+package while working through it.
+
+* Scraping Twitter Data
+Apparently, you have to apply to be a developer to access Twitter
+data. The application isn't much but is still inconvenient when you
+consider the timeline of the project. So, if all else fails we'll
+look at TikTok data which is way more accessible than Twitter's, and
+they have similar datasets. After getting the developer account
+application approved, the process for accessing the data is very
+similar to any other web scraping process, which Jordan has
+experience with.
+
+Using this API, we're able to grab all the necessary information:
+likes, retweets, and comments of the Tweet, as well as how many
+followers the account has and the text of the tweet. The main focus
+of our project was to estimate the views of the Tweet, but since
+we're able to grab the text, we can see if certain keywords have an
+effect on the interactions.
+
+The main point of this article was that we're able to scrape all the
+data needed in R, which makes it easier since our *caret* package is
+in R; there's no need to switch between coding languages and
+overcomplicate things.
+
+* Sources
+[[https://www.upgrad.com/blog/types-of-regression-models-in-machine-learning/][6 Types of Regression Models in Machine Learning You Should Know About]] [1]
+[[http://topepo.github.io/caret/index.html][The caret Package]] [2]
+[[https://medium.com/analytics-vidhya/scraping-and-analyzing-tweets-in-r-62582e2f4543][Scraping and Analyzing Tweets in R]] [3]

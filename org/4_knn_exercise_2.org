@@ -84,6 +84,7 @@ Use different values of ~k~, check and interpret the predictions: k =
      <<define_wbcd_check_k>>
      k_vals <- ... ## vector with the k values to test
      result <- rep(NA,length(k_vals))  ## initialize result
+     names(result) <- k_vals
      j <- 0 # initialize dummy index
      for (i in k_vals) {
        j <- j + 1

@@ -1,0 +1,72 @@
+#+Literature Review : Legality and Morality of AI based in creating artwork
+#+AUTHOR   : Chase Griffith, Garrett Russell
+
+* Literature Search Strategy
+  The bulk of the search was done via a standard search engine, and accessing court documents.
+
+* Google vs. Authors Guild: https://rb.gy/nptl3u
+
+	A court document summarizing the case of Authors Guild,
+	Inc. v. Google Inc.  regarding the subject of whether or not
+	Google was violating copyright law by checking out books at a
+	library and digitizing them without purchasing the book
+	itself. The ruling found that this constituted fair use under
+	the premise that digitizing the books and adding a search
+	function to them was transformative.
+
+	The source in particular is useful as it gives potential
+	insight to how the courts might rule on the class action
+	lawsuit, showing what precedent defines as transformative in
+	regards to new and upcoming technologies.
+
+* Class Action lawsuit v. Stability AI LTD., Midjourney INC. DeviantArt, INC.: https://tinyurl.com/mtkyf3kn
+
+	Court Document detailing the allegations against the companies
+	listed above. It details the plaintiffs case about stable
+	diffusion violating copyright law: that after the stable
+	diffusion model has been trained on the image, it stores a
+	compressed copy, and that due to this copy being made without
+	consent nor compensation, it violates copyright law.
+	Furthermore, it states that new images are based solely on the
+	images in the training set, and as such are derivative.
+
+	The source is the basis of the bulk of the
+	presentation/paper. It is a case that is still rapidly
+	developing and how this case plays out will likely dictate the
+	future of AI for consumers as opposed to a research tool.
+
+* How does Stable Diffusion AI work?: https://tinyurl.com/3pxe8mpj
+
+         This article explains the entire architecture of Stable
+         Diffusion AI and shows what puts it ahead of competitors and
+         how it is furthering the world of machine learning. The most
+         important takeaway is that this model is open source,
+         allowing people to play with it, modify, and tweak it into
+         whatever someone wants. They have even created a modified
+         model that creates a “disney character version” of the text
+         prompt.
+
+         This source is mainly in the presentation for the purposes of
+         explaining the stable diffusion model on a techincal level
+
+
+* What is the LAION dataset?: https://laion.ai/blog/laion-5b/
+
+         This article details the dataset used to create Stable
+	 Diffusion. It's an open-source data set that contains over 5
+	 billion CLIP-filtered text and image pairs. The key part is
+	 that it is open-source.
+
+	 In some of the other sources above, this dataset is a large
+	 portion of the copyright issue.  Mainly that it has scraped
+	 up billions of public images and made them available for
+	 commercial use through other means (like midjourney and other
+	 stable-diffusion based image generation models)
+
+
+
+
+
+
+
+  

@@ -1,0 +1,126 @@
+#+TITLE: Cer-AI-mics
+#+AUTHOR: Kim Ho, Jackson Harrod, Alex Banag
+#+SUBTITLE: DSC 305 Machine Learning
+#+STARTUP: overview hideblocks indent
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+* Indentify literature search straegy
+- All sources were found through the google scholar search engine with
+  keywords "ai art history", "ai art generator", and "ceramic transfer
+  ink."
+* References
+
+#+NAME: AI Art Without Artists
+#+begin_example
+Audry S, Ippolito J. "Can Artificial Intelligence Make Art without
+Artists? Ask the Viewer." Arts. 2019;
+8(1):35.[[https://doi.org/10.3390/arts8010035][doi.org]]
+
+Summary/Achieve: This paper addresses whether machines can be artists and
+suggests that the viewer should decide. They expand on Cohen's AARON,
+a machine that cannot deter from the rules set or change its
+constraints and therefore, cannot be creative. Additionally, the paper
+compares this line of reasoning to Leonel Moura, an artist who works
+with an army of mobile robots who make drawings. Moura claims that
+once the robots are taught how to paint, they move on their own. They
+discuss authorship of art and assigning personality to the
+meta-artist. They conclude by focusing on the role of artists and
+viewers of machine-generated art.
+
+Relevance: Medium, Intro/Discussion (collab, history, current use)
+
+Evaluation: I thought that the mentioning of AI music compositions was
+fascinating. Also, I enjoyed learning about Naruto et al. versus David
+Slater and how a robot can learn until they no longer relate to what
+the coder initially meant for the robot to do. I'd recommended this
+reading for those who want to know more about AI art controversies.
+
+Credibility: High(scholarly journal article, extensive citations,
+Ippolito is a well-published author and educator)
+
+#+end_example
+
+#+NAME: AI Haikus
+#+begin_example
+Hitsuwari, Jimpei, et al. "Does human-AI collaboration lead to more
+creative art? Aesthetic evaluation of human-made and AI-generated
+haiku poetry." Computers in Human Behavior, 2022,
+[[https://doi.org/10.1016/j.chb.2022.107502][doi.org]]
+
+Summary/Achieve: The paper expands on AI-generated poetry, and how people
+react to a machine's writing. Their study found that when humans and
+AI collaborated, those haikus were chosen by the study group to be the
+most beautiful. Those in the study could not tell the difference
+between human-made and AI-generated haikus. The study group also were
+given tests to measure animism traits, empathy levels, interest in
+haiku and art, and sensitivity to similarity, all of which were taken
+into consideration. They conclude that creativity can be boosted when
+humans and machines work together.
+
+Relevance: Low (Possible Methods, transfer haiku from chat gpt to ceramics)
+
+Evaluation: It was an interesting read; I like how they were very methodological in their study of haiku and beauty and how thorough they were in analyzing statistical significance. It was also interesting how beauty scores have not had significant differences even when the culture in the study changes. I would recommend it to those who like poetry and those interested in AI-generated text. 
+
+Credibility: Medium(scholarly journal, extensive references)
+
+#+end_example
+
+#+NAME: AICAN Creativity
+#+begin_example
+Mazzone M, Elgammal A. Art, "Creativity, and the Potential of
+Artificial Intelligence." Arts. 2019;
+8(1):26.[[https://doi.org/10.3390/arts8010026][doi.org]]
+
+Summary/Achieve: Art is constantly being redefined and boundaries of the
+subject reimagined. This paper goes into detail about algorithmic art,
+where an algorithm learns aesthetics from input images to generate new
+images.The two researchers of this article use their knowledge of art
+history and computer science to argue that human and machine
+creativity can work alongside each other and not always be competing
+when it comes to making art. Through one of their studies, they found
+that people could not tell the difference between machine and human
+generated art. They emphasize that the AICAN system is designed to
+deviate from copying the images they learn from and to instead
+encourage new versions of art.
+
+Relevance: Medium, Intro (human and machine partnership)
+
+Evaluation: I liked how they included the role of the artist in the
+pre-curation, tweaking of the algorithm, and post-curation steps of
+the art generating process. I enjoyed their discussion of how failure
+cases can still have a visually positive impact on the viewer. I would
+recommend this reading for those interested in how machines and
+artists can work together to create AI generated art.
+
+Credibility: High(scholarly journal, extensive research citations)
+
+
+#+end_example
+
+
+
+#+NAME: Ceramics and Print
+#+begin_example
+Scott, Paul. Ceramics and Print. University of Pennsylvania
+Press, 2002.
+
+Summary/Achieve: This book outlines the history of ceramics and print. From
+wooden prints, to stamps, to lithography to screen printing and
+photography, the book highlights techniques to transfer designs and
+images onto ceramic pieces. The author also discusses recent
+developments in printing on ceramics and industrial uses.
+
+Relevance: Medium, Methods (options for transferring ink to clay)
+
+Evaluation: I really enjoyed reading about all the different methods
+that have been explored over the years and looking at the images of
+prints. I found the fact that ceramic photographs are common at
+graveyards to be particularly interesting. I would have liked it if he
+went into more detail about UV curing media and the machinery
+(hardware and software) that is being developed for industrial use. I
+would recommend this reading for ceramicists interested in design work
+or those who want to know more about the history of and correlation
+between ceramics and print.
+
+Credibility: Medium(book, written by accomplished artist)
+#+end_example

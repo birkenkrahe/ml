@@ -1,0 +1,77 @@
+#+TITLE: SnAIke VS TheWorld
+#+AUTHOR: Wyatt Frerichs, Payne Moser, Spencer Rhoden [Pledged]
+#+SUBTITLE: CSC 482
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+* Literture Search Strategy
+
+We started by searching for some general articles about how to build a
+ snake game and neural networks
+
+* Refrences
+1) Using supervised learning to teach a network to play battleship 
+(https://medium.com/@jayceesansom/using-supervised-training-to-teach-a-network-to-play-battleship-7522f28c52ca) 
+
+  Summary:
+   This article discusses the author's experience in using supervised training
+   to teach a neural network how to play the game of Battleship. The author
+   also explains how he created a dataset of game states and corresponding 
+   actions for the neural network to learn from.
+
+  Evaluation:
+   This is one of the early articles we found that is focused around battleship
+   but still in the realm of this of this project
+
+
+2) Snake game with Pygame
+(https://www.edureka.co/blog/snake-game-with-pygame/) 
+
+
+ Summary:
+  This article is a tutorial on how to create the classic game of Snake
+  using the Python programming language and the Pygame library. The 
+  author begins by explaining the game's rules and objectives before 
+  diving into the implementation details. The tutorial covers creating 
+  the game's graphics, handling user input, implementing the game logic, 
+  and adding sound effects to the game.
+
+ Evaluation:
+  This is a very technical article that will help us with utilizing 
+  pygame, the python package focused on building games, to implement 
+  our own game of snake to test our neural network on.
+
+ 
+3) How to teach an ai to play games 
+(https://towardsdatascience.com/how-to-teach-an-ai-to-play-games-deep-reinforcement-learning-28f9b920440a)
+
+
+ Summary:
+  Another article about using ai and reinforcement learning to play games
+ 
+ 
+ 4) Neural Networks (https://www.ibm.com/topics/neural-networks)
+ 
+ Summary:
+  This article is an overview of neural networks, including their history,
+  applications, and types. The article also covers the different types 
+  of neural networks, including feedforward, recurrent, and convolutional
+   neural networks, and their unique characteristics and use cases.
+
+ Evaluation:
+  This is a good general source for reference about neural networks.
+
+ 
+ 5) Neural Networks(https://news.mit.edu/2017/explained-neural-networks-deep-learning-0414)
+
+
+ Summary:
+  This article describes how neural networks work. The article also 
+  covers deep learning, which involves using neural networks with many
+  layers to learn complex patterns and features, and gives examples of
+  applications, such as image and speech recognition, natural language 
+  processing, and self-driving cars.
+
+ Evaluation:
+  This is another good general source for reference about neural networks.
+

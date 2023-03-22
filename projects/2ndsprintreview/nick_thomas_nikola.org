@@ -1,0 +1,108 @@
+#+TITLE: Literature Review
+#+AUTHORS: Nick Chaney, Thomas Lingren, Nikola Sasaroga
+#+SUBTITLE: Machine Learning
+
+* Literature search strategy
+  Our research strategy was to look for scholarly articles that have
+  researched the same topic as us. We needed to find a reliable data
+  base, a research method, and used some of the references to
+  understand what challenges we may come across.
+
+* References
+  1.Gumm, Jordan, et al. “A Machine Learning Strategy for Predicting March Madness Winners.”
+       2015 IEEE/ACIS 16th International Conference on Software
+       Engineering, Artificial Intelligence, Networking and Parallel/Distributed Computing (SNPD), 2015,
+
+    This article is an example of how machine learning was used to
+    create predictions for the winner of the NCAA tournament games. It
+    list multiple algorithms that they used and the results of using
+    this on the 2014 NCAA tournament. It gives us a start on how to
+    create our machine learning algorithm and what data to look at.
+
+    This reference gives us a lot of information that we can use in
+    our project. The thing we like most is how they list exactly what
+    they used to create their machine learning algorithm and also the
+    results that it produced. People interested in our topic should
+    definitely read this article because it gives alot of information
+    that you may not even think of and reasons for why they did
+    everything that they did. This refrence is very credible, it was
+    published in a scientific journal, has many scholarly refrences,
+    and has been peer reviewed.
+    
+  2.Morrell, Eric. “How to Use Machine Learning to Predict NCAA March
+       Madness.” Analytics8, 2 Feb. 2023,
+
+    This article explains how machine learning can be applied to the
+    NCAA tournament. They are looking at the same topic as us for the
+    2018 and 2019 seasons. In this model it gives a probability for
+    each team to win a game. This model bases its picks for winners
+    based on the probabilities it generates. It takes into account
+    different stats and rankings throughout the year. It also list the
+    data base that it used, which is also listed in our references.
+
+    We like that this article tells the results of this machine
+    learning model over a couple of years instead of just 1. We would
+    have liked if there was more detail into what stats were the most
+    important and went into more detail on their method. People
+    interested in our topic should look at this references because it
+    has good detail but is still basic enough that someone who isn't
+    super knowledgable in the topic will still understand. This isn't
+    the most reliable source, it is a public blog and the creater
+    does specialize in analytics but this is not a super scholarly
+    article.
+
+  3. Shen, Gang, et al. “Predicting Results of March Madness Using
+     Three Different Methods.” Journal of Sports Research, vol. 3, no. 1, 2016, pp. 10–17.,
+
+     This article gives three different models of machine learning to
+     predict the results of the tournament. These include a support
+     vector machine, random forest, and a Bayesian model. It list all
+     the variables considered in these models. It then goes into detail of
+     the algorithms and formulas for each model.
+
+     Everything about this article is perfect, so we really like
+     it. The extreme detail it goes into is unmatched by any other
+     article we found. If someone is not very knowledgable in machine
+     learning or basketball this would be a hard article to
+     understand, but if you have this knowledge it is definitely
+     something that we be good to read when researching this
+     topic. This is an extremely credible reference. It is published
+     in the journal of Sports research, it has been peer reviewed, the
+     sources they used are credible, and it isn't a very old article.
+     
+     
+  4.Sundberg, Andrew. “College Basketball Dataset.”
+       Kaggle, 16 Mar. 2021,
+       
+    This references is a dataset that has Division 1 college
+    basketball from 2013-2021. It contains data that will be very
+    useful for our machine learning model.
+
+    We like that this data set is already in a CSV file and also has
+    been split into seperate data sets based on the year. We also like
+    how easy the data is to read. We would recomend this data set for
+    someone who is looking at the same topic as us. It is good data
+    and already set up ready to be used. This is data that was pulled
+    straight from the espn game logs and data so it is a reliable data
+    set.
+    
+  5.Wilco, Daniel. “The Absurd Odds of a Perfect NCAA
+       Bracket.” NCAA.com, NCAA.com, 13 Mar. 2022,
+
+    This article goes into detail about the odds of predicting the
+    winners of every game in the tournament and why it is so hard. It
+    also explains what an upset is and how a team that leads another
+    team in every stat can still have a bad game and lose. 
+       
+    We like this article because it helps describe the odds of a
+    perfect bracket and why it is so hard to predict the winners of
+    each game. We will use this article to help with our
+    introduction. This is a good resource for people looking into our
+    topic because it makes it obvious just how hard it is to create a
+    good bracket. This is a credible resource, it was created by the
+    NCAA and they used refrences from college statistic proffesors and
+    other people very knowledgeable in the topic.
+    
+
+
+

@@ -178,13 +178,13 @@
   Installing package into 'C:/Users/birkenkrahe/AppData/Local/R/win-library/4.2'
   (as 'lib' is unspecified)
   trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.2/tm_0.7-11.zip'
-  Content type 'application/zip' length 987549 bytes (964 KB)
-  downloaded 964 KB
+  Content type 'application/zip' length 989718 bytes (966 KB)
+  downloaded 966 KB
 
   package 'tm' successfully unpacked and MD5 sums checked
 
   The downloaded binary packages are in
-	  C:\Users\birkenkrahe\AppData\Local\Temp\RtmpcRY6nn\downloaded_packages
+          C:\Users\birkenkrahe\AppData\Local\Temp\Rtmp4g3Mmv\downloaded_packages
   Loading required package: NLP
 
   Attaching package: 'NLP'
@@ -192,6 +192,9 @@
   The following object is masked from 'package:httr':
 
       content
+
+  Warning message:
+  package 'tm' was built under R version 4.2.3
   #+end_example
 
 - Check that the package has been loaded and look at the methods
@@ -252,9 +255,9 @@
   Data sets in package 'tm':
 
   acq                     50 Exemplary News Articles from the
-			  Reuters-21578 Data Set of Topic acq
+                          Reuters-21578 Data Set of Topic acq
   crude                   20 Exemplary News Articles from the
-			  Reuters-21578 Data Set of Topic crude
+                          Reuters-21578 Data Set of Topic crude
   #+end_example
 
 * Building a document text corpus
@@ -281,7 +284,7 @@
   #+end_src
 
   #+RESULTS:
-  : [1] "api_key"     "ask_chatgpt" "sms_corpus"  "sms_dtm2"    "sms_raw"
+  : [1] "api_key"     "ask_chatgpt" "sms_corpus"  "sms_raw"
 
 - The ~VCorpus~ function creates a volatile, in-memory list that is
   not permanent (not for writing to an external database):
@@ -345,14 +348,14 @@
   #+begin_example
   data frame with 0 columns and 5559 rows
     author       : character(0)
-    datetimestamp: 2023-03-16 18:33:42
+    datetimestamp: 2023-03-22 01:02:40
     description  : character(0)
     heading      : character(0)
     id           : 1
     language     : en
     origin       : character(0)
   $datetimestamp
-  [1] "2023-03-16 18:33:42 GMT"
+  [1] "2023-03-22 01:02:40 GMT"
   #+end_example
 
 - To see several list elements at once, ~lapply~ will apply its ~FUN~
@@ -461,73 +464,9 @@
   #+end_src
 
   #+RESULTS:
-  #+begin_example
-  [1] 174
-  [1] 308
-  [1] 231
-    [1] "de"           "la"           "que"          "el"           "en"          
-    [6] "y"            "a"            "los"          "del"          "se"          
-   [11] "las"          "por"          "un"           "para"         "con"         
-   [16] "no"           "una"          "su"           "al"           "lo"          
-   [21] "como"         "más"          "pero"         "sus"          "le"          
-   [26] "ya"           "o"            "este"         "sí"           "porque"      
-   [31] "esta"         "entre"        "cuando"       "muy"          "sin"         
-   [36] "sobre"        "también"      "me"           "hasta"        "hay"         
-   [41] "donde"        "quien"        "desde"        "todo"         "nos"         
-   [46] "durante"      "todos"        "uno"          "les"          "ni"          
-   [51] "contra"       "otros"        "ese"          "eso"          "ante"        
-   [56] "ellos"        "e"            "esto"         "mí"           "antes"       
-   [61] "algunos"      "qué"          "unos"         "yo"           "otro"        
-   [66] "otras"        "otra"         "él"           "tanto"        "esa"         
-   [71] "estos"        "mucho"        "quienes"      "nada"         "muchos"      
-   [76] "cual"         "poco"         "ella"         "estar"        "estas"       
-   [81] "algunas"      "algo"         "nosotros"     "mi"           "mis"         
-   [86] "tú"           "te"           "ti"           "tu"           "tus"         
-   [91] "ellas"        "nosotras"     "vosotros"     "vosotras"     "os"          
-   [96] "mío"          "mía"          "míos"         "mías"         "tuyo"        
-  [101] "tuya"         "tuyos"        "tuyas"        "suyo"         "suya"        
-  [106] "suyos"        "suyas"        "nuestro"      "nuestra"      "nuestros"    
-  [111] "nuestras"     "vuestro"      "vuestra"      "vuestros"     "vuestras"    
-  [116] "esos"         "esas"         "estoy"        "estás"        "está"        
-  [121] "estamos"      "estáis"       "están"        "esté"         "estés"       
-  [126] "estemos"      "estéis"       "estén"        "estaré"       "estarás"     
-  [131] "estará"       "estaremos"    "estaréis"     "estarán"      "estaría"     
-  [136] "estarías"     "estaríamos"   "estaríais"    "estarían"     "estaba"      
-  [141] "estabas"      "estábamos"    "estabais"     "estaban"      "estuve"      
-  [146] "estuviste"    "estuvo"       "estuvimos"    "estuvisteis"  "estuvieron"  
-  [151] "estuviera"    "estuvieras"   "estuviéramos" "estuvierais"  "estuvieran"  
-  [156] "estuviese"    "estuvieses"   "estuviésemos" "estuvieseis"  "estuviesen"  
-  [161] "estando"      "estado"       "estada"       "estados"      "estadas"     
-  [166] "estad"        "he"           "has"          "ha"           "hemos"       
-  [171] "habéis"       "han"          "haya"         "hayas"        "hayamos"     
-  [176] "hayáis"       "hayan"        "habré"        "habrás"       "habrá"       
-  [181] "habremos"     "habréis"      "habrán"       "habría"       "habrías"     
-  [186] "habríamos"    "habríais"     "habrían"      "había"        "habías"      
-  [191] "habíamos"     "habíais"      "habían"       "hube"         "hubiste"     
-  [196] "hubo"         "hubimos"      "hubisteis"    "hubieron"     "hubiera"     
-  [201] "hubieras"     "hubiéramos"   "hubierais"    "hubieran"     "hubiese"     
-  [206] "hubieses"     "hubiésemos"   "hubieseis"    "hubiesen"     "habiendo"    
-  [211] "habido"       "habida"       "habidos"      "habidas"      "soy"         
-  [216] "eres"         "es"           "somos"        "sois"         "son"         
-  [221] "sea"          "seas"         "seamos"       "seáis"        "sean"        
-  [226] "seré"         "serás"        "será"         "seremos"      "seréis"      
-  [231] "serán"        "sería"        "serías"       "seríamos"     "seríais"     
-  [236] "serían"       "era"          "eras"         "éramos"       "erais"       
-  [241] "eran"         "fui"          "fuiste"       "fue"          "fuimos"      
-  [246] "fuisteis"     "fueron"       "fuera"        "fueras"       "fuéramos"    
-  [251] "fuerais"      "fueran"       "fuese"        "fueses"       "fuésemos"    
-  [256] "fueseis"      "fuesen"       "siendo"       "sido"         "tengo"       
-  [261] "tienes"       "tiene"        "tenemos"      "tenéis"       "tienen"      
-  [266] "tenga"        "tengas"       "tengamos"     "tengáis"      "tengan"      
-  [271] "tendré"       "tendrás"      "tendrá"       "tendremos"    "tendréis"    
-  [276] "tendrán"      "tendría"      "tendrías"     "tendríamos"   "tendríais"   
-  [281] "tendrían"     "tenía"        "tenías"       "teníamos"     "teníais"     
-  [286] "tenían"       "tuve"         "tuviste"      "tuvo"         "tuvimos"     
-  [291] "tuvisteis"    "tuvieron"     "tuviera"      "tuvieras"     "tuviéramos"  
-  [296] "tuvierais"    "tuvieran"     "tuviese"      "tuvieses"     "tuviésemos"  
-  [301] "tuvieseis"    "tuviesen"     "teniendo"     "tenido"       "tenida"      
-  [306] "tenidos"      "tenidas"      "tened"
-  #+end_example
+  : [1] 174
+  : [1] 308
+  : [1] 231
 
 - To apply ~stopwords~ to the corpus, run ~removeWords~ on it. The
   ~stopwords~ function is an additional parameter (cp. ~args(tm_map)~):
@@ -564,7 +503,7 @@
   : [1] "ha ha cool cool chikku chikkudb"
 
 - There are subtleties here: e.g. ~removePunctuation~ strips punctuation
-  characters completely, with unintended consequences:
+  characters completely, with unintended consequences[fn:3]:
   #+begin_src R
     removePunctuation("hello...world")
   #+end_src
@@ -627,7 +566,7 @@
   affixes using the algorithm's rules!
 
 - To apply ~wordStem~ to the cleaned corpus with ~tm_map~, use the
-  ~stemDocument~ function, and check another message (25) for success:
+  ~stemDocument~ function, and check another message (25) for success[fn:4]:
   #+begin_src R
     tm_map(sms_corpus_clean, stemDocument) -> sms_corpus_clean
     content(sms_corpus[[25]])
@@ -687,6 +626,16 @@
     m[100:105, 100:108]
   #+end_src  
 
+  #+RESULTS:
+  :      Terms
+  : Docs  adsens adult advanc adventur advic advis advisor aeronaut aeroplan
+  :   100      0     0      0        0     0     0       0        0        0
+  :   101      0     0      0        0     0     0       0        0        0
+  :   102      0     0      0        0     0     0       0        0        0
+  :   103      0     0      0        0     0     0       0        0        0
+  :   104      0     0      0        0     0     0       0        0        0
+  :   105      0     0      0        0     0     0       0        0        0
+
 - Not much to see, is there? It's a sparse matrix with very few
   non-zero entries. How sparse exactly?
   #+begin_src R
@@ -695,8 +644,8 @@
   #+end_src
 
   #+RESULTS:
-  : [1] 5559 6529
-  : [1] 0.1157827
+  : [1] 5559 6536
+  : [1] 0.1149183
 
 - In fact, the sparsity is contained in the meta-data of the DTM:
   #+begin_src R
@@ -704,8 +653,8 @@
   #+end_src
 
   #+RESULTS:
-  : <<DocumentTermMatrix (documents: 5559, terms: 6529)>>
-  : Non-/sparse entries: 42023/36252688
+  : <<DocumentTermMatrix (documents: 5559, terms: 6536)>>
+  : Non-/sparse entries: 41754/36291870
   : Sparsity           : 100%
   : Maximal term length: 40
   : Weighting          : term frequency (tf)
@@ -727,12 +676,19 @@
   : [1] 5559 6940
 
 - You notice a difference in the number of terms: this is due to the
-  fact that ~DocumentTermMatrix~ uses a different ~stopwords~ function.
+  fact that ~DocumentTermMatrix~ uses a different ~stopwords~
+  function[fn:5].
 
 - This illustrates an important text mining principle: the order of
   operations matters!
 
 * TODO Creating training and test data
+
+
+- Split data into training and test datasets
+  
+- It is important that the data are split *after* the data have been
+  cleaned and processed - both training and test data need to have undergone exactly the same 
 
 * TODO Training a model on the data
 
@@ -758,8 +714,8 @@
 #+end_src
 
 #+RESULTS: get_sms_raw
-: [1] "api_key"          "ask_chatgpt"      "sms_corpus"       "sms_corpus_clean"
-: [5] "sms_raw"
+: [1] "api_key"          "ask_chatgpt"      "m"                "sms_corpus"      
+: [5] "sms_corpus_clean" "sms_dtm"          "sms_dtm2"         "sms_raw"
 
 ** Exploring the data
 #+begin_src R
@@ -776,8 +732,8 @@
 
 #+RESULTS:
 #+begin_example
-[1] "api_key"          "ask_chatgpt"      "sms_corpus"       "sms_corpus_clean"
-[5] "sms_raw"
+[1] "api_key"          "ask_chatgpt"      "m"                "sms_corpus"      
+[5] "sms_corpus_clean" "sms_dtm"          "sms_dtm2"         "sms_raw"
 'data.frame':	5559 obs. of  2 variables:
  $ type: chr  "ham" "ham" "ham" "spam" ...
  $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
@@ -869,7 +825,7 @@ crude                   20 Exemplary News Articles from the
 
   #+RESULTS:
   : [1] "Hope you are having a good week. Just checking in"
-  : [1] "hope good week just check"
+  : [1] "hope good week check"
 
 - To remove numbers from the SMS messages, use ~tm::removeNumbers~ on
   the new corpus object:
@@ -927,7 +883,7 @@ crude                   20 Exemplary News Articles from the
 
   #+RESULTS:
   : [1] "Hope you are having a good week. Just checking in"
-  : [1] "hope good week just check"
+  : [1] "hope good week check"
 - Now remove the punctuation with ~removePunctuation~, save the result
   in a new ~sms_corpus_clean~ object, and compare before/after for
   message 16 :
@@ -1012,9 +968,22 @@ crude                   20 Exemplary News Articles from the
   Tools for Model Fitting. URL: [[https://cran.r-project.org/web/packages/gmodels/gmodels.pdf][cran.r-project.org]].
 
 * Footnotes
-[fn:2]Two of three spam messages use the word "free". Two of the ham
-messages cite specific days of the week, none of the spam.
 
 [fn:1]The spam collection used here was modified by Lantz (2019). The
 original is from Gomez (2012) - the URL is no longer accessible, and I
 referenced the dataset from kaggle.com instead.
+
+[fn:2]Two of three spam messages use the word "free". Two of the ham
+messages cite specific days of the week, none of the spam.
+
+[fn:3]To work around this default, you can write your own function
+using ~gsub~, which substitutes a pattern - in this case any punctuation
+is simply replaced by the string " " instead of remove altogether:
+~replacePunctuation <- function(x){gsub("[[:punct:]]+"," ",x)}~
+
+[fn:4]If you receive an error message ~all scheduled cores encountered
+errors"~ with ~stemDocument~, add the parameter ~mc.cores=1~ to ~tm_map~.
+
+[fn:5]To force the two prior DTMs to be identical, we can override the
+default with our own anonymous function: set
+~stopwords=function(x){removeWords(x),stopwords())}~

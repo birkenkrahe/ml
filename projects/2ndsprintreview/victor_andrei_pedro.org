@@ -1,0 +1,172 @@
+#+TITLE: Linear Regression Regression Project Proposal
+#+AUTHOR: Victor Noppe, Andrei Galca, and Pedro Mota
+#+SUBTITLE: Sprint reviews
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+
+* Sprint review 1
+** Problem
+
+  Evaluate the performance of Linear Regression and Random Forest models.
+  
+** Reason
+
+  To get a better understanding of how machine learning models work
+  and how to evaluate their accuracy.
+  
+** Constraints
+
+  1. Since the team is currently working on multiple projects, time to
+  meet will be a challenge to overcome.
+  
+  2. Limited experience with Python.
+
+  3. Limited experience with Machine Learning.
+  
+** Goals and Non-goals
+** Goals
+
+   1. To better understand Machine Learning and how Machine Learning
+      models are implemented.
+
+   2. To create an engaging and informative presentation.
+
+   3. To be abble to illustrate the comparison between Linear
+      Regression and Random Forest (non-linear regression) models in a
+      clear and understandable manner.
+   
+** Non-goals
+
+   1. Becoming more confortable with presenting from a professional
+      standpoint.
+
+   2. Becoming more familiar with Python.
+   
+** Plan
+
+  1. Complete the youtube guide found for this project.
+
+  2. Meet on a regular basis to discuss the research found on Linear
+     Regression model and Random Forest Model.
+
+  3. Help each other obtain the same confort with the proposed topic
+     for this project.
+
+  4. Find literature to help develop and reinforce the topic of our
+     project.
+  
+** Metrics
+
+  1. The amount of knowledge we are able to obtain and relay to or classmates.
+
+  2. How engaged our classmates are with our presentation.
+
+  3. Were we able to fit the presentation to the allotted time frame.   
+
+  4. The overall grade we obtain for this project.
+  
+** Questions
+
+  
+  1. Is this a valid idea for a project?
+
+  2. What is the proper citation for the emacs and org-mode software?
+
+  3. Are there any source that you could recommend on Linear
+     Regression models and Random Forest models?
+  
+** References
+
+  Chanin Nantasenamat Ph.D., 2022, Build your first machine learning model in Python,
+  https://www.youtube.com/watch?v=29ZQ3TDGgRQ
+
+* Sprint review 2
+** Literature Review 1
+
+- Reference
+
+  Real Python, "Linear Regression in Python", Real Python, 24 May. 2022 [[https://realpython.com/linear-regression-in-python/][Linear Regression]]
+
+  The article "Linear Regression in Python" provides a comprehensive
+  guide on performing linear regression. The article begins by
+  covering basic concepts of linear regression such as what is this
+  model and what types it has. Then the article revolves around how to
+  perform multiple linear regressions using Pandas and how to
+  interpret the results with statistical metrics such as R-squared and
+  p-value. In this section, the article also explains some aspects of
+  scikit-learn, a popular machine learning library, and shows how to
+  perform a linear regression model and how to evaluate it using
+  cross-validation. Finally, the article gives some examples of best
+  practices for performing linear regression, such as data
+  preprocessing and feature selection. Overall, the article provides a
+  detailed explanation of the logic and the principles behind linear
+  regression and gives code examples of each step while building the
+  model. That aspect of this article helped us to define how we will
+  build the model and what aspects of this process will be more
+  important to focus on during the project.
+
+- Evaluation
+
+  This article was enlighting to the point where we changed the the
+  focus of our project to only focus on Linear Regression instead of
+  comparing it to the Random Forest model. The main reason for that
+  was the amount of information this article could provide us
+  regarding Linear Regression. The article does a good job to separate
+  its content into sections, so that we can have a clear vision of the
+  sequence of steps we must have to forecast results with Linear
+  Regression. It is a good article for someone who is looking to
+  understand what is Linear Regression and what does do, to the point
+  where even though nobody on the team had experience with Python
+  programming we could understand the progress we were making while
+  following the steps in the tutorial within the article. Although, we
+  think it would be good if the author included a section focusing on
+  plotting the resulting data once the results were calculated with
+  the model.
+    
+** Literature Review 2
+
+- Reference
+
+  Porras, E. M,"Linear Regression in R Tutorial", DataCamp, 18 Jul. 2018 [[https://www.datacamp.com/tutorial/linear-regression-R][Linear Regression in R]]
+
+- Summary
+
+ The article "Linear Regression in R Tutorial" by Eladio Porras is a
+  comprehensive guide that discusses the basics of the Linear
+  Regression model in R. Like "Linear Regression in Python" the
+  article initially explains the theory behind the model and provides
+  examples of situations where simple and multiple linear regression
+  models can be used in R. The author explains how R calculates linear
+  regression with the lm() function by implementing a simple
+  model. Next, the article explains how to implement multiple linear
+  regression also using lm() function by providing examples of the use
+  of multiple variables to forecast a dependent variable. The article
+  also covers the interpretation of the results obtained with linear
+  regression and the evaluation of the model's performance using
+  metrics such as the R-squared value. The tutorial also mentions the
+  eventual presence of Influential Points that might happen for errors
+  while collecting the data or cases that linear regression cannot
+  account for. Overall, the article complemented [[https://realpython.com/linear-regression-in-python/][Linear Regression in
+  Python]] and offered us valuable information on the machine learning
+  model in a language that is more familiar to the members of the
+  team.
+
+- Evaluation
+
+  This article gave an easier-to-comprehend explanation of the
+  fundamentals of linear regression. It had a different approach than
+  [[https://realpython.com/linear-regression-in-python/][Linear Regression in Python]], while the first one used handmade data,
+  this article used an actual excel file using other features of the R
+  language. Although this article had fewer code blocks, it did a
+  better job illustrating with different plots the results that can be
+  generated by a linear regression model. This seemed a credible
+  source, since the content in this article matched most parts of the
+  first article, and it was published on a platform used for Lyon
+  College Data Science courses. We would highly recommend this article
+  for someone who is not clear on what is linear regression and how it
+  can be implemented.
+
+** References
+ Stallman, R. M. (1984). The Emacs editor. GNU Project. [[https://www.gnu.org/software/emacs/][emacs]]
+ Schulte, E., Davison, C., & Dominik, C. (2016). The Org mode 8 Reference Manual. [[https://orgmode.org/manual/][org-mode]]
+ 

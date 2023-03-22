@@ -1,9 +1,9 @@
-#+TITLE: AGENDA - MACHINE LEARNING
+f#+TITLE: AGENDA - MACHINE LEARNING
 #+AUTHOR: MARCUS BIRKENKRAHE (pledged)
 #+SUBTITLE: Machine Learning (DSC 305) Spring 2023
 #+STARTUP:overview hideblocks indent inlineimages
 #+OPTIONS: toc:nil num:nil ^:nil
-#+PROPERTY: header-args:R :session *R* :results: output :exports both :noweb yes
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
 * Week 1 - Course overview & ML overview
 #+attr_latex: :width 500px
 [[../img/cover.jpg]]
@@ -463,7 +463,7 @@ Open an Org-mode file if you want to code along.
   “understand” only specific situations they have been exposed to in
   the past and are unable to *generalize* in a way that humans find
   easy. It shows once again we’ve been far too hasty to ascribe
-  superhuman levels of intelligence to machines.” - Russell[fn:1]
+  superhuman levels of intelligence to machines.” - Russell (AIMA)
   #+end_quote
 
 - [-] k-nearest-neighbor (knn) models:
@@ -483,81 +483,81 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 *When prompted, write down your answer or keywords to the answer.*
 
 1) [X] How is similarity measured in k-NN?
-     #+begin_notes
+   #+begin_notes
    By computing a distance measure, e.g. Euclidean distance, the usual
    distance between two vectors, see ~dist~.
-     #+end_notes
+   #+end_notes
 2) [X] What is used for "training" and "testing" the k-NN classifier?
-     #+begin_notes
+   #+begin_notes
    Two data sets, one known, labelled data to train the model on a
    label, the other one unseen, unlabelled data to test the trained
    model. The training and test data should be of comparable
    quality and randomized.
-     #+end_notes
+   #+end_notes
 3) [X] What is the meaning of the parameter 'k'? (4)
-     #+begin_notes
+   #+begin_notes
    - The number of nearest neigbors after computing distance
    - A measure of the size of the classification neighborhood
    - A measure for the degree of over- or underfitting
    - An argument in the ~class::knn~ function
-     #+end_notes
+   #+end_notes
 4) [X] What are the arguments of ~knn~? (4)
-     #+begin_src R :results output :exports none
+   #+begin_src R :results output :exports none
      library(class); args(knn)
-     #+end_src
+   #+end_src
 
-  #+RESULTS:
-  : function (train, test, cl, k = 1, l = 0, prob = FALSE, use.all = TRUE) 
-  : NULL
+   #+RESULTS:
+   : function (train, test, cl, k = 1, l = 0, prob = FALSE, use.all = TRUE)
+   : NULL
 5) [X] What is the purpose of splitting the data in training and test
    data? Why don't we just use ALL available data for training?
-     #+begin_notes
+   #+begin_notes
    - To avoid overfitting: without testing, it is not clear to which
      extent the model will generalize to unseen data. We split one
      data set because the data are of comparable quality/structure.
-     #+end_notes
+   #+end_notes
 6) [X] What happens when voting is tied after measuring the distances?
-     #+begin_notes
+   #+begin_notes
    In ~class::knn~, the class is decided at random. Use odd ~k~ to avoid this.
-     #+end_notes
+   #+end_notes
 7) [X] If I have 10 features q_{1}...q_{10} and 1 target label
    - How many dimensions does the feature space have?
    - How many terms under the square root of the distance formula?
    - How many variables are used for classification of p?
      #+begin_notes
-   - 10 features, hence 10-dim feature space
-   - Each point has 10 coordinates. The distance formula has 10 terms
-     p_{i}-q_{ij}, one for each i-th coordinate of q_{j}, and 11
-     variables are involved: 10 features (predictors) and 1 target
-     variable (predicted).
+     - 10 features, hence 10-dim feature space
+     - Each point has 10 coordinates. The distance formula has 10 terms
+       p_{i}-q_{ij}, one for each i-th coordinate of q_{j}, and 11
+       variables are involved: 10 features (predictors) and 1 target
+       variable (predicted).
      #+end_notes
 8) [X] Is a bigger ~k~ always better? Why or why not?
-       #+begin_notes
+   #+begin_notes
    Optimal k depends on noise in the data, on the pattern to be
    identified, one starts off with the square root of the number of
    training examples, to find the optimal k, try different values.
-       #+end_notes
+   #+end_notes
 9) [X] Measuring model performance:
    - What is the confusion matrix? What's its *dimension*?
    - How can you *compute* the confusion matrix for kNN in R?
    - How can you assess the accuracy *numerically*?
-       #+begin_notes
-   - The confusion matrix is a 2 x 2 cross-table if the target feature
-     had 2 labels/categories (e.g. male/female or benign/malignant),
-     or a 3 x 3 for 3 labels. It shows, which levels were accurately
-     identified and which were not ([[https://github.com/birkenkrahe/ml/blob/main/img/confusion1.png][solution]]).
-         #+attr_latex: :width 400px
-         #+caption: Confusion matrix (empty) and classification results
-     [[../img/confusion.png]]
-   - With the ~table~ function and the ~factor~ levels or ~character~
-     values as arguments, e.g. ~table(signs_pred,signs_actual)~.
-   - With the ~mean~ function by averaging over the vector resulting
-     from comparing original and predicted values:
-     ~mean(sign_actual==sign_pred)~.
-       #+end_notes
+     #+begin_notes
+     - The confusion matrix is a 2 x 2 cross-table if the target feature
+       had 2 labels/categories (e.g. male/female or benign/malignant),
+       or a 3 x 3 for 3 labels. It shows, which levels were accurately
+       identified and which were not ([[https://github.com/birkenkrahe/ml/blob/main/img/confusion1.png][solution]]).
+       #+attr_latex: :width 400px
+       #+caption: Confusion matrix (empty) and classification results
+       [[../img/confusion.png]]
+     - With the ~table~ function and the ~factor~ levels or ~character~
+       values as arguments, e.g. ~table(signs_pred,signs_actual)~.
+     - With the ~mean~ function by averaging over the vector resulting
+       from comparing original and predicted values:
+       ~mean(sign_actual==sign_pred)~.
+     #+end_notes
 10) [X] What does bias-tradeoff refer to?
-        #+begin_notes
-        #+attr_latex: :width 400px
+    #+begin_notes
+    #+attr_latex: :width 400px
     [[../img/bias_tradeoff.png]]
     The image shows subsequent classification attempts. Perfect
     prediction corresponds to the bulls-eye. The further away a point
@@ -570,7 +570,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
       leaves the results together, high variance blows them up.
     - The best case is low bias and low variance: low error, points
       close together, the worst is high bias and high variance.
-        #+end_notes
+    #+end_notes
 ** Assignment - submit by March 10
 #+attr_latex: :width 400px
 #+caption: Photo by Andrew Neel, Unsplash.com
@@ -595,8 +595,8 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - If you missed the last session, *download* ~5_knn_practice.org~
   fromGitHub and head to the chapter *Intermission* to catch up!
 
-- Lecture: ~5_knn_case.org~ & 2 bonus exercises 
-  
+- Lecture: ~5_knn_case.org~ & 2 bonus exercises
+
 - *We hope to cover today:*
   1) Normalizing (rescaling) numeric data
   2) Creating training and test data sets
@@ -616,7 +616,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 *THIS WEEK*:
 - Evaluating kNN performance (practice)
 - Improving kNN performance (2 x exercise)
-- Lecture and practice: supervised learning with Naive Bayes 
+- Lecture and practice: supervised learning with Naive Bayes
 
 *UPCOMING TOPICS*:
 - Text mining to build spam filter with Naive Bayes
@@ -629,7 +629,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 [[../img/rapid_review.jpg]]
 
 - [ ] What are we trying to do?
-  
+
 - [ ] What does "training a kNN learner" mean?
 
 - [ ] What have we done so far?
@@ -642,13 +642,13 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
   6) Running the ~class::knn~ function with set ~k~ value
 
 
-- [ ] What's left?
-  #+begin_quotes
-  - Evaluating the performance of the model (confusion matrix, accuracy)
-  - Improving the performance (standardization, varying k-values)
-  - Running the model on new datasets (prepare data, run ~predict~)
+  - [ ] What's left?
+    #+begin_quotes
+    - Evaluating the performance of the model (confusion matrix, accuracy)
+    - Improving the performance (standardization, varying k-values)
+    - Running the model on new datasets (prepare data, run ~predict~)
   #+end_quotes
-  
+
 ** TODO Game programming in Snap! with AI
 #+attr_latex: :width 400px
 [[../img/snap.png]]
@@ -663,7 +663,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 - Remember how to compute the prediction accuracy: as the ~mean~ over
   the values of the original and the predicted ~factor~ vector ([[https://github.com/birkenkrahe/ml/blob/main/org/4_knn_case.org#computing-accuracy-as-an-average][GitHub]])
 
-* IN PROGRESS Week 10: Naive Bayes algorithm and case study
+* Week 10: Naive Bayes algorithm and case study
 #+attr_latex: :width 400px
 #+caption: Illustration by Peter Eich (2006), Wikimedia (CC BY-SA 2.5)
 [[../img/5_Spamfilter.jpg]]
@@ -684,14 +684,14 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 
 - [[https://github.com/birkenkrahe/org/blob/master/pdf/midterm.pdf][How to improve your mid-term grades if you choose to do so]]. The link
   to [[https://www.quora.com/Why-are-computer-science-degrees-so-math-intensive-when-the-field-doesnt-seem-to-use-much-math-at-all][this Quora comment]] is not available in the document, alas.
-  
+
 - Do not forget that there are *three DataCamp lessons* waiting for
   completion by March 31, 2023: Naive Bayes, Logistic Regression, and
   Classification Trees.
 
 - I'll decide over spring break which of these (if any) we'll pick up
   for detailed treatment in class. In any case: more certificates 4U!
-  
+
 ** Review: Simple Naive Bayes
 #+attr_html: :width 300px
 #+caption: Photo by Ben Mullins on Unsplash
@@ -702,23 +702,19 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
    Answer: NB uses all available data with stochastic weights or
    probabilities attached to individual features.
    #+end_notes
-
 2) For these *events*, what's a suitable *trial* to establish probability?
    - Spam message
    - Lottery win
    - Sunny weather
-
 3) What determines the class our classifier is trying to predict?
    #+begin_notes
    Answer: 1) our observational data (e.g. recorded labels spam
    vs. ham), 2) our problem (e.g. reduce spam)
    #+end_notes
-
 4) Can the same dataset be used to predict different things? For
    example, could a dataset that contains spam vs. ham labels (in
    addition to many other text features) be used for sentiment
    analysis?
-
 5) Why are more trials better for the accuracy of a probabilistic
    prediction?
    #+begin_notes
@@ -727,8 +723,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
    values weighted by their individual probabilities) becomes the
    sample mean (arithmetic average of all values).
    #+end_notes
-
-6) What kind of events are "spam vs. ham", or "win vs. loss", 
+6) What kind of events are "spam vs. ham", or "win vs. loss",
    "benign vs. malignant".
    #+begin_notes
    Answer: they are mutually exclusive and exhaustive events, i.e. an
@@ -739,7 +734,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
    "being at the office"?
    #+begin_notes
    Answer: it is zero provided that these events are mutually
-   exclusive. 
+   exclusive.
    #+end_notes
 8) What does the conditional probability (or likelihood) of the events
    "being home" and "being at work" mean?
@@ -786,7 +781,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
     | ham        | 5/125      | 120/125   |   125 |
     |------------+------------+-----------+-------|
     | Total      | 14/150     | 136/150   |   150 |
-    
+
     + ~P(URGENT|spam)~ = 9/25 (likelihood of URGENT in spam)
     + ~P(spam)~ = 25/150 (prior probability - before URGENT)
     + ~P(URGENT)~ = 14/150 (marginal likelihood)
@@ -798,7 +793,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
 
     #+RESULTS:
     : Posterior probability: 64 %
-    
+
 ** READ Reading therapy for spring break: ELIZA
 #+attr_latex: :width 400px
 [[../img/eliza.png]]
@@ -827,7 +822,8 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
    Answer: the data cleaning includes text formatting, tokenization,
    stemming, stopwords, corpus creation, and a term frequency table.
    #+end_notes
-2) How many features does the raw data set (SMS Spam Collection) have? How many  will the cleaned data set have?
+2) How many features does the raw data set (SMS Spam Collection) have?
+   How many will the cleaned data set have?
    #+begin_notes
    Answer: the initial dataset has 2 features - class label (spam,
    ham), and message. The final dataset has as many features as spam
@@ -841,62 +837,62 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
      search()  # check package environments search path
      ls('package:tm') # check methods/functions inside tm
      data(package="tm") # list datasets contained in package
-     #+end_src
+   #+end_src
 
-     #+RESULTS:
-     #+begin_example
-      [1] ".GlobalEnv"        "package:tm"        "package:NLP"      
-      [4] "ESSR"              "package:stats"     "package:graphics" 
-      [7] "package:grDevices" "package:utils"     "package:datasets" 
-     [10] "package:stringr"   "package:httr"      "package:methods"  
-     [13] "Autoloads"         "package:base"
-      [1] "as.DocumentTermMatrix"   "as.TermDocumentMatrix"  
-      [3] "as.VCorpus"              "Boost_tokenizer"        
-      [5] "content_transformer"     "Corpus"                 
-      [7] "DataframeSource"         "DirSource"              
-      [9] "Docs"                    "DocumentTermMatrix"     
-     [11] "DublinCore"              "DublinCore<-"           
-     [13] "eoi"                     "findAssocs"             
-     [15] "findFreqTerms"           "findMostFreqTerms"      
-     [17] "FunctionGenerator"       "getElem"                
-     [19] "getMeta"                 "getReaders"             
-     [21] "getSources"              "getTokenizers"          
-     [23] "getTransformations"      "Heaps_plot"             
-     [25] "inspect"                 "MC_tokenizer"           
-     [27] "nDocs"                   "nTerms"                 
-     [29] "PCorpus"                 "pGetElem"               
-     [31] "PlainTextDocument"       "read_dtm_Blei_et_al"    
-     [33] "read_dtm_MC"             "readDataframe"          
-     [35] "readDOC"                 "reader"                 
-     [37] "readPDF"                 "readPlain"              
-     [39] "readRCV1"                "readRCV1asPlain"        
-     [41] "readReut21578XML"        "readReut21578XMLasPlain"
-     [43] "readTagged"              "readXML"                
-     [45] "removeNumbers"           "removePunctuation"      
-     [47] "removeSparseTerms"       "removeWords"            
-     [49] "scan_tokenizer"          "SimpleCorpus"           
-     [51] "SimpleSource"            "stemCompletion"         
-     [53] "stemDocument"            "stepNext"               
-     [55] "stopwords"               "stripWhitespace"        
-     [57] "TermDocumentMatrix"      "termFreq"               
-     [59] "Terms"                   "tm_filter"              
-     [61] "tm_index"                "tm_map"                 
-     [63] "tm_parLapply"            "tm_parLapply_engine"    
-     [65] "tm_reduce"               "tm_term_score"          
-     [67] "URISource"               "VCorpus"                
-     [69] "VectorSource"            "weightBin"              
-     [71] "WeightFunction"          "weightSMART"            
-     [73] "weightTf"                "weightTfIdf"            
-     [75] "writeCorpus"             "XMLSource"              
-     [77] "XMLTextDocument"         "Zipf_plot"              
-     [79] "ZipSource"
-     Data sets in package 'tm':
+   #+RESULTS:
+   #+begin_example
+    [1] ".GlobalEnv"        "package:tm"        "package:NLP"
+    [4] "ESSR"              "package:stats"     "package:graphics"
+    [7] "package:grDevices" "package:utils"     "package:datasets"
+   [10] "package:stringr"   "package:httr"      "package:methods"
+   [13] "Autoloads"         "package:base"
+    [1] "as.DocumentTermMatrix"   "as.TermDocumentMatrix"
+    [3] "as.VCorpus"              "Boost_tokenizer"
+    [5] "content_transformer"     "Corpus"
+    [7] "DataframeSource"         "DirSource"
+    [9] "Docs"                    "DocumentTermMatrix"
+   [11] "DublinCore"              "DublinCore<-"
+   [13] "eoi"                     "findAssocs"
+   [15] "findFreqTerms"           "findMostFreqTerms"
+   [17] "FunctionGenerator"       "getElem"
+   [19] "getMeta"                 "getReaders"
+   [21] "getSources"              "getTokenizers"
+   [23] "getTransformations"      "Heaps_plot"
+   [25] "inspect"                 "MC_tokenizer"
+   [27] "nDocs"                   "nTerms"
+   [29] "PCorpus"                 "pGetElem"
+   [31] "PlainTextDocument"       "read_dtm_Blei_et_al"
+   [33] "read_dtm_MC"             "readDataframe"
+   [35] "readDOC"                 "reader"
+   [37] "readPDF"                 "readPlain"
+   [39] "readRCV1"                "readRCV1asPlain"
+   [41] "readReut21578XML"        "readReut21578XMLasPlain"
+   [43] "readTagged"              "readXML"
+   [45] "removeNumbers"           "removePunctuation"
+   [47] "removeSparseTerms"       "removeWords"
+   [49] "scan_tokenizer"          "SimpleCorpus"
+   [51] "SimpleSource"            "stemCompletion"
+   [53] "stemDocument"            "stepNext"
+   [55] "stopwords"               "stripWhitespace"
+   [57] "TermDocumentMatrix"      "termFreq"
+   [59] "Terms"                   "tm_filter"
+   [61] "tm_index"                "tm_map"
+   [63] "tm_parLapply"            "tm_parLapply_engine"
+   [65] "tm_reduce"               "tm_term_score"
+   [67] "URISource"               "VCorpus"
+   [69] "VectorSource"            "weightBin"
+   [71] "WeightFunction"          "weightSMART"
+   [73] "weightTf"                "weightTfIdf"
+   [75] "writeCorpus"             "XMLSource"
+   [77] "XMLTextDocument"         "Zipf_plot"
+   [79] "ZipSource"
+   Data sets in package 'tm':
 
-     acq                     50 Exemplary News Articles from the
-                             Reuters-21578 Data Set of Topic acq
-     crude                   20 Exemplary News Articles from the
-                             Reuters-21578 Data Set of Topic crude
-     #+end_example
+   acq                     50 Exemplary News Articles from the
+                           Reuters-21578 Data Set of Topic acq
+   crude                   20 Exemplary News Articles from the
+                           Reuters-21578 Data Set of Topic crude
+   #+end_example
 
 Now go to GitHub, save ~5.2.org~ to ~Downloads~ and insert the file to
 your practice file ~5_naive_bayes_practice.org~ with ~C-x i~.
@@ -904,12 +900,207 @@ your practice file ~5_naive_bayes_practice.org~ with ~C-x i~.
 Save the file and run all code blocks: ~M-x org-babel-execute-buffer~,
 then check with ~ls~ and ~search~ that all is ready to move on.
 
-* TODO Week 11: Finish Spam Filter & Start "Regression"
+* NEXT Week 11: Spam Filter & "Regression"
+#+attr_latex: :width 400px
+#+caption: Photo by Jonathan Borba on Unsplash.
+[[../img/regression.jpg]]
 
-** [[c:/Program Files/Emacs/emacs-28.2/bin/][RTextTools example]] for the UCI breast cancer data
+- I evaluated & graded outstanding exercises (*please check before*)
+- The literature reviews were all impressive in their own way. The
+  best one even referenced other sources within the review.
+- Those who have not submitted reviews yet please do so *by March 31*
+  for partial credit.
+- Next sprint review: results! *Due on April 21.*
 
+* TODO Review: text mining
+#+attr_latex: :width 400px
+[[../img/sparse_dense.gif]]
 
-* TODO Week 12: Decision trees
+1) What is the relative proportion of spam vs. ham messages in the
+   ~sms_raw~ dataset if the ~type~ feature contains this information,
+   displayed as numeric output with 2 digits after the decimal point?
+   #+begin_src R
+     <<load_sms_raw>>
+     ## nested/functional call
+     as.numeric(format(prop.table(table(sms_raw$type)),digits=2))
+     ## pipeline/shell call
+     sms_raw$type |>
+       table() |>
+       prop.table() |>
+       format(digits=2) |>
+       as.numeric()
+   #+end_src
+
+   #+RESULTS:
+   : [1] 0.87 0.13
+   : [1] 0.87 0.13
+
+2) How can you check that the ~sms_raw~ dataframe was actually loaded
+   (without any additional information whatsoever - as ~TRUE~)?
+   #+begin_src R
+     any(ls()=="sms_raw")
+   #+end_src
+
+   #+RESULTS:
+   : [1] TRUE
+
+3) Is the ~removeWords~ function part of the ~tm~ package? What are the
+   steps to check this?
+   #+begin_src R
+     library(tm)
+     any(ls('package:tm')=="removeWords")
+   #+end_src
+
+   #+RESULTS:
+   : [1] TRUE
+
+4) Display a list of all datasets contained in the ~tm~ package:
+   #+begin_src R
+     data(package="tm")
+   #+end_src
+
+   #+RESULTS:
+   : Data sets in package 'tm':
+   :
+   : acq                     50 Exemplary News Articles from the
+   :                         Reuters-21578 Data Set of Topic acq
+   : crude                   20 Exemplary News Articles from the
+   :                         Reuters-21578 Data Set of Topic crude
+
+5) After turning a CSV file into a dataframe into a source into a
+   volatile corpus ~list~, what kind of output do you get when entering
+   the name of the corpus?
+   #+begin_src R
+     <<create_sms_corpus>>
+     sms_corpus # output is meta data only
+   #+end_src
+
+6) How many characters does message no. 444 from ~sms_corpus~ have?
+   #+begin_src R
+     nchar(content(sms_corpus[[444]]))
+     sms_corpus[[444]] |> content() |> nchar()
+   #+end_src
+
+7) What is the average number of characters of all messages from
+   ~sms_corpus~? (Use: ~lapply~, ~nchar~ and ~mean~)
+   #+begin_src R
+     ## apply content to each list element
+     ## count number of chars with nchar
+     ## compute the mean across the vector
+     lapply(sms_corpus[1:2], content)
+     nchar(lapply(sms_corpus[1:10], content))
+     mean(nchar(lapply(sms_corpus, content)))
+   #+end_src
+
+   #+RESULTS:
+   : $`1`
+   : [1] "Hope you are having a good week. Just checking in"
+   : 
+   : $`2`
+   : [1] "K..give back my thanks."
+   :   1   2   3   4   5   6   7   8   9  10 
+   :  49  23  43 149 161  50  22  31 160  46
+   : [1] 79.77136
+
+8) How can you remove numbers from the message no. 200 (and compare
+   original/result)?
+   #+begin_src R
+     ## the wrapper tm_map only works for
+     content(sms_corpus[[200]])
+     content(removeNumbers(sms_corpus[[200]]))
+   #+end_src
+
+   #+RESULTS:
+   : [1] "WELL DONE! Your 4* Costa Del Sol Holiday or £5000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, Stockport, SK38xh, Cost£1.50/pm, Max10mins"
+   : [1] "WELL DONE! Your * Costa Del Sol Holiday or £ await collection. Call  Now toClaim. SAE, TCs, POBox, Stockport, SKxh, Cost£./pm, Maxmins"
+
+9) Could you also use the wrapper function ~tm_map~ to remove the
+   numbers from an individual message?
+   #+begin_src R
+     ## tm_map only accepts the whole corpus as data argument!
+     tm_map(sms_corpus,removeNumbers) -> sms_corpus_no_numbers
+     content(sms_corpus[[200]])
+     content(sms_corpus_no_numbers[[200]])
+   #+end_src
+
+   #+RESULTS:
+   : [1] "WELL DONE! Your 4* Costa Del Sol Holiday or £5000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, Stockport, SK38xh, Cost£1.50/pm, Max10mins"
+   : [1] "WELL DONE! Your * Costa Del Sol Holiday or £ await collection. Call  Now toClaim. SAE, TCs, POBox, Stockport, SKxh, Cost£./pm, Maxmins"
+
+10) What is ~stopwords("german")~ and how can you see the end of it?
+    #+begin_src R
+      ## stopwords("de") is character vector of small, irrelevant German
+      ## words used to clean a German text.
+      tail(stopwords("de"))
+    #+end_src
+
+    #+RESULTS:
+    : [1] "würden"   "zu"       "zum"      "zur"      "zwar"     "zwischen"
+
+11) Is the word "Your" in ~stopwords("en")~?
+    #+begin_src R
+      any(stopwords("en")=="Your")
+    #+end_src
+
+    #+RESULTS:
+    : [1] FALSE
+
+12) Remove all English stopwords and "Your" from the SMS corpus and
+    check the result for SMS message no. 200.
+    #+begin_src R
+      ## removing English stopwords + "Yours" from sms_corpus
+      content(sms_corpus[[200]])
+      content(tm_map(sms_corpus,
+                     removeWords,
+                     c(stopwords("en"),"Your"))[[200]])
+    #+end_src
+
+    #+RESULTS:
+    : [1] "WELL DONE!  4* Costa Del Sol Holiday  £5000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, Stockport, SK38xh, Cost£1.50/pm, Max10mins"
+    : [1] "WELL DONE! Your 4* Costa Del Sol Holiday or £5000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, Stockport, SK38xh, Cost£1.50/pm, Max10mins"
+
+13) What does "Porter's algorithm" from the ~SnowballC~ package do?
+    #+begin_notes
+    Answer: it breaks down all words into root + affixes using a set
+    of rules. The algorithm doesn't find the roots of all words
+    though! For example it does not recognize that 'learner' comes
+    from 'learn'.
+    #+end_notes
+
+14) Why does the Naive Bayes algorithm benefit from a clean text corpus?
+    #+begin_notes
+    In Naive Bayes, probabilities are attached to every feature, and
+    conditional probabilities of the predictors are computed for
+    classification using Bayes' formula. For a textual dataset, the
+    features/predictors are individual words - the fewer words we have
+    to account for, the fewer computations need to be carried out!
+    #+end_notes
+
+15) Does the order of text mining operations matter for the final
+    result? And what is the format of the final result?
+    #+begin_notes
+    Answer: yes, it does matter. The DocumentTermMatrix function,
+    which creates the final result, a frequency table of documents
+    (rows) vs. terms (columns/words) uses a different stopwords
+    dictionary, and therefore we have a different number of
+    features. In Naive Bayes, this is especially relevant since ALL
+    information is used that enters the final probabilities
+    computation.
+    #+end_notes
+
+* TODO Naive Bayes: model training and testing
+#+attr_latex: :width 400px
+#+caption: Testpilot Lt John A. MacReady (Source: Flickr.com/LOC)
+[[../img/testing.jpg]]
+
+- Download ~nb_clean.org~ from GitHub and run the file.
+- Now you can move to ~5_naive_bayes_practice.org~ to continue
+
+* TODO Introduction to linear regression
+
+** Linear vs. logistic regression
+
+* TODO Week 12: Regression: examples
 * TODO Week 13: k-means clustering
 
 - [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]]
@@ -918,9 +1109,18 @@ then check with ~ls~ and ~search~ that all is ready to move on.
 
 - [[https://app.datacamp.com/learn/projects/552][DataCamp guided project "Clustering Heart Disease Patient Data"]]
 
-* TODO Week 15: Dimensionality reduction with PCA
-* TODO Week 16: Case: Breast Cancer Data once more
+* TODO Week 15: 
+* TODO Week 16: 
 * TODO What next?
+
+Simple: 1) Work through some good books, 2) learn Python, too, 3)
+complete plenty of fun projects and document them.
+
+- The Art of Machine Learning by Norman Matloff (NoStarch, 2023) is
+  shaping up to be the best book for ML with R (and ML altogether):
+  #+attr_latex: :width 200px
+  #+caption: Cover, The Art of Machine Learning by N Matloff (NoStarch, 2023)
+  [[../img/matloffTAOML.png]]
 
 - Deep learning with R -  (Manning, 2022)
   #+attr_latex: :width 200px
@@ -937,6 +1137,27 @@ then check with ~ls~ and ~search~ that all is ready to move on.
   #+caption: Cover, Automate the boring stuff with Python by Sweigart (Manning, 2022)
   [[../img/python.jpg]]
 
+* Resources
+
+- Import the CSV data and save them to a data frame ~sms_raw~. Do not
+  automatically convert ~character~ to ~factor~ vectors. Use the
+  appropriate function arguments:
+  #+name: load_sms_raw
+  #+begin_src R :results silent
+    ## save CSV data as data frame sms_raw
+    sms_raw <- read.csv(file="https://bit.ly/sms_spam_csv",
+                        header=TRUE,
+                        stringsAsFactors=FALSE)
+  #+end_src
+- Three steps lead from a data frame with text to a corpus:
+  1) Isolate the text vector
+  2) Turn the vector into a source
+  3) Turn the source into a corpus
+  4) Check that the corpus is there
+  #+name: create_sms_corpus
+  #+begin_src R
+    sms_corpus <- VCorpus(VectorSource(sms_raw$text))
+  #+end_src
 
 * References
 
@@ -964,16 +1185,5 @@ then check with ~ls~ and ~search~ that all is ready to move on.
   Everybody - Full Course. Online: [[https://youtu.be/i_LwzRVP7bg][youtube.com]].
 
 - Photos by: Ben Mullins, Katarzyna Pe, Benjamin Davies, Grovemade,
-  Feliphe Schiarolli, Avin CP, Andrew Neel, on Unsplash.com
-  
-* Footnotes
-[fn:2]The data sets are listed at the bottom of all DataCamp courses,
-e.g. "[[https://app.datacamp.com/learn/courses/supervised-learning-in-r-classification][Supervised learning in R]]" the link opens to the [[https://app.datacamp.com/learn/courses/supervised-learning-in-r-classification][raw CSV file]],
-which you can either download and read the CSV file from your PC, or
-use the URL as ~filename~. If you get a "cannot open connection" error,
-check the URL or try again.
-
-[fn:1]Russell is a coauthor of AIMA, one of the textbooks we're going
-to use for my fall seminar on "Artificial Intelligence" (DSC/CSC
-482.01).
-
+  Feliphe Schiarolli, Avin CP, Andrew Neel, Jonathan Borba on
+  Unsplash.com
