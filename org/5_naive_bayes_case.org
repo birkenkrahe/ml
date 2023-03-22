@@ -119,7 +119,7 @@
   #+end_src
 
   #+RESULTS:
-  : 'data.frame':	5559 obs. of  2 variables:
+  : 'data.frame':       5559 obs. of  2 variables:
   :  $ type: chr  "ham" "ham" "ham" "spam" ...
   :  $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
   :   type                                              text
@@ -138,7 +138,7 @@
 
   #+RESULTS:
   : [1] TRUE
-  : 'data.frame':	5559 obs. of  2 variables:
+  : 'data.frame':       5559 obs. of  2 variables:
   :  $ type: Factor w/ 2 levels "ham","spam": 1 1 1 2 2 1 1 1 2 1 ...
   :  $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
 
@@ -148,8 +148,8 @@
   #+end_src
 
   #+RESULTS:
-  : 
-  :  ham spam 
+  :
+  :  ham spam
   : 4812  747
 
 * Getting the ~tm~ R package
@@ -207,50 +207,50 @@
 
   #+RESULTS:
   #+begin_example
-   [1] ".GlobalEnv"        "package:tm"        "package:NLP"      
-   [4] "ESSR"              "package:stats"     "package:graphics" 
-   [7] "package:grDevices" "package:utils"     "package:datasets" 
-  [10] "package:stringr"   "package:httr"      "package:methods"  
+   [1] ".GlobalEnv"        "package:tm"        "package:NLP"
+   [4] "ESSR"              "package:stats"     "package:graphics"
+   [7] "package:grDevices" "package:utils"     "package:datasets"
+  [10] "package:stringr"   "package:httr"      "package:methods"
   [13] "Autoloads"         "package:base"
-   [1] "as.DocumentTermMatrix"   "as.TermDocumentMatrix"  
-   [3] "as.VCorpus"              "Boost_tokenizer"        
-   [5] "content_transformer"     "Corpus"                 
-   [7] "DataframeSource"         "DirSource"              
-   [9] "Docs"                    "DocumentTermMatrix"     
-  [11] "DublinCore"              "DublinCore<-"           
-  [13] "eoi"                     "findAssocs"             
-  [15] "findFreqTerms"           "findMostFreqTerms"      
-  [17] "FunctionGenerator"       "getElem"                
-  [19] "getMeta"                 "getReaders"             
-  [21] "getSources"              "getTokenizers"          
-  [23] "getTransformations"      "Heaps_plot"             
-  [25] "inspect"                 "MC_tokenizer"           
-  [27] "nDocs"                   "nTerms"                 
-  [29] "PCorpus"                 "pGetElem"               
-  [31] "PlainTextDocument"       "read_dtm_Blei_et_al"    
-  [33] "read_dtm_MC"             "readDataframe"          
-  [35] "readDOC"                 "reader"                 
-  [37] "readPDF"                 "readPlain"              
-  [39] "readRCV1"                "readRCV1asPlain"        
+   [1] "as.DocumentTermMatrix"   "as.TermDocumentMatrix"
+   [3] "as.VCorpus"              "Boost_tokenizer"
+   [5] "content_transformer"     "Corpus"
+   [7] "DataframeSource"         "DirSource"
+   [9] "Docs"                    "DocumentTermMatrix"
+  [11] "DublinCore"              "DublinCore<-"
+  [13] "eoi"                     "findAssocs"
+  [15] "findFreqTerms"           "findMostFreqTerms"
+  [17] "FunctionGenerator"       "getElem"
+  [19] "getMeta"                 "getReaders"
+  [21] "getSources"              "getTokenizers"
+  [23] "getTransformations"      "Heaps_plot"
+  [25] "inspect"                 "MC_tokenizer"
+  [27] "nDocs"                   "nTerms"
+  [29] "PCorpus"                 "pGetElem"
+  [31] "PlainTextDocument"       "read_dtm_Blei_et_al"
+  [33] "read_dtm_MC"             "readDataframe"
+  [35] "readDOC"                 "reader"
+  [37] "readPDF"                 "readPlain"
+  [39] "readRCV1"                "readRCV1asPlain"
   [41] "readReut21578XML"        "readReut21578XMLasPlain"
-  [43] "readTagged"              "readXML"                
-  [45] "removeNumbers"           "removePunctuation"      
-  [47] "removeSparseTerms"       "removeWords"            
-  [49] "scan_tokenizer"          "SimpleCorpus"           
-  [51] "SimpleSource"            "stemCompletion"         
-  [53] "stemDocument"            "stepNext"               
-  [55] "stopwords"               "stripWhitespace"        
-  [57] "TermDocumentMatrix"      "termFreq"               
-  [59] "Terms"                   "tm_filter"              
-  [61] "tm_index"                "tm_map"                 
-  [63] "tm_parLapply"            "tm_parLapply_engine"    
-  [65] "tm_reduce"               "tm_term_score"          
-  [67] "URISource"               "VCorpus"                
-  [69] "VectorSource"            "weightBin"              
-  [71] "WeightFunction"          "weightSMART"            
-  [73] "weightTf"                "weightTfIdf"            
-  [75] "writeCorpus"             "XMLSource"              
-  [77] "XMLTextDocument"         "Zipf_plot"              
+  [43] "readTagged"              "readXML"
+  [45] "removeNumbers"           "removePunctuation"
+  [47] "removeSparseTerms"       "removeWords"
+  [49] "scan_tokenizer"          "SimpleCorpus"
+  [51] "SimpleSource"            "stemCompletion"
+  [53] "stemDocument"            "stepNext"
+  [55] "stopwords"               "stripWhitespace"
+  [57] "TermDocumentMatrix"      "termFreq"
+  [59] "Terms"                   "tm_filter"
+  [61] "tm_index"                "tm_map"
+  [63] "tm_parLapply"            "tm_parLapply_engine"
+  [65] "tm_reduce"               "tm_term_score"
+  [67] "URISource"               "VCorpus"
+  [69] "VectorSource"            "weightBin"
+  [71] "WeightFunction"          "weightSMART"
+  [73] "weightTf"                "weightTfIdf"
+  [75] "writeCorpus"             "XMLSource"
+  [77] "XMLTextDocument"         "Zipf_plot"
   [79] "ZipSource"
   Data sets in package 'tm':
 
@@ -319,7 +319,7 @@
   : <<PlainTextDocument>>
   : Metadata:  7
   : Content:  chars: 49
-  : 
+  :
   : Hope you are having a good week. Just checking in
 
 - To extract a message, e.g. the first message, you can use the index
@@ -359,20 +359,20 @@
   #+end_example
 
 - To see several list elements at once, ~lapply~ will apply its ~FUN~
-  argument to all ~list~ members - for the first three messages:
-  #+begin_src R
-    lapply(sms_corpus[1:3], FUN=as.character)
-  #+end_src
+argument to all ~list~ members - for the first three messages:
+#+begin_src R
+  lapply(sms_corpus[1:3], FUN=as.character)
+#+end_src
 
-  #+RESULTS:
-  : $`1`
-  : [1] "Hope you are having a good week. Just checking in"
-  : 
-  : $`2`
-  : [1] "K..give back my thanks."
-  : 
-  : $`3`
-  : [1] "Am also doing in cbe only. But have to pay."
+#+RESULTS:
+: $`1`
+: [1] "Hope you are having a good week. Just checking in"
+:
+: $`2`
+: [1] "K..give back my thanks."
+:
+: $`3`
+: [1] "Am also doing in cbe only. But have to pay."
 
 * Cleaning the text corpus: lower case, numbers
 
@@ -387,7 +387,7 @@
   #+end_src
 
   #+RESULTS:
-  : function (x, FUN, ...) 
+  : function (x, FUN, ...)
   : NULL
 
 - To transform words to lower case, we use ~base::tolower~
@@ -452,7 +452,7 @@
   #+end_src
 
   #+RESULTS:
-  : function (kind = "en") 
+  : function (kind = "en")
   : NULL
 
 - Which language contains the most stopwords?  Compare the ~length~ of
@@ -529,10 +529,10 @@
   #+end_src
 
   #+RESULTS:
-  :  [1] ".GlobalEnv"        "package:SnowballC" "package:tm"       
-  :  [4] "package:NLP"       "ESSR"              "package:stats"    
-  :  [7] "package:graphics"  "package:grDevices" "package:utils"    
-  : [10] "package:datasets"  "package:stringr"   "package:httr"     
+  :  [1] ".GlobalEnv"        "package:SnowballC" "package:tm"
+  :  [4] "package:NLP"       "ESSR"              "package:stats"
+  :  [7] "package:graphics"  "package:grDevices" "package:utils"
+  : [10] "package:datasets"  "package:stringr"   "package:httr"
   : [13] "package:methods"   "Autoloads"         "package:base"
   : [1] "getStemLanguages" "wordStem"
 
@@ -542,11 +542,11 @@
   #+end_src
 
   #+RESULTS:
-  :  [1] "arabic"     "basque"     "catalan"    "danish"     "dutch"     
-  :  [6] "english"    "finnish"    "french"     "german"     "greek"     
-  : [11] "hindi"      "hungarian"  "indonesian" "irish"      "italian"   
+  :  [1] "arabic"     "basque"     "catalan"    "danish"     "dutch"
+  :  [6] "english"    "finnish"    "french"     "german"     "greek"
+  : [11] "hindi"      "hungarian"  "indonesian" "irish"      "italian"
   : [16] "lithuanian" "nepali"     "norwegian"  "porter"     "portuguese"
-  : [21] "romanian"   "russian"    "spanish"    "swedish"    "tamil"     
+  : [21] "romanian"   "russian"    "spanish"    "swedish"    "tamil"
   : [26] "turkish"
 
 - Let's check the ~SnowballC::wordStem~ function on an example:
@@ -558,7 +558,7 @@
 
   #+RESULTS:
   : [1] "learn"   "learn"   "learn"   "learn"   "learner"
-  : function (words, language = "porter") 
+  : function (words, language = "porter")
   : NULL
 
 - The Porter algorithm used by ~wordStem~ does not recognize "learner"
@@ -609,7 +609,7 @@
 
 - The final step is to split the messages into individuals terms or
   tokens, a single element of a text string - in this case, a word.
-  
+
 - The ~DocumenTermMatrix~ function takes a corpus and creates a
   document-term matrix (DTM) with rows as docs and columns as terms:
   #+begin_src R :results silent
@@ -624,7 +624,7 @@
   #+begin_src R
     m <- as.matrix(sms_dtm)
     m[100:105, 100:108]
-  #+end_src  
+  #+end_src
 
   #+RESULTS:
   :      Terms
@@ -639,8 +639,8 @@
 - Not much to see, is there? It's a sparse matrix with very few
   non-zero entries. How sparse exactly?
   #+begin_src R
-      dim(m)
-      100 * length(which(m!=0))/(nrow(m)*ncol(m))
+    dim(m)
+    100 * length(which(m!=0))/(nrow(m)*ncol(m))
   #+end_src
 
   #+RESULTS:
@@ -682,36 +682,168 @@
 - This illustrates an important text mining principle: the order of
   operations matters!
 
-* TODO Creating training and test data
-
-- Download ~clean.R~ from GitHub (bit.ly/nb_clean)
-
-- Run the file on the shell (~M-x eshell~) as a batch job:
-  #+begin_src sh
-    R CMD BATCH clean.R
-    ls -al .RData
-  #+end_src
-
-- Load the ~.RData~ file in your current R session and check that
-  packages and user-defined objects were loaded:
-  #+begin_src R
-    load(".RData")
-    search()
-    ls()
-  #+end_src  
+* Creating training and test data
 
 - Split data into training and test datasets to allow for creation and
   evaluation of the model.
-  
+
 - It is important that the data are split *after* the data have been
   cleaned and processed - both training and test data need to have
   undergone exactly the same treatment.
 
+- The DTM object is structured very much like a data frame and can be
+  split using the familiar ~[row,col]~ operation where rows are messages
+  and columns are words:
+  #+begin_src R
+    str(sms_dtm)
+  #+end_src
+
 - Since the SMS messages are already sorted randomly, we simply take
   the first 75% (4,169) messages for training and leave 25% (1,390)
-  for testing.
+  for testing:
+  #+begin_src R :results silent
+    sms_dtm_train <- sms_dtm[1:4169, ]
+    sms_dtm_test  <- sms_dtm[4710:5559, ]
+  #+end_src
 
-- DTM object
+- Save a pair of vectors with the class labels "spam" or "ham" for
+  each message - these labels are not stored in the DTM (remember
+  that we used ~sms_raw$text~ to define the corpus) but in the raw
+  data frame:
+  #+begin_src R
+    str(sms_raw)
+  #+end_src
+
+  #+RESULTS:
+  : 'data.frame':	5559 obs. of  2 variables:
+  :  $ type: chr  "ham" "ham" "ham" "spam" ...
+  :  $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
+
+- Extract the corresponding rows for training and testing labels:     
+  #+begin_src R :results silent
+    sms_train_labels <- sms_raw[1:4169, ]$type
+    sms_test_labels <- sms_raw[4170:5559, ]$type
+  #+end_src
+
+- To confirm that the subsets are representative of the complete set
+  of SMS data, compute the proportion of spam and ham:
+  #+begin_src R
+    prop.table(table(sms_train_labels))
+    prop.table(table(sms_test_labels))
+  #+end_src
+
+  #+RESULTS:
+  : sms_train_labels
+  :       ham      spam 
+  : 0.8647158 0.1352842
+  : sms_test_labels
+  :       ham      spam 
+  : 0.8683453 0.1316547
+
+- Spam is evenly divided between training and test dataset with 13%.
+
+* Text visualization with ~wordcloud~
+
+- Word clouds visually show the frequency of words in text data.
+
+- Words appearing more/less often are shown in larger/smaller font
+
+- We use the ~wordcloud~ package to compare the clouds for "spam" and
+  "ham" messages to gauge if our spam filter is working or not[fn:6].
+
+- Install and load the package:
+  #+begin_src R
+    ## Do this only if options()$repos is set to cloud.r-project.org/
+    options()$repos
+    # install.packages("wordcloud")
+    library(wordcloud)
+    search()
+  #+end_src
+
+  #+RESULTS:
+  : [1] "https://cloud.r-project.org/"
+  :  [1] ".GlobalEnv"           "package:wordcloud"    "package:RColorBrewer"
+  :  [4] "package:SnowballC"    "package:tm"           "package:NLP"         
+  :  [7] "ESSR"                 "package:stats"        "package:graphics"    
+  : [10] "package:grDevices"    "package:utils"        "package:datasets"    
+  : [13] "package:stringr"      "package:httr"         "package:methods"     
+  : [16] "Autoloads"            "package:base"
+
+- Check out the functions in the package:
+  #+begin_src R
+    ls('package:wordcloud')
+  #+end_src
+
+  #+RESULTS:
+  : [1] "commonality.cloud" "comparison.cloud"  "textplot"         
+  : [4] "wordcloud"         "wordlayout"
+
+- Check out the arguments of the ~wordcloud~ function:
+  #+begin_src R
+    args(wordcloud::wordcloud)
+  #+end_src  
+
+  #+RESULTS:
+  : function (words, freq, scale = c(4, 0.5), min.freq = 3, max.words = Inf, 
+  :     random.order = TRUE, random.color = FALSE, rot.per = 0.1, 
+  :     colors = "black", ordered.colors = FALSE, use.r.layout = FALSE, 
+  :     fixed.asp = TRUE, ...) 
+  : NULL
+
+- A simple example: running the function on a string:
+  #+begin_src R :results graphics file :file ../img/5_everest.png
+    string <- "Many years ago the great British explorer George Mallory,
+    who was to die on Mount Everest, was asked why did he want to climb it.
+    He said, \"Because it is there.\" Well, space is there,
+    and we're going to climb it, and the moon and the planets
+    are there, and new hopes for knowledge and peace are there.
+    And, therefore, as we set sail we ask God's blessing on the
+    most hazardous and dangerous and greatest adventure on which
+    man has ever embarked." 
+    wordcloud(string, ,random.order=FALSE)
+  #+end_src
+
+  #+RESULTS:
+  [[file:../img/5_everest.png]]
+
+- After cleaning the string from brackets and punctuation and
+  tokenizing:
+  #+begin_src R
+    library(qdap)
+    bracketX(string) -> stringX
+    tokens <- unlist(strsplit(removePunctuation(stringX),split=" "))
+    tokens
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+   [1] "Many"      "years"     "ago"       "the"       "great"     "British"  
+   [7] "explorer"  "George"    "Mallory"   "who"       "was"       "to"       
+  [13] "die"       "on"        "Mount"     "Everest"   "was"       "asked"    
+  [19] "why"       "did"       "he"        "want"      "to"        "climb"    
+  [25] "it"        "He"        "said"      "Because"   "it"        "is"       
+  [31] "there"     "Well"      "space"     "is"        "there"     "and"      
+  [37] "were"      "going"     "to"        "climb"     "it"        "and"      
+  [43] "the"       "moon"      "and"       "the"       "planets"   "are"      
+  [49] "there"     "and"       "new"       "hopes"     "for"       "knowledge"
+  [55] "and"       "peace"     "are"       "there"     "And"       "therefore"
+  [61] "as"        "we"        "set"       "sail"      "we"        "ask"      
+  [67] "Gods"      "blessing"  "on"        "the"       "most"      "hazardous"
+  [73] "and"       "dangerous" "and"       "greatest"  "adventure" "on"       
+  [79] "which"     "man"       "has"       "ever"      "embarked"
+  #+end_example
+
+- Now we get a different cloud:
+  #+begin_src R :results graphics file :file 5_everest1.png
+    wordcloud(tokens)
+  #+end_src
+
+  #+RESULTS:
+  [[file:5_everest1.png]]
+* Spamfilter visualization
+
+
+
 * TODO Training a model on the data
 
 * TODO Evaluating model performance
@@ -736,7 +868,7 @@
 #+end_src
 
 #+RESULTS: get_sms_raw
-: [1] "api_key"          "ask_chatgpt"      "m"                "sms_corpus"      
+: [1] "api_key"          "ask_chatgpt"      "m"                "sms_corpus"
 : [5] "sms_corpus_clean" "sms_dtm"          "sms_dtm2"         "sms_raw"
 
 ** Exploring the data
@@ -754,20 +886,20 @@
 
 #+RESULTS:
 #+begin_example
-[1] "api_key"          "ask_chatgpt"      "m"                "sms_corpus"      
+[1] "api_key"          "ask_chatgpt"      "m"                "sms_corpus"
 [5] "sms_corpus_clean" "sms_dtm"          "sms_dtm2"         "sms_raw"
-'data.frame':	5559 obs. of  2 variables:
+'data.frame':   5559 obs. of  2 variables:
  $ type: chr  "ham" "ham" "ham" "spam" ...
  $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
 [1] TRUE
-'data.frame':	5559 obs. of  2 variables:
+'data.frame':   5559 obs. of  2 variables:
  $ type: Factor w/ 2 levels "ham","spam": 1 1 1 2 2 1 1 1 2 1 ...
  $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
 
- ham spam 
+ ham spam
 4812  747
 
-      ham      spam 
+      ham      spam
 0.8656233 0.1343767
 [1] "86.56 %" "13.44 %"
 #+end_example
@@ -784,50 +916,50 @@
 #+RESULTS:
 #+begin_example
 Warning: package 'tm' is in use and will not be installed
- [1] ".GlobalEnv"        "package:SnowballC" "package:tm"       
- [4] "package:NLP"       "ESSR"              "package:stats"    
- [7] "package:graphics"  "package:grDevices" "package:utils"    
-[10] "package:datasets"  "package:stringr"   "package:httr"     
+ [1] ".GlobalEnv"        "package:SnowballC" "package:tm"
+ [4] "package:NLP"       "ESSR"              "package:stats"
+ [7] "package:graphics"  "package:grDevices" "package:utils"
+[10] "package:datasets"  "package:stringr"   "package:httr"
 [13] "package:methods"   "Autoloads"         "package:base"
- [1] "as.DocumentTermMatrix"   "as.TermDocumentMatrix"  
- [3] "as.VCorpus"              "Boost_tokenizer"        
- [5] "content_transformer"     "Corpus"                 
- [7] "DataframeSource"         "DirSource"              
- [9] "Docs"                    "DocumentTermMatrix"     
-[11] "DublinCore"              "DublinCore<-"           
-[13] "eoi"                     "findAssocs"             
-[15] "findFreqTerms"           "findMostFreqTerms"      
-[17] "FunctionGenerator"       "getElem"                
-[19] "getMeta"                 "getReaders"             
-[21] "getSources"              "getTokenizers"          
-[23] "getTransformations"      "Heaps_plot"             
-[25] "inspect"                 "MC_tokenizer"           
-[27] "nDocs"                   "nTerms"                 
-[29] "PCorpus"                 "pGetElem"               
-[31] "PlainTextDocument"       "read_dtm_Blei_et_al"    
-[33] "read_dtm_MC"             "readDataframe"          
-[35] "readDOC"                 "reader"                 
-[37] "readPDF"                 "readPlain"              
-[39] "readRCV1"                "readRCV1asPlain"        
+ [1] "as.DocumentTermMatrix"   "as.TermDocumentMatrix"
+ [3] "as.VCorpus"              "Boost_tokenizer"
+ [5] "content_transformer"     "Corpus"
+ [7] "DataframeSource"         "DirSource"
+ [9] "Docs"                    "DocumentTermMatrix"
+[11] "DublinCore"              "DublinCore<-"
+[13] "eoi"                     "findAssocs"
+[15] "findFreqTerms"           "findMostFreqTerms"
+[17] "FunctionGenerator"       "getElem"
+[19] "getMeta"                 "getReaders"
+[21] "getSources"              "getTokenizers"
+[23] "getTransformations"      "Heaps_plot"
+[25] "inspect"                 "MC_tokenizer"
+[27] "nDocs"                   "nTerms"
+[29] "PCorpus"                 "pGetElem"
+[31] "PlainTextDocument"       "read_dtm_Blei_et_al"
+[33] "read_dtm_MC"             "readDataframe"
+[35] "readDOC"                 "reader"
+[37] "readPDF"                 "readPlain"
+[39] "readRCV1"                "readRCV1asPlain"
 [41] "readReut21578XML"        "readReut21578XMLasPlain"
-[43] "readTagged"              "readXML"                
-[45] "removeNumbers"           "removePunctuation"      
-[47] "removeSparseTerms"       "removeWords"            
-[49] "scan_tokenizer"          "SimpleCorpus"           
-[51] "SimpleSource"            "stemCompletion"         
-[53] "stemDocument"            "stepNext"               
-[55] "stopwords"               "stripWhitespace"        
-[57] "TermDocumentMatrix"      "termFreq"               
-[59] "Terms"                   "tm_filter"              
-[61] "tm_index"                "tm_map"                 
-[63] "tm_parLapply"            "tm_parLapply_engine"    
-[65] "tm_reduce"               "tm_term_score"          
-[67] "URISource"               "VCorpus"                
-[69] "VectorSource"            "weightBin"              
-[71] "WeightFunction"          "weightSMART"            
-[73] "weightTf"                "weightTfIdf"            
-[75] "writeCorpus"             "XMLSource"              
-[77] "XMLTextDocument"         "Zipf_plot"              
+[43] "readTagged"              "readXML"
+[45] "removeNumbers"           "removePunctuation"
+[47] "removeSparseTerms"       "removeWords"
+[49] "scan_tokenizer"          "SimpleCorpus"
+[51] "SimpleSource"            "stemCompletion"
+[53] "stemDocument"            "stepNext"
+[55] "stopwords"               "stripWhitespace"
+[57] "TermDocumentMatrix"      "termFreq"
+[59] "Terms"                   "tm_filter"
+[61] "tm_index"                "tm_map"
+[63] "tm_parLapply"            "tm_parLapply_engine"
+[65] "tm_reduce"               "tm_term_score"
+[67] "URISource"               "VCorpus"
+[69] "VectorSource"            "weightBin"
+[71] "WeightFunction"          "weightSMART"
+[73] "weightTf"                "weightTfIdf"
+[75] "writeCorpus"             "XMLSource"
+[77] "XMLTextDocument"         "Zipf_plot"
 [79] "ZipSource"
 Data sets in package 'tm':
 
@@ -872,7 +1004,7 @@ crude                   20 Exemplary News Articles from the
   #+end_src
 
   #+RESULTS:
-  : function (kind = "en") 
+  : function (kind = "en")
   : NULL
 - Which language contains the most stopwords?  Compare the ~length~ of
   ~english~, ~spanish~ and ~german~ ~tm::stopword~ dictionaries:
@@ -929,24 +1061,24 @@ crude                   20 Exemplary News Articles from the
   #+end_src
 
   #+RESULTS:
-  :  [1] ".GlobalEnv"        "package:SnowballC" "package:tm"       
-  :  [4] "package:NLP"       "ESSR"              "package:stats"    
-  :  [7] "package:graphics"  "package:grDevices" "package:utils"    
-  : [10] "package:datasets"  "package:stringr"   "package:httr"     
+  :  [1] ".GlobalEnv"        "package:SnowballC" "package:tm"
+  :  [4] "package:NLP"       "ESSR"              "package:stats"
+  :  [7] "package:graphics"  "package:grDevices" "package:utils"
+  : [10] "package:datasets"  "package:stringr"   "package:httr"
   : [13] "package:methods"   "Autoloads"         "package:base"
   : [1] "getStemLanguages" "wordStem"
 
 - Which languages are available for stemming?
-  #+begin_src R
     getStemLanguages()
+  getStemLanguages()
   #+end_src
 
   #+RESULTS:
-  :  [1] "arabic"     "basque"     "catalan"    "danish"     "dutch"     
-  :  [6] "english"    "finnish"    "french"     "german"     "greek"     
-  : [11] "hindi"      "hungarian"  "indonesian" "irish"      "italian"   
+  :  [1] "arabic"     "basque"     "catalan"    "danish"     "dutch"
+  :  [6] "english"    "finnish"    "french"     "german"     "greek"
+  : [11] "hindi"      "hungarian"  "indonesian" "irish"      "italian"
   : [16] "lithuanian" "nepali"     "norwegian"  "porter"     "portuguese"
-  : [21] "romanian"   "russian"    "spanish"    "swedish"    "tamil"     
+  : [21] "romanian"   "russian"    "spanish"    "swedish"    "tamil"
   : [26] "turkish"
 
 * References
@@ -990,6 +1122,7 @@ crude                   20 Exemplary News Articles from the
   Tools for Model Fitting. URL: [[https://cran.r-project.org/web/packages/gmodels/gmodels.pdf][cran.r-project.org]].
 
 * Footnotes
+[fn:6] For more info on the package, visit [[https://www.fellstat.com/?cat=11][blog.fellstat.com]] 
 
 [fn:1]The spam collection used here was modified by Lantz (2019). The
 original is from Gomez (2012) - the URL is no longer accessible, and I

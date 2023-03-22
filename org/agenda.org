@@ -900,7 +900,7 @@ your practice file ~5_naive_bayes_practice.org~ with ~C-x i~.
 Save the file and run all code blocks: ~M-x org-babel-execute-buffer~,
 then check with ~ls~ and ~search~ that all is ready to move on.
 
-* NEXT Week 11: Spam Filter & "Regression"
+* NEXT Week 11: Naive Bayes Spam Filter & "Regression"
 #+attr_latex: :width 400px
 #+caption: Photo by Jonathan Borba on Unsplash.
 [[../img/regression.jpg]]
@@ -1093,24 +1093,37 @@ then check with ~ls~ and ~search~ that all is ready to move on.
 #+caption: Testpilot Lt John A. MacReady (Source: Flickr.com/LOC)
 [[../img/testing.jpg]]
 
-- Download ~nb_clean.org~ from GitHub and run the file.
-- Now you can move to ~5_naive_bayes_practice.org~ to continue
+- Download ~clean.R~ from GitHub (bit.ly/nb_clean)
 
-* TODO Introduction to linear regression
+- Run the file on the shell (~M-x eshell~) as a batch job:
+  #+begin_src sh
+    R CMD BATCH clean.R
+    ls -al .RData
+  #+end_src
 
-** Linear vs. logistic regression
+- Load the ~.RData~ file in your current R session and check that
+  packages and user-defined objects were loaded:
+  #+begin_src R
+    load(".RData")
+    search()
+    ls()
+  #+end_src 
 
-* TODO Week 12: Regression: examples
-* TODO Week 13: k-means clustering
+- Continue with your practice file ~5_naive_bayes_practice.org~.
+  
+* TODO Introduction to linear regression with examples
+
+* TODO Week 12: k-means clustering
 
 - [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]]
 
-* TODO Week 14: Hierarchical clustering
+* TODO Week 13: Hierarchical clustering
 
 - [[https://app.datacamp.com/learn/projects/552][DataCamp guided project "Clustering Heart Disease Patient Data"]]
 
-* TODO Week 15: 
-* TODO Week 16: 
+* TODO Week 14: Artificial Neural networks (ANN)
+* TODO Week 15: ANN case + Projects I
+* TODO Week 16: Projects II and Summary 
 * TODO What next?
 
 Simple: 1) Work through some good books, 2) learn Python, too, 3)
