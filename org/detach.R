@@ -1,0 +1,6 @@
+detach('package:tm')
+detach('package:NLP')
+detach('package:SnowballC')
+rm('sms_raw','sms_corpus','sms_corpus_clean','sms_dtm','sms_dtm2','m')
+search()
+ls()

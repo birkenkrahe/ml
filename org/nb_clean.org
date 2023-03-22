@@ -3,9 +3,9 @@
 #+SUBTITLE: Case Study - Filtering mobile phone spam
 #+STARTUP: overview hideblocks indent inlineimages
 #+OPTIONS: toc:nil num:nil ^:nil
-#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes :tangle yes
 * RUN THIS FILE BEFORE TRAINING YOUR MODEL
-#+begin_src R
+#+begin_src R :tangle clean.R
   sms_raw <- read.csv(file="https://raw.githubusercontent.com/birkenkrahe/ml/main/data/sms_spam.csv",
                       header=TRUE,
                       stringsAsFactors=FALSE)

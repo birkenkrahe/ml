@@ -684,12 +684,34 @@
 
 * TODO Creating training and test data
 
+- Download ~clean.R~ from GitHub (bit.ly/nb_clean)
 
-- Split data into training and test datasets
+- Run the file on the shell (~M-x eshell~) as a batch job:
+  #+begin_src sh
+    R CMD BATCH clean.R
+    ls -al .RData
+  #+end_src
+
+- Load the ~.RData~ file in your current R session and check that
+  packages and user-defined objects were loaded:
+  #+begin_src R
+    load(".RData")
+    search()
+    ls()
+  #+end_src  
+
+- Split data into training and test datasets to allow for creation and
+  evaluation of the model.
   
 - It is important that the data are split *after* the data have been
-  cleaned and processed - both training and test data need to have undergone exactly the same 
+  cleaned and processed - both training and test data need to have
+  undergone exactly the same treatment.
 
+- Since the SMS messages are already sorted randomly, we simply take
+  the first 75% (4,169) messages for training and leave 25% (1,390)
+  for testing.
+
+- DTM object
 * TODO Training a model on the data
 
 * TODO Evaluating model performance
