@@ -1299,16 +1299,8 @@ argument to all ~list~ members - for the first three messages:
 | ~e1071::naiveBayes~           | create Naive Bayes classifier         |
 | ~stats::predict~              | run model object on new data set      |
 
-* TODO Summary
+* Summary
 
-Naive Bayes algorithm (NB):
-- NB constructs tables of probabilities to estimate the likelihood
-  that new examples belong to various classes.
-- Probabilities are calculated using Bayes' theorem, which specifies
-  how dependent events are related.
-- "Naive Bayes" makes assumptions about the independence of features
-  to handle much larger data sets.
-  
 Text Naive Bayes Classification:
 - Preparing the text data for analysis requires specialized R packages
   for text processing (~tm~, ~qdap~, ~SnowballC~) and visualization
