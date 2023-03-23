@@ -1,4 +1,4 @@
-f#+TITLE: AGENDA - MACHINE LEARNING
+#+TITLE: AGENDA - MACHINE LEARNING
 #+AUTHOR: MARCUS BIRKENKRAHE (pledged)
 #+SUBTITLE: Machine Learning (DSC 305) Spring 2023
 #+STARTUP:overview hideblocks indent inlineimages
@@ -1089,7 +1089,7 @@ then check with ~ls~ and ~search~ that all is ready to move on.
     #+end_notes
 
 * TODO Naive Bayes: model training and testing
-#+attr_latex: :width 400px
+#+attr_latex: :width 300px
 #+caption: Testpilot Lt John A. MacReady (Source: Flickr.com/LOC)
 [[../img/testing.jpg]]
 
@@ -1108,15 +1108,26 @@ then check with ~ls~ and ~search~ that all is ready to move on.
     search()
     ls()
   #+end_src 
+- If we don't finish with a session, save your data from now on:
+  #+begin_src R 
+    save.image(file=".RData")
+    shell("ls -al .RData")
+  #+end_src
 
-- Continue with your practice file ~5_naive_bayes_practice.org~.
+  #+RESULTS:
+  : -rwx------+ 1 Birkenkrahe LYONNET+Group(513) 1935366 Mar 22 10:20 .RData
+
+- Now: cntinue with your practice file ~5_naive_bayes_practice.org~
+  after adding the next (and final) chapters from here: bit.ly/nb_final
   
 * TODO Introduction to linear regression with examples
 
+
 * TODO Week 12: k-means clustering
 
-- [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]]
-
+- [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]] 
+- [[https://pieriantraining.com/k-means-clustering-machine-learning-in-python/][Tutorial blog post: k-means clustering in Python]] (3/17/2023)
+  
 * TODO Week 13: Hierarchical clustering
 
 - [[https://app.datacamp.com/learn/projects/552][DataCamp guided project "Clustering Heart Disease Patient Data"]]

@@ -260,7 +260,8 @@
                           Reuters-21578 Data Set of Topic crude
   #+end_example
 
-* Building a document text corpus
+* DONE Data preparation I - text mining and visualization
+** Building a document text corpus
 #+attr_latex: :width 400px
 #+caption: Tex mining workflow from Kwartler (2019)
 [[../img/1_workflow.png]]
@@ -297,7 +298,7 @@
   : Metadata:  corpus specific: 0, document level (indexed): 0
   : Content:  documents: 5559
 
-* Explore the text corpus
+** Explore the text corpus
 
 - The corpus is a ~list~ structure and its own R object ~class~:
   #+begin_src R
@@ -374,7 +375,7 @@ argument to all ~list~ members - for the first three messages:
 : $`3`
 : [1] "Am also doing in cbe only. But have to pay."
 
-* Cleaning the text corpus: lower case, numbers
+** Cleaning the text corpus: lower case, numbers
 
 - The corpus contains the raw text of 5,559 messages. It needs to be
   standardized, which includes transforming all words to lower case,
@@ -440,7 +441,7 @@ argument to all ~list~ members - for the first three messages:
   ~removeWords~ and ~stemDocument~ (in connection with a dictionary), and
   ~stripWhitespace~.
 
-* Removing stopwords and punctuation
+** Removing stopwords and punctuation
 
 - We need to remove filler words like /to/, /and/, /but/ etc. These are
   known as /stopwords/ and are removed before text mining.
@@ -511,7 +512,7 @@ argument to all ~list~ members - for the first three messages:
   #+RESULTS:
   : [1] "helloworld"
 
-* Word stemming with ~SnowballC~
+** Word stemming with ~SnowballC~
 
 - Word stemming involves reducing words to their root form. It reduces
   words like "learning", "learned", "learns" to "learn".
@@ -605,7 +606,7 @@ argument to all ~list~ members - for the first three messages:
   [1] "also cbe pay"
   #+end_example
 
-* Tokenization - word splitting
+** Tokenization - word splitting
 
 - The final step is to split the messages into individuals terms or
   tokens, a single element of a text string - in this case, a word.
@@ -682,6 +683,162 @@ argument to all ~list~ members - for the first three messages:
 - This illustrates an important text mining principle: the order of
   operations matters!
 
+* NEXT Text visualization with ~wordcloud~
+
+- Word clouds visually show the frequency of words in text data.
+
+- Words appearing more/less often are shown in larger/smaller font
+
+- We use the ~wordcloud~ package to compare the clouds for "spam" and
+  "ham" messages to gauge if our spam filter is working or not[fn:6].
+
+- Install and load the package:
+  #+begin_src R
+    ## Do this only if options()$repos is set to cloud.r-project.org/
+    options()$repos
+                                            # install.packages("wordcloud")
+    library(wordcloud)
+    search()
+  #+end_src
+
+  #+RESULTS:
+  : [1] "https://cloud.r-project.org/"
+  :  [1] ".GlobalEnv"           "package:wordcloud"    "package:RColorBrewer"
+  :  [4] "package:SnowballC"    "package:tm"           "package:NLP"
+  :  [7] "ESSR"                 "package:stats"        "package:graphics"
+  : [10] "package:grDevices"    "package:utils"        "package:datasets"
+  : [13] "package:stringr"      "package:httr"         "package:methods"
+  : [16] "Autoloads"            "package:base"
+
+- Check out the functions in the package:
+  #+begin_src R
+    ls('package:wordcloud')
+  #+end_src
+
+  #+RESULTS:
+  : [1] "commonality.cloud" "comparison.cloud"  "textplot"
+  : [4] "wordcloud"         "wordlayout"
+
+- Check out the arguments of the ~wordcloud~ function:
+  #+begin_src R
+    args(wordcloud::wordcloud)
+  #+end_src
+
+  #+RESULTS:
+  : function (words, freq, scale = c(4, 0.5), min.freq = 3, max.words = Inf,
+  :     random.order = TRUE, random.color = FALSE, rot.per = 0.1,
+  :     colors = "black", ordered.colors = FALSE, use.r.layout = FALSE,
+  :     fixed.asp = TRUE, ...)
+  : NULL
+
+- A simple example: running the function on a string:
+  #+begin_src R :results graphics file :file ../img/5_everest.png
+    string <- "Many years ago the great British explorer George Mallory,
+    who was to die on Mount Everest, was asked why did he want to climb it.
+    He said, \"Because it is there.\" Well, space is there,
+    and we're going to climb it, and the moon and the planets
+    are there, and new hopes for knowledge and peace are there.
+    And, therefore, as we set sail we ask God's blessing on the
+    most hazardous and dangerous and greatest adventure on which
+    man has ever embarked."
+    wordcloud(string, ,random.order=FALSE)
+  #+end_src
+
+  #+RESULTS:
+  [[file:../img/5_everest.png]]
+
+- The function has evidently applied some cleaning and tokenizing
+  operations automatically!
+
+- Let's do this explicitly with:
+  1) ~qdap::bracketX~ to remove brackets
+  2) ~tm::removePunctuation~ to remove punctuation
+  3) ~strsplit~ to tokenize
+  4) ~unlist~ to transform the ~list~ result to a vector
+  #+begin_src R
+    library(qdap)
+    bracketX(string) -> stringX
+    tokens <- unlist(strsplit(removePunctuation(stringX),split=" "))
+    tokens
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+   [1] "Many"      "years"     "ago"       "the"       "great"     "British"
+   [7] "explorer"  "George"    "Mallory"   "who"       "was"       "to"
+  [13] "die"       "on"        "Mount"     "Everest"   "was"       "asked"
+  [19] "why"       "did"       "he"        "want"      "to"        "climb"
+  [25] "it"        "He"        "said"      "Because"   "it"        "is"
+  [31] "there"     "Well"      "space"     "is"        "there"     "and"
+  [37] "were"      "going"     "to"        "climb"     "it"        "and"
+  [43] "the"       "moon"      "and"       "the"       "planets"   "are"
+  [49] "there"     "and"       "new"       "hopes"     "for"       "knowledge"
+  [55] "and"       "peace"     "are"       "there"     "And"       "therefore"
+  [61] "as"        "we"        "set"       "sail"      "we"        "ask"
+  [67] "Gods"      "blessing"  "on"        "the"       "most"      "hazardous"
+  [73] "and"       "dangerous" "and"       "greatest"  "adventure" "on"
+  [79] "which"     "man"       "has"       "ever"      "embarked"
+  #+end_example
+
+- Now we get a different cloud:
+  #+begin_src R :results graphics file :file ../img/5_everest1.png
+    wordcloud(tokens)
+  #+end_src
+
+  #+RESULTS:
+  [[file:5_everest1.png]]
+
+* Spam vs ham visualization
+
+- A word cloud can be created directly from a ~tm~ corpus[fn:7]:
+  1) We use the cleaned corpus
+  2) Words must be found in > 1% of the corpus (50/5000)
+  3) Place higher-frequency words closer to the center:
+  #+begin_src R :results graphics file :file ../img/5_sms_cloud.png
+    wordcloud(sms_corpus_clean,
+              min.freq=50,
+              random.order=FALSE)
+  #+end_src
+
+  #+RESULTS:
+  [[file:5_sms_cloud.png]]
+
+- See what happens when you change the minimum frequency to 200 and
+  10, and the scale (~c(font,cex)~) to different values (~font~ takes
+  values 1 to 4, and ~cex~ takes any value. The default is ~c(4,0.5)~.
+
+- More interesting is a comparison of the clouds for spam and
+  ham. ~wordcloud~ will automatically preprocess so we can use ~sms_raw~.
+
+- Split the data into spam and ham messages using ~subset~:
+  #+begin_src R :results silent
+    spam <- subset(sms_raw, type == "spam")
+    ham <- subset(sms_raw, type == "ham")
+  #+end_src
+
+- Create two wordclouds side by side looking only at the 30 most
+  common words in each of the two sets - can you guess which is which?
+  1) set ~max.words~ to 30
+  2) set the ~spam~ ~scale~ to ~c(3,0.5)~
+  3) set the ~ham~ ~scale~ to ~c(2,0.2)~
+  #+begin_src R :results graphics file :file ../img/5_spam_ham_clouds.png
+    par(mfrow=c(1,2),pty='m')
+    wordcloud(spam$text, max.words=30, scale=c(3,0.5))
+    wordcloud(ham$text, max.words=30, scale=c(2,0.1))
+  #+end_src
+
+  #+RESULTS:
+  [[file:5_spam_ham_clouds.png]]
+
+- Because of the randomization process in the function, the clouds
+  will look different each time you run the function, and you can pick
+  the cloud that looks most appealing for presentation purposes.
+
+- *Spam* SMS messages include words like "free", "stop", "cash",
+  "guaranteed", while *ham* SMS messages contain words like "can",
+  "time", "will" and "just".
+
+* Data preparation II - training and test data
 * Creating training and test data
 
 - Split data into training and test datasets to allow for creation and
@@ -698,12 +855,27 @@ argument to all ~list~ members - for the first three messages:
     str(sms_dtm)
   #+end_src
 
+  #+RESULTS:
+  #+begin_example
+  List of 6
+   $ i       : int [1:41754] 1 1 1 1 2 2 2 3 3 3 ...
+   $ j       : int [1:41754] 958 2269 2568 6187 428 2973 5607 193 907 4088 ...
+   $ v       : num [1:41754] 1 1 1 1 1 1 1 1 1 1 ...
+   $ nrow    : int 5559
+   $ ncol    : int 6536
+   $ dimnames:List of 2
+    ..$ Docs : chr [1:5559] "1" "2" "3" "4" ...
+    ..$ Terms: chr [1:6536] "‘morrow" "‘rent" "’llspeak" "’re" ...
+   - attr(*, "class")= chr [1:2] "DocumentTermMatrix" "simple_triplet_matrix"
+   - attr(*, "weighting")= chr [1:2] "term frequency" "tf"
+  #+end_example
+
 - Since the SMS messages are already sorted randomly, we simply take
   the first 75% (4,169) messages for training and leave 25% (1,390)
   for testing:
   #+begin_src R :results silent
     sms_dtm_train <- sms_dtm[1:4169, ]
-    sms_dtm_test  <- sms_dtm[4710:5559, ]
+    sms_dtm_test  <- sms_dtm[4170:5559, ]
   #+end_src
 
 - Save a pair of vectors with the class labels "spam" or "ham" for
@@ -719,7 +891,7 @@ argument to all ~list~ members - for the first three messages:
   :  $ type: chr  "ham" "ham" "ham" "spam" ...
   :  $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
 
-- Extract the corresponding rows for training and testing labels:     
+- Extract the corresponding rows for training and testing labels:
   #+begin_src R :results silent
     sms_train_labels <- sms_raw[1:4169, ]$type
     sms_test_labels <- sms_raw[4170:5559, ]$type
@@ -742,122 +914,410 @@ argument to all ~list~ members - for the first three messages:
 
 - Spam is evenly divided between training and test dataset with 13%.
 
-* Text visualization with ~wordcloud~
+* Reducing training features with ~findFreqTerms~
 
-- Word clouds visually show the frequency of words in text data.
-
-- Words appearing more/less often are shown in larger/smaller font
-
-- We use the ~wordcloud~ package to compare the clouds for "spam" and
-  "ham" messages to gauge if our spam filter is working or not[fn:6].
-
-- Install and load the package:
+- The sparse matrix currently contains over 6,500 features - one
+  feature for every word that appears in at least one SMS message:
   #+begin_src R
-    ## Do this only if options()$repos is set to cloud.r-project.org/
-    options()$repos
-    # install.packages("wordcloud")
-    library(wordcloud)
-    search()
+    dim(sms_dtm)
   #+end_src
 
   #+RESULTS:
-  : [1] "https://cloud.r-project.org/"
-  :  [1] ".GlobalEnv"           "package:wordcloud"    "package:RColorBrewer"
-  :  [4] "package:SnowballC"    "package:tm"           "package:NLP"         
-  :  [7] "ESSR"                 "package:stats"        "package:graphics"    
-  : [10] "package:grDevices"    "package:utils"        "package:datasets"    
-  : [13] "package:stringr"      "package:httr"         "package:methods"     
-  : [16] "Autoloads"            "package:base"
+  : [1] 5559 6536
 
-- Check out the functions in the package:
+- It's unlikely that all of these are useful for classification so we
+  reduce the features by eliminating any word appearing in < 5 (0.1%)
+  of the messages.
+
+- The ~tm::findFreqTerms~ function takes a DTM and returns a ~character~
+  vector containing words with frequencies in ~[lowfreq,highfreq]~:
   #+begin_src R
-    ls('package:wordcloud')
+    args(findFreqTerms)
+  #+end_src
+
+- We save the vector in ~sms_freq_words~:
+  #+begin_src R :results silent
+    findFreqTerms(sms_dtm_train, lowfreq = 5) -> sms_freq_words
+  #+end_src
+
+- Check the structure of ~sms_freq_words~:
+  #+begin_src R
+    str(sms_freq_words)
   #+end_src
 
   #+RESULTS:
-  : [1] "commonality.cloud" "comparison.cloud"  "textplot"         
-  : [4] "wordcloud"         "wordlayout"
+  :  chr [1:1137] "£wk" "abiola" "abl" "abt" "accept" "access" "account" ...
 
-- Check out the arguments of the ~wordcloud~ function:
-  #+begin_src R
-    args(wordcloud::wordcloud)
-  #+end_src  
+- There are 1,137 words appearing in at least 5 SMS messages. Some of
+  them show the result of word-stemming without re-completion ("abl"),
+  and not having removed abbreviations and symbols[fn:8].
 
-  #+RESULTS:
-  : function (words, freq, scale = c(4, 0.5), min.freq = 3, max.words = Inf, 
-  :     random.order = TRUE, random.color = FALSE, rot.per = 0.1, 
-  :     colors = "black", ordered.colors = FALSE, use.r.layout = FALSE, 
-  :     fixed.asp = TRUE, ...) 
-  : NULL
-
-- A simple example: running the function on a string:
-  #+begin_src R :results graphics file :file ../img/5_everest.png
-    string <- "Many years ago the great British explorer George Mallory,
-    who was to die on Mount Everest, was asked why did he want to climb it.
-    He said, \"Because it is there.\" Well, space is there,
-    and we're going to climb it, and the moon and the planets
-    are there, and new hopes for knowledge and peace are there.
-    And, therefore, as we set sail we ask God's blessing on the
-    most hazardous and dangerous and greatest adventure on which
-    man has ever embarked." 
-    wordcloud(string, ,random.order=FALSE)
+- We narrow our training and test features already stored further -
+  this time we use the column index to include all rows:
+  #+begin_src R :results silent
+    sms_dtm_freq_train <- sms_dtm_train[ ,sms_freq_words]
+    sms_dtm_freq_test <- sms_dtm_test[ ,sms_freq_words]
   #+end_src
 
-  #+RESULTS:
-  [[file:../img/5_everest.png]]
+* Convert ~numeric~ counts to categorical features
 
-- After cleaning the string from brackets and punctuation and
-  tokenizing:
+- The Naive Bayes classifier is trained on data with categorical
+  features but the DTM cells record the number of times a word appears
+  in a message.
+
+- We convert the counts to "Yes" or "No" strings with a simple
+  function, and apply the function to the whole matrix with ~apply~.
+
+- The conversion function uses ~ifelse~ as a way of testing a condition
+  (~x > 0~) for all elements of a vector:
+  #+name: convert_counts
+  #+begin_src R :results silent
+    convert_counts <- function (x) { x <- ifelse(test = (x > 0),
+                                                 yes = "Yes",
+                                                 no = "No") }
+  #+end_src
+
+- The ~apply~ function applies its function argument ~FUN~ to all elements
+  of an array by row (~MARGIN=1~) or by column (~MARGIN=2~) - we're
+  interested in columns:
+  #+begin_src R :results silent
+    <<convert_counts>>
+    apply(X = sms_dtm_freq_train,
+          MARGIN = 2,
+          FUN = convert_counts) -> sms_train
+    apply(X = sms_dtm_freq_test,
+          MARGIN = 2,
+          FUN = convert_counts) -> sms_test
+  #+end_src
+
+- The result are our final training and test data in the form of two
+  matrices with "No" for 0 and "Yes" for non-zero frequencies:
   #+begin_src R
-    library(qdap)
-    bracketX(string) -> stringX
-    tokens <- unlist(strsplit(removePunctuation(stringX),split=" "))
-    tokens
+    dim(sms_train)
+    dim(sms_test)
+    sms_train[2:3,2:3]  # head of the training data matrix
+    sms_test[100:102,1135:1137]  # tail of the test data matrix
   #+end_src
 
   #+RESULTS:
   #+begin_example
-   [1] "Many"      "years"     "ago"       "the"       "great"     "British"  
-   [7] "explorer"  "George"    "Mallory"   "who"       "was"       "to"       
-  [13] "die"       "on"        "Mount"     "Everest"   "was"       "asked"    
-  [19] "why"       "did"       "he"        "want"      "to"        "climb"    
-  [25] "it"        "He"        "said"      "Because"   "it"        "is"       
-  [31] "there"     "Well"      "space"     "is"        "there"     "and"      
-  [37] "were"      "going"     "to"        "climb"     "it"        "and"      
-  [43] "the"       "moon"      "and"       "the"       "planets"   "are"      
-  [49] "there"     "and"       "new"       "hopes"     "for"       "knowledge"
-  [55] "and"       "peace"     "are"       "there"     "And"       "therefore"
-  [61] "as"        "we"        "set"       "sail"      "we"        "ask"      
-  [67] "Gods"      "blessing"  "on"        "the"       "most"      "hazardous"
-  [73] "and"       "dangerous" "and"       "greatest"  "adventure" "on"       
-  [79] "which"     "man"       "has"       "ever"      "embarked"
+  [1] 4169 1137
+  [1] 1390 1137
+      Terms
+  Docs abiola abl 
+     2 "No"   "No"
+     3 "No"   "No"
+        Terms
+  Docs   yet  yoga yup 
+    4269 "No" "No" "No"
+    4270 "No" "No" "No"
+    4271 "No" "No" "No"
   #+end_example
 
-- Now we get a different cloud:
-  #+begin_src R :results graphics file :file 5_everest1.png
-    wordcloud(tokens)
+- Taking stock! The ~ls()~ function has a pattern argument. Use it to
+  list all objects you've defined so far for the SMS messages:
+  #+begin_src R
+    ls(pattern="^sms")
   #+end_src
 
   #+RESULTS:
-  [[file:5_everest1.png]]
-* Spamfilter visualization
+  :  [1] "sms_classifier"     "sms_classifier2"    "sms_corpus"        
+  :  [4] "sms_corpus_clean"   "sms_dtm"            "sms_dtm_freq_test" 
+  :  [7] "sms_dtm_freq_train" "sms_dtm_test"       "sms_dtm_train"     
+  : [10] "sms_dtm2"           "sms_freq_words"     "sms_raw"           
+  : [13] "sms_test"           "sms_test_labels"    "sms_test_pred"     
+  : [16] "sms_train"          "sms_train_labels"
+
+* Training a classifier on the data
+
+- We have transformed the raw SMS messages into a format that can be
+  represented by a statistical model.
+
+- The Naive Bayes algorithm uses the presence or absence of words to
+  estimate the probability that a given SMS message is spam.
+
+- We use the algorithm implemented in the imaginatively named ~e1071~
+  package from the TU Wien[fn:9]. Install and load the package, check that
+  it's loaded and take a look at the functions contained in it:
+  #+begin_src R
+    ## Do this only if options()$repos is set to cloud.r-project.org/
+    options()$repos
+    install.packages("e1071")
+    library(e1071)
+    search()
+    ls('package:e1071')
+  #+end_src
+
+- Unlike the k-NN algorithm, training and using the Naive Bayes
+  algorithm occurs in several steps:
+  #+attr_latex: :width 400px
+  #+caption: Naive Bayes classification syntax (Lantz, 2019)
+  [[../img/5_algorithm.png]]
+
+- The training with ~naivebayes~ includes a parameter for Laplace
+  correction and returns a model ~m~.
+
+- The ~predict~ function runs the model (~object~) ~m~ on the (unseen) test
+  data (~newdata~) and returns a vector of predicted labels.
+
+- We build our model ~sms_classifier~ on the ~sms_train~ dataset with the
+  associated ~sms_train_labels~:
+  #+begin_src R :results silent
+    naiveBayes(x = sms_train, y = sms_train_labels) -> sms_classifier
+  #+end_src
+
+- The ~sms_classifier~ variable now contains a ~naiveBayes~ classifier
+  ~list~ object that can be used to make predictions: let's look at
+  1) the class of the model
+  2) the data structure of the model
+     3) the probabilities for two words from the "spam" and "ham" pile
+  #+begin_src R
+    class(sms_classifier)
+    typeof(sms_classifier)
+    sms_classifier$table[[which(sms_freq_words=="free")]]
+    sms_classifier$table[[which(sms_freq_words=="come")]]
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  [1] "naiveBayes"
+  [1] "list"
+                  free
+  sms_train_labels         No        Yes
+              ham  0.98751734 0.01248266
+              spam 0.76950355 0.23049645
+                  come
+  sms_train_labels          No         Yes
+              ham  0.942579750 0.057420250
+              spam 0.991134752 0.008865248
+  #+end_example
+
+- Just for fun, how does this compare with ~klaR::NaiveBayes~?
+  #+begin_src R
+    sms_classifier_ <- NaiveBayes(sms_train, factor(sms_train_labels))
+    sms_classifier_$table[[which(sms_freq_words=="free")]]
+    sms_classifier_$table[[which(sms_freq_words=="come")]]
+  #+end_src
+
+  #+RESULTS:
+  :         var
+  : grouping         No        Yes
+  :     ham  0.98751734 0.01248266
+  :     spam 0.76950355 0.23049645
+  :         var
+  : grouping          No         Yes
+  :     ham  0.942579750 0.057420250
+  :     spam 0.991134752 0.008865248
+
+* Evaluating model performance
+
+- To evaluate the classifier ~sms_classifier~, we test its predictions
+  on the unseen messages in the test data stored in the matrix
+  ~sms_test~, with associated class labels stored in ~sms_test_labels~.
+
+- The ~predict~ function is part of the base R installation in the ~stats~
+  package - it only needs a model object (the classifier) and a test
+  dataset:
+  #+begin_src R :results silent
+    predict(sms_classifier,
+            sms_test) -> sms_test_pred
+  #+end_src
+
+- How accurate is our classifier? Average over the misidentified
+  message labels:
+  #+begin_src R
+    paste("Misidentified messages: ",
+          format((mean(sms_test_pred!=sms_test_labels))*100,
+                 digits=2),"%") 
+  #+end_src
+
+  #+RESULTS:
+  : [1] "Misidentified messages:  2.6 %"
+
+- For a confidence matrix overview, we use ~gmodels::CrossTable~ with
+  reduced cell output (suppressing various proportions):
+  #+begin_src R
+    library(gmodels)
+    CrossTable(x = sms_test_pred,
+               y = sms_test_labels,
+               prop.chisq=FALSE,prop.c=FALSE,prop.r=FALSE,
+               dnn = c('predicted', 'actual'))
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
 
 
+     Cell Contents
+  |-------------------------|
+  |                       N |
+  |         N / Table Total |
+  |-------------------------|
 
-* TODO Training a model on the data
 
-* TODO Evaluating model performance
+  Total Observations in Table:  1390 
 
-* TODO Improving model performance
 
-* TODO Glossary of Code
+               | actual 
+     predicted |       ham |      spam | Row Total | 
+  -------------|-----------|-----------|-----------|
+           ham |      1201 |        30 |      1231 | 
+               |     0.864 |     0.022 |           | 
+  -------------|-----------|-----------|-----------|
+          spam |         6 |       153 |       159 | 
+               |     0.004 |     0.110 |           | 
+  -------------|-----------|-----------|-----------|
+  Column Total |      1207 |       183 |      1390 | 
+  -------------|-----------|-----------|-----------|
+  #+end_example
 
-| COMMAND | MEANING |
-|---------+---------|
-|         |         |
+- Let's look at the results:
+  #+attr_latex: :width 400px
+  #+caption: Naive Bayes spam filter results as gmodels::CrossTable.
+  [[../img/5_evaluation.png]]
+  1) Only 30 false negatives (actual spam classified as ham)
+  2) Only 6 + 30 = 36 of 1,390 messages (2.6%) misidentified
+  3) Only 6 false positives (actual ham classified as spam)
+  4) 6 wrongly filtered messages could mean important messages!
+
+- For the relatively little effort we made, this out of the box result
+  is pretty impressive! Next stop: tweak the model.
+
+* Improving model performance
+
+- Since we kept the Laplace correction at 0 during training, words
+  that appeared in zero spam or zero ham messages influenced the
+  result.
+
+- Just because a word like "ringtone" only appeared in spam messages
+  in the training data, does not mean that every message with this
+  word should be classified as spam.
+
+- We build a new classifier with ~laplace=0.1~ adding a small correction
+  to the conditional probabilities:
+  #+begin_src R :results silent
+    sms_classifier2 <- naiveBayes(x = sms_train,
+                                  y = sms_train_labels,
+                                  laplace = 0.1)
+  #+end_src
+
+- We repeat our prediction with the new classifier:
+  #+begin_src R :results silent
+    sms_test_pred2 <- predict(sms_classifier2, sms_test)
+  #+end_src
+
+- Check new accuracy:
+  #+begin_src R
+    paste("Misidentified messages: ",
+          format((mean(sms_test_pred2!=sms_test_labels))*100,
+                 digits=2),"%") 
+  #+end_src
+
+  #+RESULTS:
+  : [1] "Misidentified messages:  2.2 %"
+
+- Check new confidence matrix:
+  #+begin_src R
+    library(gmodels)
+    CrossTable(x = sms_test_pred2,
+               y = sms_test_labels,
+               prop.chisq=FALSE,prop.c=FALSE,prop.r=FALSE,
+               dnn = c('predicted', 'actual'))
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+
+
+     Cell Contents
+  |-------------------------|
+  |                       N |
+  |         N / Table Total |
+  |-------------------------|
+
+
+  Total Observations in Table:  1390 
+
+
+               | actual 
+     predicted |       ham |      spam | Row Total | 
+  -------------|-----------|-----------|-----------|
+           ham |      1202 |        26 |      1228 | 
+               |     0.865 |     0.019 |           | 
+  -------------|-----------|-----------|-----------|
+          spam |         5 |       157 |       162 | 
+               |     0.004 |     0.113 |           | 
+  -------------|-----------|-----------|-----------|
+  Column Total |      1207 |       183 |      1390 | 
+  -------------|-----------|-----------|-----------|
+  #+end_example
+
+- We've improved the result a little - we have reduced the number of
+  false positive (ham classified as spam) from 6 to 5, and the number
+  of false negatives (spam classified as ham) from 30 to 26.
+
+- When tweaking further, we need to be careful because we need to
+  strike a balance between overly aggressive (strong filter) and
+  overly passive (weak filter): users would prefer that a small number
+  of spam messages gets through rather than losing too many ham
+  messages.
+
+* Glossary of code
+
+| COMMAND                     | MEANING                               |
+|-----------------------------+---------------------------------------|
+| ~tm~                          | text mining package                   |
+| ~tm::VectorSource~            | turn vector into source               |
+| ~tm::VCorpus~                 | turn source into volatile corpus      |
+| ~tm::inspect~                 | look at corpus elements               |
+| ~tm::content~                 | look at corpus content                |
+| ~tm::meta~                    | look at corpus meta data              |
+| ~as.character~                | convert value to ~character~            |
+| ~lapply(X,FUN)~               | apply function to list elements       |
+| ~apply(X,MARGIN,FUN)~         | apply function to arrays              |
+| ~tm::tm_map~                  | run function on whole corpus          |
+| ~base::tolower~               | convert characters to lower case      |
+| ~tm::content_transformer~     | transform function to run on corpus   |
+| ~tm::removeNumbers~           | remove numbers                        |
+| ~tm::stripWhitespace~         | remove white space                    |
+| ~tm::stopwords~               | get stop words dictonary              |
+| ~tm::stopwords("en")~         | English stop words dictionary         |
+| ~tm::removePunctuation~       | remove punctuation                    |
+| ~SnowballC~                   | word stemming package                 |
+| ~SnowballC::getStemLanguages~ | languages available for word stemming |
+| ~SnowballC::wordStem~         | stem words (default: English)         |
+| ~tm::DocumentTermMatrix~      | make matrix of docs x terms (DTM)     |
+| ~tm::TermDocumentMatrix~      | make matrix of terms x docs (TDM)     |
+| ~wordcloud~                   | package for word cloud visualization  |
+| ~options()$repos~             | package download repository URL       |
+| ~wordcloud::wordcloud~        | make wordcloud from R object          |
+| ~par(mfrow=c(1,2)~            | create 1 x 2 panel for plots          |
+| ~tm::findFreqTerms~           | find frequent terms in DTM            |
+| ~ifelse (test,yes,no)~        | apply condition to vector             |
+| ~ls(pattern="^a")~            | list objects beginning with "a"       |
+| ~e1071~, ~klaR~                 | Naive Bayes algorithm packages        |
+| ~e1071::naiveBayes~           | create Naive Bayes classifier         |
+| ~stats::predict~              | run model object on new data set      |
 
 * TODO Summary
-* IN PROGRESS Solutions
+
+Naive Bayes algorithm (NB):
+- NB constructs tables of probabilities to estimate the likelihood
+  that new examples belong to various classes.
+- Probabilities are calculated using Bayes' theorem, which specifies
+  how dependent events are related.
+- "Naive Bayes" makes assumptions about the independence of features
+  to handle much larger data sets.
+  
+Text Naive Bayes Classification:
+- Preparing the text data for analysis requires specialized R packages
+  for text processing (~tm~, ~qdap~, ~SnowballC~) and visualization
+  (~wordcloud~).
+- An out-of-the-box classification using the ~e1071~ or ~klaR~ algorithm
+  packages yields a 97% success rate for an SMS message spam filter
+  with NB.
+
+* Solutions
 ** Collecting the data
 #+name: get_sms_raw
 #+begin_src R
@@ -1069,7 +1529,7 @@ crude                   20 Exemplary News Articles from the
   : [1] "getStemLanguages" "wordStem"
 
 - Which languages are available for stemming?
-    getStemLanguages()
+  getStemLanguages()
   getStemLanguages()
   #+end_src
 
@@ -1122,7 +1582,18 @@ crude                   20 Exemplary News Articles from the
   Tools for Model Fitting. URL: [[https://cran.r-project.org/web/packages/gmodels/gmodels.pdf][cran.r-project.org]].
 
 * Footnotes
-[fn:6] For more info on the package, visit [[https://www.fellstat.com/?cat=11][blog.fellstat.com]] 
+
+[fn:9] An almost identical alternative is the ~NaiveBayes~ function in
+the ~klaR~ package from the [[https://cran.r-project.org/web/packages/klaR/index.html][TU Dortmund]], Germany. Both are well
+maintained.
+[fn:8]The ~qdap~ text cleaning package contains plenty of functions for
+additional corpus cleaning. Check out the help.
+
+[fn:7]If you an error message that R could not fit all words on the
+figure, increase ~min.freq~ to reduce the number of words in the cloud,
+or reduce the font size with ~scale=c(font,cex)~.
+
+[fn:6]For more info on the package, visit [[https://www.fellstat.com/?cat=11][blog.fellstat.com]]
 
 [fn:1]The spam collection used here was modified by Lantz (2019). The
 original is from Gomez (2012) - the URL is no longer accessible, and I
