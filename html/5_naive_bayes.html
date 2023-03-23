@@ -19,18 +19,18 @@
 <div class="reveal">
 <div class="slides">
 <section id="sec-title-slide"><h1 class="title">Understanding Naive Bayes</h1><p class="subtitle">Supervised Naive Bayes Prediction</p>
-<h2 class="author">Marcus Birkenkrahe</h2><p class="date">Created: 2023-03-22 Wed 19:24</p>
+<h2 class="author">Marcus Birkenkrahe</h2><p class="date">Created: 2023-03-22 Wed 21:53</p>
 </section>
 <section>
-<section id="slide-org8a7a372">
-<h2 id="org8a7a372">Naive Bayes</h2>
+<section id="slide-org0b52e16">
+<h2 id="org0b52e16">Naive Bayes</h2>
 
-<div id="org3ccbec6" class="figure">
+<div id="org59dd331" class="figure">
 <p><img src="../img/ThomasBayes.png" alt="ThomasBayes.png" width="300px" />
 </p>
 </div>
 
-<pre class="example" id="org4a9d096">
+<pre class="example" id="orge305d44">
 - Lecture notes in Markdown file (4_naive_bayes.md)
 - Source: Lantz (2019), chapter 4, pp. 89-123
 - DataCamp assignment: "Supervised learning with R", ch. 2
@@ -39,10 +39,10 @@
 </section>
 </section>
 <section>
-<section id="slide-org00be5e6">
-<h2 id="org00be5e6">What you will learn</h2>
+<section id="slide-org8fde4d1">
+<h2 id="org8fde4d1">What you will learn</h2>
 
-<div id="org513ad6d" class="figure">
+<div id="org89a138d" class="figure">
 <p><img src="../img/learning.jpg" alt="learning.jpg" width="400px" />
 </p>
 </div>
@@ -69,14 +69,14 @@ between features, class, and probability measures, which are our
 </section>
 </section>
 <section>
-<section id="slide-org853d972">
-<h2 id="org853d972">Probabilistic methods</h2>
+<section id="slide-orga1f142b">
+<h2 id="orga1f142b">Probabilistic methods</h2>
 
-<div id="org3d45ecd" class="figure">
+<div id="org796bd25" class="figure">
 <p><img src="../img/5_weather.png" alt="5_weather.png" />
 </p>
 </div>
-<pre class="example" id="orge743f2c">
+<pre class="example" id="orga871929">
 - Probabilistic methods describe uncertainty
 - They use data on past events to extrapolate future events
 - Such predictions are subject to many assumptions
@@ -97,15 +97,15 @@ weather forecast.</li>
 </section>
 </section>
 <section>
-<section id="slide-org3c4c4c1">
-<h2 id="org3c4c4c1">Probability</h2>
+<section id="slide-orga121940">
+<h2 id="orga121940">Probability</h2>
 
-<div id="org07eb0c6" class="figure">
+<div id="orgd9feb86" class="figure">
 <p><img src="../img/prob.jpg" alt="prob.jpg" width="400px" />
 </p>
 </div>
 
-<pre class="example" id="org925c7f1">
+<pre class="example" id="org74d1cc5">
 - A probability P is a number between 0 and 1 (0% to 100%)
 - P captures the chance that an event will occur based on evidence
 - P = 0 indicates that the event will definitely not occur
@@ -115,15 +115,15 @@ weather forecast.</li>
 </section>
 </section>
 <section>
-<section id="slide-org8160bec">
-<h2 id="org8160bec">Bayesian methods</h2>
+<section id="slide-orgd7f6142">
+<h2 id="orgd7f6142">Bayesian methods</h2>
 
-<div id="org8f7ae2d" class="figure">
+<div id="orgf0c5a28" class="figure">
 <p><img src="../img/bavarian.jpg" alt="bavarian.jpg" width="400px" />
 </p>
 </div>
 
-<pre class="example" id="org64cb183">
+<pre class="example" id="org84995ed">
 - Training data are used to calculate outcome probability
 - Evidence is provided by labeled feature values
 - Classifier uses calculated probabilities to estimate class
@@ -132,10 +132,10 @@ weather forecast.</li>
 </section>
 </section>
 <section>
-<section id="slide-org055a66e">
-<h2 id="org055a66e">Applications</h2>
+<section id="slide-org63836cd">
+<h2 id="org63836cd">Applications</h2>
 
-<div id="orga395f6b" class="figure">
+<div id="orgbe42652" class="figure">
 <p><img src="../img/ids-in-security.png" alt="ids-in-security.png" width="400px" />
 </p>
 </div>
@@ -165,10 +165,10 @@ combined impact in a Bayesian model could have a major impact.</li>
 </section>
 </section>
 <section>
-<section id="slide-org77bccb2">
-<h2 id="org77bccb2">Basic idea</h2>
+<section id="slide-org757c217">
+<h2 id="org757c217">Basic idea</h2>
 
-<div id="org2fd0c83" class="figure">
+<div id="orgeabc59e" class="figure">
 <p><img src="../img/5_events.png" alt="5_events.png" width="500px" />
 </p>
 </div>
@@ -204,10 +204,10 @@ But: real events are never mathematically independent.
 </section>
 </section>
 <section>
-<section id="slide-orgdccaa22">
-<h2 id="orgdccaa22">Spam vs. Ham</h2>
+<section id="slide-orgf63ce33">
+<h2 id="orgf63ce33">Spam vs. Ham</h2>
 
-<div id="orgd049a1f" class="figure">
+<div id="orgfb16a97" class="figure">
 <p><img src="../img/5_spam_ham.png" alt="5_spam_ham.png" width="600px" />
 </p>
 </div>
@@ -235,10 +235,10 @@ record many, many instances, say 1000, you have 200 lines marked as
 </section>
 </section>
 <section>
-<section id="slide-org4b511e9">
-<h2 id="org4b511e9">Joint probability</h2>
+<section id="slide-orge23f822">
+<h2 id="orge23f822">Joint probability</h2>
 
-<div id="org8d4a8c6" class="figure">
+<div id="org105a77c" class="figure">
 <p><img src="../img/5_joint.png" alt="5_joint.png" width="600px" />
 </p>
 </div>
@@ -251,10 +251,10 @@ larger than its overlap with 'ham'.
 </section>
 </section>
 <section>
-<section id="slide-org09ee334">
-<h2 id="org09ee334">Venn diagrams</h2>
+<section id="slide-org33fb121">
+<h2 id="org33fb121">Venn diagrams</h2>
 
-<div id="org6d7bb3f" class="figure">
+<div id="orgf4bf44f" class="figure">
 <p><img src="../img/5_venn.png" alt="5_venn.png" width="600px" />
 </p>
 </div>
@@ -284,10 +284,10 @@ the word 'Viagra' is predictive of spam.</li>
 </section>
 </section>
 <section>
-<section id="slide-org6fa8494">
-<h2 id="org6fa8494">Bayes' theorem</h2>
+<section id="slide-orgc120d9e">
+<h2 id="orgc120d9e">Bayes' theorem</h2>
 
-<div id="orge3cd3cf" class="figure">
+<div id="orge9deecf" class="figure">
 <p><img src="../img/5_bayes_simple.png" alt="5_bayes_simple.png" width="250px" />
 </p>
 </div>
@@ -299,7 +299,7 @@ the word 'Viagra' is predictive of spam.</li>
 
 </ul>
 
-<div id="org17fd29d" class="figure">
+<div id="orge447f79" class="figure">
 <p><img src="../img/5_bayes.png" alt="5_bayes.png" width="400px" />
 </p>
 </div>
@@ -323,10 +323,10 @@ of P(B).</li>
 </section>
 </section>
 <section>
-<section id="slide-org3c3cd8a">
-<h2 id="org3c3cd8a">Bayesian spam filter</h2>
+<section id="slide-orgfb3df8e">
+<h2 id="orgfb3df8e">Bayesian spam filter</h2>
 
-<div id="orgba49735" class="figure">
+<div id="orgba9eff6" class="figure">
 <p><img src="../img/5_bayes_spam_ham.png" alt="5_bayes_spam_ham.png" width="600px" />
 </p>
 </div>
@@ -336,7 +336,7 @@ To calculate the components, construct a frequency table that records
 how often 'Viagra' appeared in 'spam' and 'ham' messages.
 </p>
 
-<div id="org6e42b2f" class="figure">
+<div id="orgba78001" class="figure">
 <p><img src="../img/5_frequency.png" alt="5_frequency.png" width="600px" />
 </p>
 </div>
@@ -355,10 +355,10 @@ likelihood</b> - having any 'Viagra' at all is the <b>marginal likelihood</b></l
 </section>
 </section>
 <section>
-<section id="slide-org4af71b0">
-<h2 id="org4af71b0">Likelihood table</h2>
+<section id="slide-org8662b76">
+<h2 id="org8662b76">Likelihood table</h2>
 
-<div id="orgf6937dc" class="figure">
+<div id="org0f04de5" class="figure">
 <p><img src="../img/5_likelihood.png" alt="5_likelihood.png" width="600px" />
 </p>
 </div>
@@ -367,7 +367,7 @@ likelihood</b> - having any 'Viagra' at all is the <b>marginal likelihood</b></l
 The rows of the likelihood table contain the conditional probabilities
 for "Viagra" (yes/no) given that an email was spam or ham:
 </p>
-<pre class="example" id="orga80da96">
+<pre class="example" id="orgb97215c">
 P(Viagra = Yes | spam) = 4/20 = 0.20
 P(spam &amp; Viagra) = P(Viagra|spam) * P(spam) = (4/20)*(20/100) = 0.04
 P(spam|Viagra) = (4/20) * (20/100) / (5/100) = 0.80
@@ -393,10 +393,10 @@ message data.</li>
 </section>
 </section>
 <section>
-<section id="slide-org76c005c">
-<h2 id="org76c005c">Naïvety of the algorithm</h2>
+<section id="slide-org865cfa8">
+<h2 id="org865cfa8">Naïvety of the algorithm</h2>
 
-<div id="orgb8d236a" class="figure">
+<div id="orged28443" class="figure">
 <p><img src="../img/5_candide.png" alt="5_candide.png" width="400px" />
 </p>
 </div>
@@ -437,10 +437,10 @@ datasets. The exact reason for this success is not known.
 </section>
 </section>
 <section>
-<section id="slide-orged5fa4a">
-<h2 id="orged5fa4a">Adding more features</h2>
+<section id="slide-orgef3e567">
+<h2 id="orgef3e567">Adding more features</h2>
 
-<div id="org4df8bc2" class="figure">
+<div id="orgb851c98" class="figure">
 <p><img src="../img/5_features.png" alt="5_features.png" width="800px" />
 </p>
 </div>
@@ -451,7 +451,7 @@ Is the message spam given that it contains the terms "Viagra" and
 </p>
 
 
-<div id="orgc8be185" class="figure">
+<div id="orgc0aaacc" class="figure">
 <p><img src="../img/5_longform.png" alt="5_longform.png" width="800px" />
 </p>
 </div>
@@ -479,20 +479,20 @@ four overlapping circles - in reality, we have hundreds of features.
 </section>
 </section>
 <section>
-<section id="slide-org7591724">
-<h2 id="org7591724">Core assumptions</h2>
+<section id="slide-org7d40d60">
+<h2 id="org7d40d60">Core assumptions</h2>
 <ul>
 <li>Class-conditional independence</li>
 <li>Constant marginal likelihood</li>
 
 </ul>
 
-<div id="orgaf43a01" class="figure">
+<div id="orga73b073" class="figure">
 <p><img src="../img/5_spamshort.png" alt="5_spamshort.png" width="800px" />
 </p>
 </div>
 
-<div id="orgff53433" class="figure">
+<div id="org20173d7" class="figure">
 <p><img src="../img/5_hamshort.png" alt="5_hamshort.png" width="800px" />
 </p>
 </div>
@@ -516,10 +516,10 @@ likelihood across all possible outcomes).</li>
 </section>
 </section>
 <section>
-<section id="slide-orgb76f032">
-<h2 id="orgb76f032">Formula</h2>
+<section id="slide-org9581150">
+<h2 id="org9581150">Formula</h2>
 
-<div id="org72d265f" class="figure">
+<div id="org511e332" class="figure">
 <p><img src="../img/5_formula.png" alt="5_formula.png" width="600px" />
 </p>
 </div>
@@ -541,10 +541,10 @@ Z converts the likelihood values to probabilities.
 </section>
 </section>
 <section>
-<section id="slide-org877a45c">
-<h2 id="org877a45c">Workflow</h2>
+<section id="slide-org97e015a">
+<h2 id="org97e015a">Workflow</h2>
 
-<div id="org0a2ad98" class="figure">
+<div id="org9416e1e" class="figure">
 <p><img src="../img/5_Spamfilter.jpg" alt="5_Spamfilter.jpg" width="300px" />
 </p>
 </div>
@@ -574,10 +574,10 @@ probability.</li>
 </section>
 </section>
 <section>
-<section id="slide-orga0aadfb">
-<h2 id="orga0aadfb">Laplace correction</h2>
+<section id="slide-org75ec942">
+<h2 id="org75ec942">Laplace correction</h2>
 
-<div id="org9be6611" class="figure">
+<div id="orgf3e5d04" class="figure">
 <p><img src="../img/5_laplace.jpg" alt="5_laplace.jpg" width="300px" />
 </p>
 </div>
@@ -614,10 +614,10 @@ observations.</li>
 </section>
 </section>
 <section>
-<section id="slide-orge2e1748">
-<h2 id="orge2e1748">Numeric features</h2>
+<section id="slide-orgb9c891a">
+<h2 id="orgb9c891a">Numeric features</h2>
 
-<div id="org8c4b8fe" class="figure">
+<div id="org43c7a95" class="figure">
 <p><img src="../img/5_numbers.png" alt="5_numbers.png" />
 </p>
 </div>
@@ -645,9 +645,9 @@ and "overfitting".</li>
 </section>
 </section>
 <section>
-<section id="slide-orgf3dc3ba">
-<h2 id="orgf3dc3ba">Strength and Weaknesses</h2>
-<pre class="example" id="orgbbd6a10">
+<section id="slide-org9904e5b">
+<h2 id="org9904e5b">Strength and Weaknesses</h2>
+<pre class="example" id="orgbf11ac4">
 | Strengths                     | Weaknesses                         |
 |-------------------------------+------------------------------------|
 | Simple, fast, effective       | Feature independence and equity    |
@@ -718,8 +718,8 @@ and "overfitting".</li>
 </section>
 </section>
 <section>
-<section id="slide-orgb3a2662">
-<h2 id="orgb3a2662">Summary</h2>
+<section id="slide-orgafaf851">
+<h2 id="orgafaf851">Summary</h2>
 <ul>
 <li>NB constructs tables of probabilities to estimate the likelihood
 that new examples belong to various classes.</li>
@@ -733,57 +733,58 @@ to handle much larger data sets.</li>
 </section>
 </section>
 <section>
-<section id="slide-orgf75e251">
-<h2 id="orgf75e251">Glossary of terms</h2>
-<pre class="example" id="org5ff0015">
-
-
-| TERM                      | MEANING                                        |
-|---------------------------+------------------------------------------------|
-| Probability P             | Number between 0 and 1                         |
-|                           | Chance of an event occurring                   |
-| P = 0                     | Event will definitely not occur                |
-| P = 1                     | Event will certainly occur                     |
-| Evidence                  | Labeled feature values                         |
-| Event                     | Something that happened or can happen          |
-| Trial                     | Sample of at least one event                   |
-| Spam                      | Malicious message                              |
-| Ham                       | Non-malicious message                          |
-| Mutually exclusive events | Events cannot happen in the same trial         |
-| Exhaustive events         | Events cover all possible events               |
-| Joint probability         | Chance for events to happen together           |
-| Independent events        | Joint probability is zero                      |
-| Dependent events          | Conditional probability is non-zero            |
-| Bayes' Theorem (simple)   | P(A \vert B) = P(A \cap B) / P(B)                     |
-| Bayes' Theorem (complete) | P(A \vert B) = P(B \vert A) * P(A) / P(B)              |
-|                           | Posterior P = likelihood * prior P /marginal P |
+<section id="slide-orga6bb69c">
+<h2 id="orga6bb69c">Glossary of terms</h2>
+<pre class="example" id="orgc7a9867">
+| TERM                      | MEANING                                |
+|---------------------------+----------------------------------------|
+| Probability P             | Number between 0 and 1                 |
+|                           | Chance of an event occurring           |
+| P = 0                     | Event will definitely not occur        |
+| P = 1                     | Event will certainly occur             |
+| Evidence                  | Labeled feature values                 |
+| Event                     | Something that happened or can happen  |
+| Trial                     | Sample of at least one event           |
+| Spam                      | Malicious message                      |
+| Ham                       | Non-malicious message                  |
+| Mutually exclusive events | Events cannot happen in the same trial |
+| Exhaustive events         | Events cover all possible events       |
+| Joint probability         | Chance for events to happen together   |
+| Independent events        | Joint probability is zero              |
+| Dependent events          | Conditional probability is non-zero    |
+| Bayes' Theorem (simple)   | P(A|B) = P(A AND B) / P(B)             |
+| Bayes' Theorem (complete) | P(A|B) = P(B|A) * P(A) / P(B)          |
+|                           | Posterior P =                          |
+|                           | likelihood * prior P /marginal P       |
 </pre>
 </section>
 </section>
 <section>
-<section id="slide-org2fd2fd8">
-<h2 id="org2fd2fd8">Glossary (cont'd)</h2>
-<pre class="example" id="orge69a001">
-| TERM                      | MEANING                                        |
-|---------------------------+------------------------------------------------|
-| Conditional probability   | P(A \vert B) Probability of A given B occurred     |
-| Frequency table           | Counts features for each class level           |
-| Likelihood table          | Feature likelihood conditional on class levels |
-| Naivety of Naive Bayes    | All features are equally important             |
-|                           | All features are independent of one another    |
-| Naive Bayes simplified    | Class conditional independence                 |
-|                           | Constant marginal likelihood                   |
-| Laplace correction        | Likelihood 1 for events that never occur for   |
-|                           | one or more levels                             |
-| Numeric Bayes             | Discretized or binned feature values           |
-| Bayes' under/overfitting  | Too few/too many bins obscure/created trends   |
+<section id="slide-org8618d09">
+<h2 id="org8618d09">Glossary (cont'd)</h2>
+<pre class="example" id="org307d9f3">
+| TERM                     | MEANING                                  |
+|--------------------------+------------------------------------------|
+| Conditional probability  | P(A|B) Probability of A                  |
+|                          | given B occurred                         |
+| Frequency table          | Counts features for each class level     |
+| Likelihood table         | Feature likelihood                       |
+|                          | conditional on class levels              |
+| Naivety of Naive Bayes   | All features are equally important       |
+|                          | All features are independent             |
+| Naive Bayes simplified   | Class conditional independence           |
+|                          | Constant marginal likelihood             |
+| Laplace correction       | Likelihood 1 for events that never       |
+|                          | occur for one or more levels             |
+| Numeric Bayes            | Discretized or binned feature values     |
+| Bayes' under/overfitting | Too few/many bins obscure/created trends |
 </pre>
 
 </section>
 </section>
 <section>
-<section id="slide-orgf2b93c7">
-<h2 id="orgf2b93c7">References</h2>
+<section id="slide-org735d0d0">
+<h2 id="org735d0d0">References</h2>
 <ul>
 <li>Lantz (2019). Machine Learning with R (3e). Packt.</li>
 <li>Majka M (2019). naivebayes: High Performance Implementation of the

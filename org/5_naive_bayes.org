@@ -426,21 +426,22 @@ Process:
 |                           | likelihood * prior P /marginal P       |
 #+end_example
 * Glossary (cont'd)
-
-| TERM                     | MEANING                                        |
-|--------------------------+------------------------------------------------|
-| Conditional probability  | P(A \vert B) Probability of A given B occurred |
-|                          |                                                |
-| Frequency table          | Counts features for each class level           |
-| Likelihood table         | Feature likelihood conditional on class levels |
-| Naivety of Naive Bayes   | All features are equally important             |
-|                          | All features are independent of one another    |
-| Naive Bayes simplified   | Class conditional independence                 |
-|                          | Constant marginal likelihood                   |
-| Laplace correction       | Likelihood 1 for events that never occur for   |
-|                          | one or more levels                             |
-| Numeric Bayes            | Discretized or binned feature values           |
-| Bayes' under/overfitting | Too few/too many bins obscure/created trends   |
+#+begin_example
+| TERM                     | MEANING                                  |
+|--------------------------+------------------------------------------|
+| Conditional probability  | P(A|B) Probability of A                  |
+|                          | given B occurred                         |
+| Frequency table          | Counts features for each class level     |
+| Likelihood table         | Feature likelihood                       |
+|                          | conditional on class levels              |
+| Naivety of Naive Bayes   | All features are equally important       |
+|                          | All features are independent             |
+| Naive Bayes simplified   | Class conditional independence           |
+|                          | Constant marginal likelihood             |
+| Laplace correction       | Likelihood 1 for events that never       |
+|                          | occur for one or more levels             |
+| Numeric Bayes            | Discretized or binned feature values     |
+| Bayes' under/overfitting | Too few/many bins obscure/created trends |
 #+end_example
 
 * References
