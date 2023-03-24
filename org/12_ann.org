@@ -10,6 +10,11 @@
 #+REVEAL_INIT_OPTIONS: transition: 'cube'
 #+REVEAL_THEME: black
 :END:
+* Too large for their own good?
+#+attr_latex: :width 400px
+#+caption: Robert Wadlow, with his family in Alton, Ill.
+[[../img/12_Robert_Wadlow.png]]
+
 * Summary
 
 * References

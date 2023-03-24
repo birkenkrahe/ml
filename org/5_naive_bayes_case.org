@@ -887,7 +887,7 @@ argument to all ~list~ members - for the first three messages:
   #+end_src
 
   #+RESULTS:
-  : 'data.frame':	5559 obs. of  2 variables:
+  : 'data.frame':       5559 obs. of  2 variables:
   :  $ type: chr  "ham" "ham" "ham" "spam" ...
   :  $ text: chr  "Hope you are having a good week. Just checking in" "K..give back my thanks." "Am also doing in cbe only. But have to pay." "complimentary 4 STAR Ibiza Holiday or £10,000 cash needs your URGENT collection. 09066364349 NOW from Landline "| __truncated__ ...
 
@@ -906,10 +906,10 @@ argument to all ~list~ members - for the first three messages:
 
   #+RESULTS:
   : sms_train_labels
-  :       ham      spam 
+  :       ham      spam
   : 0.8647158 0.1352842
   : sms_test_labels
-  :       ham      spam 
+  :       ham      spam
   : 0.8683453 0.1316547
 
 - Spam is evenly divided between training and test dataset with 13%.
@@ -937,6 +937,7 @@ argument to all ~list~ members - for the first three messages:
 
 - We save the vector in ~sms_freq_words~:
   #+begin_src R :results silent
+    library(tm)
     findFreqTerms(sms_dtm_train, lowfreq = 5) -> sms_freq_words
   #+end_src
 
@@ -1004,11 +1005,11 @@ argument to all ~list~ members - for the first three messages:
   [1] 4169 1137
   [1] 1390 1137
       Terms
-  Docs abiola abl 
+  Docs abiola abl
      2 "No"   "No"
      3 "No"   "No"
         Terms
-  Docs   yet  yoga yup 
+  Docs   yet  yoga yup
     4269 "No" "No" "No"
     4270 "No" "No" "No"
     4271 "No" "No" "No"
@@ -1021,11 +1022,11 @@ argument to all ~list~ members - for the first three messages:
   #+end_src
 
   #+RESULTS:
-  :  [1] "sms_classifier"     "sms_classifier2"    "sms_corpus"        
-  :  [4] "sms_corpus_clean"   "sms_dtm"            "sms_dtm_freq_test" 
-  :  [7] "sms_dtm_freq_train" "sms_dtm_test"       "sms_dtm_train"     
-  : [10] "sms_dtm2"           "sms_freq_words"     "sms_raw"           
-  : [13] "sms_test"           "sms_test_labels"    "sms_test_pred"     
+  :  [1] "sms_classifier"     "sms_classifier2"    "sms_corpus"
+  :  [4] "sms_corpus_clean"   "sms_dtm"            "sms_dtm_freq_test"
+  :  [7] "sms_dtm_freq_train" "sms_dtm_test"       "sms_dtm_train"
+  : [10] "sms_dtm2"           "sms_freq_words"     "sms_raw"
+  : [13] "sms_test"           "sms_test_labels"    "sms_test_pred"
   : [16] "sms_train"          "sms_train_labels"
 
 * Training a classifier on the data
@@ -1063,6 +1064,7 @@ argument to all ~list~ members - for the first three messages:
 - We build our model ~sms_classifier~ on the ~sms_train~ dataset with the
   associated ~sms_train_labels~:
   #+begin_src R :results silent
+    library(e1071)
     naiveBayes(x = sms_train, y = sms_train_labels) -> sms_classifier
   #+end_src
 
@@ -1123,12 +1125,26 @@ argument to all ~list~ members - for the first three messages:
             sms_test) -> sms_test_pred
   #+end_src
 
+- Let's get an overview of the proportional probabilities:
+  #+begin_src R
+    prop.table(table(sms_test_pred))
+    prop.table(table(sms_test_labels))
+  #+end_src
+
+  #+RESULTS:
+  : sms_test_pred
+  :       ham      spam 
+  : 0.8882353 0.1117647
+  : sms_test_labels
+  :       ham      spam 
+  : 0.8683453 0.1316547
+
 - How accurate is our classifier? Average over the misidentified
   message labels:
   #+begin_src R
     paste("Misidentified messages: ",
           format((mean(sms_test_pred!=sms_test_labels))*100,
-                 digits=2),"%") 
+                 digits=2),"%")
   #+end_src
 
   #+RESULTS:
@@ -1155,19 +1171,19 @@ argument to all ~list~ members - for the first three messages:
   |-------------------------|
 
 
-  Total Observations in Table:  1390 
+  Total Observations in Table:  1390
 
 
-               | actual 
-     predicted |       ham |      spam | Row Total | 
+               | actual
+     predicted |       ham |      spam | Row Total |
   -------------|-----------|-----------|-----------|
-           ham |      1201 |        30 |      1231 | 
-               |     0.864 |     0.022 |           | 
+           ham |      1201 |        30 |      1231 |
+               |     0.864 |     0.022 |           |
   -------------|-----------|-----------|-----------|
-          spam |         6 |       153 |       159 | 
-               |     0.004 |     0.110 |           | 
+          spam |         6 |       153 |       159 |
+               |     0.004 |     0.110 |           |
   -------------|-----------|-----------|-----------|
-  Column Total |      1207 |       183 |      1390 | 
+  Column Total |      1207 |       183 |      1390 |
   -------------|-----------|-----------|-----------|
   #+end_example
 
@@ -1210,7 +1226,7 @@ argument to all ~list~ members - for the first three messages:
   #+begin_src R
     paste("Misidentified messages: ",
           format((mean(sms_test_pred2!=sms_test_labels))*100,
-                 digits=2),"%") 
+                 digits=2),"%")
   #+end_src
 
   #+RESULTS:
@@ -1236,19 +1252,19 @@ argument to all ~list~ members - for the first three messages:
   |-------------------------|
 
 
-  Total Observations in Table:  1390 
+  Total Observations in Table:  1390
 
 
-               | actual 
-     predicted |       ham |      spam | Row Total | 
+               | actual
+     predicted |       ham |      spam | Row Total |
   -------------|-----------|-----------|-----------|
-           ham |      1202 |        26 |      1228 | 
-               |     0.865 |     0.019 |           | 
+           ham |      1202 |        26 |      1228 |
+               |     0.865 |     0.019 |           |
   -------------|-----------|-----------|-----------|
-          spam |         5 |       157 |       162 | 
-               |     0.004 |     0.113 |           | 
+          spam |         5 |       157 |       162 |
+               |     0.004 |     0.113 |           |
   -------------|-----------|-----------|-----------|
-  Column Total |      1207 |       183 |      1390 | 
+  Column Total |      1207 |       183 |      1390 |
   -------------|-----------|-----------|-----------|
   #+end_example
 

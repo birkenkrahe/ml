@@ -10,6 +10,19 @@
 #+REVEAL_INIT_OPTIONS: transition: 'cube'
 #+REVEAL_THEME: black
 :END:
+* Regression models
+
+- /Regression functions/ give the mean of one variable in terms of
+  others, for example the mean weight of children in terms of age.
+
+- All ML methods are /regression methods/ because they use the data to
+  estimate regression functions, e.g. k-NN uses location data to
+  estimate a distance function, naive Bayes uses event data to
+  estimate a stochastic function.
+
+- In classification settings, the regression function, a conditional
+  mean, becomes a conditional probability. 
+
 * Summary
 
 * Further study

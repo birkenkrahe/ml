@@ -537,6 +537,13 @@
 
   #+end_src
 
+- Compute the proportional table for the predicted and for the actual
+  class labels (~sms_test_pred~ and ~sms_test_labels~):
+  #+begin_src R
+
+
+  #+end_src
+  
 - How accurate is our classifier? Average over the misidentified
   message labels:
   #+begin_src R

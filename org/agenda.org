@@ -4,7 +4,7 @@
 #+STARTUP:overview hideblocks indent inlineimages
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
-* Week 1 - Course overview & ML overview
+* Week 1: Course overview & ML overview
 #+attr_latex: :width 500px
 [[../img/cover.jpg]]
 
@@ -17,7 +17,7 @@
 - [ ] Introduction to machine learning
 - [X] First DataCamp assignment "Understanding machine learning"
 
-* Week 2 - Introduction to ML & Review of R (Part I)
+* Week 2: Introduction to ML & Review of R (Part I)
 #+attr_latex: :width 400px
 #+caption: ML intro & R review in week 2 of DSC 305
 [[../img/ml_R.png]]
@@ -118,7 +118,7 @@ these tips may not always return the most accurate results.
 
 6) What is the general ML process?
 
-* Week 3 - Introduction to ML & Review of R (Part II)
+* Week 3: Introduction to ML & Review of R (Part II)
 #+attr_latex: :width 400px
 #+caption: ML intro & R review in week 2 of DSC 305
 [[../img/ml_R.png]]
@@ -208,11 +208,11 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
 - If you were successful in the test: what did you do?
 - If not: what do you think you should have done?
 
-* Week 4 - Icestorm
+* Week 4: Icestorm
 #+attr_latex: :width 400px
 [[../img/icestorm.jpg]]
 
-* Week 5 - Review of R (Part III)
+* Week 5: Review of R (Part III)
 #+attr_latex: :width 400px
 [[../img/TourDeFrance.jpg]]
 
@@ -338,7 +338,7 @@ should probably try ~Rgui~ on the command line, too).
   package-list-packages~, then find the package in the list and install
   with ~i~ and ~x~. [[https://github.com/dakra/speed-type][More information on GitHub.]]
 
-* Week 6 - ML models overview
+* Week 6: ML models overview
 #+attr_latex: :width 400px
 [[../img/ml_types2.png]]
 
@@ -912,6 +912,17 @@ then check with ~ls~ and ~search~ that all is ready to move on.
   for partial credit.
 - Next sprint review: results! *Due on April 21.*
 
+* TODO DataCamp assignments update
+#+attr_latex: :width 400px
+[[../img/datacampupdate.png]]
+
+- DataCamp assignments: *due dates* changed to weekly in April
+- *Removed* two assignments (we need some time for neural nets)
+- The last assignments carry *more points* (you're more on your own)
+- If you already completed both courses, contact me for a bonus
+- To get full points, you need to *attach a screenshot* of your XP
+- Your XP will be a multiplier for your *grade*: 100% = full points
+
 * TODO Review: text mining
 #+attr_latex: :width 400px
 [[../img/sparse_dense.gif]]
@@ -995,10 +1006,10 @@ then check with ~ls~ and ~search~ that all is ready to move on.
    #+RESULTS:
    : $`1`
    : [1] "Hope you are having a good week. Just checking in"
-   : 
+   :
    : $`2`
    : [1] "K..give back my thanks."
-   :   1   2   3   4   5   6   7   8   9  10 
+   :   1   2   3   4   5   6   7   8   9  10
    :  49  23  43 149 161  50  22  31 160  46
    : [1] 79.77136
 
@@ -1095,7 +1106,7 @@ then check with ~ls~ and ~search~ that all is ready to move on.
 
 - Download ~clean.R~ from GitHub (bit.ly/nb_clean)
 
-- Run the file on the shell (~M-x eshell~) as a batch job:
+- Run the file on the shell (~M-x eshell~) as a batch job[fn:1]:
   #+begin_src sh
     R CMD BATCH clean.R
     ls -al .RData
@@ -1107,34 +1118,46 @@ then check with ~ls~ and ~search~ that all is ready to move on.
     load(".RData")
     search()
     ls()
-  #+end_src 
+  #+end_src
 - If we don't finish with a session, save your data from now on:
-  #+begin_src R 
+  #+begin_src R
     save.image(file=".RData")
     shell("ls -al .RData")
   #+end_src
 
-  #+RESULTS:
-  : -rwx------+ 1 Birkenkrahe LYONNET+Group(513) 1935366 Mar 22 10:20 .RData
-
 - Now: cntinue with your practice file ~5_naive_bayes_practice.org~
   after adding the next (and final) chapters from here: bit.ly/nb_final
-  
-* TODO Introduction to linear regression with examples
 
+* TODO Introduction to regression with examples
+#+attr_latex: :width 400px
+[[../img/6_linear.png]]
+[[../img/6_logistic.png]]
 
-* TODO Week 12: k-means clustering
+- DataCamp offers *14 different courses on regression techniques* in R
+- The basic course is "[[https://app.datacamp.com/learn/courses/introduction-to-regression-in-r][Introduction to Regression in R]]" (w/Tidyverse)
+- The best course is "[[https://app.datacamp.com/learn/courses/supervised-learning-in-r-regression][Supervised learning in R: regression]]" - the
+  creators also wrote "Practical Data Science with R" (Manning, 2019).
 
-- [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]] 
+* TODO Week 12: Regression case study - insurance
+
+- [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]]
 - [[https://pieriantraining.com/k-means-clustering-machine-learning-in-python/][Tutorial blog post: k-means clustering in Python]] (3/17/2023)
-  
-* TODO Week 13: Hierarchical clustering
 
+* TODO Week 13: Artifical Neural Networks (ANN)
 - [[https://app.datacamp.com/learn/projects/552][DataCamp guided project "Clustering Heart Disease Patient Data"]]
+** DataCamp review questions: logistic regression
+#+attr_latex: :width 400px
+#+caption: Source: Wikipedia ROC entry
+[[../img/Roc_curve.svg]]
 
-* TODO Week 14: Artificial Neural networks (ANN)
-* TODO Week 15: ANN case + Projects I
-* TODO Week 16: Projects II and Summary 
+* TODO Week 14: Support Vector Machines (SVM)
+** DataCamp review questions: k-means clustering
+
+* TODO Week 15: Deep Learning & Projects I
+
+** DataCamp review questions: hierarchical clustering
+
+* TODO Week 16: Projects II and Closing
 * TODO What next?
 
 Simple: 1) Work through some good books, 2) learn Python, too, 3)
@@ -1185,29 +1208,39 @@ complete plenty of fun projects and document them.
 
 * References
 
-- Gavagsaz, Elaheh (May 2022). Efficient Parallel Processing of
+- Gavagsaz, E (May 2022). Efficient Parallel Processing of
   k-Nearest Neighbor Queries by Using a Centroid-based and
   Hierarchical Clustering Algorithm, DOI: 10.30564/aia.v4i1.4668
 
-- Goldin, Seth @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –
+- Goldin, S @freeCodeCamp.org (Sep 9, 2023). Google Like a Pro –
   All Advanced Search Operators Tutorial [2023 Tips]. Online:
   [[https://youtu.be/BRiNw490Eq0][youtube.com]].
 
-- Lopp, Sean (Apr 4, 2019). R for Enterprise: Understanding R's
+- Lopp, S (Apr 4, 2019). R for Enterprise: Understanding R's
   Startup. In: R Views. Online: [[https://rviews.rstudio.com/2017/04/19/r-for-enterprise-understanding-r-s-startup/][rviews.rstudio.com]].
 
-- Stokes, Jon (Jan 4, 2023). The Fourth Age Of Programming
+- Stokes, J (Jan 4, 2023). The Fourth Age Of Programming
   [Blog]. URL: [[https://blog.replit.com/fourth][blog.repolit.com]]
 
-- Waters, Richard (Feb 19, 2023). Man beats machine at Go in human
+- Waters, R (Feb 19, 2023). Man beats machine at Go in human
   victory over AI. URL: [[https://arstechnica.com/information-technology/2023/02/man-beats-machine-at-go-in-human-victory-over-ai/][arstechnica.com]].
 
 - Worsley, S (Mar 2022). What is R? The Statistical Computing
   Powerhouse. [[https://www.datacamp.com/blog/all-about-r][Online: datacamp.com/blog.]]
 
-- Ying, K. @freeCodeCamp.org (Sep 26, 2022). Machine Learning for
+- Ying, K @freeCodeCamp.org (Sep 26, 2022). Machine Learning for
   Everybody - Full Course. Online: [[https://youtu.be/i_LwzRVP7bg][youtube.com]].
+
+- Zumel, N and Mount J (2010). Practical Data Science with R
+  (2e). Manning. Online: [[https://www.manning.com/books/practical-data-science-with-r-second-edition][manning.com]].
 
 - Photos by: Ben Mullins, Katarzyna Pe, Benjamin Davies, Grovemade,
   Feliphe Schiarolli, Avin CP, Andrew Neel, Jonathan Borba on
   Unsplash.com
+
+* Footnotes
+
+[fn:1]It is possible that the existence of an ~.RData~ file converts
+warnings about packages you're trying to load into errors, which stops
+the packages from being loaded. In this case /erase/ the ~.RData~ file and
+restart R.
