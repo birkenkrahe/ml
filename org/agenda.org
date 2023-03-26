@@ -736,8 +736,13 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
    Answer: it is zero provided that these events are mutually
    exclusive.
    #+end_notes
-8) What does the conditional probability (or likelihood) of the events
-   "being home" and "being at work" mean?
+8) If event B is "being home" and event A is "working", what is
+   the conditional probability of working at home, P(A|B)?
+   #+begin_notes
+   (1) conditional probability: how likely is an event A based on
+   occurrence of a previous event B?  (2) P(A|B) = P(A and B)/P(B),
+   joint probability of A and B divided by the probability of B,
+   (3) P(A|B)=P(B|A) * P(A)/P(B)
    #+end_notes
 9) What is the basis of predictive, probabilistic modeling?
    #+begin_notes
@@ -794,7 +799,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
     #+RESULTS:
     : Posterior probability: 64 %
 
-** READ Reading therapy for spring break: ELIZA
+** Reading therapy for spring break: ELIZA
 #+attr_latex: :width 400px
 [[../img/eliza.png]]
 
@@ -812,7 +817,7 @@ Here are [[https://github.com/birkenkrahe/ml/blob/main/org/agenda.org#next-test-
   history of the present - Bassett, AI & Society 34
   (2019):803-812. URL: [[https://link.springer.com/article/10.1007/s00146-018-0825-9][link.springer.com]].
 
-** TODO Review: Spam Filter I
+** Review: Spam Filter I
 #+attr_html: :width 300px
 #+caption: Photo by Ben Mullins on Unsplash
 [[../img/review1.jpg]]
@@ -902,8 +907,8 @@ then check with ~ls~ and ~search~ that all is ready to move on.
 
 * NEXT Week 11: Naive Bayes Spam Filter & "Regression"
 #+attr_latex: :width 400px
-#+caption: Photo by Jonathan Borba on Unsplash.
-[[../img/regression.jpg]]
+#+caption: G. Washington's teeth, Library of Congress
+[[../img/teeth.jpg]]
 
 - I evaluated & graded outstanding exercises (*please check before*)
 - The literature reviews were all impressive in their own way. The
@@ -911,6 +916,19 @@ then check with ~ls~ and ~search~ that all is ready to move on.
 - Those who have not submitted reviews yet please do so *by March 31*
   for partial credit.
 - Next sprint review: results! *Due on April 21.*
+
+* TODO From the Internet: the ChatGPT charade continues
+#+attr_latex: :width 550px
+#+caption: Source: Twitter
+[[../img/neil_gaiman.png]]
+[[../img/leo_pires.png]]
+
+In response to a "Sandman" fan discovering chatbot lies.
+#+attr_latex: :width 400px
+#+caption: Noam Chomsky, MIT.
+[[../img/chomsky.png]]
+
+[[https://drive.google.com/file/d/1lptWLxqzpFbSPKsumU5KsnsKUD6__PyO/view?usp=sharing][Right down this alley: Chomsky's biting critique of ChatGPT in the NYT]]
 
 * TODO DataCamp assignments update
 #+attr_latex: :width 400px
@@ -920,8 +938,7 @@ then check with ~ls~ and ~search~ that all is ready to move on.
 - *Removed* two assignments (we need some time for neural nets)
 - The last assignments carry *more points* (you're more on your own)
 - If you already completed both courses, contact me for a bonus
-- To get full points, you need to *attach a screenshot* of your XP
-- Your XP will be a multiplier for your *grade*: 100% = full points
+- *When you complete these, try to maximize your XP (don't cheat)*
 
 * TODO Review: text mining
 #+attr_latex: :width 400px
@@ -1139,6 +1156,9 @@ then check with ~ls~ and ~search~ that all is ready to move on.
   creators also wrote "Practical Data Science with R" (Manning, 2019).
 
 * TODO Week 12: Regression case study - insurance
+#+attr_latex: :width 400px
+#+caption: Photo by Jonathan Borba on Unsplash.
+[[../img/regression.jpg]]
 
 - [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]]
 - [[https://pieriantraining.com/k-means-clustering-machine-learning-in-python/][Tutorial blog post: k-means clustering in Python]] (3/17/2023)
