@@ -916,8 +916,11 @@ then check with ~ls~ and ~search~ that all is ready to move on.
 - Those who have not submitted reviews yet please do so *by March 31*
   for partial credit.
 - Next sprint review: results! *Due on April 21.*
+- *Test 4* is live from 2.30 pm 28-March: full points if you submit by
+  March 31, partial credit if you miss the deadline but submit by
+  April 7.
 
-* TODO From the Internet: the ChatGPT charade continues
+* TODO In the meantime: the charade continues
 #+attr_latex: :width 550px
 #+caption: Source: Twitter
 [[../img/neil_gaiman.png]]
@@ -939,6 +942,83 @@ In response to a "Sandman" fan discovering chatbot lies.
 - The last assignments carry *more points* (you're more on your own)
 - If you already completed both courses, contact me for a bonus
 - *When you complete these, try to maximize your XP (don't cheat)*
+
+* TODO ELIZA - "Fake Rogerian Therapist"
+#+attr_latex: :width 400px
+[[../img/weizenbaum-eliza.jpg]]
+
+[[https://www.masswerk.at/elizabot/][TLDR? Here's a summary]].
+
+*20 MINUTES "CLOSE READING" AND DISCUSSION:*
+1) Split into pairs or groups of three
+2) Discuss your views of ELIZA in the light of both what you have learnt
+   about machine learning, and of Weizenbaum's conclusions (5 min)
+3) Say in your own words what an "augmented ELIZA program" should be
+   able to do and contrast this what you know of state-of-the-art
+   chatbots programs (5 min)
+5) Highlight at least one hypothesis from [[https://www.reddit.com/r/ChatGPT/comments/11ng6t6/noam_chomsky_the_false_promise_of_chatgpt/][Chomsky's article]] "The False
+   Promise of ChatGPT" (he's got a lot of 'em - I counted 10) (5 min)
+6) What does all this mean for the future of machine learning? (5 min)
+
+Along the way, write down any QUESTIONS that you may have!
+
+#+begin_quote
+*In addition, Weizenbaum wrote:*
+- "The whole issue of the credibility (to humans) of machine output
+  demands investigation. Important decisions increasingly tend to be
+  made in response to computer output. ELIZA shows [...] how easy it
+  is to create and maintain the illusion of understanding. A certain
+  danger lurks here. [...] An augmented program is a system which
+  already has access to a store of information about some aspects of
+  the real world which, by means of conversational interaction with
+  people, can reveal both what it knows (behave as an information
+  retrieval system) and where its knowledge ends and needs to be
+  augmented. Hopefully, the augmentation of its knowledge will also be
+  a direct consequence of its conversational experience."
+#+end_quote
+#+begin_quote
+*Notes from reading Weizenbaum's article:*
+- "Rogerian psychotherapist": empathy-based therapy
+- "dyadic conversation": between two people
+- MAC time-sharing system: precursor of Unix (MAC -> EMACs)
+- Separation of code (scripted, edited) and data (transformed)
+- Text data transformation with tokenization functions
+- Text interpretation after applying stop words transformation
+- "Augmented ELIZA" is not realized yet, ChatGPT is just another
+  "translating processor" (without understanding).
+#+end_quote
+#+begin_quote
+*Chomsky's hypotheses:*
+1) Machine learning will degrade our science and debase our ethics by
+   incorporating into our technology a fundamentally flawed conception
+   of language and knowledge.
+2) True understanding has not, will not and cannot occur if ML
+   programs like ChatGPT dominate the field of AI.
+3) The human mind is not a lumbering statistical pattern matching
+   engine gorging on Big Data and extrapolating the most probable
+   answer by inferring correlations.
+4) The human mind operates with small amount of information and
+   creates explanations.
+5) Chatbots are stuck in a prehuman phase of cognitive evolution
+   because they lack the ability to think of counterfactuals.
+6) The predictions of ML systems will always be superficial and
+   dubious.
+7) ML predictions of scientific facts are pseudoscience.
+8) True intelligence is demonstrated in the ability to think and
+   express improbable but insightful things.
+9) True intelligence is capable of moral thinking, i.e. constraining
+   creativity with ethical principles.
+10) Chatbots are constitutionally unable to balance creativity with
+    (moral) constraint.
+
+*Questions you might have had:*
+- Who was Jorge Luis Borges? ([[https://en.wikipedia.org/wiki/Jorge_Luis_Borges][Blind Argentinian librarian and author]])
+- What is '[[https://en.wikipedia.org/wiki/Universal_grammar][universal grammar]]'? (Chomskian theory of language, 1965)
+- What is 'the banality of evil'? (Arendt: "Can one do evil without
+  being evil?", in "[[https://en.wikipedia.org/wiki/Eichmann_in_Jerusalem#Banality_of_evil][Eichmann In Jerusalem]]", 1963).
+- Who is Jeffrey Watumull? (Chief Philosophy Officer of Oceanit -
+  "Intellectual Anarchy through Disruptive Innovation")
+#+end_quote
 
 * TODO Review: text mining
 #+attr_latex: :width 400px
@@ -1142,8 +1222,9 @@ In response to a "Sandman" fan discovering chatbot lies.
     shell("ls -al .RData")
   #+end_src
 
-- Now: cntinue with your practice file ~5_naive_bayes_practice.org~
-  after adding the next (and final) chapters from here: bit.ly/nb_final
+- Now: continue with your practice file ~5_naive_bayes_practice.org~
+  after adding the next (and final) chapters from here:
+  bit.ly/nb_final
 
 * TODO Introduction to regression with examples
 #+attr_latex: :width 400px
@@ -1155,7 +1236,8 @@ In response to a "Sandman" fan discovering chatbot lies.
 - The best course is "[[https://app.datacamp.com/learn/courses/supervised-learning-in-r-regression][Supervised learning in R: regression]]" - the
   creators also wrote "Practical Data Science with R" (Manning, 2019).
 
-* TODO Week 12: Regression case study - insurance
+
+* TODO Week 12: Regression case study
 #+attr_latex: :width 400px
 #+caption: Photo by Jonathan Borba on Unsplash.
 [[../img/regression.jpg]]
