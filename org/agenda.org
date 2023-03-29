@@ -905,22 +905,24 @@ your practice file ~5_naive_bayes_practice.org~ with ~C-x i~.
 Save the file and run all code blocks: ~M-x org-babel-execute-buffer~,
 then check with ~ls~ and ~search~ that all is ready to move on.
 
-* NEXT Week 11: Naive Bayes Spam Filter & "Regression"
+* IN PROGRESS Week 11: Naive Bayes Spam Filter & "Regression"
 #+attr_latex: :width 400px
 #+caption: G. Washington's teeth, Library of Congress
 [[../img/teeth.jpg]]
 
-- I evaluated & graded outstanding exercises (*please check before*)
-- The literature reviews were all impressive in their own way. The
+- [ ] I evaluated & graded outstanding exercises (*please check before*)
+- [ ] The literature reviews were all impressive in their own way. The
   best one even referenced other sources within the review.
-- Those who have not submitted reviews yet please do so *by March 31*
+- [ ] Those who have not submitted reviews yet please do so *by March 31*
   for partial credit.
-- Next sprint review: results! *Due on April 21.*
-- *Test 4* is live from 2.30 pm 28-March: full points if you submit by
+- [ ] Next sprint review: results! *Due on April 21.*
+- [ ] *Test 4* is live from 2.30 pm 28-March: full points if you submit by
   March 31, partial credit if you miss the deadline but submit by
   April 7.
+- [ ] *Bonus points* for experience report from the job fair April 4 -
+  [[https://lyon.instructure.com/courses/1021/assignments/9611][see Canvas]]
 
-* TODO In the meantime: the charade continues
+* DONE In the meantime: the charade continues
 #+attr_latex: :width 550px
 #+caption: Source: Twitter
 [[../img/neil_gaiman.png]]
@@ -933,7 +935,7 @@ In response to a "Sandman" fan discovering chatbot lies.
 
 [[https://drive.google.com/file/d/1lptWLxqzpFbSPKsumU5KsnsKUD6__PyO/view?usp=sharing][Right down this alley: Chomsky's biting critique of ChatGPT in the NYT]]
 
-* TODO DataCamp assignments update
+* DONE DataCamp assignments update
 #+attr_latex: :width 400px
 [[../img/datacampupdate.png]]
 
@@ -943,7 +945,7 @@ In response to a "Sandman" fan discovering chatbot lies.
 - If you already completed both courses, contact me for a bonus
 - *When you complete these, try to maximize your XP (don't cheat)*
 
-* TODO ELIZA - "Fake Rogerian Therapist"
+* DONE ELIZA - "Fake Rogerian Therapist"
 #+attr_latex: :width 400px
 [[../img/weizenbaum-eliza.jpg]]
 
@@ -1019,6 +1021,24 @@ Along the way, write down any QUESTIONS that you may have!
 - Who is Jeffrey Watumull? (Chief Philosophy Officer of Oceanit -
   "Intellectual Anarchy through Disruptive Innovation")
 #+end_quote
+
+* TODO Lex Fridman (MIT) interviews Sam Altman (OpenAI)
+#+attr_latex: :width 400px
+#+caption: Lex Fridman (MIT) and Sam Altman (OpenAI) 26-March-2023
+[[../img/altman.png]]
+
+- [[https://youtu.be/L_Guz73e6fw][Link to the > 2 hr interview (YouTube)]]
+
+* TODO Bonus points for job fair experience report!
+#+attr_latex: :width 400px
+[[../img/fair_flickr_color.jpg]]
+
+- Write long paragraph about your job fair experience for 10 points.
+- Great opportunity to network, mix and mingle, and show off.
+- Bring 1 page resume, a few questions, a story, and dress up.
+- Must go: graduating seniors. Should go: everyone else.
+- Motivate each other by going as a pair, a group, a team.
+- Post your experience report in Canvas.
 
 * TODO Review: text mining
 #+attr_latex: :width 400px
@@ -1236,6 +1256,11 @@ Along the way, write down any QUESTIONS that you may have!
 - The best course is "[[https://app.datacamp.com/learn/courses/supervised-learning-in-r-regression][Supervised learning in R: regression]]" - the
   creators also wrote "Practical Data Science with R" (Manning, 2019).
 
+* TODO What did you learn this week?
+
+Tue:
+
+Thu:
 
 * TODO Week 12: Regression case study
 #+attr_latex: :width 400px
