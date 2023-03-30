@@ -1027,9 +1027,7 @@ Along the way, write down any QUESTIONS that you may have!
 #+caption: Lex Fridman (MIT) and Sam Altman (OpenAI) 26-March-2023
 [[../img/altman.png]]
 
-- [[https://youtu.be/L_Guz73e6fw][Link to the > 2 hr interview (YouTube)]]
-
-* TODO Bonus points for job fair experience report!
+- [[https://youtu.be/L_Guz73e6fw][Link to the > 2 hr interview (YouTub* TODO Bonus points for job fair experience report!
 #+attr_latex: :width 400px
 [[../img/fair_flickr_color.jpg]]
 
@@ -1045,13 +1043,26 @@ Along the way, write down any QUESTIONS that you may have!
 [[../img/sparse_dense.gif]]
 
 1) What is the relative proportion of spam vs. ham messages in the
-   ~sms_raw~ dataset if the ~type~ feature contains this information,
-   displayed as numeric output with 2 digits after the decimal point?
+   ~sms_raw~ dataset if the ~type~ feature contains this information, in
+   the ~format~ of ~numeric~ output with ~2~ ~digits~ after the decimal point?
    #+begin_src R
      <<load_sms_raw>>
-     ## nested/functional call
+     ## easy: intermediate storage
+     spam_ham <- table(sms_raw$type)  # frequencies of spam vs ham
+     spam_ham_prop <- prop.table(spam_ham)  # proportions of spam vs ham
+     spam_ham_prop_2 <- format(spam_ham_prop,digits=2)
+     spam_ham_prop_2 <- as.numeric(spam_ham_prop_2)
+     spam_ham_prop_2
+                                             #as.numeric(spam_ham_prop_2)
+
+     ## medium: nested/functional call
      as.numeric(format(prop.table(table(sms_raw$type)),digits=2))
-     ## pipeline/shell call
+   #+end_src
+
+2) Can you compute the same thing using a pipeline?
+   #+begin_src R
+     <<load_sms_raw>>
+     ## hard: pipeline/shell call
      sms_raw$type |>
        table() |>
        prop.table() |>
@@ -1061,119 +1072,91 @@ Along the way, write down any QUESTIONS that you may have!
 
    #+RESULTS:
    : [1] 0.87 0.13
-   : [1] 0.87 0.13
 
-2) How can you check that the ~sms_raw~ dataframe was actually loaded
-   (without any additional information whatsoever - as ~TRUE~)?
+3) How can you check directly that the ~sms_raw~ dataframe was actually
+   loaded into the current R session - with a ~logical~ answer?
    #+begin_src R
      any(ls()=="sms_raw")
    #+end_src
 
-   #+RESULTS:
-   : [1] TRUE
-
-3) Is the ~removeWords~ function part of the ~tm~ package? What are the
+4) Is the ~removeWords~ function part of the ~tm~ package? What are the
    steps to check this?
    #+begin_src R
      library(tm)
      any(ls('package:tm')=="removeWords")
    #+end_src
 
-   #+RESULTS:
-   : [1] TRUE
-
-4) Display a list of all datasets contained in the ~tm~ package:
+5) Display a list of all datasets contained in the ~tm~ package:
    #+begin_src R
      data(package="tm")
    #+end_src
 
-   #+RESULTS:
-   : Data sets in package 'tm':
-   :
-   : acq                     50 Exemplary News Articles from the
-   :                         Reuters-21578 Data Set of Topic acq
-   : crude                   20 Exemplary News Articles from the
-   :                         Reuters-21578 Data Set of Topic crude
-
-5) After turning a CSV file into a dataframe into a source into a
-   volatile corpus ~list~, what kind of output do you get when entering
-   the name of the corpus?
+6) After turning a CSV file into a dataframe, then into a source, then
+   into a volatile corpus ~list~, what kind of output do you get when
+   entering the name of the corpus?
    #+begin_src R
      <<create_sms_corpus>>
      sms_corpus # output is meta data only
    #+end_src
 
-6) How many characters does message no. 444 from ~sms_corpus~ have?
+   #+RESULTS:
+   : <<VCorpus>>
+   : Metadata:  corpus specific: 0, document level (indexed): 0
+   : Content:  documents: 5559
+
+7) How many characters does message no. 444 from ~sms_corpus~ have?
    #+begin_src R
      nchar(content(sms_corpus[[444]]))
      sms_corpus[[444]] |> content() |> nchar()
    #+end_src
 
-7) What is the average number of characters of all messages from
+8) What is the average number of characters of all messages from
    ~sms_corpus~? (Use: ~lapply~, ~nchar~ and ~mean~)
    #+begin_src R
      ## apply content to each list element
+     all_msg <- lapply(sms_corpus, content)
      ## count number of chars with nchar
+     all_msg_chars <- nchar(msg)
      ## compute the mean across the vector
-     lapply(sms_corpus[1:2], content)
-     nchar(lapply(sms_corpus[1:10], content))
+     mean(all_msg_chars, na.rm=TRUE)
+                                             # nested:
      mean(nchar(lapply(sms_corpus, content)))
+                                             # pipeline:
+     sms_corpus |>
+       lapply(FUN=content) |>
+       nchar() |>
+       mean(na.rm=TRUE)
    #+end_src
 
-   #+RESULTS:
-   : $`1`
-   : [1] "Hope you are having a good week. Just checking in"
-   :
-   : $`2`
-   : [1] "K..give back my thanks."
-   :   1   2   3   4   5   6   7   8   9  10
-   :  49  23  43 149 161  50  22  31 160  46
-   : [1] 79.77136
-
-8) How can you remove numbers from the message no. 200 (and compare
-   original/result)?
+9) How can you remove all numbers from the message no. 200?
    #+begin_src R
      ## the wrapper tm_map only works for
      content(sms_corpus[[200]])
      content(removeNumbers(sms_corpus[[200]]))
    #+end_src
 
-   #+RESULTS:
-   : [1] "WELL DONE! Your 4* Costa Del Sol Holiday or £5000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, Stockport, SK38xh, Cost£1.50/pm, Max10mins"
-   : [1] "WELL DONE! Your * Costa Del Sol Holiday or £ await collection. Call  Now toClaim. SAE, TCs, POBox, Stockport, SKxh, Cost£./pm, Maxmins"
+10) Could you also use the wrapper function ~tm_map~ to remove the
+    numbers from an individual message?
+    #+begin_src R
+      ## tm_map only accepts the whole corpus as data argument!
+      tm_map(sms_corpus,removeNumbers) -> sms_corpus_no_numbers
+      content(sms_corpus[[200]])
+      content(sms_corpus_no_numbers[[200]])
+    #+end_src
 
-9) Could you also use the wrapper function ~tm_map~ to remove the
-   numbers from an individual message?
-   #+begin_src R
-     ## tm_map only accepts the whole corpus as data argument!
-     tm_map(sms_corpus,removeNumbers) -> sms_corpus_no_numbers
-     content(sms_corpus[[200]])
-     content(sms_corpus_no_numbers[[200]])
-   #+end_src
-
-   #+RESULTS:
-   : [1] "WELL DONE! Your 4* Costa Del Sol Holiday or £5000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, Stockport, SK38xh, Cost£1.50/pm, Max10mins"
-   : [1] "WELL DONE! Your * Costa Del Sol Holiday or £ await collection. Call  Now toClaim. SAE, TCs, POBox, Stockport, SKxh, Cost£./pm, Maxmins"
-
-10) What is ~stopwords("german")~ and how can you see the end of it?
+11) What is ~stopwords("german")~ and how can you look at its end?
     #+begin_src R
       ## stopwords("de") is character vector of small, irrelevant German
       ## words used to clean a German text.
       tail(stopwords("de"))
     #+end_src
 
-    #+RESULTS:
-    : [1] "würden"   "zu"       "zum"      "zur"      "zwar"     "zwischen"
-
-11) Is the word "Your" in ~stopwords("en")~?
+12) Is the word "Your" in ~stopwords("en")~? How would you find out?
     #+begin_src R
       any(stopwords("en")=="Your")
     #+end_src
 
-    #+RESULTS:
-    : [1] FALSE
-
-12) Remove all English stopwords and "Your" from the SMS corpus and
+13) Remove all English stopwords and "Your" from the SMS corpus and
     check the result for SMS message no. 200.
     #+begin_src R
       ## removing English stopwords + "Yours" from sms_corpus
@@ -1183,11 +1166,7 @@ Along the way, write down any QUESTIONS that you may have!
                      c(stopwords("en"),"Your"))[[200]])
     #+end_src
 
-    #+RESULTS:
-    : [1] "WELL DONE!  4* Costa Del Sol Holiday  £5000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, Stockport, SK38xh, Cost£1.50/pm, Max10mins"
-    : [1] "WELL DONE! Your 4* Costa Del Sol Holiday or £5000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, Stockport, SK38xh, Cost£1.50/pm, Max10mins"
-
-13) What does "Porter's algorithm" from the ~SnowballC~ package do?
+14) What does "Porter's algorithm" from the ~SnowballC~ package do?
     #+begin_notes
     Answer: it breaks down all words into root + affixes using a set
     of rules. The algorithm doesn't find the roots of all words
@@ -1195,7 +1174,7 @@ Along the way, write down any QUESTIONS that you may have!
     from 'learn'.
     #+end_notes
 
-14) Why does the Naive Bayes algorithm benefit from a clean text corpus?
+15) Why does the Naive Bayes algorithm benefit from a clean text corpus?
     #+begin_notes
     In Naive Bayes, probabilities are attached to every feature, and
     conditional probabilities of the predictors are computed for
@@ -1204,7 +1183,7 @@ Along the way, write down any QUESTIONS that you may have!
     to account for, the fewer computations need to be carried out!
     #+end_notes
 
-15) Does the order of text mining operations matter for the final
+16) Does the order of text mining operations matter for the final
     result? And what is the format of the final result?
     #+begin_notes
     Answer: yes, it does matter. The DocumentTermMatrix function,
