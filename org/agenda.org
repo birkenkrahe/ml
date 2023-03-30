@@ -910,16 +910,16 @@ then check with ~ls~ and ~search~ that all is ready to move on.
 #+caption: G. Washington's teeth, Library of Congress
 [[../img/teeth.jpg]]
 
-- [ ] I evaluated & graded outstanding exercises (*please check before*)
-- [ ] The literature reviews were all impressive in their own way. The
+- [X] I evaluated & graded outstanding exercises (*please check before*)
+- [X] The literature reviews were all impressive in their own way. The
   best one even referenced other sources within the review.
-- [ ] Those who have not submitted reviews yet please do so *by March 31*
+- [X] Those who have not submitted reviews yet please do so *by March 31*
   for partial credit.
-- [ ] Next sprint review: results! *Due on April 21.*
-- [ ] *Test 4* is live from 2.30 pm 28-March: full points if you submit by
+- [X] Next sprint review: results! *Due on April 21.*
+- [X] *Test 4* is live from 2.30 pm 28-March: full points if you submit by
   March 31, partial credit if you miss the deadline but submit by
   April 7.
-- [ ] *Bonus points* for experience report from the job fair April 4 -
+- [X] *Bonus points* for experience report from the job fair April 4 -
   [[https://lyon.instructure.com/courses/1021/assignments/9611][see Canvas]]
 
 * DONE In the meantime: the charade continues
@@ -1022,12 +1022,14 @@ Along the way, write down any QUESTIONS that you may have!
   "Intellectual Anarchy through Disruptive Innovation")
 #+end_quote
 
-* TODO Lex Fridman (MIT) interviews Sam Altman (OpenAI)
+* DONE Lex Fridman (MIT) interviews Sam Altman (OpenAI)
 #+attr_latex: :width 400px
 #+caption: Lex Fridman (MIT) and Sam Altman (OpenAI) 26-March-2023
 [[../img/altman.png]]
 
-- [[https://youtu.be/L_Guz73e6fw][Link to the > 2 hr interview (YouTub* TODO Bonus points for job fair experience report!
+- [[https://youtu.be/L_Guz73e6fw][Link to the > 2 hr interview (YouTube)]]
+
+* DONE Bonus points for job fair experience report!
 #+attr_latex: :width 400px
 [[../img/fair_flickr_color.jpg]]
 
@@ -1038,7 +1040,7 @@ Along the way, write down any QUESTIONS that you may have!
 - Motivate each other by going as a pair, a group, a team.
 - Post your experience report in Canvas.
 
-* TODO Review: text mining
+* DONE Review: text mining
 #+attr_latex: :width 400px
 [[../img/sparse_dense.gif]]
 
@@ -1059,6 +1061,10 @@ Along the way, write down any QUESTIONS that you may have!
      as.numeric(format(prop.table(table(sms_raw$type)),digits=2))
    #+end_src
 
+   #+RESULTS:
+   : [1] 0.87 0.13
+   : [1] 0.87 0.13
+   
 2) Can you compute the same thing using a pipeline?
    #+begin_src R
      <<load_sms_raw>>
@@ -1070,26 +1076,85 @@ Along the way, write down any QUESTIONS that you may have!
        as.numeric()
    #+end_src
 
-   #+RESULTS:
-   : [1] 0.87 0.13
-
 3) How can you check directly that the ~sms_raw~ dataframe was actually
    loaded into the current R session - with a ~logical~ answer?
    #+begin_src R
      any(ls()=="sms_raw")
    #+end_src
 
+   #+RESULTS:
+   : [1] TRUE
+   :  [1] "api_key"          "ask_chatgpt"      "ham"              "m"               
+   :  [5] "sms_corpus"       "sms_corpus_clean" "sms_dtm"          "sms_dtm_test"    
+   :  [9] "sms_dtm_train"    "sms_dtm2"         "sms_raw"          "sms_test_labels" 
+   : [13] "sms_train_labels" "spam"             "spam_ham"         "spam_ham_prop"   
+   : [17] "spam_ham_prop_2"  "string"           "stringX"          "tokens"
+
 4) Is the ~removeWords~ function part of the ~tm~ package? What are the
    steps to check this?
    #+begin_src R
      library(tm)
      any(ls('package:tm')=="removeWords")
+     ls('package:tm')
    #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   [1] TRUE
+    [1] "as.DocumentTermMatrix"   "as.TermDocumentMatrix"  
+    [3] "as.VCorpus"              "Boost_tokenizer"        
+    [5] "content_transformer"     "Corpus"                 
+    [7] "DataframeSource"         "DirSource"              
+    [9] "Docs"                    "DocumentTermMatrix"     
+   [11] "DublinCore"              "DublinCore<-"           
+   [13] "eoi"                     "findAssocs"             
+   [15] "findFreqTerms"           "findMostFreqTerms"      
+   [17] "FunctionGenerator"       "getElem"                
+   [19] "getMeta"                 "getReaders"             
+   [21] "getSources"              "getTokenizers"          
+   [23] "getTransformations"      "Heaps_plot"             
+   [25] "inspect"                 "MC_tokenizer"           
+   [27] "nDocs"                   "nTerms"                 
+   [29] "PCorpus"                 "pGetElem"               
+   [31] "PlainTextDocument"       "read_dtm_Blei_et_al"    
+   [33] "read_dtm_MC"             "readDataframe"          
+   [35] "readDOC"                 "reader"                 
+   [37] "readPDF"                 "readPlain"              
+   [39] "readRCV1"                "readRCV1asPlain"        
+   [41] "readReut21578XML"        "readReut21578XMLasPlain"
+   [43] "readTagged"              "readXML"                
+   [45] "removeNumbers"           "removePunctuation"      
+   [47] "removeSparseTerms"       "removeWords"            
+   [49] "scan_tokenizer"          "SimpleCorpus"           
+   [51] "SimpleSource"            "stemCompletion"         
+   [53] "stemDocument"            "stepNext"               
+   [55] "stopwords"               "stripWhitespace"        
+   [57] "TermDocumentMatrix"      "termFreq"               
+   [59] "Terms"                   "tm_filter"              
+   [61] "tm_index"                "tm_map"                 
+   [63] "tm_parLapply"            "tm_parLapply_engine"    
+   [65] "tm_reduce"               "tm_term_score"          
+   [67] "URISource"               "VCorpus"                
+   [69] "VectorSource"            "weightBin"              
+   [71] "WeightFunction"          "weightSMART"            
+   [73] "weightTf"                "weightTfIdf"            
+   [75] "writeCorpus"             "XMLSource"              
+   [77] "XMLTextDocument"         "Zipf_plot"              
+   [79] "ZipSource"
+   #+end_example
 
 5) Display a list of all datasets contained in the ~tm~ package:
    #+begin_src R
      data(package="tm")
    #+end_src
+
+   #+RESULTS:
+   : Data sets in package 'tm':
+   : 
+   : acq                     50 Exemplary News Articles from the
+   :                         Reuters-21578 Data Set of Topic acq
+   : crude                   20 Exemplary News Articles from the
+   :                         Reuters-21578 Data Set of Topic crude
 
 6) After turning a CSV file into a dataframe, then into a source, then
    into a volatile corpus ~list~, what kind of output do you get when
@@ -1106,9 +1171,13 @@ Along the way, write down any QUESTIONS that you may have!
 
 7) How many characters does message no. 444 from ~sms_corpus~ have?
    #+begin_src R
-     nchar(content(sms_corpus[[444]]))
-     sms_corpus[[444]] |> content() |> nchar()
+     nchar(content(sms_corpus[[444]]))  # nested version
+     sms_corpus[[444]] |> content() |> nchar()   # pipeline version
    #+end_src
+
+   #+RESULTS:
+   : [1] 47
+   : [1] 47
 
 8) What is the average number of characters of all messages from
    ~sms_corpus~? (Use: ~lapply~, ~nchar~ and ~mean~)
@@ -1116,7 +1185,7 @@ Along the way, write down any QUESTIONS that you may have!
      ## apply content to each list element
      all_msg <- lapply(sms_corpus, content)
      ## count number of chars with nchar
-     all_msg_chars <- nchar(msg)
+     all_msg_chars <- nchar(all_msg)
      ## compute the mean across the vector
      mean(all_msg_chars, na.rm=TRUE)
                                              # nested:
@@ -1128,12 +1197,21 @@ Along the way, write down any QUESTIONS that you may have!
        mean(na.rm=TRUE)
    #+end_src
 
+   #+RESULTS:
+   : [1] 79.77136
+   : [1] 79.77136
+   : [1] 79.77136
+
 9) How can you remove all numbers from the message no. 200?
    #+begin_src R
      ## the wrapper tm_map only works for
      content(sms_corpus[[200]])
      content(removeNumbers(sms_corpus[[200]]))
    #+end_src
+
+   #+RESULTS:
+   : [1] "WELL DONE! Your 4* Costa Del Sol Holiday or £5000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, Stockport, SK38xh, Cost£1.50/pm, Max10mins"
+   : [1] "WELL DONE! Your * Costa Del Sol Holiday or £ await collection. Call  Now toClaim. SAE, TCs, POBox, Stockport, SKxh, Cost£./pm, Maxmins"
 
 10) Could you also use the wrapper function ~tm_map~ to remove the
     numbers from an individual message?
@@ -1144,6 +1222,10 @@ Along the way, write down any QUESTIONS that you may have!
       content(sms_corpus_no_numbers[[200]])
     #+end_src
 
+    #+RESULTS:
+    : [1] "WELL DONE! Your 4* Costa Del Sol Holiday or £5000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, Stockport, SK38xh, Cost£1.50/pm, Max10mins"
+    : [1] "WELL DONE! Your * Costa Del Sol Holiday or £ await collection. Call  Now toClaim. SAE, TCs, POBox, Stockport, SKxh, Cost£./pm, Maxmins"
+
 11) What is ~stopwords("german")~ and how can you look at its end?
     #+begin_src R
       ## stopwords("de") is character vector of small, irrelevant German
@@ -1151,20 +1233,30 @@ Along the way, write down any QUESTIONS that you may have!
       tail(stopwords("de"))
     #+end_src
 
+    #+RESULTS:
+    : [1] "würden"   "zu"       "zum"      "zur"      "zwar"     "zwischen"
+
 12) Is the word "Your" in ~stopwords("en")~? How would you find out?
     #+begin_src R
-      any(stopwords("en")=="Your")
+      any(stopwords("en")=="your")
     #+end_src
+
+    #+RESULTS:
+    : [1] TRUE
 
 13) Remove all English stopwords and "Your" from the SMS corpus and
     check the result for SMS message no. 200.
     #+begin_src R
       ## removing English stopwords + "Yours" from sms_corpus
-      content(sms_corpus[[200]])
+      content(sms_corpus[[200]])   # original msg
       content(tm_map(sms_corpus,
                      removeWords,
                      c(stopwords("en"),"Your"))[[200]])
     #+end_src
+
+    #+RESULTS:
+    : [1] "WELL DONE! Your 4* Costa Del Sol Holiday or £5000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, Stockport, SK38xh, Cost£1.50/pm, Max10mins"
+    : [1] "WELL DONE!  4* Costa Del Sol Holiday  £5000 await collection. Call 09050090044 Now toClaim. SAE, TCs, POBox334, Stockport, SK38xh, Cost£1.50/pm, Max10mins"
 
 14) What does "Porter's algorithm" from the ~SnowballC~ package do?
     #+begin_notes
@@ -1185,7 +1277,7 @@ Along the way, write down any QUESTIONS that you may have!
 
 16) Does the order of text mining operations matter for the final
     result? And what is the format of the final result?
-    #+begin_notes
+   #+begin_notes
     Answer: yes, it does matter. The DocumentTermMatrix function,
     which creates the final result, a frequency table of documents
     (rows) vs. terms (columns/words) uses a different stopwords
@@ -1238,6 +1330,8 @@ Along the way, write down any QUESTIONS that you may have!
 * TODO What did you learn this week?
 
 Tue:
+1. The chatbot narrative has an arc of 60 years (1963-2023)
+2. Some think LLMs "degrade science and debase ethics"
 
 Thu:
 

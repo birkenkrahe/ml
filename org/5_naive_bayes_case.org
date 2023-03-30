@@ -685,6 +685,29 @@ argument to all ~list~ members - for the first three messages:
 
 * NEXT Text visualization with ~wordcloud~
 
+At the start:
+#+begin_src R
+  load("~/Downloads/.RData")
+  search()
+  ls()
+#+end_src
+
+At the end:
+#+begin_src R
+  save.image(".RData")
+  shell("DIR .RData")
+#+end_src
+
+#+RESULTS:
+:  Volume in drive C is OS
+:  Volume Serial Number is 0654-135C
+: 
+:  Directory of c:\Users\birkenkrahe\Documents\GitHub\ml\org
+: 
+: 03/30/2023  02:00 PM         3,017,422 .RData
+:                1 File(s)      3,017,422 bytes
+:                0 Dir(s)  143,928,700,928 bytes free
+
 - Word clouds visually show the frequency of words in text data.
 
 - Words appearing more/less often are shown in larger/smaller font
@@ -696,19 +719,24 @@ argument to all ~list~ members - for the first three messages:
   #+begin_src R
     ## Do this only if options()$repos is set to cloud.r-project.org/
     options()$repos
-                                            # install.packages("wordcloud")
+    ## install.packages("wordcloud")
     library(wordcloud)
     search()
   #+end_src
 
   #+RESULTS:
-  : [1] "https://cloud.r-project.org/"
-  :  [1] ".GlobalEnv"           "package:wordcloud"    "package:RColorBrewer"
-  :  [4] "package:SnowballC"    "package:tm"           "package:NLP"
-  :  [7] "ESSR"                 "package:stats"        "package:graphics"
-  : [10] "package:grDevices"    "package:utils"        "package:datasets"
-  : [13] "package:stringr"      "package:httr"         "package:methods"
-  : [16] "Autoloads"            "package:base"
+  #+begin_example
+  [1] "https://cloud.r-project.org/"
+  Loading required package: RColorBrewer
+  Warning message:
+  package 'wordcloud' was built under R version 4.2.3
+   [1] ".GlobalEnv"           "package:wordcloud"    "package:RColorBrewer"
+   [4] "package:tm"           "package:NLP"          "ESSR"                
+   [7] "package:stats"        "package:graphics"     "package:grDevices"   
+  [10] "package:utils"        "package:datasets"     "package:stringr"     
+  [13] "package:httr"         "package:methods"      "Autoloads"           
+  [16] "package:base"
+  #+end_example
 
 - Check out the functions in the package:
   #+begin_src R
