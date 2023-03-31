@@ -683,9 +683,9 @@ argument to all ~list~ members - for the first three messages:
 - This illustrates an important text mining principle: the order of
   operations matters!
 
-* NEXT Text visualization with ~wordcloud~
-
-At the start:
+* Load ~.RData~ and ~save.image~
+At the start load the data generated so far: in the code block below,
+you need to adapt the path to the ~.RData~ file to your own computer:
 #+begin_src R
   load("~/Downloads/.RData")
   search()
@@ -737,6 +737,8 @@ At the end:
 : 03/30/2023  02:00 PM         3,017,422 .RData
 :                1 File(s)      3,017,422 bytes
 :                0 Dir(s)  143,928,700,928 bytes free
+
+* NEXT Text visualization with ~wordcloud~
 
 - Word clouds visually show the frequency of words in text data.
 
