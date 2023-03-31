@@ -260,7 +260,7 @@
                           Reuters-21578 Data Set of Topic crude
   #+end_example
 
-* DONE Data preparation I - text mining and visualization
+* Data preparation I - text mining and visualization
 ** Building a document text corpus
 #+attr_latex: :width 400px
 #+caption: Tex mining workflow from Kwartler (2019)
@@ -691,6 +691,36 @@ At the start:
   search()
   ls()
 #+end_src
+
+#+RESULTS:
+#+begin_example
+ [1] ".GlobalEnv"        "ESSR"              "package:stats"    
+ [4] "package:graphics"  "package:grDevices" "package:utils"    
+ [7] "package:datasets"  "package:stringr"   "package:httr"     
+[10] "package:methods"   "Autoloads"         "package:base"
+ [1] "all_msg"                 "all_msg_chars"          
+ [3] "api_key"                 "ask_chatgpt"            
+ [5] "chardonnay_corpus"       "chardonnay_df"          
+ [7] "chardonnay_m"            "chardonnay_src"         
+ [9] "chardonnay_tdm"          "chardonnay_vec"         
+[11] "clean_chardonnay"        "clean_chardonnay_corpus"
+[13] "clean_coffee"            "clean_coffee_corpus"    
+[15] "coffee_corpus"           "coffee_df"              
+[17] "coffee_src"              "coffee_vec"             
+[19] "color_pal"               "ham"                    
+[21] "load_packages"           "m"                      
+[23] "sms_corpus"              "sms_corpus_clean"       
+[25] "sms_corpus_no_numbers"   "sms_dtm"                
+[27] "sms_dtm_test"            "sms_dtm_train"          
+[29] "sms_dtm2"                "sms_raw"                
+[31] "sms_test_labels"         "sms_train_labels"       
+[33] "spam"                    "spam_ham"               
+[35] "spam_ham_prop"           "spam_ham_prop_2"        
+[37] "stops"                   "string"                 
+[39] "stringX"                 "term_frequency"         
+[41] "terms_vec"               "tokens"                 
+[43] "word_freq"
+#+end_example
 
 At the end:
 #+begin_src R

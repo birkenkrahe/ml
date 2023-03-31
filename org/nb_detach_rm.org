@@ -1,5 +1,5 @@
 #+PROPERTY: header-args:R :session *R* :results output :exports both :tangle yes
-#+begin_src R :tangle detach.R
+#+begin_src R :tangle ../src/detach.R
   detach('package:tm')
   detach('package:NLP')
   detach('package:SnowballC')
