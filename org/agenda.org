@@ -1327,6 +1327,7 @@ Thu:
     search()
     ls()
   #+end_src
+
 - If we don't finish with a session, save your data from now on:
   #+begin_src R
     save.image(file=".RData")
