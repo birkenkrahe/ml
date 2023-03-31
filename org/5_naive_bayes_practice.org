@@ -5,9 +5,6 @@
 #+OPTIONS: toc:nil num:nil ^:nil
 #+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
 * README
-#+attr_latex: :width 400px
-#+caption: Bag of words technique illustrated
-[[../img/5_bagofwords.png]]
 
 - This lecture and practice follows the case developed by Lantz (2019)
   and the Bag-of-Words method detailed in Kwartler (2017).
