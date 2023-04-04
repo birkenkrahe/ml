@@ -4,7 +4,8 @@
 #+STARTUP: overview hideblocks indent
 #+OPTIONS: toc:nil num:nil ^:nil
 #+attr_html: :width 500px
-[[../img/cover.jpg]]
+#+caption: Photo by Andy Kelly on Unsplash.com
+[[../img/cover1.jpg]]
 * What is "machine learning" about?
 #+attr_latex: :width 250px
 #+caption: xkcd, https://xkcd.com/1838/, Machine Learning

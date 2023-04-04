@@ -3,7 +3,7 @@
 #+SUBTITLE: DSC 305 @ Lyon College Spring 2023
 #+OPTIONS: toc:nil
 #+attr_html: :width 600px
-[[./img/cover.jpg]]
+[[./img/cover1.jpg]]
 [[https://unsplash.com/photos/0E_vhMVqL9g][Photo by Andy Kelly on Unsplash.com]]
   
 * What's in this repo?
