@@ -1313,7 +1313,7 @@ Why not?
 Useful:
 - Feed [[https://lyon.instructure.com/calendar][Canvas calendar]] to your Google calendar ([[https://community.canvaslms.com/t5/Student-Guide/How-do-I-subscribe-to-the-Calendar-feed-using-Google-Calendar-as/ta-p/535][instructions]])
 
-Next: finish Naive Bayes 
+*Next: finish Naive Bayes*
 - Wordcloud visualization
 - Training and test data set creation
 - Dimensionality reduction

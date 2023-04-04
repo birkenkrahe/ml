@@ -683,35 +683,33 @@ argument to all ~list~ members - for the first three messages:
 - This illustrates an important text mining principle: the order of
   operations matters!
 
-* Load ~.RData~ and ~save.image~
+** Load ~.RData~ and ~save.image~
+
 At the start load the data generated so far: in the code block below,
 you need to adapt the path to the ~.RData~ file to your own computer:
 #+begin_src R
-  load("~/Downloads/.RData")
+  load("~/Downloads/ml_RData")
   search()
   ls()
 #+end_src
 
 #+RESULTS:
 #+begin_example
- [1] ".GlobalEnv"        "package:forcats"   "package:dplyr"
- [4] "package:purrr"     "package:tidyr"     "package:tibble"
- [7] "package:ggplot2"   "package:tidyverse" "package:readr"
-[10] "ESSR"              "package:stats"     "package:graphics"
-[13] "package:grDevices" "package:utils"     "package:datasets"
-[16] "package:stringr"   "package:httr"      "package:methods"
-[19] "Autoloads"         "package:base"
- [1] "api_key"                 "ask_chatgpt"
- [3] "chardonnay_corpus"       "chardonnay_df"
- [5] "chardonnay_src"          "chardonnay_vec"
+ [1] ".GlobalEnv"        "ESSR"              "package:stats"    
+ [4] "package:graphics"  "package:grDevices" "package:utils"    
+ [7] "package:datasets"  "package:stringr"   "package:httr"     
+[10] "package:methods"   "Autoloads"         "package:base"
+ [1] "api_key"                 "ask_chatgpt"            
+ [3] "chardonnay_corpus"       "chardonnay_df"          
+ [5] "chardonnay_src"          "chardonnay_vec"         
  [7] "clean_chardonnay"        "clean_chardonnay_corpus"
- [9] "clean_coffee"            "clean_coffee_corpus"
-[11] "coffee_corpus"           "coffee_df"
-[13] "coffee_src"              "coffee_vec"
-[15] "load_packages"           "m"
-[17] "sms_corpus"              "sms_corpus_clean"
-[19] "sms_dtm"                 "sms_dtm2"
-[21] "sms_raw"                 "text_df"
+ [9] "clean_coffee"            "clean_coffee_corpus"    
+[11] "coffee_corpus"           "coffee_df"              
+[13] "coffee_src"              "coffee_vec"             
+[15] "load_packages"           "m"                      
+[17] "sms_corpus"              "sms_corpus_clean"       
+[19] "sms_dtm"                 "sms_dtm2"               
+[21] "sms_raw"
 #+end_example
 
 At the end:
@@ -720,17 +718,7 @@ At the end:
   shell("DIR .RData")
 #+end_src
 
-#+RESULTS:
-:  Volume in drive C is OS
-:  Volume Serial Number is 0654-135C
-:
-:  Directory of c:\Users\birkenkrahe\Documents\GitHub\ml\org
-:
-: 03/30/2023  02:00 PM         3,017,422 .RData
-:                1 File(s)      3,017,422 bytes
-:                0 Dir(s)  143,928,700,928 bytes free
-
-* NEXT Text visualization with ~wordcloud~
+** Text visualization with ~wordcloud~
 
 - Word clouds visually show the frequency of words in text data.
 
@@ -748,15 +736,40 @@ At the end:
     search()
   #+end_src
 
+  #+RESULTS:
+  : [1] "https://cloud.r-project.org/"
+  : Loading required package: RColorBrewer
+  : Warning message:
+  : package 'wordcloud' was built under R version 4.2.3
+  :  [1] ".GlobalEnv"           "package:wordcloud"    "package:RColorBrewer"
+  :  [4] "ESSR"                 "package:stats"        "package:graphics"    
+  :  [7] "package:grDevices"    "package:utils"        "package:datasets"    
+  : [10] "package:stringr"      "package:httr"         "package:methods"     
+  : [13] "Autoloads"            "package:base"
+
+- If you want to know more about the R loading process, look at
+  ~help(Startup)~
+
 - Check out the functions in the package:
   #+begin_src R
     ls('package:wordcloud')
   #+end_src
 
+  #+RESULTS:
+  : [1] "commonality.cloud" "comparison.cloud"  "textplot"         
+  : [4] "wordcloud"         "wordlayout"
+
 - Check out the arguments of the ~wordcloud~ function:
   #+begin_src R
     args(wordcloud::wordcloud)
   #+end_src
+
+  #+RESULTS:
+  : function (words, freq, scale = c(4, 0.5), min.freq = 3, max.words = Inf, 
+  :     random.order = TRUE, random.color = FALSE, rot.per = 0.1, 
+  :     colors = "black", ordered.colors = FALSE, use.r.layout = FALSE, 
+  :     fixed.asp = TRUE, ...) 
+  : NULL
 
 - A simple example: running the function on a string:
   #+begin_src R :results graphics file :file ../img/5_everest.png
@@ -768,8 +781,11 @@ At the end:
     And, therefore, as we set sail we ask God's blessing on the
     most hazardous and dangerous and greatest adventure on which
     man has ever embarked."
-    wordcloud(string, ,random.order=FALSE)
+    wordcloud(words=string, ,random.order=TRUE)
   #+end_src
+
+  #+RESULTS:
+  [[file:../img/5_everest.png]]
 
 - The function has evidently applied some cleaning and tokenizing
   operations automatically!
@@ -780,17 +796,36 @@ At the end:
   3) ~strsplit~ to tokenize
   4) ~unlist~ to transform the ~list~ result to a vector
   #+begin_src R
-    library(qdap)
-    library(tm)
-    bracketX(string) -> stringX
+    #    library(qdap)
+        library(tm)
+    #    bracketX(string) -> stringX
+    #    stringX |>
     stringX |>
-      removePunctuation() |>
-      strsplit(split=" ") |>
-      unlist() -> tokens
-    tokens
-    ## same as:
-    ## tokens <- unlist(strsplit(removePunctuation(stringX),split=" "))
+          removePunctuation() |>
+          strsplit(split=" ") |>
+          unlist() -> tokens
+        tokens
+        ## same as:
+        ## tokens <- unlist(strsplit(removePunctuation(stringX),split=" "))
   #+end_src
+
+  #+RESULTS:
+  #+begin_example
+   [1] "Many"      "years"     "ago"       "the"       "great"     "British"  
+   [7] "explorer"  "George"    "Mallory"   "who"       "was"       "to"       
+  [13] "die"       "on"        "Mount"     "Everest"   "was"       "asked"    
+  [19] "why"       "did"       "he"        "want"      "to"        "climb"    
+  [25] "it"        "He"        "said"      "Because"   "it"        "is"       
+  [31] "there"     "Well"      "space"     "is"        "there"     "and"      
+  [37] "were"      "going"     "to"        "climb"     "it"        "and"      
+  [43] "the"       "moon"      "and"       "the"       "planets"   "are"      
+  [49] "there"     "and"       "new"       "hopes"     "for"       "knowledge"
+  [55] "and"       "peace"     "are"       "there"     "And"       "therefore"
+  [61] "as"        "we"        "set"       "sail"      "we"        "ask"      
+  [67] "Gods"      "blessing"  "on"        "the"       "most"      "hazardous"
+  [73] "and"       "dangerous" "and"       "greatest"  "adventure" "on"       
+  [79] "which"     "man"       "has"       "ever"      "embarked"
+  #+end_example
 
 - Now we get a different cloud (meaning that the internal tokenization
   of wordcloud works differently):
@@ -798,7 +833,10 @@ At the end:
     wordcloud(tokens)
   #+end_src
 
-* Spam vs ham visualization
+  #+RESULTS:
+  [[file:../img/5_everest1.png]]
+
+** Spam vs ham visualization
 
 - Back to our spam filter! Look at the arguments of ~wordcloud~ again:
   you'll need to change ~words~, ~min.freq~ and ~random.order~:
@@ -818,10 +856,13 @@ At the end:
   2) Words must be found in > 1% of the corpus (50/5000)
   3) Place higher-frequency words closer to the center:
   #+begin_src R :results graphics file :file ../img/5_sms_cloud.png
-    wordcloud(sms_corpus_clean,
+    wordcloud(words=sms_corpus_clean,
               min.freq=50,
               random.order=FALSE)
   #+end_src
+
+  #+RESULTS:
+  [[file:../img/5_sms_cloud.png]]
 
 - Redraw the word cloud with altered arguments: change
   1) the minimum frequency ~min.freq~ to  ~200~ and ~10~
@@ -830,7 +871,7 @@ At the end:
   #+begin_src R :results graphics file :file ../img/5_sms_cloud1.png
     wordcloud(sms_corpus_clean,
               min.freq=10,
-              scale=c(1,0.5),
+              scale=c(4,0.5),
               random.order=FALSE)
   #+end_src
 
@@ -931,7 +972,7 @@ At the end:
   #+begin_src R
     str(sms_raw)
   #+end_src
-
+  
   #+RESULTS:
   : 'data.frame':	5559 obs. of  2 variables:
   :  $ type: chr  "ham" "ham" "ham" "spam" ...
@@ -965,11 +1006,13 @@ At the end:
 - The sparse matrix currently contains over 6,500 features - one
   feature for every word that appears in at least one SMS message:
   #+begin_src R
-    dim(sms_dtm)
+    dim(sms_dtm)    # documents = rows, words = columns = features
+    dim(t(sms_dtm)) 
   #+end_src
 
   #+RESULTS:
   : [1] 5559 6536
+  : [1] 6536 5559
 
 - It's unlikely that all of these are useful for classification so we
   reduce the features by eliminating any word appearing in < 5 (0.1%)
@@ -1041,9 +1084,7 @@ At the end:
   interested in columns:
   #+begin_src R :results silent
     <<convert_counts>>
-    apply(X = sms_dtm_freq_train,
-          MARGIN = 2,
-          FUN = convert_counts) -> sms_train
+    apply(sms_dtm_freq_train,2,convert_counts) -> sms_train
     apply(X = sms_dtm_freq_test,
           MARGIN = 2,
           FUN = convert_counts) -> sms_test
@@ -1087,6 +1128,7 @@ At the end:
   : [10] "sms_raw"            "sms_test"           "sms_test_labels"   
   : [13] "sms_train"          "sms_train_labels"
 
+
 * Training a classifier on the data
 
 - We have transformed the raw SMS messages into a format that can be
@@ -1113,21 +1155,19 @@ At the end:
   #+RESULTS:
   #+begin_example
   [1] "https://cloud.r-project.org/"
+  Warning message:
+  package 'e1071' was built under R version 4.2.3
    [1] ".GlobalEnv"               "package:e1071"           
    [3] "package:tm"               "package:NLP"             
    [5] "package:qdap"             "package:qdapTools"       
    [7] "package:qdapRegex"        "package:qdapDictionaries"
    [9] "package:wordcloud"        "package:RColorBrewer"    
-  [11] "package:forcats"          "package:dplyr"           
-  [13] "package:purrr"            "package:tidyr"           
-  [15] "package:tibble"           "package:ggplot2"         
-  [17] "package:tidyverse"        "package:readr"           
-  [19] "ESSR"                     "package:stats"           
-  [21] "package:graphics"         "package:grDevices"       
-  [23] "package:utils"            "package:datasets"        
-  [25] "package:stringr"          "package:httr"            
-  [27] "package:methods"          "Autoloads"               
-  [29] "package:base"
+  [11] "ESSR"                     "package:stats"           
+  [13] "package:graphics"         "package:grDevices"       
+  [15] "package:utils"            "package:datasets"        
+  [17] "package:stringr"          "package:httr"            
+  [19] "package:methods"          "Autoloads"               
+  [21] "package:base"
    [1] "allShortestPaths"      "bclust"                "best.gknn"            
    [4] "best.nnet"             "best.randomForest"     "best.rpart"           
    [7] "best.svm"              "best.tune"             "bincombinations"      
@@ -1229,7 +1269,7 @@ At the end:
   dataset - this will take a while to execute:
   #+begin_src R :results silent
     predict(sms_classifier,
-            sms_test) -> sms_test_pred
+            sms_test) -> sms_test_pred  # this holds our predictions!
   #+end_src
 
 - Let's get an overview of the proportional probabilities:
