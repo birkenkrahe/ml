@@ -1326,10 +1326,10 @@ Next: finish Naive Bayes
 [[../img/testing.jpg]]
 
 
-- Load the ~.RData~ file from GitHub into your current R session and
-  check that packages and user-defined objects were loaded (make sure
-  the location is correct - this ~load~ command assumes ~.RData~ is in the
-  same directory as this file):
+- Load the ~.RData~ file directly [[https://github.com/birkenkrahe/ml/blob/main/data/.RData][from GitHub]] (*bit.ly/ml_rdata*) into
+  your current R session and check that packages and user-defined
+  objects were loaded (make sure the location is correct - this ~load~
+  command assumes ~.RData~ is in the same directory as this file):
   #+begin_src R
     load(".RData")
     search()

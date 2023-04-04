@@ -1157,29 +1157,33 @@ At the end:
   #+caption: Naive Bayes classification syntax (Lantz, 2019)
   [[../img/5_algorithm.png]]
 
-- The training with ~naivebayes~ includes a parameter for Laplace
-  correction and returns a model ~m~.
+- The training with ~naiveBayes~ includes a parameter for Laplace
+  correction and returns a model ~m~:
 
 - The ~predict~ function runs the model (~object~) ~m~ on the (unseen) test
   data (~newdata~) and returns a vector of predicted labels.
 
-- We build our model ~sms_classifier~ on the ~sms_train~ dataset with the
-  associated ~sms_train_labels~:
+- We build our model ~sms_classifier~ on the ~sms_train~ matrix with the
+  associated ~sms_train_labels~ vector:
   #+begin_src R :results silent
     library(e1071)
-    naiveBayes(x = sms_train, y = sms_train_labels) -> sms_classifier
+    naiveBayes(x = sms_train,
+               y = sms_train_labels) -> sms_classifier
   #+end_src
 
 - The ~sms_classifier~ variable now contains a ~naiveBayes~ classifier
   ~list~ object that can be used to make predictions: let's look at
   1) the class of the model
   2) the data structure of the model
-     1) the probabilities for two words from the "spam" and "ham" pile
+  3) the probabilities for two words from the "spam" and "ham" pile,
+     "free" and "come" - as a ~table~:
   #+begin_src R
     class(sms_classifier)
     typeof(sms_classifier)
-    sms_classifier$table[[which(sms_freq_words=="free")]]
-    sms_classifier$table[[which(sms_freq_words=="come")]]
+    which(sms_freq_words=="free") -> foo  # index of "free" labels
+    which(sms_freq_words=="come") -> bar  # index of "come" labels
+    sms_classifier$table[[foo]]
+    sms_classifier$table[[bar]]
   #+end_src
 
   #+RESULTS:
@@ -1198,6 +1202,7 @@ At the end:
 
 - Just for fun, how does this compare with ~klaR::NaiveBayes~?
   #+begin_src R
+    library(klaR)
     sms_classifier_ <- NaiveBayes(sms_train, factor(sms_train_labels))
     sms_classifier_$table[[which(sms_freq_words=="free")]]
     sms_classifier_$table[[which(sms_freq_words=="come")]]
@@ -1221,7 +1226,7 @@ At the end:
 
 - The ~predict~ function is part of the base R installation in the ~stats~
   package - it only needs a model object (the classifier) and a test
-  dataset:
+  dataset - this will take a while to execute:
   #+begin_src R :results silent
     predict(sms_classifier,
             sms_test) -> sms_test_pred
@@ -1235,18 +1240,19 @@ At the end:
 
   #+RESULTS:
   : sms_test_pred
-  :       ham      spam
-  : 0.8882353 0.1117647
+  :       ham      spam 
+  : 0.8856115 0.1143885
   : sms_test_labels
-  :       ham      spam
+  :       ham      spam 
   : 0.8683453 0.1316547
 
 - How accurate is our classifier? Average over the misidentified
-  message labels:
+  message labels with ~mean~:
   #+begin_src R
     paste("Misidentified messages: ",
-          format((mean(sms_test_pred!=sms_test_labels))*100,
-                 digits=2),"%")
+          format((
+            mean(sms_test_pred!=sms_test_labels))*100,
+            digits=2),"%")
   #+end_src
 
   #+RESULTS:
@@ -1273,19 +1279,19 @@ At the end:
   |-------------------------|
 
 
-  Total Observations in Table:  1390
+  Total Observations in Table:  1390 
 
 
-               | actual
-     predicted |       ham |      spam | Row Total |
+               | actual 
+     predicted |       ham |      spam | Row Total | 
   -------------|-----------|-----------|-----------|
-           ham |      1201 |        30 |      1231 |
-               |     0.864 |     0.022 |           |
+           ham |      1201 |        30 |      1231 | 
+               |     0.864 |     0.022 |           | 
   -------------|-----------|-----------|-----------|
-          spam |         6 |       153 |       159 |
-               |     0.004 |     0.110 |           |
+          spam |         6 |       153 |       159 | 
+               |     0.004 |     0.110 |           | 
   -------------|-----------|-----------|-----------|
-  Column Total |      1207 |       183 |      1390 |
+  Column Total |      1207 |       183 |      1390 | 
   -------------|-----------|-----------|-----------|
   #+end_example
 
@@ -1354,19 +1360,19 @@ At the end:
   |-------------------------|
 
 
-  Total Observations in Table:  1390
+  Total Observations in Table:  1390 
 
 
-               | actual
-     predicted |       ham |      spam | Row Total |
+               | actual 
+     predicted |       ham |      spam | Row Total | 
   -------------|-----------|-----------|-----------|
-           ham |      1202 |        26 |      1228 |
-               |     0.865 |     0.019 |           |
+           ham |      1202 |        26 |      1228 | 
+               |     0.865 |     0.019 |           | 
   -------------|-----------|-----------|-----------|
-          spam |         5 |       157 |       162 |
-               |     0.004 |     0.113 |           |
+          spam |         5 |       157 |       162 | 
+               |     0.004 |     0.113 |           | 
   -------------|-----------|-----------|-----------|
-  Column Total |      1207 |       183 |      1390 |
+  Column Total |      1207 |       183 |      1390 | 
   -------------|-----------|-----------|-----------|
   #+end_example
 
@@ -1419,10 +1425,12 @@ At the end:
 
 * Summary
 
-Text Naive Bayes Classification:
+*Text Mining and Naive Bayes Classification:*
+
 - Preparing the text data for analysis requires specialized R packages
   for text processing (~tm~, ~qdap~, ~SnowballC~) and visualization
   (~wordcloud~).
+  
 - An out-of-the-box classification using the ~e1071~ or ~klaR~ algorithm
   packages yields a 97% success rate for an SMS message spam filter
   with NB.
