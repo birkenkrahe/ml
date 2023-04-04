@@ -350,7 +350,7 @@
   3) ~strsplit~ to tokenize
   4) ~unlist~ to transform the ~list~ result to a vector ~tokens~
   #+begin_src R
-    ## load qdap package
+    ## load qdap and tm packages
 
     ## clean string with bracketX and save to stringX
 

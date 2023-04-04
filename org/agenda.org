@@ -1304,47 +1304,41 @@ Thu:
 #+caption: Photo by Jonathan Borba on Unsplash.
 [[../img/regression.jpg]]
 
+/Image: Regression towards the mean./
+
+Why not?
+- Complete [[https://lyon.instructure.com/courses/1021/assignments/9560][test 4]] by Friday for partial credit (60%).
+- Complete test 5 by Tuesday next week for full points.
+
 Useful:
 - Feed [[https://lyon.instructure.com/calendar][Canvas calendar]] to your Google calendar ([[https://community.canvaslms.com/t5/Student-Guide/How-do-I-subscribe-to-the-Calendar-feed-using-Google-Calendar-as/ta-p/535][instructions]])
-  
-Extras:
-- [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]]
-- [[https://pieriantraining.com/k-means-clustering-machine-learning-in-python/][Tutorial blog post: k-means clustering in Python]] (3/17/2023)
-  
-** TODO Naive Bayes: model training and testing
+
+Next: finish Naive Bayes 
+- Wordcloud visualization
+- Training and test data set creation
+- Dimensionality reduction
+- Transforming feature values to categories
+- Model evaluation and improvement
+
+* TODO Naive Bayes: model training and testing
 #+attr_latex: :width 300px
 #+caption: Testpilot Lt John A. MacReady (Source: Flickr.com/LOC)
 [[../img/testing.jpg]]
 
-([[https://github.com/birkenkrahe/ml/blob/main/pdf/RData_instructions.pdf][These instructions as PDF]])
 
-- Download ~clean.R~ from GitHub (bit.ly/nb_clean)
-
-- Run the file on the shell (~M-x eshell~) as a batch job[fn:1]:
-  #+begin_src sh
-    R CMD BATCH clean.R
-    ls -al .RData
-  #+end_src
-
-- Load the ~.RData~ file in your current R session and check that
-  packages and user-defined objects were loaded:
+- Load the ~.RData~ file from GitHub into your current R session and
+  check that packages and user-defined objects were loaded (make sure
+  the location is correct - this ~load~ command assumes ~.RData~ is in the
+  same directory as this file):
   #+begin_src R
     load(".RData")
     search()
     ls()
   #+end_src
 
-- If we don't finish with a session, save your data from now on:
-  #+begin_src R
-    save.image(file=".RData")
-    shell("ls -al .RData")
-  #+end_src
-
 - Now: continue with your practice file ~5_naive_bayes_practice.org~
-  after adding the next (and final) chapters from here:
-  bit.ly/nb_final
 
-** TODO Introduction to regression with examples
+* TODO Introduction to regression with examples
 #+attr_latex: :width 400px
 [[../img/6_linear.png]]
 [[../img/6_logistic.png]]
@@ -1354,7 +1348,7 @@ Extras:
 - The best course is "[[https://app.datacamp.com/learn/courses/supervised-learning-in-r-regression][Supervised learning in R: regression]]" - the
   creators also wrote "Practical Data Science with R" (Manning, 2019).
 
-** TODO What did you learn this week?
+* TODO What did you learn this week?
 
 Tue:
 
@@ -1370,6 +1364,10 @@ Thu:
 
 * TODO Week 14: Support Vector Machines (SVM)
 ** DataCamp review questions: k-means clustering
+
+Extras:
+- [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]]
+- [[https://pieriantraining.com/k-means-clustering-machine-learning-in-python/][Tutorial blog post: k-means clustering in Python]] (3/17/2023)
 
 * TODO Week 15: Deep Learning & Projects I
 

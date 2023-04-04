@@ -4,7 +4,7 @@
 #+OPTIONS: toc:nil
 #+attr_html: :width 600px
 [[./img/cover.jpg]]
-[[https://unsplash.com/@kasiape][Photo by Katarzyna Pe at Unsplash.com]]
+[[https://unsplash.com/photos/0E_vhMVqL9g][Photo by Andy Kelly on Unsplash.com]]
   
 * What's in this repo?
 
