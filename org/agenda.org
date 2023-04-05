@@ -448,6 +448,7 @@ Open an Org-mode file if you want to code along.
 ** Project proposal feedback in the classroom
 ** You can submit an improved proposal by Fri-Feb-24
 
+
 * Week 7: k-Nearest-Neighbor (k-NN) algorithms
 #+attr_latex: :width 400px
 #+caption: Photo by Avin CP on Unsplash
@@ -1299,18 +1300,18 @@ Thu:
 2. Run an R file in batch mode (R CMD BATCH)
 3. How to do text mining (review)
 
-* NEXT Week 12: Spam filter & intro to regression
+* IN PROGRESS Week 12: Spam filter & intro to regression
 #+attr_latex: :width 400px
 #+caption: Photo by Jonathan Borba on Unsplash.
 [[../img/regression.jpg]]
 
 /Image: Regression towards the mean./
 
-Why not?
+*Why not?*
 - Complete [[https://lyon.instructure.com/courses/1021/assignments/9560][test 4]] by Friday for partial credit (60%).
 - Complete test 5 by Tuesday next week for full points.
 
-Useful:
+*Useful:*
 - Feed [[https://lyon.instructure.com/calendar][Canvas calendar]] to your Google calendar ([[https://community.canvaslms.com/t5/Student-Guide/How-do-I-subscribe-to-the-Calendar-feed-using-Google-Calendar-as/ta-p/535][instructions]])
 
 *Next: finish Naive Bayes*
@@ -1320,7 +1321,21 @@ Useful:
 - Transforming feature values to categories
 - Model evaluation and improvement
 
-* TODO Naive Bayes: model training and testing
+*Interesting:*
+- [[https://www.symmetrymagazine.org/article/lhc-experiments-see-four-top-quarks][Quark quartet observed at CERN using ML methods]]
+  #+begin_quote
+   “With machine learning, applications like Photoshop can map the
+   background of a digital photograph in a much more complex way. But
+   in this case, the signal and background can look so similar that
+   it’s less like removing an unsightly parking lot from a selfie, and
+   more like isolating a specific person in a grainy picture taken
+   during a massive concert. “We had such a large and complicated
+   background that we couldn’t simulate it; we had to use the
+   data. This was the first time CMS used machine learning to estimate
+   a data-driven background.”
+  #+end_quote
+
+* DONE Naive Bayes: model training and testing
 #+attr_latex: :width 300px
 #+caption: Testpilot Lt John A. MacReady (Source: Flickr.com/LOC)
 [[../img/testing.jpg]]
