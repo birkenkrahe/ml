@@ -23,12 +23,14 @@
 - In classification settings, the regression function, a conditional
   mean, becomes a conditional probability. 
 
-* Summary
+* TODO Summary
+* TODO Glossary
+* IN PROGRESS Further study
 
-* Further study
-
+DataCamp courses (remember you have access until July):
 - [[https://app.datacamp.com/learn/courses/introduction-to-regression-in-r][Introduction to regression in R (DataCamp)]]
 - [[https://app.datacamp.com/learn/courses/supervised-learning-in-r-regression][Supervised learning: regression (DataCamp)]]
+
 
 * References
 

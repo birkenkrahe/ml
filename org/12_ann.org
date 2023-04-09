@@ -14,6 +14,20 @@
 #+attr_latex: :width 400px
 #+caption: Robert Wadlow, with his family in Alton, Ill.
 [[../img/12_Robert_Wadlow.png]]
+* Stack more layers!
+#+attr_latex: :width 400px
+#+caption: By Eliezer Yudkowsky (Twitter)
+[[../img/stack_more_layers.jpg]]
+
+#+begin_quote
+»Look, I *remember* when AI used to involve math, maybe not Actual
+Mathematician Math, but at least nontrivial computer science.  Modern
+deep learning is calculus for bright eleven-year-olds, plus the first
+five pages of a linear algebra textbook, plus a six-month
+apprenticeship in incompressible alchemical best practices whose lack
+of principled rationale also deprives them of relevance to macroscopic
+issues, plus having a billion dollars to spend on training runs.«
+#+end_quote
 
 * Summary
 
