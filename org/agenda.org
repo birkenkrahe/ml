@@ -448,7 +448,6 @@ Open an Org-mode file if you want to code along.
 ** Project proposal feedback in the classroom
 ** You can submit an improved proposal by Fri-Feb-24
 
-
 * Week 7: k-Nearest-Neighbor (k-NN) algorithms
 #+attr_latex: :width 400px
 #+caption: Photo by Avin CP on Unsplash
@@ -1300,7 +1299,7 @@ Thu:
 2. Run an R file in batch mode (R CMD BATCH)
 3. How to do text mining (review)
 
-* IN PROGRESS Week 12: Spam filter & intro to regression
+* Week 12: Finish the spam filter for SMS messages
 #+attr_latex: :width 400px
 #+caption: Photo by Jonathan Borba on Unsplash.
 [[../img/regression.jpg]]
@@ -1335,7 +1334,7 @@ Thu:
    a data-driven background.”
   #+end_quote
 
-* DONE Naive Bayes: model training and testing
+** Naive Bayes: model training and testing
 #+attr_latex: :width 300px
 #+caption: Testpilot Lt John A. MacReady (Source: Flickr.com/LOC)
 [[../img/testing.jpg]]
@@ -1353,31 +1352,38 @@ Thu:
 
 - Now: continue with your practice file ~5_naive_bayes_practice.org~
 
-* TODO Introduction to regression with examples
+* Week 13: Introduction to regression with examples
 #+attr_latex: :width 400px
 [[../img/6_linear.png]]
 [[../img/6_logistic.png]]
 
+- [ ] Short introduction to simple and multiple linear regression
+- [ ] Case study: Challenger risk analysis
+- [ ] Case study: Predicting medical expenses
+
+* TODO Further study: regression at DataCamp
+#+attr_latex: :width 300px
+#+caption: Source: Wikipedia ROC entry
+[[../img/zumel.png]]
+
 - DataCamp offers *14 different courses on regression techniques* in R
 - The basic course is "[[https://app.datacamp.com/learn/courses/introduction-to-regression-in-r][Introduction to Regression in R]]" (w/Tidyverse)
-- The best course is "[[https://app.datacamp.com/learn/courses/supervised-learning-in-r-regression][Supervised learning in R: regression]]" - the
+- The best course is "[[https://app.datacamp.com/learn/courses/supervised-learning-in-r-regression][Supervised learning in R: regression]]" - its
   creators also wrote "Practical Data Science with R" (Manning, 2019).
+- [[https://app.datacamp.com/learn/projects/552][DataCamp guided project "Clustering Heart Disease Patient Data"]]
+
+* TODO Test review questions: regression (Wed)
+#+attr_latex: :width 400px
+#+caption: Source: Wikipedia ROC entry
+[[../img/Roc_curve.svg]]
 
 * TODO What did you learn this week?
 
 Tue:
 
-
 Thu:
 
-* TODO Week 13: Artifical Neural Networks (ANN)
-- [[https://app.datacamp.com/learn/projects/552][DataCamp guided project "Clustering Heart Disease Patient Data"]]
-** DataCamp review questions: logistic regression
-#+attr_latex: :width 400px
-#+caption: Source: Wikipedia ROC entry
-[[../img/Roc_curve.svg]]
-
-* TODO Week 14: Support Vector Machines (SVM)
+* TODO Week 14: Artificial Neural Networks
 ** DataCamp review questions: k-means clustering
 
 Extras:
