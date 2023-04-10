@@ -1389,6 +1389,10 @@ Extras:
 ** DataCamp review questions: hierarchical clustering
 
 * TODO Week 16: Projects II and Closing
+#+attr_latex: :width 400px
+#+caption: The Olympic Games, Year 2020 (1970s Sci-Fi Art on Twitter)
+[[../img/future.jpg]]
+
 * TODO What next?
 
 Simple: 1) Work through some good books, 2) learn Python, too, 3)
