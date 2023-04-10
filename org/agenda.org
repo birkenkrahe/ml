@@ -1357,6 +1357,7 @@ Thu:
 [[../img/6_linear.png]]
 [[../img/6_logistic.png]]
 
+- [ ] Test 5 is online - for full points complete by end of this week
 - [ ] Short introduction to simple and multiple linear regression
 - [ ] Case study: Challenger risk analysis
 - [ ] Case study: Predicting medical expenses
