@@ -1,4 +1,4 @@
-#+TITLE: Supervised Learning with Naive Bayes
+#+TITLE: Supervised Learning with Naive Bayes - Case study
 #+AUTHOR: Marcus Birkenkrahe
 #+SUBTITLE: Case Study - Filtering mobile phone spam
 #+STARTUP: overview hideblocks indent inlineimages
@@ -720,121 +720,120 @@ At the end:
 
 ** Text visualization with ~wordcloud~
 
-- Word clouds visually show the frequency of words in text data.
+  - Word clouds visually show the frequency of words in text data.
 
-- Words appearing more/less often are shown in larger/smaller font
+  - Words appearing more/less often are shown in larger/smaller font
 
-- We use the ~wordcloud~ package to compare the clouds for "spam" and
-  "ham" messages to gauge if our spam filter is working or not[fn:6].
+  - We use the ~wordcloud~ package to compare the clouds for "spam" and
+    "ham" messages to gauge if our spam filter is working or not[fn:6].
 
-- Install and load the package:
-  #+begin_src R
-    ## Do this only if options()$repos is set to cloud.r-project.org/
-    options()$repos
-    ## install.packages("wordcloud")
-    library(wordcloud)
-    search()
-  #+end_src
+  - Install and load the package:
+    #+begin_src R
+      ## Do this only if options()$repos is set to cloud.r-project.org/
+      options()$repos
+      ## install.packages("wordcloud")
+      library(wordcloud)
+      search()
+    #+end_src
 
-  #+RESULTS:
-  : [1] "https://cloud.r-project.org/"
-  : Loading required package: RColorBrewer
-  : Warning message:
-  : package 'wordcloud' was built under R version 4.2.3
-  :  [1] ".GlobalEnv"           "package:wordcloud"    "package:RColorBrewer"
-  :  [4] "ESSR"                 "package:stats"        "package:graphics"    
-  :  [7] "package:grDevices"    "package:utils"        "package:datasets"    
-  : [10] "package:stringr"      "package:httr"         "package:methods"     
-  : [13] "Autoloads"            "package:base"
+    #+RESULTS:
+    : [1] "https://cloud.r-project.org/"
+    : Loading required package: RColorBrewer
+    : Warning message:
+    : package 'wordcloud' was built under R version 4.2.3
+    :  [1] ".GlobalEnv"           "package:wordcloud"    "package:RColorBrewer"
+    :  [4] "ESSR"                 "package:stats"        "package:graphics"    
+    :  [7] "package:grDevices"    "package:utils"        "package:datasets"    
+    : [10] "package:stringr"      "package:httr"         "package:methods"     
+    : [13] "Autoloads"            "package:base"
 
-- If you want to know more about the R loading process, look at
-  ~help(Startup)~
+  - If you want to know more about the R loading process, look at
+    ~help(Startup)~
 
-- Check out the functions in the package:
-  #+begin_src R
-    ls('package:wordcloud')
-  #+end_src
+  - Check out the functions in the package:
+    #+begin_src R
+      ls('package:wordcloud')
+    #+end_src
 
-  #+RESULTS:
-  : [1] "commonality.cloud" "comparison.cloud"  "textplot"         
-  : [4] "wordcloud"         "wordlayout"
+    #+RESULTS:
+    : [1] "commonality.cloud" "comparison.cloud"  "textplot"         
+    : [4] "wordcloud"         "wordlayout"
 
-- Check out the arguments of the ~wordcloud~ function:
-  #+begin_src R
-    args(wordcloud::wordcloud)
-  #+end_src
+  - Check out the arguments of the ~wordcloud~ function:
+    #+begin_src R
+      args(wordcloud::wordcloud)
+    #+end_src
 
-  #+RESULTS:
-  : function (words, freq, scale = c(4, 0.5), min.freq = 3, max.words = Inf, 
-  :     random.order = TRUE, random.color = FALSE, rot.per = 0.1, 
-  :     colors = "black", ordered.colors = FALSE, use.r.layout = FALSE, 
-  :     fixed.asp = TRUE, ...) 
-  : NULL
+    #+RESULTS:
+    : function (words, freq, scale = c(4, 0.5), min.freq = 3, max.words = Inf, 
+    :     random.order = TRUE, random.color = FALSE, rot.per = 0.1, 
+    :     colors = "black", ordered.colors = FALSE, use.r.layout = FALSE, 
+    :     fixed.asp = TRUE, ...) 
+    : NULL
 
-- A simple example: running the function on a string:
-  #+begin_src R :results graphics file :file ../img/5_everest.png
-    string <- "Many years ago the great British explorer George Mallory,
-    who was to die on Mount Everest, was asked why did he want to climb it.
-    He said, \"Because it is there.\" Well, space is there,
-    and we're going to climb it, and the moon and the planets
-    are there, and new hopes for knowledge and peace are there.
-    And, therefore, as we set sail we ask God's blessing on the
-    most hazardous and dangerous and greatest adventure on which
-    man has ever embarked."
-    wordcloud(words=string, ,random.order=TRUE)
-  #+end_src
+  - A simple example: running the function on a string:
+    #+begin_src R :results graphics file :file ../img/5_everest.png
+      string <- "Many years ago the great British explorer George Mallory,
+      who was to die on Mount Everest, was asked why did he want to climb it.
+      He said, \"Because it is there.\" Well, space is there,
+      and we're going to climb it, and the moon and the planets
+      are there, and new hopes for knowledge and peace are there.
+      And, therefore, as we set sail we ask God's blessing on the
+      most hazardous and dangerous and greatest adventure on which
+      man has ever embarked."
+      wordcloud(words=string, ,random.order=TRUE)
+    #+end_src
 
-  #+RESULTS:
-  [[file:../img/5_everest.png]]
+    #+RESULTS:
+    [[file:../img/5_everest.png]]
 
-- The function has evidently applied some cleaning and tokenizing
-  operations automatically!
+  - The function has evidently applied some cleaning and tokenizing
+    operations automatically!
 
-- Let's do the tokenization explicitly with:
-  1) ~qdap::bracketX~ to remove brackets
-  2) ~tm::removePunctuation~ to remove punctuation
-  3) ~strsplit~ to tokenize
-  4) ~unlist~ to transform the ~list~ result to a vector
-  #+begin_src R
-    #    library(qdap)
-        library(tm)
-    #    bracketX(string) -> stringX
-    #    stringX |>
-    stringX |>
-          removePunctuation() |>
-          strsplit(split=" ") |>
-          unlist() -> tokens
-        tokens
-        ## same as:
-        ## tokens <- unlist(strsplit(removePunctuation(stringX),split=" "))
-  #+end_src
+  - Let's do the tokenization explicitly with:
+    1) ~qdap::bracketX~ to remove brackets
+    2) ~tm::removePunctuation~ to remove punctuation
+    3) ~strsplit~ to tokenize
+    4) ~unlist~ to transform the ~list~ result to a vector
+    #+begin_src R
+      library(qdap)
+      library(tm)
+      bracketX(string) -> stringX
+      stringX |>
+        removePunctuation() |>
+        strsplit(split=" ") |>
+        unlist() -> tokens
+      tokens
+      ## same as:
+      ## tokens <- unlist(strsplit(removePunctuation(stringX),split=" "))
+    #+end_src
 
-  #+RESULTS:
-  #+begin_example
-   [1] "Many"      "years"     "ago"       "the"       "great"     "British"  
-   [7] "explorer"  "George"    "Mallory"   "who"       "was"       "to"       
-  [13] "die"       "on"        "Mount"     "Everest"   "was"       "asked"    
-  [19] "why"       "did"       "he"        "want"      "to"        "climb"    
-  [25] "it"        "He"        "said"      "Because"   "it"        "is"       
-  [31] "there"     "Well"      "space"     "is"        "there"     "and"      
-  [37] "were"      "going"     "to"        "climb"     "it"        "and"      
-  [43] "the"       "moon"      "and"       "the"       "planets"   "are"      
-  [49] "there"     "and"       "new"       "hopes"     "for"       "knowledge"
-  [55] "and"       "peace"     "are"       "there"     "And"       "therefore"
-  [61] "as"        "we"        "set"       "sail"      "we"        "ask"      
-  [67] "Gods"      "blessing"  "on"        "the"       "most"      "hazardous"
-  [73] "and"       "dangerous" "and"       "greatest"  "adventure" "on"       
-  [79] "which"     "man"       "has"       "ever"      "embarked"
-  #+end_example
+    #+RESULTS:
+    #+begin_example
+     [1] "Many"      "years"     "ago"       "the"       "great"     "British"  
+     [7] "explorer"  "George"    "Mallory"   "who"       "was"       "to"       
+    [13] "die"       "on"        "Mount"     "Everest"   "was"       "asked"    
+    [19] "why"       "did"       "he"        "want"      "to"        "climb"    
+    [25] "it"        "He"        "said"      "Because"   "it"        "is"       
+    [31] "there"     "Well"      "space"     "is"        "there"     "and"      
+    [37] "were"      "going"     "to"        "climb"     "it"        "and"      
+    [43] "the"       "moon"      "and"       "the"       "planets"   "are"      
+    [49] "there"     "and"       "new"       "hopes"     "for"       "knowledge"
+    [55] "and"       "peace"     "are"       "there"     "And"       "therefore"
+    [61] "as"        "we"        "set"       "sail"      "we"        "ask"      
+    [67] "Gods"      "blessing"  "on"        "the"       "most"      "hazardous"
+    [73] "and"       "dangerous" "and"       "greatest"  "adventure" "on"       
+    [79] "which"     "man"       "has"       "ever"      "embarked"
+    #+end_example
 
-- Now we get a different cloud (meaning that the internal tokenization
-  of wordcloud works differently):
-  #+begin_src R :results graphics file :file ../img/5_everest1.png
-    wordcloud(tokens)
-  #+end_src
+  - Now we get a different cloud (meaning that the internal tokenization
+    of wordcloud works differently):
+    #+begin_src R :results graphics file :file ../img/5_everest1.png
+      wordcloud(tokens)
+    #+end_src
 
-  #+RESULTS:
-  [[file:../img/5_everest1.png]]
+    #+RESULTS:
+    [[file:../img/5_everest1.png]]
 
 ** Spam vs ham visualization
 
@@ -1127,7 +1126,6 @@ At the end:
   :  [7] "sms_dtm_train"      "sms_dtm2"           "sms_freq_words"    
   : [10] "sms_raw"            "sms_test"           "sms_test_labels"   
   : [13] "sms_train"          "sms_train_labels"
-
 
 * Training a classifier on the data
 
@@ -1701,7 +1699,8 @@ crude                   20 Exemplary News Articles from the
 
 * References
 
-- Data:
+- Data: UCI Machine Learning, SMS Spam Collection Dataset. URL:
+  [[https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset][kaggle.com]].
 
 - Deep (2020). The Ultimate Guide TO SMS: Spam or Ham Classifier Using
   Python. URL: [[https://towardsdatascience.com/the-ultimate-guide-to-sms-spam-or-ham-detector-aec467aecd85][towardsdatascience.com]].
@@ -1711,7 +1710,7 @@ crude                   20 Exemplary News Articles from the
 
 - Gomez et al (2012). On the Validity of a New SMS Spam
   Collection. In: Proceedings of the 11th IEEE International
-  Conference on Machine Learning and Applications. URL: [[https://www.kaggle.com/datasets/uciml/sms-spam-collection-dataset][kaggle.com]].
+  Conference on Machine Learning and Applications. 
 
 - Harris (Oct 3, 2016). What Is Text Analytics? We Analyze the
   Jargon. URL: [[https://www.softwareadvice.com/resources/what-is-text-analytics/][softwareadvice.com]].

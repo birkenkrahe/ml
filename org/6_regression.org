@@ -1,4 +1,4 @@
-#+TITLE: Regression
+#+TITLE: Regression - Overview
 #+AUTHOR: Marcus Birkenkrahe
 #+SUBTITLE: Supervised regression methods
 #+STARTUP: overview hideblocks indent inlineimages
@@ -234,15 +234,14 @@ Source: Lantz, ML in practice, 2019.
   : temperature          -0.051385940
   : field_check_pressure  0.001757009
   : flight_num            0.014292843
-
+  
 * TODO Summary
 * TODO Glossary
-* IN PROGRESS Further study
+* Further study
 
 DataCamp courses (remember you have access until July):
 - [[https://app.datacamp.com/learn/courses/introduction-to-regression-in-r][Introduction to regression in R (DataCamp)]]
 - [[https://app.datacamp.com/learn/courses/supervised-learning-in-r-regression][Supervised learning: regression (DataCamp)]]
-
 
 * References
 

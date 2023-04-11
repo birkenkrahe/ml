@@ -1,0 +1,127 @@
+#+TITLE: Multiple linear regression - Case study
+#+AUTHOR: Marcus Birkenkrahe
+#+SUBTITLE: Case Study - Predicting medical expenses
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+* README
+#+attr_latex: :width 400px
+#+caption: Bed-ridden wounded, knitting (1918-19), US Nat'l Archives
+[[../img/6_hospital.jpg]]
+
+- This lecture and practice follows the case developed by Lantz' book
+  Machine Learning with R , 3rd edition (2019). In the updated 4th
+  edition (2023), this case has been exchanged by an automobile
+  industry case.
+
+- To code along with the lecture, download ~6_regression_practice.org~
+  from GitHub, complete the file and upload it to Canvas by the
+  deadline.
+
+* Rationale
+#+attr_latex: :width 400px
+#+caption: Source: Peter G Peterson foundation (01/30/2023)
+[[../img/6_medical.jpg]] [[../img/6_cost.jpg]]
+
+#+attr_latex: :width 400px
+#+caption: Source: US Health Insurance Industry Analysis report (NAIC)
+[[../img/6_profits.png]]
+
+- Health insurance companies only make money if they collect more in
+  fees than they spend on medical care to its beneficiaries.
+
+- What do you think are profit margins in other industries?
+  #+begin_quote
+  Profit margins in other industries (sources below):
+  - aerospace (2022: 8.28%)
+  - retail (Amazon 2022: 43%)
+  - cars (2020: 7.5%)
+  - pharma (2023: 71%)
+  #+end_quote
+
+- Medical expenses are difficult to estimate because the conditions
+  that are the most costly to treat are rare and seem random.
+
+- Analysis goal: use patient data to forecast average medical expense
+  for at-risk segments of the population (like smokers or obese).
+
+- Image source: [[https://content.naic.org/sites/default/files/2021-Annual-Health-Insurance-Industry-Analysis-Report.pdf][US Health Insurance Industry Analysis Report 2021]]
+
+* ML workflow = Text Mining + Naive Bayes
+#+attr_latex: :width 400px
+#+caption: Source: blog.bigml.com (2019)
+[[../img/6_workflow.png]]
+
+1) Collecting data: US Census bureau (modified)
+2) Exploring the data: correlation matrix and scatterplot matrix
+3) Training a linear model on the data with ~lm~
+4) Evaluating model performance with ~predict~
+5) Improving model performance: nonlinear effects/transformation
+
+* Getting the data
+#+attr_latex: :width 400px
+#+caption: US Census Bureau HQ in Maryland
+[[../img/6_census.jpg]]
+
+- Fun fact: the firm that designed the USCB HQ also designed the Burj
+  Khalifa (Dubai), the Sears Tower (Chicago) and One World Trade
+  Center (NYC)
+
+- The dataset contains 1,338 examples of beneficiaries enrolled in an
+  insurance plan with patient features and total medical expenses
+  charged to the insurance plan for the calendar year:
+  1) ~age~: An integer indicating the age of the primary beneficiary
+     (excluding those above 64 years, as they are generally covered by
+     the government).
+  2) ~sex~: The policy holder's gender: either ~male~ or ~female~.
+  3) ~bmi~: The body mass index (BMI), which provides a sense of how over
+     or underweight a person is relative to their height. BMI is equal
+     to weight (in kilograms) divided by height (in meters) squared. An
+     ideal BMI is within the range of 18.5 to 24.9.
+  4) ~children~: An integer indicating the number of children/dependents
+     covered by the insurance plan.
+  5) ~smoker~: A "yes" or "no" categorical variable that indicates
+     whether the insured regularly smokes tobacco.
+  6) ~region~: The beneficiary's place of residence in the US, divided
+     into four geographic regions: ~northeast~, ~southeast~, ~southwest~, or
+     ~northwest~.
+
+- Import the data from ~insurance.csv~ after checking the file online in
+  GitHub: [[https://bit.ly/ml_insurance][bit.ly/ml_insurance]].
+
+- You can check the dataset in Emacs with ~M-x eww~ followed by the
+  URL. eww is the Emacs World-wide Web browser (good on text/images).
+
+- Try ~google.com~ in eww.
+
+- Import the data with ~read.csv~ and save them to ~insurance~:
+  #+begin_src R :results silent
+    insurance <- read.csv("../data/insurance.csv")
+  #+end_src
+
+* Exploring the data
+
+- Display the dataframe structure:
+  #+begin_src R
+    str(insurance)
+  #+end_src
+
+* TODO Glossary of code
+
+| COMMAND | MEANING |
+|---------+---------|
+|         |         |
+
+* TODO Summary
+* TODO Solutions
+* References
+
+- Data: PacktPublishing (2019). Machine learning with R (3e). URL:
+  [[https://github.com/PacktPublishing/Machine-Learning-with-R-Third-Edition/tree/master/Chapter06][github.com]].
+
+- Lantz (2019). Machine learning with R (3e). Packt. URL:
+  [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][packtpub.com]].
+
+- R Core Team (2022). R: A language and environment for statistical
+  computing. R Foundation for Statistical Computing, Vienna, Austria.
+  URL https://www.R-project.org/.
