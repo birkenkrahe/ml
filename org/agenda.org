@@ -1356,16 +1356,17 @@ Thu:
 #+attr_latex: :width 400px
 #+caption: linear and logistic regression
 [[../img/6_linear.png]]
+
 [[../img/6_logistic.png]]
 
 *Housekeeping*
-- [ ] Submit your job fair experience by tonight for extra credit
-- [ ] Test 5 is online - for full points complete by end of this week
-- [ ] Only 65% completed the last DataCamp assignment!?
+- [X] Submit your job fair experience by tonight for extra credit
+- [X] Test 5 is online - for full points complete by end of this week
+- [X] Only 65% completed the last DataCamp assignment!?
 
 *Topics*
 - [ ] Short introduction to simple and multiple linear regression
-- [ ] Case study: Challenger risk analysis
+- [ ] Case study: Challenger space shuttle risk analysis
 - [ ] Case study: Predicting medical expenses
 
 *Outlook*

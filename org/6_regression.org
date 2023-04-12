@@ -19,7 +19,7 @@ Overview and case study of regression methods:
 - Pearson's correlation coefficient \rho
 - Case study: Challenger catastrophe 1986
 
-Source: Lantz, ML in practice, 2019.
+Source: Lantz, ML in practice, 2019 etc.
 
 * Regression analysis
 #+attr_latex: :width 400px
@@ -51,7 +51,7 @@ Source: Lantz, ML in practice, 2019.
   2. Quantify causal relationships between an event and its response
      in clinical drug trials, engineering safety, marketing research.
   3. Identify patterns to forecast future behavior given known
-     criteria like predicting insurance claims, disaster damate,
+     criteria like predicting insurance claims, disaster damage,
      election results.
 
 * Understanding regression
@@ -90,29 +90,30 @@ Source: Lantz, ML in practice, 2019.
   #+end_src
 
   #+RESULTS:
-  : 'data.frame':       23 obs. of  4 variables:
+  : 'data.frame':	23 obs. of  4 variables:
   :  $ distress_ct         : int  0 1 0 0 0 0 0 0 1 1 ...
   :  $ temperature         : int  66 70 69 68 67 72 73 70 57 63 ...
   :  $ field_check_pressure: int  50 50 50 50 50 50 100 100 200 200 ...
   :  $ flight_num          : int  1 2 3 4 5 6 7 8 9 10 ...
+
 - We can compute b with R stats functions ~cov~ and ~var~ and a = y-bx:
   #+name: a_b
   #+begin_src R
-    b <- cov(launch$temperature, launch$distress_ct) /
+    b <- cov(x=launch$temperature, y=launch$distress_ct) /
       var(launch$temperature)
     b
     a <- mean(launch$distress_ct) - b * mean(launch$temperature)
     a
   #+end_src
 
-  #+RESULTS:
+  #+RESULTS: a_b
   : [1] -0.04753968
   : [1] 3.698413
 
 - Plot the manually computed regression model over the data:
   #+begin_src R :results graphics file :file ../img/challenger.png
     <<a_b>>
-    plot(launch$distress_ct ~ launch$temperature,
+    plot(launch$distress_ct ~ launch$temperature,   ## formula argument
          main="Challenger distress events v. launch temperature",
          xlab="Launch temperature (F)",
          ylab="Number of distress events",
@@ -220,6 +221,17 @@ Source: Lantz, ML in practice, 2019.
   :                estimate
   : Intercept    3.69841270
   : temperature -0.04753968
+
+  #+begin_src R
+    str(launch)
+  #+end_src
+
+  #+RESULTS:
+  : 'data.frame':	23 obs. of  4 variables:
+  :  $ distress_ct         : int  0 1 0 0 0 0 0 0 1 1 ...
+  :  $ temperature         : int  66 70 69 68 67 72 73 70 57 63 ...
+  :  $ field_check_pressure: int  50 50 50 50 50 50 100 100 200 200 ...
+  :  $ flight_num          : int  1 2 3 4 5 6 7 8 9 10 ...
 
 - If we add the other independent variables:
   #+begin_src R
