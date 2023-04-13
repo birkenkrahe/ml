@@ -47,7 +47,7 @@
 
 - Image source: [[https://content.naic.org/sites/default/files/2021-Annual-Health-Insurance-Industry-Analysis-Report.pdf][US Health Insurance Industry Analysis Report 2021]]
 
-* NEXT ML workflow
+* ML workflow
 #+attr_latex: :width 400px
 #+caption: Source: blog.bigml.com (2019)
 [[../img/6_workflow.png]]
@@ -58,7 +58,7 @@
 4) Evaluating model performance with ~predict~
 5) Improving model performance: nonlinear effects/transformation
 
-* Getting the data
+* NEXT Getting the data
 #+attr_latex: :width 400px
 #+caption: US Census Bureau HQ in Maryland
 [[../img/6_census.jpg]]
@@ -102,7 +102,7 @@
     insurance <- read.csv("../data/insurance.csv")
   #+end_src
 
-* Exploring the data
+* Exploring the data: variables and distribution
 
 - Exploring the data follows the old adage: data structure,
   statistical summary, overview visualization (numeric data),
@@ -111,27 +111,244 @@
 - But this exploration is not an activity for its own sake: especially
   in the case of linear regression we need to check if the data
   conform to the minimum criteria (or else we can stop):
-  1) missing data? (We may have to get a different sample)
-  2) categorical features? (We may have to transform the data)
-  3) linearity a reasonable assumption? (May have to resample/rescale)
+  1) *missing* data? (We may have to get a different sample)
+  2) *categorical* features? (We may have to transform the data)
+  3) *linearity* a reasonable assumption? (May have to resample/rescale)
 
 - Display the dataframe structure:
   #+begin_src R
     str(insurance)
   #+end_src
 
-  #+RESULTS:
-  : 'data.frame':	1338 obs. of  7 variables:
-  :  $ age     : int  19 18 28 33 32 31 46 37 37 60 ...
-  :  $ sex     : chr  "female" "male" "male" "male" ...
-  :  $ bmi     : num  27.9 33.8 33 22.7 28.9 25.7 33.4 27.7 29.8 25.8 ...
-  :  $ children: int  0 1 3 0 0 0 1 3 2 0 ...
-  :  $ smoker  : chr  "yes" "no" "no" "no" ...
-  :  $ region  : chr  "southwest" "southeast" "southeast" "northwest" ...
-  :  $ expenses: num  16885 1726 4449 21984 3867 ...
+- What is the model's dependent variable?
+  #+begin_quote
+  Answer: ~insurance$expenses~, which measure the medical costs each
+  person charged to the insurance plan for the year, and which the
+  insurance company wants to minimize.
+  #+end_quote
+- Linear regression does not require a normally distributed dependent
+  variable but the model often fits better when this is true (why?[fn:1])
 
-- 
+- To check distribution qualities quickly, we can summarize the stats:
+  #+begin_src R
+    summary(insurance$expenses)
+  #+end_src
 
+- What do you observe?
+  #+begin_quote
+  - The mean is greater than the median (the middle magnitude is left
+    of the average), which means the distribution is *right*
+    skewed[fn:2].
+  - The spread is significant (minimum vs. maximum values).
+  #+end_quote  
+
+- We visualize the distribution (what's the best graph for that?):
+  #+begin_src R :results graphics file :file ../img/6_hist.png
+    ## Visualize numerical distributions = frequencies with a histogram
+    hist(insurance$expenses)
+  #+end_src
+
+- The graph shows that the majority of people have annual medical
+  expenses below US$15,000. Knowing the graphs structural weakness
+  ahead of time will help us improve the linear model later on.
+
+* Exploring the data: correlation matrix
+
+- The *correlation matrix* gives an overview of how the variables relate
+  to one another: given a set of variables, it provides a correlation
+  for each pairwise relationship.
+
+- To create a correlation matrix, use the ~cor~ command - take a look at
+  its arguments first:
+  #+begin_src R
+    args(cor)
+  #+end_src
+
+- Let's build this up slowly: the default for ~y~ is only relevant if ~x~
+  is a matrix: how is the dependent variable correlated *with itself*?
+  #+begin_src R
+    ## Just the dependent variable - formatted as matrix
+    x <- as.matrix(insurance$expenses)
+    head(x)
+    cor(x)
+  #+end_src
+
+- This makes sense because:
+  #+begin_src R
+    var(x,x)/(sd(x)*sd(x)) ## sd^2 = var
+  #+end_src
+
+- Now for all ~numeric~ variables:
+  #+begin_src R
+    str(insurance)
+    ins_num <- c("age","bmi","children","expenses")
+    cor(insurance[ins_num])
+  #+end_src  
+
+- What do we learn? 
+  #+begin_quote
+    1) the diagonal of the correlation matrix is always 1 (a variable
+       is always perfectly correlated with itself: ~cor(x,x) = 1~).
+    2) the matrix transpose is identical to itself (correlation is
+       symmetrical: ~cor(x,y) = cor(y,x)~).
+    3) None of the correlations is strong (i.e. we need them all).
+    4) ~age~ and ~bmi~ are weakly positively correlated: as you age, your
+       BMI slightly increases.
+    5) Expenses go up with age, body mass, and number of children.
+  #+end_quote
+
+* Exploring the data: scatterplot matrix
+
+- A /scatterplot matrix/ or /pair plot/ shows the relationship of each
+  variable with every other as a graph.
+
+- You can feed the whole dataframe into the generic ~plot~ function:
+  #+begin_src R :results graphics file :file ../img/6_plot.png
+    plot(insurance)
+  #+end_src
+
+- However, ~plot~ does not distinguish between numeric and categorical
+  variables, and a scatterplot is meaningless for the latter.
+
+- An alternative is ~graphics::pairs~[fn:3]:
+  #+begin_src R :results graphics file :file ../img/6_pairs.png
+    pairs(insurance[ins_num])
+  #+end_src
+
+- The intersection of each row and column holds the scatterplot of the
+  variables indicated by the row and column pair: e.g. the plot in the
+  2nd row and 2nd column shows ~age ~ bmi~ or "age" as a function of
+  "bmi" - its transpose value shows ~bmi ~ age~.
+
+- Do you notice any patterns in these plots?
+  #+begin_quote
+  1) Visible nearly straight lines in ~age ~ expenses~
+  2) Two point clusters in ~bmi ~ expenses~
+  #+end_quote
+
+- The ~pairs.panels~ function in the ~psych~ package contains more
+  information:
+  #+begin_src R :results graphics file :file ../img/pairs_panels.png
+    library(psych)
+    pairs.panels(insurance[ins_num])
+  #+end_src
+
+- What do you see?
+  #+begin_quote
+  1) The scatterplots above the diagonal are now a correlation matrix
+  2) The diagonal shows histograms for the feature distributions with
+     a density estimate (smoothing) to more clearly show profile.
+  3) Each scatterplot shows a /correlation ellipse/ indicating spread:
+     the more it is stretched, the stronger the correlation -
+     e.g. ~children ~ bmi~ is almost round indicating that the number of
+     children is largely independent of the BMI (and vice versa) = 0.01.
+  4) The correlation ellipse for ~expenses ~ age~ is much more
+     stretched: these features are more correlated = 0.30.
+  5) The red dot at the center of the ellipsis is the mean value.
+  6) The red curve drawn on the scatterplot is a ~loess curve~: the
+     curves for ~children ~ age~ peaks around middle age: the oldest and
+     youngest people in the sample have fewer children.
+  #+end_quote
+
+- The ~age ~ children~ trend is non-linear and cannot be seen in the
+  correlations! (Unlike e.g. the ~age ~ bmi~ loess curve.) 
+
+* Training a model on the data
+
+- We use the generic ~lm~ function from ~stats~- check arguments:
+  #+begin_src R
+    args(lm)
+  #+end_src
+
+- Here's a syntax overview (Lantz, 2019):
+  #+attr_latex: :width 400px
+  [[../img/6_lm.png]]
+
+- Uses the "formula" syntax - the independent variables can *all* be
+  included with the ~.~ operator: ~lm(dep ~ ., data)~ or individually with
+  the ~+~ operator.
+
+- Just like seen in the ~glm~ example (logistic regression), you can
+  include /interactions/ between independent variables with the ~*~
+  operator to model the combined effect of two or more features.
+
+- The following model relates the six independent variables to the
+  total medical ~expenses~:
+  #+begin_src R
+    ins_model <- lm(expenses ~ . ,data = insurance)
+  #+end_src
+
+- To see the estimated \beta coefficients, print the model:
+  #+begin_src R
+    ins_model
+  #+end_src
+
+- The ~Intercept~ is the predicted value when the independent variables
+  are zero (not realistic since living persons have BMI > 0, age > 0).
+
+- The \beta coefficients indicate the estimated increase (slope) in
+  expenses for an increase of one unit in each of the features,
+  assuming all other values are held /constant/.
+
+- For example: for each additional year of ~age~, we expect an average
+  of ~256.8~ expense increase per year.
+
+- The ~lm~ function automatically dummy-codes each ~factor~ type variable
+  included, like ~sex~, ~smoker~ and ~region~ (split in four dummy variables).
+
+- When adding dummy variables, one category is always left out as a
+  reference category (e.g. ~sex=female~, ~region=northeast~): e.g. males
+  have ~$131.4~ less medical expenses than females per year relatives to
+  females[fn:4].
+
+- Which ~region~ has the highest medical expenses?
+  #+begin_quote
+  The reference group - ~northeast~, because all other values are negative.
+  #+end_quote
+
+- In summary: old age, smoking and obesity can be linked to additional
+  health issues, and additional family members may result in an
+  increase. But how well is this model fitting the data?
+
+* Evaluating model performance
+
+- To evaluate model performance, we can use ~summary~:
+  #+begin_src R
+    summary(ins_model)
+  #+end_src
+
+- The *Residuals* give sumamry statistics: a residual is the true value
+  minus the predicted value, the maximum error ~29981.7~ suggests that
+  the model underperformed and under-predicted expenses by $30,000 for
+  at least one observation.
+
+- 50% of all errors fall between the 3rd and the 1st quartile,
+  i.e. the majority of the predictions were between $2,850 over and
+  $1,380 under the true value.
+
+- For each coefficient, the ~p-value~ in the last column estimates
+  statistical significance: small values suggest that the coeffcient
+  is very unlikely to be zero (feature is related to the dependent
+  variable). The stars ~***~ represent the significance level set
+  beforehand. Few such terms would be cause for concern: the features
+  wouldn't be very predictive of the outcome.
+
+- The /multiple R-squared/ value (also called 'coefficient of
+  determination') is a measure of how well the model as a whole
+  explains the values of the dependent variable: the closer to 1 the
+  better. A value of 0.75 means that the model explains 75% of the
+  observed variation in the dependent variable.[fn:5]
+
+- Given these three performance indicators - residual error, p-value
+  and multiple R-squared value - the model performs fairly well. The
+  large error maximum is worrying but consistent with what we know of
+  medical expense data.
+  
+* TODO Bonus exercise: improving model performance
+
+- Adding non-linear relationships
+- Transform numeric variables to binary indicators
+- Adding interaction effects
 
 * TODO Glossary of code
 
@@ -152,3 +369,27 @@
 - R Core Team (2022). R: A language and environment for statistical
   computing. R Foundation for Statistical Computing, Vienna, Austria.
   URL https://www.R-project.org/.
+
+* Footnotes
+
+[fn:5]The Adjusted R-Squared value corrects for models with many features. 
+
+[fn:4]In R, the first ~level~ is taken as reference. You can use ~relevel~
+to change this.
+
+[fn:3]The result is the same as ~plot(insurance[ins_num])~ but ~pairs~
+offers different customization options than the generic ~plot~ - see
+~help(pairs)~.
+ 
+[fn:2]The *skewedness* highlights the opposite of the maximum of the
+points - a left/right leaning distribution is skewed to the
+right/left, because the outlying points cause the problem in terms of
+analysis: they are harder to distinguish and kind of "fall off the
+end". Transformations will affect them more strongly.
+
+[fn:1]Normal distribution means that standard stats (mean=expected
+value=0, standard deviation=1 etc.) are known, in other words the
+distribution is of known spread and centrality. This means we can
+compare it better with other distributions (in fact, mapping on a
+normal distribution is a way of ensuring comparability), and
+deviations stand out more clearly, too.

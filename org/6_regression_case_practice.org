@@ -1,0 +1,141 @@
+#+TITLE: Multiple linear regression - Case study
+#+AUTHOR: YOUR NAME AND PLEDGE
+#+SUBTITLE: Case Study - Predicting medical expenses
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+* Getting the data
+
+- Import the data from ~insurance.csv~ after checking the file online in
+  GitHub: [[https://bit.ly/ml_insurance][bit.ly/ml_insurance]].
+
+- You can check the dataset in Emacs with ~M-x eww~ followed by the
+  URL. eww is the Emacs World-wide Web browser (good on text/images).
+
+- You can write the text file right away with ~C-x C-w~ to
+  ~insurance.csv~!
+
+- Try ~google.com~ in eww.
+
+- Import the data with ~read.csv~ and save them to ~insurance~:
+  #+begin_src R :results silent
+    insurance <- read.csv("../data/insurance.csv")
+  #+end_src
+
+* Exploring the data: variables and distribution
+
+- Display the dataframe structure:
+  #+begin_src R
+    str(insurance)
+  #+end_src
+
+- What is the model's dependent variable?
+  #+begin_quote
+  Answer:
+  #+end_quote
+
+- Linear regression does not require a normally distributed dependent
+  variable but the model often fits better when this is true (why?[fn:1])
+
+- To check distribution qualities quickly, we can summarize the stats:
+  #+begin_src R
+
+  #+end_src
+
+- We visualize the distribution (what's the best graph for that?):
+  #+begin_src R :results graphics file :file hist.png
+
+  #+end_src
+
+* Exploring the data: correlation matrix
+
+- To create a correlation matrix, use the ~cor~ command - take a look at
+  its arguments first:
+  #+begin_src R
+
+  #+end_src
+
+- Let's build this up slowly: the default for ~y~ is only relevant if ~x~
+  is a matrix: how is the dependent variable correlated *with itself*?
+  #+begin_src R
+
+  #+end_src
+
+- Now for all ~numeric~ variables:
+    #+begin_src R
+
+  #+end_src  
+
+* Exploring the data: scatterplot matrix
+
+- You can feed the whole dataframe into the generic ~plot~ function:
+  #+begin_src R :results graphics file :file plot.png
+
+  #+end_src
+
+- An alternative is ~graphics::pairs~:
+  #+begin_src R :results graphics file :file ../img/6_pairs.png
+
+  #+end_src
+
+- The ~pairs.panels~ function in the ~psych~ package contains more
+  information:
+  #+begin_src R :results graphics file :file ../img/pairs_panels.png
+
+  #+end_src
+
+* Training a model on the data
+
+- We use the generic ~lm~ function from ~stats~- check arguments:
+  #+begin_src R
+
+  #+end_src
+
+- The following model relates the six independent variables to the
+  total medical ~expenses~:
+  #+begin_src R
+
+  #+end_src
+
+- To see the estimated \beta coefficients, print the model:
+  #+begin_src R
+
+  #+end_src
+
+* Evaluating model performance
+
+- To evaluate model performance, we can use ~summary~:
+  #+begin_src R
+
+  #+end_src
+  
+* References
+
+- Data: PacktPublishing (2019). Machine learning with R (3e). URL:
+  [[https://github.com/PacktPublishing/Machine-Learning-with-R-Third-Edition/tree/master/Chapter06][github.com]].
+
+- Lantz (2019). Machine learning with R (3e). Packt. URL:
+  [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][packtpub.com]].
+
+- R Core Team (2022). R: A language and environment for statistical
+  computing. R Foundation for Statistical Computing, Vienna, Austria.
+  URL https://www.R-project.org/.
+
+* Footnotes
+
+[fn:5]The Adjusted R-Squared value corrects for models with many features. 
+
+[fn:4]In R, the first ~level~ is taken as reference. You can use ~relevel~
+to change this.
+
+[fn:3]The result is the same as ~plot(insurance[ins_num])~ but ~pairs~
+offers different customization options than the generic ~plot~ - see
+~help(pairs)~.
+ 
+[fn:2]The *skewedness* highlights the opposite of the maximum of the
+points - a left/right leaning distribution is skewed to the
+right/left, because the outlying points cause the problem in terms of
+analysis: they are harder to distinguish and kind of "fall off the
+end". Transformations will affect them more strongly.
+
+[fn:1]Normal distribution means that standard stats (mean=expected

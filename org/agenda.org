@@ -1356,7 +1356,6 @@ Thu:
 #+attr_latex: :width 400px
 #+caption: linear and logistic regression
 [[../img/6_linear.png]]
-
 [[../img/6_logistic.png]]
 
 *Housekeeping*
@@ -1365,14 +1364,14 @@ Thu:
 - [X] Only 65% completed the last DataCamp assignment!?
 
 *Topics*
-- [ ] Short introduction to simple and multiple linear regression
-- [ ] Case study: Challenger space shuttle risk analysis
+- [X] Short introduction to simple and multiple linear regression
+- [X] Case study: Challenger space shuttle risk analysis
 - [ ] Case study: Predicting medical expenses
 
 *Outlook*
-- [ ] [[https://lyon.instructure.com/courses/1021/assignments/9904][3rd sprint review for projects ("abstract") due April 21]]
-- [ ] Week 14: Artificial Neural Networks (unsupervised learning)
-- [ ] Final presentations Tue 25-Apr, Thu 27-Apr, Tue 2-May ([[https://lyon.instructure.com/courses/1021/pages/sign-up-for-final-presentations][sign up]])
+- [X] [[https://lyon.instructure.com/courses/1021/assignments/9904][3rd sprint review for projects ("abstract") due April 21]]
+- [X] Week 14: Artificial Neural Networks (unsupervised learning)
+- [X] Final presentations Tue 25-Apr, Thu 27-Apr, Tue 2-May ([[https://lyon.instructure.com/courses/1021/pages/sign-up-for-final-presentations][sign up]])
 
 * TODO Regression case study "Star Surgeon"
 #+attr_latex: :width 400px
@@ -1390,10 +1389,76 @@ Thu:
   creators also wrote "Practical Data Science with R" (Manning, 2019).
 - [[https://app.datacamp.com/learn/projects/552][DataCamp guided project "Clustering Heart Disease Patient Data"]]
 
-* TODO Test review questions: regression (Wed)
+* TODO Test review questions: regression
 #+attr_latex: :width 400px
 #+caption: Source: Wikipedia ROC entry
 [[../img/Roc_curve.svg]]
+
+1) Causation: what's our basic assumption when modeling data?
+2) Correlation: what's our main tool to establish it?
+   #+begin_notes
+   The Pearson correlation coefficient defined as
+   Var(x,y)/(sd(x)sd(y)) - indicating how x,y grow/fall together
+   #+end_notes
+3) What's the downside of measuring correlation?
+   #+begin_notes
+   Only measures linear relationships.
+   #+end_notes
+4) What are the possible values for the correlation coefficient?
+5) What's logistic regression for?
+   #+begin_notes
+   Answer: binary classification (categorical features)
+   #+end_notes
+6) What's an ROC curve, and what is AUC?
+   #+begin_notes
+   - Rationale: when outcomes are very rare, predicting the opposite
+     can result in a very high accuracy - you may need to reduce
+     accuracy in order to capture rare events
+   - ROC = "Receiver Operating Characteristic" originally developed
+     for operators of military radar receivers, a plot of the true
+     positive rate against the false positive rate to establish hits.
+   - AUC = "Area Under the [ROC] Curve": measures the area under the
+     ROC curve as a quantifier of the predictive hitrate - a random
+     model (50:50) has an AUC of 0.5, a perfect model AUC=1.0
+   #+end_notes
+7) Which R function is used to model logistic regression?
+   #+begin_notes
+   The ~glm~ function (or family of functions - it's a generic
+   function), for 'generalised linear model', with the ~family~ argument
+   set to ~"binomial"~.
+   #+end_notes
+8) What is forward or backward stepwise regression?
+9) Why 'regression'?
+   #+begin_notes
+   Historically: Galton's experiment showed a 'regression to the mean'
+   of the height of sons of fathers. Practically: all ML models use
+   functions to estimate similarity in comparison to a normal
+   distribution.
+   #+end_notes
+10) What does 0 correlation mean? What does it not mean?
+    #+begin_notes
+    For linearly correlated samples, it shows independence of the
+    features or all events connected to them (measured by them). For
+    other samples (with non-linear effects), it shows nothing.
+    #+end_notes
+11) What is "imputation" (as opposed to "amputation") in regression?
+    #+begin_notes
+    A way to deal with missing values by estimating values for them,
+    e.g. the mean of all non-missing values. You need to add another
+    column as an indicator if imputation was performed.
+    #+end_notes
+
+* TODO Exciting Zoom meeting with UAMS today
+#+attr_latex: :width 400px
+[[../img/uams.png]]
+
+- They especially need computer science and data science students
+- Computing and infrastructure skills are often missing
+- They have resources including the Nat'l Cancer Imaging Archive
+- You need R and Python (SQL less relevant here): "Python is pitiful
+  when you want to use random forest".
+- Building better models for imaging purposes is challenging both
+  computationally, conceptually and mathematically
 
 * TODO What did you learn this week?
 
