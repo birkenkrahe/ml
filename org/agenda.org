@@ -1366,19 +1366,19 @@ Thu:
 *Topics*
 - [X] Short introduction to simple and multiple linear regression
 - [X] Case study: Challenger space shuttle risk analysis
-- [ ] Case study: Predicting medical expenses
+- [X] Case study: Predicting medical expenses
 
 *Outlook*
 - [X] [[https://lyon.instructure.com/courses/1021/assignments/9904][3rd sprint review for projects ("abstract") due April 21]]
 - [X] Week 14: Artificial Neural Networks (unsupervised learning)
 - [X] Final presentations Tue 25-Apr, Thu 27-Apr, Tue 2-May ([[https://lyon.instructure.com/courses/1021/pages/sign-up-for-final-presentations][sign up]])
 
-* TODO Regression case study "Star Surgeon"
+** Regression case study "Star Surgeon"
 #+attr_latex: :width 400px
 #+caption: Sci-Fi novel cover "Star Surgeon" by James White (1963)
 [[../img/star_surgeon.jpg]]
 
-* TODO Further study: regression at DataCamp
+** Further study: regression at DataCamp
 #+attr_latex: :width 300px
 #+caption: Source: Wikipedia ROC entry
 [[../img/zumel.png]]
@@ -1389,12 +1389,13 @@ Thu:
   creators also wrote "Practical Data Science with R" (Manning, 2019).
 - [[https://app.datacamp.com/learn/projects/552][DataCamp guided project "Clustering Heart Disease Patient Data"]]
 
-* TODO Test review questions: regression
+** Test review questions: regression
 #+attr_latex: :width 400px
 #+caption: Source: Wikipedia ROC entry
 [[../img/Roc_curve.svg]]
 
-1) Causation: what's our basic assumption when modeling data?
+1) *Causation:* what's our basic assumption when modeling data?
+
 2) Correlation: what's our main tool to establish it?
    #+begin_notes
    The Pearson correlation coefficient defined as
@@ -1405,6 +1406,7 @@ Thu:
    Only measures linear relationships.
    #+end_notes
 4) What are the possible values for the correlation coefficient?
+
 5) What's logistic regression for?
    #+begin_notes
    Answer: binary classification (categorical features)
@@ -1428,6 +1430,7 @@ Thu:
    set to ~"binomial"~.
    #+end_notes
 8) What is forward or backward stepwise regression?
+   
 9) Why 'regression'?
    #+begin_notes
    Historically: Galton's experiment showed a 'regression to the mean'
@@ -1448,7 +1451,7 @@ Thu:
     column as an indicator if imputation was performed.
     #+end_notes
 
-* TODO Exciting Zoom meeting with UAMS today
+** Exciting Zoom meeting with UAMS today
 #+attr_latex: :width 400px
 [[../img/uams.png]]
 
@@ -1460,27 +1463,48 @@ Thu:
 - Building better models for imaging purposes is challenging both
   computationally, conceptually and mathematically
 
-* TODO What did you learn this week?
+* IN PROGRESS What did you learn this week?
 
 Tue:
+- Understanding linear regression
+- Pearson correlation coefficient
+- Simple vs. multiple linear regression
 
 Thu:
 
-* TODO Week 14: Artificial Neural Networks
-** DataCamp review questions: k-means clustering
+* NEXT Week 14: Regression & ANN
+#+attr_latex: :width 400px
+#+caption: Gnarled tree by Mustang Joe @ Flickr.com (Public Domain)
+[[../img/tree.jpg]]
 
+** DataCamp review questions: classification trees
+
+* [[https://docs.google.com/forms/d/e/1FAIpQLSdLkJ65AaAsx-g2_cGj2y3SXwmpz_HdH9mr86QDKGqZBkSNPA/viewform][2023 Arkansas Summer Research Institute]]
+#+attr_latex: :width 400px
+#+caption: Cat on Sidewalk (1959, Angelo Rizzuto) Flickr.com
+[[../img/practice.jpg]]
+
+- Great opportunity to network and learn
+- Free and virtual
+- Only 2 weeks long (June 1-19)
+- Share link with others: https://tinyurl.com/apply2023asri
+
+* TODO Week 15: Projects I
+#+attr_latex: :width 400px
+#+caption: Double cluster in Perseus by Stephen Rahn@Flickr.com (Public Domain)
+[[../img/cluster.jpg]]
+
+** DataCamp review questions: k-means clustering
 Extras:
 - [[https://app.datacamp.com/learn/projects/584][Guided DataCamp HR project "Degrees that pay you back"]]
 - [[https://pieriantraining.com/k-means-clustering-machine-learning-in-python/][Tutorial blog post: k-means clustering in Python]] (3/17/2023)
-
-* TODO Week 15: Projects I
-
-** DataCamp review questions: hierarchical clustering
 
 * TODO Week 16: Projects II and Closing
 #+attr_latex: :width 400px
 #+caption: The Olympic Games, Year 2020 (1970s Sci-Fi Art on Twitter)
 [[../img/future.jpg]]
+
+** DataCamp review questions: hierarchical clustering
 
 * TODO What next?
 

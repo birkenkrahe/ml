@@ -120,6 +120,16 @@
     str(insurance)
   #+end_src
 
+  #+RESULTS:
+  : 'data.frame':	1338 obs. of  7 variables:
+  :  $ age     : int  19 18 28 33 32 31 46 37 37 60 ...
+  :  $ sex     : chr  "female" "male" "male" "male" ...
+  :  $ bmi     : num  27.9 33.8 33 22.7 28.9 25.7 33.4 27.7 29.8 25.8 ...
+  :  $ children: int  0 1 3 0 0 0 1 3 2 0 ...
+  :  $ smoker  : chr  "yes" "no" "no" "no" ...
+  :  $ region  : chr  "southwest" "southeast" "southeast" "northwest" ...
+  :  $ expenses: num  16885 1726 4449 21984 3867 ...
+
 - What is the model's dependent variable?
   #+begin_quote
   Answer: ~insurance$expenses~, which measure the medical costs each
@@ -132,14 +142,35 @@
 - To check distribution qualities quickly, we can summarize the stats:
   #+begin_src R
     summary(insurance$expenses)
+    summary(insurance)
   #+end_src
+
+  #+RESULTS:
+  #+begin_example
+     Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+     1122    4740    9382   13270   16640   63770
+        age            sex                 bmi           children    
+   Min.   :18.00   Length:1338        Min.   :16.00   Min.   :0.000  
+   1st Qu.:27.00   Class :character   1st Qu.:26.30   1st Qu.:0.000  
+   Median :39.00   Mode  :character   Median :30.40   Median :1.000  
+   Mean   :39.21                      Mean   :30.67   Mean   :1.095  
+   3rd Qu.:51.00                      3rd Qu.:34.70   3rd Qu.:2.000  
+   Max.   :64.00                      Max.   :53.10   Max.   :5.000  
+      smoker             region             expenses    
+   Length:1338        Length:1338        Min.   : 1122  
+   Class :character   Class :character   1st Qu.: 4740  
+   Mode  :character   Mode  :character   Median : 9382  
+                                         Mean   :13270  
+                                         3rd Qu.:16640  
+                                         Max.   :63770
+  #+end_example
 
 - What do you observe?
   #+begin_quote
-  - The mean is greater than the median (the middle magnitude is left
-    of the average), which means the distribution is *right*
-    skewed[fn:2].
-  - The spread is significant (minimum vs. maximum values).
+  1) The mean is greater than the median (the middle magnitude is left
+     of the average), which means the distribution is *right*
+     skewed[fn:2].
+  2) The spread is significant (minimum vs. maximum values).
   #+end_quote  
 
 - We visualize the distribution (what's the best graph for that?):
@@ -147,6 +178,9 @@
     ## Visualize numerical distributions = frequencies with a histogram
     hist(insurance$expenses)
   #+end_src
+
+  #+RESULTS:
+  [[file:../img/6_hist.png]]
 
 - The graph shows that the majority of people have annual medical
   expenses below US$15,000. Knowing the graphs structural weakness
@@ -164,6 +198,11 @@
     args(cor)
   #+end_src
 
+  #+RESULTS:
+  : function (x, y = NULL, use = "everything", method = c("pearson", 
+  :     "kendall", "spearman")) 
+  : NULL
+
 - Let's build this up slowly: the default for ~y~ is only relevant if ~x~
   is a matrix: how is the dependent variable correlated *with itself*?
   #+begin_src R
@@ -172,6 +211,17 @@
     head(x)
     cor(x)
   #+end_src
+
+  #+RESULTS:
+  :          [,1]
+  : [1,] 16884.92
+  : [2,]  1725.55
+  : [3,]  4449.46
+  : [4,] 21984.47
+  : [5,]  3866.86
+  : [6,]  3756.62
+  :      [,1]
+  : [1,]    1
 
 - This makes sense because:
   #+begin_src R
@@ -182,8 +232,25 @@
   #+begin_src R
     str(insurance)
     ins_num <- c("age","bmi","children","expenses")
-    cor(insurance[ins_num])
+    cor(insurance[ins_num]) # only numerical features   
   #+end_src  
+
+  #+RESULTS:
+  #+begin_example
+  'data.frame':	1338 obs. of  7 variables:
+   $ age     : int  19 18 28 33 32 31 46 37 37 60 ...
+   $ sex     : chr  "female" "male" "male" "male" ...
+   $ bmi     : num  27.9 33.8 33 22.7 28.9 25.7 33.4 27.7 29.8 25.8 ...
+   $ children: int  0 1 3 0 0 0 1 3 2 0 ...
+   $ smoker  : chr  "yes" "no" "no" "no" ...
+   $ region  : chr  "southwest" "southeast" "southeast" "northwest" ...
+   $ expenses: num  16885 1726 4449 21984 3867 ...
+                 age        bmi   children   expenses
+  age      1.0000000 0.10934101 0.04246900 0.29900819
+  bmi      0.1093410 1.00000000 0.01264471 0.19857626
+  children 0.0424690 0.01264471 1.00000000 0.06799823
+  expenses 0.2990082 0.19857626 0.06799823 1.00000000
+  #+end_example
 
 - What do we learn? 
   #+begin_quote
@@ -207,13 +274,19 @@
     plot(insurance)
   #+end_src
 
+  #+RESULTS:
+  [[file:../img/6_plot.png]]
+
 - However, ~plot~ does not distinguish between numeric and categorical
   variables, and a scatterplot is meaningless for the latter.
 
 - An alternative is ~graphics::pairs~[fn:3]:
   #+begin_src R :results graphics file :file ../img/6_pairs.png
-    pairs(insurance[ins_num])
+    pairs(insurance[ins_num]) ## ins_num <- c("age","children","bmi","expenses")
   #+end_src
+
+  #+RESULTS:
+  [[file:../img/6_pairs.png]]
 
 - The intersection of each row and column holds the scatterplot of the
   variables indicated by the row and column pair: e.g. the plot in the
@@ -224,6 +297,7 @@
   #+begin_quote
   1) Visible nearly straight lines in ~age ~ expenses~
   2) Two point clusters in ~bmi ~ expenses~
+  3) Invisible structure in the ~age ~ bmi~ plot
   #+end_quote
 
 - The ~pairs.panels~ function in the ~psych~ package contains more
