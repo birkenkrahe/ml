@@ -1472,12 +1472,10 @@ Tue:
 
 Thu:
 
-* NEXT Week 14: Regression & ANN
+* NEXT Week 14: Trees & Regression & ANN
 #+attr_latex: :width 400px
 #+caption: Gnarled tree by Mustang Joe @ Flickr.com (Public Domain)
 [[../img/tree.jpg]]
-
-** DataCamp review questions: classification trees
 
 * [[https://docs.google.com/forms/d/e/1FAIpQLSdLkJ65AaAsx-g2_cGj2y3SXwmpz_HdH9mr86QDKGqZBkSNPA/viewform][2023 Arkansas Summer Research Institute]]
 #+attr_latex: :width 400px
@@ -1488,6 +1486,155 @@ Thu:
 - Free and virtual
 - Only 2 weeks long (June 1-19)
 - Share link with others: https://tinyurl.com/apply2023asri
+
+* DataCamp review questions: classification trees
+#+attr_latex: :width 400px
+#+caption: DataCamp professional certificate for your resume
+[[../img/certificate.png]]
+
+1) What does a decision tree, e.g. with a credit approval model that
+   was trained on loan amount and credit score as independent
+   variables, give you?
+   #+begin_quote
+   That depends on the dependent variable: you can create a decision
+   tree for any categorical outcome variable for which you have
+   historical data. In the DataCamp lesson, the tree was built to
+   predict loan outcome as "default" or "repaid".
+   #+end_quote
+   #+begin_src R
+     str(loans)
+   #+end_src
+
+   #+RESULTS:
+   #+begin_example
+   'data.frame':	39732 obs. of  16 variables:
+    $ keep              : int  1 1 0 0 0 0 0 1 1 1 ...
+    $ rand              : num  0.13 0.998 0.628 0.252 0.474 ...
+    $ default           : int  0 1 0 0 0 0 0 0 1 1 ...
+    $ loan_amount       : chr  "LOW" "LOW" "LOW" "MEDIUM" ...
+    $ emp_length        : chr  "10+ years" "< 2 years" "10+ years" "10+ years" ...
+    $ home_ownership    : chr  "RENT" "RENT" "RENT" "RENT" ...
+    $ income            : chr  "LOW" "LOW" "LOW" "MEDIUM" ...
+    $ loan_purpose      : chr  "credit_card" "car" "small_business" "other" ...
+    $ debt_to_income    : chr  "HIGH" "LOW" "AVERAGE" "HIGH" ...
+    $ credit_score      : chr  "AVERAGE" "AVERAGE" "AVERAGE" "AVERAGE" ...
+    $ recent_inquiry    : chr  "YES" "YES" "YES" "YES" ...
+    $ delinquent        : chr  "NEVER" "NEVER" "NEVER" "MORE THAN 2 YEARS AGO" ...
+    $ credit_accounts   : chr  "FEW" "FEW" "FEW" "AVERAGE" ...
+    $ bad_public_record : chr  "NO" "NO" "NO" "NO" ...
+    $ credit_utilization: chr  "HIGH" "LOW" "HIGH" "LOW" ...
+    $ past_bankrupt     : chr  "NO" "NO" "NO" "NO" ...
+   #+end_example
+   
+2) Which features could be used to build a decision tree to decide on
+   a job offer?
+   #+begin_quote
+   Any attributes of the job such as: salary, commuting time, company
+   car, travel time, remote work, etc.
+   #+end_quote
+
+3) What kind of algorithm is used to build a decision tree?
+   #+attr_latex: :width 400px
+   [[../img/divide_and_conquer.png]]
+
+4) Which group of data points would this algorithm prioritize?
+   #+begin_quote
+   Divide-and-conquer always looks to create the split resulting in
+   the greatest improvement to purity - it favors splits that result
+   in the greater homogeneity of a subgroup.
+   #+end_quote
+   
+5) What's a downside when using decision trees for classification?
+   #+begin_quote
+   - Splits are always axis-parallel (only 1 feature at a time)
+   - Trees can become very complex and large very quickly
+   - The decision tree model may overfit the data
+   - An overfitted tree models noise rather than signals
+   - Similar to too small k values in the kNN model
+   #+end_quote
+
+6) How can you check if a decision tree is a good classifier?
+   #+begin_quote
+   You simulate unseen data by constructing a test data set, e.g. by
+   holding out a small random portion of the full dataset and
+   comparing the peformance on training vs. test dataset - it should
+   be comparablex.
+   #+end_quote
+   
+7) How can you split a data frame randomly into two for training and
+   testing? E.g. by 75% for training and 25% for testing.
+   #+begin_src R
+     loans <- read.csv("~/Documents/GitHub/ml/data/loans.csv",
+                       header=TRUE)
+     dim(loans)
+     ## sample() pulls 'size' elements x with/out replacement 
+     ## and with a probability weight default NULL (normal)
+     args(sample)
+     ## Determine the number of rows for training
+     nrow(loans)
+     ## Create a random sample of row IDs
+     sample_rows <- sample(nrow(loans), 0.75*nrow(loans))
+     head(sample_rows,10)
+     ## Create the training dataset
+     loans_train <- loans[sample_rows,]
+     dim(loans_train)
+     ## Create the test dataset
+     loans_test <- loans[-sample_rows,]
+     dim(loans_test)
+     ## test and train datasets ought to add up to full dataset
+     dim(loans)[1]-dim(loans_test)[1]-dim(loans_train)[1]
+   #+end_src
+
+   #+RESULTS:
+   : [1] 39732    16
+   : function (x, size, replace = FALSE, prob = NULL) 
+   : NULL
+   : [1] 39732
+   :  [1] 28188 38394 12611 35354 36449 10161 27286  3964 13207 34350
+   : [1] 29799    16
+   : [1] 9933   16
+   : [1] 0
+
+8) What is the workflow once you have training and test data, if you
+   want to check a decision tree model?
+   #+begin_example R
+   ## grow a tree using all available features on TRAINING data
+   model <- rpart(outcome ~ .,
+                  data = [training data],
+                  method = "class")
+   ## predict on the TEST dataset 
+   prediction <- predict(model,
+                         newdata = [test data],
+                         type = "class")
+   ## evaluate: confusion matrix predicted vs. actual values
+   table(prediction, [full data]$outcome)
+
+   ## accuracy as average difference predicted vs. test values
+   mean(prediction == [test data]$outcome)
+   
+   Example output for loan data and outcome "default" or "repaid":
+   :           default repaid
+   :   default    3501   1356
+   :   repaid     1542   3534
+   : [1] 0.7082452
+   #+end_example
+   
+9) When is a decision tree model pruned?
+   #+attr_latex: :width 400px
+   #+caption: error rate vs. complexity for a decision tree model
+   [[../img/pruning.png]]
+   #+begin_quote
+   Below the dotted line, the error rate becomes statistically similar
+   to the most complex decision tree model - additional branches of
+   the model can not reduce the error (or increase accuracy).
+   #+end_quote
+
+10) What is a "random forest" model?
+    #+begin_quote
+    A growing algorithm that grows a large number of decision trees in
+    which both the features and examples (records) may differ from
+    tree to tree. Implemented in R with ~randomForest::randomForest~.
+    #+end_quote
 
 * TODO Week 15: Projects I
 #+attr_latex: :width 400px
