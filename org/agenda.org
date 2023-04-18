@@ -1470,7 +1470,26 @@ Tue:
 - Pearson correlation coefficient
 - Simple vs. multiple linear regression
 
-Thu:
+Thu: ???
+#+begin_notes
+1) Creating and interpreting correlation and scatterplot matrix - all
+   features correlated against one another.
+2) Special scatterplot matrix with ~psych::pairs.panels~ showed
+   histograms, numerical correlations, correlation ellipses and loess
+   curves (local polynomial regression around minima and maxima)
+3) Modeling with ~stats::lm~ and formula ~y ~ .~, ~y ~ x1 + x2~, ~y ~ x1 * x2~
+   #+begin_example R
+     m <- lm(y ~ ., data=df) ## use all features
+     m <- lm(y ~ x1 + x2, data=df) ## use features x1 and x2 independently
+     m <- lm(y ~ x1 * x2, data=df) ## use both x1 and x2 
+   #+end_example
+4) Prediction with ~stats::predict~
+   #+begin_example R
+     p <- predict(model, test) # test data as (unseen) input for model
+   #+end_example
+5) Factor features are automatically dummy-coded with the first level
+   used as reference category.
+#+end_notes
 
 * NEXT Week 14: Trees & Regression & ANN
 #+attr_latex: :width 400px
@@ -1635,6 +1654,12 @@ Thu:
     which both the features and examples (records) may differ from
     tree to tree. Implemented in R with ~randomForest::randomForest~.
     #+end_quote
+
+* TODO What did you learn this week?
+
+Tue: ???
+
+Thu: ???
 
 * TODO Week 15: Projects I
 #+attr_latex: :width 400px

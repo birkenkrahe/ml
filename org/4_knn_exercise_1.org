@@ -1,5 +1,5 @@
 #+TITLE: k-NEAREST-NEIGBORS - BREAST CANCER PREDICTION - EXERCISE 1
-#+AUTHOR: Marcus Birkenkrahe
+#+AUTHOR: [author] [pledge]
 #+SUBTITLE: Case Study - Supervised lazy learner classifiers
 #+STARTUP: overview hideblocks indent inlineimages
 #+OPTIONS: toc:nil num:nil ^:nil
