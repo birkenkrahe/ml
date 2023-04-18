@@ -1,4 +1,4 @@
-#+TITLE: Multiple linear regression - Case study
+#+TITLE: Multiple linear regression - Case study Practice I
 #+AUTHOR: YOUR NAME AND PLEDGE
 #+SUBTITLE: Case Study - Predicting medical expenses
 #+STARTUP: overview hideblocks indent inlineimages
@@ -44,9 +44,6 @@
   #+begin_quote
   Answer:
   #+end_quote
-
-- Linear regression does not require a normally distributed dependent
-  variable but the model often fits better when this is true (why?[fn:1])
 
 - To check distribution qualities quickly, we can summarize the stats:
   #+begin_src R
@@ -120,33 +117,3 @@
 
   #+end_src
   
-* References
-
-- Data: PacktPublishing (2019). Machine learning with R (3e). URL:
-  [[https://github.com/PacktPublishing/Machine-Learning-with-R-Third-Edition/tree/master/Chapter06][github.com]].
-
-- Lantz (2019). Machine learning with R (3e). Packt. URL:
-  [[https://www.packtpub.com/product/machine-learning-with-r-third-edition/9781788295864][packtpub.com]].
-
-- R Core Team (2022). R: A language and environment for statistical
-  computing. R Foundation for Statistical Computing, Vienna, Austria.
-  URL https://www.R-project.org/.
-
-* Footnotes
-
-[fn:5]The Adjusted R-Squared value corrects for models with many features. 
-
-[fn:4]In R, the first ~level~ is taken as reference. You can use ~relevel~
-to change this.
-
-[fn:3]The result is the same as ~plot(insurance[ins_num])~ but ~pairs~
-offers different customization options than the generic ~plot~ - see
-~help(pairs)~.
- 
-[fn:2]The *skewedness* highlights the opposite of the maximum of the
-points - a left/right leaning distribution is skewed to the
-right/left, because the outlying points cause the problem in terms of
-analysis: they are harder to distinguish and kind of "fall off the
-end". Transformations will affect them more strongly.
-
-[fn:1]Normal distribution means that standard stats (mean=expected

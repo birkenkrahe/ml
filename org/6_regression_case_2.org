@@ -1,0 +1,126 @@
+#+TITLE: Multiple linear regression - Case study Practice II
+#+AUTHOR: YOUR NAME AND PLEDGE
+#+SUBTITLE: Case Study - Predicting medical expenses
+#+STARTUP: overview hideblocks indent inlineimages
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+* TODO Setup (carry-over from first practice file)
+
+- Import the data with ~read.csv~ and save them to ~insurance~:
+  #+begin_src R 
+    insurance <- read.csv("../data/insurance.csv") ## assuming the file is in $PWD
+    str(insurance)
+  #+end_src
+
+  #+RESULTS:
+  : 'data.frame':	1338 obs. of  7 variables:
+  :  $ age     : int  19 18 28 33 32 31 46 37 37 60 ...
+  :  $ sex     : chr  "female" "male" "male" "male" ...
+  :  $ bmi     : num  27.9 33.8 33 22.7 28.9 25.7 33.4 27.7 29.8 25.8 ...
+  :  $ children: int  0 1 3 0 0 0 1 3 2 0 ...
+  :  $ smoker  : chr  "yes" "no" "no" "no" ...
+  :  $ region  : chr  "southwest" "southeast" "southeast" "northwest" ...
+  :  $ expenses: num  16885 1726 4449 21984 3867 ...
+
+- The following model relates the six independent variables to the
+  total medical ~expenses~:
+  #+begin_src R :results silent
+    ins_model <- lm(expenses ~ . ,data = insurance)
+  #+end_src
+
+- Print the model:
+  #+begin_src R
+    ins_model
+  #+end_src  
+  
+* TODO Adding non-linear relationships
+
+- Create a new variable ~age2~ and print the data frame:
+  #+begin_src R
+
+  #+end_src
+
+* TODO Converting numeric variable to binary indicator
+
+- Use ~ifelse~ to add another variable and print the data frame:
+  #+begin_src R
+
+  #+end_src
+
+- Build a model that includes ~bmi30~ to check the p-values:
+  #+begin_src R
+    ins_model_bmi30 <- ...
+    ...(ins_model_bmi30)
+  #+end_src
+
+* TODO The improved regression model
+
+- Include the new variables and the interaction term in a new model:
+  #+begin_src R :results silent
+    ins_model2 <- ...
+  #+end_src
+
+- Look at the model:
+  #+begin_src R
+
+  #+end_src
+
+- Summarize the results:
+  #+begin_src R
+
+  #+end_src
+     
+* TODO Making predictions with the improved regression model
+
+- Apply the model to the original training data using ~predict~:
+  #+begin_src R :results silent
+    insurance$pred <- ...
+  #+end_src
+
+- Compute the correlation between predicted and actual costs:
+  #+begin_src R
+    ...
+  #+end_src  
+
+- Visualize the model using ~plot~:
+  #+begin_src R :results graphics file ins_mod2.png
+    plot(... ~ ...,
+         xlab="Predicted costs ($)",
+         ylab="Actual expenses ($)",
+         main="Medical insurance expenses (N=1338)")
+    abline(a = 0, b = 1, col = "red", lwd = 3, lty = 2)
+  #+end_src
+
+- Patient 1: 30-year old, overweight, male non-smoker with two
+  children in the Northeast:
+  #+begin_src R
+
+  #+end_src
+
+- Patient 2: 30-year old, overweight, female non-smoker with two
+  children in the Northeast:
+  #+begin_src R
+    predict(ins_model2,
+            data.frame(age = 30, age2 = 30^2, children = 2,
+                       bmi = 30, sex = ..., bmi30 = 1,
+                       smoker = "no", region = "northeast")) -> pf
+    pf
+  #+end_src
+
+- Patient 2: difference in expenses with two vs. no children:
+  #+begin_src R
+    predict(ins_model2,
+            data.frame(age = 30, age2 = 30^2, children = ...,
+                       bmi = 30, sex = "female", bmi30 = 1,
+                       smoker = "no", region = "northeast")) -> p0
+  #+end_src
+
+- What if you have a lot of kids? Check out the result for 7 children:
+  #+begin_src R
+    predict(ins_model2,
+            data.frame(age = 30, age2 = 30^2, children = ...,
+                       bmi = 30, sex = "female", bmi30 = 1,
+                       smoker = "no", region = "northeast"))
+  #+end_src
+
+  

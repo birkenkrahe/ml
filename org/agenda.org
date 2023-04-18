@@ -245,8 +245,28 @@ Source: Ellis, Data Science Project Proposals (2021). URL:
   popular in the "Tidyverse") in Emacs:
   #+begin_src R :results output
     library(MASS)
+    library(tibble)
     tibble(mtcars)
   #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  # A tibble: 32 × 11
+       mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+     <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl> <dbl>
+   1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+   2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+   3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+   4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+   5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+   6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+   7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+   8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+   9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+  10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+  # … with 22 more rows
+  # ℹ Use `print(n = ...)` to see more rows
+  #+end_example
 
 ** DONE Test 2 opens Friday - closes Tuesday Feb 14
 #+attr_latex: :width 400px
@@ -1496,6 +1516,15 @@ Thu: ???
 #+caption: Gnarled tree by Mustang Joe @ Flickr.com (Public Domain)
 [[../img/tree.jpg]]
 
+- [ ] [[https://lyon.instructure.com/courses/1021/pages/sign-up-for-final-presentations][Three teams have not yet signed up in Canvas]]: no matter, present
+  what you have achieved - we're not looking for perfection but for
+  diligence - do you know the difference?[fn:2]
+- [ ] Last two DataCamp assignments are *bonus* assignments (complete by
+  May 3rd)
+- [ ] Test preview/review questions: decision trees
+- [ ] What we did last week
+- [ ] Finish linear regression case study: improving/predicting
+
 * [[https://docs.google.com/forms/d/e/1FAIpQLSdLkJ65AaAsx-g2_cGj2y3SXwmpz_HdH9mr86QDKGqZBkSNPA/viewform][2023 Arkansas Summer Research Institute]]
 #+attr_latex: :width 400px
 #+caption: Cat on Sidewalk (1959, Angelo Rizzuto) Flickr.com
@@ -1506,7 +1535,7 @@ Thu: ???
 - Only 2 weeks long (June 1-19)
 - Share link with others: https://tinyurl.com/apply2023asri
 
-* DataCamp review questions: classification trees
+* DataCamp review questions: decision trees
 #+attr_latex: :width 400px
 #+caption: DataCamp professional certificate for your resume
 [[../img/certificate.png]]
@@ -1681,7 +1710,8 @@ Extras:
 * TODO What next?
 
 Simple: 1) Work through some good books, 2) learn Python, too, 3)
-complete plenty of fun projects and document them.
+complete plenty of fun projects and document them. 4) Remember: what
+you'll apply will grow, what you won't use will wither on the vine.
 
 - The Art of Machine Learning by Norman Matloff (NoStarch, 2023) is
   shaping up to be the best book for ML with R (and ML altogether):
@@ -1759,6 +1789,9 @@ complete plenty of fun projects and document them.
   Unsplash.com
 
 * Footnotes
+[fn:2]It's the difference between being flawless (which is impossible)
+and being flawed (which is normal) and knowing your flaws so that you
+can improve on them.x
 
 [fn:1]It is possible that the existence of an ~.RData~ file converts
 warnings about packages you're trying to load into errors, which stops
