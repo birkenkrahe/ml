@@ -428,25 +428,25 @@
   lm(formula = expenses ~ ., data = insurance)
 
   Residuals:
-       Min       1Q   Median       3Q      Max
-  -11302.7  -2850.9   -979.6   1383.9  29981.7
+       Min       1Q   Median       3Q      Max 
+  -11302.7  -2850.9   -979.6   1383.9  29981.7 
 
   Coefficients:
-                  Estimate Std. Error t value Pr(>|t|)
+                  Estimate Std. Error t value Pr(>|t|)    
   (Intercept)     -11941.6      987.8 -12.089  < 2e-16 ***
   age                256.8       11.9  21.586  < 2e-16 ***
-  sexmale           -131.3      332.9  -0.395 0.693255
+  sexmale           -131.3      332.9  -0.395 0.693255    
   bmi                339.3       28.6  11.864  < 2e-16 ***
   children           475.7      137.8   3.452 0.000574 ***
   smokeryes        23847.5      413.1  57.723  < 2e-16 ***
-  regionnorthwest   -352.8      476.3  -0.741 0.458976
-  regionsoutheast  -1035.6      478.7  -2.163 0.030685 *
-  regionsouthwest   -959.3      477.9  -2.007 0.044921 *
+  regionnorthwest   -352.8      476.3  -0.741 0.458976    
+  regionsoutheast  -1035.6      478.7  -2.163 0.030685 *  
+  regionsouthwest   -959.3      477.9  -2.007 0.044921 *  
   ---
   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
   Residual standard error: 6062 on 1329 degrees of freedom
-  Multiple R-squared:  0.7509,  Adjusted R-squared:  0.7494
+  Multiple R-squared:  0.7509,	Adjusted R-squared:  0.7494 
   F-statistic: 500.9 on 8 and 1329 DF,  p-value: < 2.2e-16
   #+end_example
 

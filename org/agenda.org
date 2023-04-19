@@ -1490,7 +1490,7 @@ Tue:
 - Pearson correlation coefficient
 - Simple vs. multiple linear regression
 
-Thu: ???
+Thu: 
 #+begin_notes
 1) Creating and interpreting correlation and scatterplot matrix - all
    features correlated against one another.
@@ -1516,10 +1516,10 @@ Thu: ???
 #+caption: Gnarled tree by Mustang Joe @ Flickr.com (Public Domain)
 [[../img/tree.jpg]]
 
-- [ ] [[https://lyon.instructure.com/courses/1021/pages/sign-up-for-final-presentations][Three teams have not yet signed up in Canvas]]: no matter, present
+- [X] [[https://lyon.instructure.com/courses/1021/pages/sign-up-for-final-presentations][Three teams have not yet signed up in Canvas]]: no matter, present
   what you have achieved - we're not looking for perfection but for
   diligence - do you know the difference?[fn:2]
-- [ ] Last two DataCamp assignments are *bonus* assignments (complete by
+- [X] Last two DataCamp assignments are *bonus* assignments (complete by
   May 3rd)
 - [ ] Test preview/review questions: decision trees
 - [ ] What we did last week
@@ -1584,7 +1584,7 @@ Thu: ???
 3) What kind of algorithm is used to build a decision tree?
    #+attr_latex: :width 400px
    [[../img/divide_and_conquer.png]]
-
+   
 4) Which group of data points would this algorithm prioritize?
    #+begin_quote
    Divide-and-conquer always looks to create the split resulting in
@@ -1606,7 +1606,7 @@ Thu: ???
    You simulate unseen data by constructing a test data set, e.g. by
    holding out a small random portion of the full dataset and
    comparing the peformance on training vs. test dataset - it should
-   be comparablex.
+   be comparable.
    #+end_quote
    
 7) How can you split a data frame randomly into two for training and
@@ -1690,6 +1690,16 @@ Tue: ???
 
 Thu: ???
 
+* TODO [[https://github.com/birkenkrahe/org/blob/master/grading/Presentation_Assessment_Form.pdf][Rubric for evaluating your presentations]]
+#+attr_latex: :width 400px
+#+caption: Photo: US office of war information, 1944 (Flickr.com)
+[[../img/presentation.jpg]]
+
+- The rubric covers all aspects of a successful presentation
+- Test the technology before presenting - the devil's in the detail!
+- Zip all materials and upload them to Canvas no later than May 3rd
+- If I don't get your material by that time, you won't get any points
+
 * TODO Week 15: Projects I
 #+attr_latex: :width 400px
 #+caption: Double cluster in Perseus by Stephen Rahn@Flickr.com (Public Domain)
@@ -1709,9 +1719,25 @@ Extras:
 
 * TODO What next?
 
-Simple: 1) Work through some good books, 2) learn Python, too, 3)
-complete plenty of fun projects and document them. 4) Remember: what
-you'll apply will grow, what you won't use will wither on the vine.
+** What did I learn?
+
+- A proper (practice-oriented) course on machine learning requires one
+  term each for supervised and unsupervised methods.
+
+- More guidance for projects, perhaps including a portfolio session on
+  how to capitalize on term projects for internships and job interviews
+
+- Leave one session for reviewing the final exam questions?
+
+** What could you do next?
+
+1) Work through some good books
+2) Learn Python, too
+3) Complete plenty of fun projects and document them
+4) Participate in the 2023 Arkansas Research Summer Institute
+5) Remember: what you'll apply will grow, what you won't use will
+   wither on the vine.
+-----
 
 - The Art of Machine Learning by Norman Matloff (NoStarch, 2023) is
   shaping up to be the best book for ML with R (and ML altogether):
@@ -1729,7 +1755,7 @@ you'll apply will grow, what you won't use will wither on the vine.
   #+caption: Cover, Grokking machine learning by Serrano (Manning, 2022)
   [[../img/serrano.png]]
 
-- Learn Python (@DataCamp | CSC 109 @Lyon)
+- Learn Python (@DataCamp | Summer I: CSC 109 @Lyon)
   #+attr_latex: :width 200px
   #+caption: Cover, Automate the boring stuff with Python by Sweigart (Manning, 2022)
   [[../img/python.jpg]]
@@ -1791,7 +1817,7 @@ you'll apply will grow, what you won't use will wither on the vine.
 * Footnotes
 [fn:2]It's the difference between being flawless (which is impossible)
 and being flawed (which is normal) and knowing your flaws so that you
-can improve on them.x
+can improve on them.
 
 [fn:1]It is possible that the existence of an ~.RData~ file converts
 warnings about packages you're trying to load into errors, which stops
