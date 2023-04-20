@@ -247,8 +247,27 @@ Source: Lantz, ML in practice, 2019 etc.
   : field_check_pressure  0.001757009
   : flight_num            0.014292843
   
-* TODO Summary
-* TODO Glossary
+* Summary
+
+- Linear regression, by far the most common modeling approach for
+  numeric data, involves fitting straight lines to data.
+- We looked at a historical, simple, Ordinary-Least-Squares (OLS)
+  linear regression case (Challenger Space Shuttle disaster).
+- Correlation is usually measured with the Pearson correlation
+  coefficient \rho, the tendency of two variables to grow and fall
+  together. \rho=0 can hide non-linear patterns.
+- For multiple linear regression, the \beta_{i} coefficients can be found
+  using a matrix operation.
+
+* Glossary of code
+
+| COMMAND  | MEANING                 |
+|----------+-------------------------|
+| ~cov(x,y)~ | Statistical covariance  |
+| ~sd(x,y)~  | Standard deviation      |
+| ~var(x,y)~ | Variance                |
+| ~cor(x,y)~ | Correlation coefficient |
+
 * Further study
 
 DataCamp courses (remember you have access until July):

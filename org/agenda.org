@@ -1483,7 +1483,7 @@ Thu:
 - Building better models for imaging purposes is challenging both
   computationally, conceptually and mathematically
 
-* IN PROGRESS What did you learn this week?
+* What did you learn this week?
 
 Tue:
 - Understanding linear regression
@@ -1491,27 +1491,25 @@ Tue:
 - Simple vs. multiple linear regression
 
 Thu: 
-#+begin_notes
-1) Creating and interpreting correlation and scatterplot matrix - all
-   features correlated against one another.
-2) Special scatterplot matrix with ~psych::pairs.panels~ showed
-   histograms, numerical correlations, correlation ellipses and loess
-   curves (local polynomial regression around minima and maxima)
-3) Modeling with ~stats::lm~ and formula ~y ~ .~, ~y ~ x1 + x2~, ~y ~ x1 * x2~
-   #+begin_example R
-     m <- lm(y ~ ., data=df) ## use all features
-     m <- lm(y ~ x1 + x2, data=df) ## use features x1 and x2 independently
-     m <- lm(y ~ x1 * x2, data=df) ## use both x1 and x2 
-   #+end_example
-4) Prediction with ~stats::predict~
-   #+begin_example R
-     p <- predict(model, test) # test data as (unseen) input for model
-   #+end_example
-5) Factor features are automatically dummy-coded with the first level
-   used as reference category.
-#+end_notes
+- Creating and interpreting correlation and scatterplot matrix - all
+  features correlated against one another.
+- Special scatterplot matrix with ~psych::pairs.panels~ showed
+  histograms, numerical correlations, correlation ellipses and loess
+  curves (local polynomial regression around minima and maxima)
+- Modeling with ~stats::lm~ and formula ~y ~ .~, ~y ~ x1 + x2~, ~y ~ x1 * x2~
+  #+begin_example R
+    m <- lm(y ~ ., data=df) ## use all features
+    m <- lm(y ~ x1 + x2, data=df) ## use features x1 and x2 independently
+    m <- lm(y ~ x1 * x2, data=df) ## use both x1 and x2 
+  #+end_example
+- Prediction with ~stats::predict~
+  #+begin_example R
+    p <- predict(model, test) # test data as (unseen) input for model
+  #+end_example
+- Factor features are automatically dummy-coded with the first level
+  used as reference category.
 
-* NEXT Week 14: Trees & Regression & ANN
+* IN PROGRESS Week 14: Trees & Regression & ANN
 #+attr_latex: :width 400px
 #+caption: Gnarled tree by Mustang Joe @ Flickr.com (Public Domain)
 [[../img/tree.jpg]]
@@ -1521,11 +1519,146 @@ Thu:
   diligence - do you know the difference?[fn:2]
 - [X] Last two DataCamp assignments are *bonus* assignments (complete by
   May 3rd)
-- [ ] Test preview/review questions: decision trees
+- [X] Test preview/review questions: decision trees
 - [ ] What we did last week
 - [ ] Finish linear regression case study: improving/predicting
+- [ ] Course summary and outlook
 
-* [[https://docs.google.com/forms/d/e/1FAIpQLSdLkJ65AaAsx-g2_cGj2y3SXwmpz_HdH9mr86QDKGqZBkSNPA/viewform][2023 Arkansas Summer Research Institute]]
+* TODO [[https://github.com/birkenkrahe/org/blob/master/grading/Presentation_Assessment_Form.pdf][Rubric for evaluating your presentations]]
+#+attr_latex: :width 400px
+#+caption: Photo: US office of war information, 1944 (Flickr.com)
+[[../img/presentation.jpg]]
+
+- The rubric covers all aspects of a successful presentation
+- Test the technology before presenting - the devil's in the detail!
+- Zip all materials and upload them to Canvas no later than May 3rd
+- If I don't get your material by that time, you won't get any points
+
+* TODO What did you learn this week?
+
+Tue: ???
+
+Thu: ???
+
+* TODO ML - too large for its own good?
+#+attr_latex: :width 400px
+#+caption: Robert Wadlow, with his family in Alton, Ill.
+[[../img/12_Robert_Wadlow.png]]
+
+** Summary
+
+- Supervised methods (kNN, Naive Bayes, Decision Trees, Linear and
+  Logistic Regression) result in clear understanding of the
+  relationships between the input and the output.
+
+- Unsupervised Deep Learning ("neural net") methods are extremely
+  powerful as classifiers that can be applied in both categorical and
+  numeric prediction problems but they result in
+  nearly-incomprehensible models.
+
+- Unsupervised learning methods also include clustering methods
+  originally from signal processing that partition observations into
+  clusters. This is useful for image recognition and natural language
+  processing (sentiment analysis).
+
+- All ML methods share the same workflow. Just like for other crafts
+  like Data Science (and Computer Science), you can find your own
+  niche depending on what's you greatest skill and/or passion.
+
+- For example, if you're interested in [[https://www.cancerimagingarchive.net/publications/][cancer imaging ML]], you can
+  focus on: image storing, image classification algorithms, legal and
+  ethical aspects of data, image processing optimization, process
+  mining for clinical pathways, software systems supporting residents,
+  clinical trials data gathering, data annotation and labelling,
+  algorithm design, algorithm debugging and improvement, and more.
+
+** What could have been better?
+
+- A proper (practice-oriented) course on machine learning requires one
+  term each for supervised and unsupervised methods.
+
+- More guidance for projects, perhaps including a portfolio session on
+  how to capitalize on term projects for internships and job interviews?
+
+- Leave one session for reviewing the final exam questions?
+
+- Let me know what you liked and what you didn't like: fill in the
+  survey ([[https://lyon.instructure.com/courses/1021/assignments/10076]["CourseEval"@Canvas]]) by May 4, 5:59 pm (*bonus points*)
+
+** What could you do next to learn?
+
+1) Fill in the course survey (bonus points) by May 5, 5:59 pm.
+2) Work through some good books (see below)
+3) Learn Python, too (see below) and especially SQL (DataCamp)
+4) Complete plenty of [fun] projects and document them
+5) Participate in the 2023 Arkansas Research Summer Institute 
+6) Remember: what you'll apply will grow, what you won't use will
+   wither on the vine.
+-----
+
+- The Art of Machine Learning by Norman Matloff (NoStarch, 2023) is
+  shaping up to be the best book for ML with R (and ML altogether):
+  #+attr_latex: :width 200px
+  #+caption: Cover, The Art of Machine Learning by N Matloff (NoStarch, 2023)
+  [[../img/matloffTAOML.png]]
+
+- Deep learning with R -  (Manning, 2022)
+  #+attr_latex: :width 200px
+  #+caption: Cover, Deep learning with R by Chollet/Allaire (Manning, 2022)
+  [[../img/cholletallaire.png]]
+
+- [[https://www.manning.com/books/grokking-machine-learning][Grokking machine learning (Manning, 2022)]]
+  #+attr_latex: :width 200px
+  #+caption: Cover, Grokking machine learning by Serrano (Manning, 2022)
+  [[../img/serrano.png]]
+
+- Learn Python (@DataCamp | Summer I: CSC 109 @Lyon)
+  #+attr_latex: :width 200px
+  #+caption: Cover, Automate the boring stuff with Python by Sweigart (NoStarch, 2019)
+  [[../img/python.jpg]]
+
+- Improve your modeling skills (Fall 23: CSC/DSC 482.02)  
+  #+attr_latex: :width 200px
+  #+caption: Cover, Modeling and Simulation in Python by Downey (NoStarch, 2022)
+  [[../img/modeling.png]]
+
+** What could you do next to get a job?
+
+- ​I thought these tips were quite good though I personally favor a
+  more *surgical*​, less of a mass-mailing​ ​​approach​​.​​But I also have not
+  been in the tech professional job market for a ​few years​, and I've
+  not worked in the US since 2002​. But the tips strike me as useful no
+  matter what: [[https://link.medium.com/pLGMURvz1yb][How To Improve Your Job Search With 4 Quick Tips]]
+  1) Apply to a lot of jobs
+  2) Practice interviewing at tier 2 firms
+  3) Adjust your resume every 20 or so applications
+  4) Practice everything
+  5) Fortune favors the bold
+
+- Above and beyond, what you need in this field (CompSci and Data
+  Science) is a set of GOALS and a SYSTEM of continuous improvement to
+  meet these goals.
+
+- Example GOAL: "I want to be able to build and interpret a predictive
+  linear regression model for a suitable large dataset, because I know
+  that this method is hugely popular and can be applied in all
+  industries."
+
+- Example SYSTEM components:
+  1) *One-off:* complete DataCamp course on regression in R.
+  2) *Routine:* practice daily on ALL completed DataCamp courses.
+  3) *Routine:* read recent papers on regression applications beginning
+     with literature reviews [[https://pdfs.semanticscholar.org/5d7c/b4891c73ad8ec642e4d8ab2220bb52a64086.pdf][like this one]]. Look for niche
+     applications.
+  4) *Routine*: find experts and join their communities on Twitter,
+     Discord, Substack or Medium (e.g. Cassie Kozyrkov/Google, Andrei
+     Karpathy/Tesla, Andrew Ng/DeepLearning.AI).
+  5) *Repeatedly:* pull datasets off Kaggle or UCI and go through the ML
+     workflow on your own using an interactive notebook (for
+     sharing). Especially useful if you have a feeling/knowledge for
+     the data (e.g. sports data if you're an athlete).
+
+* DONE [[https://docs.google.com/forms/d/e/1FAIpQLSdLkJ65AaAsx-g2_cGj2y3SXwmpz_HdH9mr86QDKGqZBkSNPA/viewform][2023 Arkansas Summer Research Institute]]
 #+attr_latex: :width 400px
 #+caption: Cat on Sidewalk (1959, Angelo Rizzuto) Flickr.com
 [[../img/practice.jpg]]
@@ -1535,7 +1668,7 @@ Thu:
 - Only 2 weeks long (June 1-19)
 - Share link with others: https://tinyurl.com/apply2023asri
 
-* DataCamp review questions: decision trees
+* DONE DataCamp review questions: decision trees
 #+attr_latex: :width 400px
 #+caption: DataCamp professional certificate for your resume
 [[../img/certificate.png]]
@@ -1684,22 +1817,6 @@ Thu:
     tree to tree. Implemented in R with ~randomForest::randomForest~.
     #+end_quote
 
-* TODO What did you learn this week?
-
-Tue: ???
-
-Thu: ???
-
-* TODO [[https://github.com/birkenkrahe/org/blob/master/grading/Presentation_Assessment_Form.pdf][Rubric for evaluating your presentations]]
-#+attr_latex: :width 400px
-#+caption: Photo: US office of war information, 1944 (Flickr.com)
-[[../img/presentation.jpg]]
-
-- The rubric covers all aspects of a successful presentation
-- Test the technology before presenting - the devil's in the detail!
-- Zip all materials and upload them to Canvas no later than May 3rd
-- If I don't get your material by that time, you won't get any points
-
 * TODO Week 15: Projects I
 #+attr_latex: :width 400px
 #+caption: Double cluster in Perseus by Stephen Rahn@Flickr.com (Public Domain)
@@ -1718,48 +1835,6 @@ Extras:
 ** DataCamp review questions: hierarchical clustering
 
 * TODO What next?
-
-** What did I learn?
-
-- A proper (practice-oriented) course on machine learning requires one
-  term each for supervised and unsupervised methods.
-
-- More guidance for projects, perhaps including a portfolio session on
-  how to capitalize on term projects for internships and job interviews
-
-- Leave one session for reviewing the final exam questions?
-
-** What could you do next?
-
-1) Work through some good books
-2) Learn Python, too
-3) Complete plenty of fun projects and document them
-4) Participate in the 2023 Arkansas Research Summer Institute
-5) Remember: what you'll apply will grow, what you won't use will
-   wither on the vine.
------
-
-- The Art of Machine Learning by Norman Matloff (NoStarch, 2023) is
-  shaping up to be the best book for ML with R (and ML altogether):
-  #+attr_latex: :width 200px
-  #+caption: Cover, The Art of Machine Learning by N Matloff (NoStarch, 2023)
-  [[../img/matloffTAOML.png]]
-
-- Deep learning with R -  (Manning, 2022)
-  #+attr_latex: :width 200px
-  #+caption: Cover, Deep learning with R by Chollet/Allaire (Manning, 2022)
-  [[../img/cholletallaire.png]]
-
-- [[https://www.manning.com/books/grokking-machine-learning][Grokking machine learning (Manning, 2022)]]
-  #+attr_latex: :width 200px
-  #+caption: Cover, Grokking machine learning by Serrano (Manning, 2022)
-  [[../img/serrano.png]]
-
-- Learn Python (@DataCamp | Summer I: CSC 109 @Lyon)
-  #+attr_latex: :width 200px
-  #+caption: Cover, Automate the boring stuff with Python by Sweigart (Manning, 2022)
-  [[../img/python.jpg]]
-
 * Resources
 
 - Import the CSV data and save them to a data frame ~sms_raw~. Do not

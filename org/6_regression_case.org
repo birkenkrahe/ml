@@ -331,82 +331,82 @@
 - The ~age ~ children~ trend is non-linear and cannot be seen in the
   correlations! (Unlike e.g. the ~age ~ bmi~ loess curve.)
 
-* IN PROGRESS Training a model on the data
+* Training a model on the data
 
-      - We use the generic ~lm~ function from ~stats~- check arguments:
-        #+begin_src R
-          args(lm)
-          environment(lm)
-        #+end_src
+- We use the generic ~lm~ function from ~stats~- check arguments:
+  #+begin_src R
+    args(lm)
+    environment(lm)
+  #+end_src
 
-        #+RESULTS:
-        : function (formula, data, subset, weights, na.action, method = "qr",
-        :     model = TRUE, x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE,
-        :     contrasts = NULL, offset, ...)
-        : NULL
-        : <environment: namespace:stats>
+  #+RESULTS:
+  : function (formula, data, subset, weights, na.action, method = "qr",
+  :     model = TRUE, x = FALSE, y = FALSE, qr = TRUE, singular.ok = TRUE,
+  :     contrasts = NULL, offset, ...)
+  : NULL
+  : <environment: namespace:stats>
 
-      - Here's a syntax overview (Lantz, 2019):
-        #+attr_latex: :width 400px
-        [[../img/6_lm.png]]
+- Here's a syntax overview (Lantz, 2019):
+  #+attr_latex: :width 400px
+  [[../img/6_lm.png]]
 
-      - Uses the "formula" syntax - the independent variables can *all* be
-        included with the ~.~ operator: ~lm(dep ~ ., data)~ or individually with
-        the ~+~ operator.
+- Uses the "formula" syntax - the independent variables can *all* be
+  included with the ~.~ operator: ~lm(dep ~ ., data)~ or individually with
+  the ~+~ operator.
 
-      - Just like seen in the ~glm~ example (logistic regression), you can
-        include /interactions/ between independent variables with the ~*~
-        operator to model the combined effect of two or more features.
+- Just like seen in the ~glm~ example (logistic regression), you can
+  include /interactions/ between independent variables with the ~*~
+  operator to model the combined effect of two or more features.
 
-      - The following model relates the six independent variables to the
-        total medical ~expenses~:
-        #+name: insurance_model
-        #+begin_src R :results silent
-          ins_model <- lm(expenses ~ . ,data = insurance)
-        #+end_src
+- The following model relates the six independent variables to the
+  total medical ~expenses~:
+  #+name: insurance_model
+  #+begin_src R :results silent
+    ins_model <- lm(expenses ~ . ,data = insurance)
+  #+end_src
 
-      - To see the estimated \beta coefficients, print the model:
-        #+begin_src R
-          ins_model
-        #+end_src
+- To see the estimated \beta coefficients, print the model:
+  #+begin_src R
+    ins_model
+  #+end_src
 
-        #+RESULTS:
-        :
-        : Call:
-        : lm(formula = expenses ~ ., data = insurance)
-        :
-        : Coefficients:
-        :     (Intercept)              age          sexmale              bmi         children
-        :        -11941.6            256.8           -131.4            339.3            475.7
-        :       smokeryes  regionnorthwest  regionsoutheast  regionsouthwest
-        :         23847.5           -352.8          -1035.6           -959.3
+  #+RESULTS:
+  :
+  : Call:
+  : lm(formula = expenses ~ ., data = insurance)
+  :
+  : Coefficients:
+  :     (Intercept)              age          sexmale              bmi         children
+  :        -11941.6            256.8           -131.4            339.3            475.7
+  :       smokeryes  regionnorthwest  regionsoutheast  regionsouthwest
+  :         23847.5           -352.8          -1035.6           -959.3
 
-      - The ~Intercept~ is the predicted value when the independent variables
-        are zero (not realistic since living persons have BMI > 0, age > 0).
+- The ~Intercept~ is the predicted value when the independent variables
+  are zero (not realistic since living persons have BMI > 0, age > 0).
 
-      - The \beta coefficients indicate the estimated increase (slope) in
-        expenses for an increase of one unit in each of the features,
-        assuming all other values are held /constant/.
+- The \beta coefficients indicate the estimated increase (slope) in
+  expenses for an increase of one unit in each of the features,
+  assuming all other values are held /constant/.
 
-      - For example: for each additional year of ~age~, we expect an average
-        of ~256.8~ expense increase per year.
+- For example: for each additional year of ~age~, we expect an average
+  of ~256.8~ expense increase per year.
 
-      - The ~lm~ function automatically dummy-codes each ~factor~ type variable
-        included, like ~sex~, ~smoker~ and ~region~ (split in four dummy variables).
+- The ~lm~ function automatically dummy-codes each ~factor~ type variable
+  included, like ~sex~, ~smoker~ and ~region~ (split in four dummy variables).
 
-      - When adding dummy variables, one category is always left out as a
-        reference category (e.g. ~sex=female~, ~region=northeast~): e.g. males
-        have ~$131.4~ less medical expenses than females per year relatives to
-        females[fn:4].
+- When adding dummy variables, one category is always left out as a
+  reference category (e.g. ~sex=female~, ~region=northeast~): e.g. males
+  have ~$131.4~ less medical expenses than females per year relatives to
+  females[fn:4].
 
-      - Which ~region~ has the highest medical expenses?
-        #+begin_quote
-        The reference group - ~northeast~, because all other values are negative.
-        #+end_quote
+- Which ~region~ has the highest medical expenses?
+  #+begin_quote
+  The reference group - ~northeast~, because all other values are negative.
+  #+end_quote
 
-      - In summary: old age, smoking and obesity can be linked to additional
-        health issues, and additional family members may result in an
-        increase. But how well is this model fitting the data?
+- In summary: old age, smoking and obesity can be linked to additional
+  health issues, and additional family members may result in an
+  increase. But how well is this model fitting the data?
 
 * Evaluating model performance
 
@@ -428,25 +428,25 @@
   lm(formula = expenses ~ ., data = insurance)
 
   Residuals:
-       Min       1Q   Median       3Q      Max 
-  -11302.7  -2850.9   -979.6   1383.9  29981.7 
+       Min       1Q   Median       3Q      Max
+  -11302.7  -2850.9   -979.6   1383.9  29981.7
 
   Coefficients:
-                  Estimate Std. Error t value Pr(>|t|)    
+                  Estimate Std. Error t value Pr(>|t|)
   (Intercept)     -11941.6      987.8 -12.089  < 2e-16 ***
   age                256.8       11.9  21.586  < 2e-16 ***
-  sexmale           -131.3      332.9  -0.395 0.693255    
+  sexmale           -131.3      332.9  -0.395 0.693255
   bmi                339.3       28.6  11.864  < 2e-16 ***
   children           475.7      137.8   3.452 0.000574 ***
   smokeryes        23847.5      413.1  57.723  < 2e-16 ***
-  regionnorthwest   -352.8      476.3  -0.741 0.458976    
-  regionsoutheast  -1035.6      478.7  -2.163 0.030685 *  
-  regionsouthwest   -959.3      477.9  -2.007 0.044921 *  
+  regionnorthwest   -352.8      476.3  -0.741 0.458976
+  regionsoutheast  -1035.6      478.7  -2.163 0.030685 *
+  regionsouthwest   -959.3      477.9  -2.007 0.044921 *
   ---
   Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
   Residual standard error: 6062 on 1329 degrees of freedom
-  Multiple R-squared:  0.7509,	Adjusted R-squared:  0.7494 
+  Multiple R-squared:  0.7509,  Adjusted R-squared:  0.7494
   F-statistic: 500.9 on 8 and 1329 DF,  p-value: < 2.2e-16
   #+end_example
 
@@ -544,7 +544,7 @@
     it actually does).
   #+end_quote
 
-* Improving model performance
+* NEXT Improving model performance
 
 Regression typically leaves feature selection to the user - *subject
 matter knowledge* (on how a feature is related to the outcome) is
@@ -554,7 +554,7 @@ important! We explore three alterations of the model:
 - Transform numeric independent variables to binary indicators
 - Adding interaction effects between independent variables
 
-** Adding non-linear relationships
+* Adding non-linear relationships
 
 - To account for a non-linear relationship, we can add a higher order
   term treating the model as a polynomial:
@@ -581,21 +581,10 @@ important! We explore three alterations of the model:
     str(insurance)
   #+end_src
 
-  #+RESULTS:
-  : 'data.frame':       1338 obs. of  8 variables:
-  :  $ age     : int  19 18 28 33 32 31 46 37 37 60 ...
-  :  $ sex     : chr  "female" "male" "male" "male" ...
-  :  $ bmi     : num  27.9 33.8 33 22.7 28.9 25.7 33.4 27.7 29.8 25.8 ...
-  :  $ children: int  0 1 3 0 0 0 1 3 2 0 ...
-  :  $ smoker  : chr  "yes" "no" "no" "no" ...
-  :  $ region  : chr  "southwest" "southeast" "southeast" "northwest" ...
-  :  $ expenses: num  16885 1726 4449 21984 3867 ...
-  :  $ age2    : num  361 324 784 1089 1024 ...
-
 - When we build the model, we add both age variables to the formula,
   as in ~expenses ~ age + age2~, allowing ~lm~ to separate the terms.
 
-** Converting numeric variable to binary indicator
+* Converting numeric variable to binary indicator
 
 - If a feature is not /cumulative/ but rather has has an effect only
   above a certain /threshold/, we would want this dynamical behavior to
@@ -616,20 +605,6 @@ important! We explore three alterations of the model:
     str(insurance)
   #+end_src
 
-  #+RESULTS:
-  #+begin_example
-  'data.frame': 1338 obs. of  9 variables:
-   $ age     : int  19 18 28 33 32 31 46 37 37 60 ...
-   $ sex     : chr  "female" "male" "male" "male" ...
-   $ bmi     : num  27.9 33.8 33 22.7 28.9 25.7 33.4 27.7 29.8 25.8 ...
-   $ children: int  0 1 3 0 0 0 1 3 2 0 ...
-   $ smoker  : chr  "yes" "no" "no" "no" ...
-   $ region  : chr  "southwest" "southeast" "southeast" "northwest" ...
-   $ expenses: num  16885 1726 4449 21984 3867 ...
-   $ age2    : num  361 324 784 1089 1024 ...
-   $ bmi30   : num  0 1 1 0 0 0 1 0 0 0 ...
-  #+end_example
-
 - In the ~insurance~ model, you can either replace the original ~bmi~ or
   add it depending on the type of impact of BMI:
   1) does the effect add to the impact of BMI?
@@ -649,38 +624,7 @@ important! We explore three alterations of the model:
     summary(ins_model_bmi30)
   #+end_src
 
-  #+RESULTS:
-  #+begin_example
-
-  Call:
-  lm(formula = expenses ~ age + sex + bmi + bmi30 + children + 
-      smoker + region, data = insurance)
-
-  Residuals:
-       Min       1Q   Median       3Q      Max 
-  -11943.6  -3430.1   -100.1   1543.8  28486.0 
-
-  Coefficients:
-                  Estimate Std. Error t value Pr(>|t|)    
-  (Intercept)     -7657.59    1279.44  -5.985 2.78e-09 ***
-  age               257.19      11.78  21.825  < 2e-16 ***
-  sexmale          -161.10     329.78  -0.489 0.625269    
-  bmi               149.27      46.26   3.227 0.001282 ** 
-  bmi30            2852.84     549.11   5.195 2.36e-07 ***
-  children          477.81     136.47   3.501 0.000479 ***
-  smokeryes       23846.74     409.16  58.283  < 2e-16 ***
-  regionnorthwest  -388.38     471.72  -0.823 0.410472    
-  regionsoutheast  -885.48     474.95  -1.864 0.062488 .  
-  regionsouthwest  -949.21     473.31  -2.005 0.045116 *  
-  ---
-  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-  Residual standard error: 6003 on 1328 degrees of freedom
-  Multiple R-squared:  0.7559,	Adjusted R-squared:  0.7542 
-  F-statistic: 456.9 on 9 and 1328 DF,  p-value: < 2.2e-16
-  #+end_example
-
-** Adding interaction effects
+* Adding interaction effects
 
 - Certain features could have a combined impact on the dependent
   variable - we can model this by their /interaction/.
@@ -697,7 +641,7 @@ important! We explore three alterations of the model:
   the increase of effectiveness of ~bmi30~ for a 1 unit increase in
   ~smokeryes~ and vice versa[fn:6].
 
-** The improved regression model
+* The improved regression model
 
 - We added a nonlinear term ~age2~ for ~age~, we created an indicator
   ~bmi30~ for obesity, and we specified an interaction between obesity
@@ -715,59 +659,10 @@ important! We explore three alterations of the model:
     ins_model2
   #+end_src
 
-  #+RESULTS:
-  #+begin_example
-
-  Call:
-  lm(formula = expenses ~ age + age2 + children + bmi + sex + bmi30 *
-      smoker + region, data = insurance)
-
-  Coefficients:
-      (Intercept)              age             age2         children              bmi
-          139.005          -32.618            3.731          678.602          119.771
-          sexmale            bmi30        smokeryes  regionnorthwest  regionsoutheast
-         -496.769         -997.935        13404.595         -279.166         -828.035
-  regionsouthwest  bmi30:smokeryes
-        -1222.162        19810.153
-  #+end_example
-
 - Summarize the results:
   #+begin_src R
     summary(ins_model2)
   #+end_src
-
-  #+RESULTS:
-  #+begin_example
-
-  Call:
-  lm(formula = expenses ~ age + age2 + children + bmi + sex + bmi30 *
-      smoker + region, data = insurance)
-
-  Residuals:
-       Min       1Q   Median       3Q      Max
-  -17297.1  -1656.0  -1262.7   -727.8  24161.6
-
-  Coefficients:
-                    Estimate Std. Error t value Pr(>|t|)
-  (Intercept)       139.0053  1363.1359   0.102 0.918792
-  age               -32.6181    59.8250  -0.545 0.585690
-  age2                3.7307     0.7463   4.999 6.54e-07 ***
-  children          678.6017   105.8855   6.409 2.03e-10 ***
-  bmi               119.7715    34.2796   3.494 0.000492 ***
-  sexmale          -496.7690   244.3713  -2.033 0.042267 *
-  bmi30            -997.9355   422.9607  -2.359 0.018449 *
-  smokeryes       13404.5952   439.9591  30.468  < 2e-16 ***
-  regionnorthwest  -279.1661   349.2826  -0.799 0.424285
-  regionsoutheast  -828.0345   351.6484  -2.355 0.018682 *
-  regionsouthwest -1222.1619   350.5314  -3.487 0.000505 ***
-  bmi30:smokeryes 19810.1534   604.6769  32.762  < 2e-16 ***
-  ---
-  Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-  Residual standard error: 4445 on 1326 degrees of freedom
-  Multiple R-squared:  0.8664,  Adjusted R-squared:  0.8653
-  F-statistic: 781.7 on 11 and 1326 DF,  p-value: < 2.2e-16
-  #+end_example
 
 - Interpret the new result:
   #+attr_latex: :width 400px
@@ -796,7 +691,7 @@ important! We explore three alterations of the model:
 
 - These assumptions are not relevant for numeric forecasting (model's
   worth is not based on truly capturing the underlying process)
-     
+
 * Making predictions with the improved regression model
 
 - We use the model to predict the expenses of future enrollees on the
@@ -810,10 +705,7 @@ important! We explore three alterations of the model:
 - Compute the correlation between predicted and actual costs:
   #+begin_src R
     cor(insurance$pred,insurance$expenses)
-  #+end_src  
-
-  #+RESULTS:
-  : [1] 0.9307999
+  #+end_src
 
 - The model is highly accurate. Let's visualize this using ~plot~:
   #+begin_src R :results graphics file :file ../img/ins_mod2.png
@@ -845,10 +737,6 @@ important! We explore three alterations of the model:
                        smoker = "no", region = "northeast"))
   #+end_src
 
-  #+RESULTS:
-  :        1 
-  : 5973.774
-
 - For this beneficiary, the insurance company has to set its prices to
   no less than $6,000 or $500 per month to break even.
 
@@ -860,10 +748,6 @@ important! We explore three alterations of the model:
                        smoker = "no", region = "northeast")) -> pf
     pf
   #+end_src
-
-  #+RESULTS:
-  :        1 
-  : 6470.543
 
 - The difference between these values is ~-496.769~ the estimated \beta for
   ~sexmale~: all else being equal, males are estimated to have about
@@ -881,10 +765,6 @@ important! We explore three alterations of the model:
     pf - p0
   #+end_src
 
-  #+RESULTS:
-  :        1 
-  : 1357.203
-
 - What if you have a lot of kids? Check out the result for 7 children:
   #+begin_src R
     predict(ins_model2,
@@ -893,10 +773,6 @@ important! We explore three alterations of the model:
                        smoker = "no", region = "northeast"))
   #+end_src
 
-  #+RESULTS:
-  :        1 
-  : 9863.552
-
 - As a mother of 7, you are predicted to incur ca. $3500 more, and not
   (7/2)*$6,400=$22,400, so it's "cheap" to have a large family.
 
@@ -904,13 +780,48 @@ important! We explore three alterations of the model:
   segments, the insurance company could develop a profitable pricing
   structure for various demographics.
 
-* TODO Glossary of code
+* Summary
 
-| COMMAND | MEANING |
-|---------+---------|
-|         |         |
+- Medical expenses are hard to estimate because of the wide spread and
+  seeming randomness of costs and medical conditions.
+- We looked at real US Census data of 1338 medical insurance holders
+  to forecast average medical expense for at-risk segments of the
+  population.
+- The linear model can be summarized to show three groups of
+  performance indicators: residual errors, beta coefficients, and
+  determination coefficients.
+- The correlation matrix and the scatterplot matrix (with correlation
+  ellipsis and loess curve) show correlation numerically and visually
+  and reveal potential model improvement avenues.
+- Statistical significance of an estimate means that a prediction is
+  not the result of chance but can be attributed to a specific
+  chance - equivalent to rejecting the null hypothesis.
+- Besides a plethora of different tests, statistical significance is
+  measured with the p-value: if it is below a \alpha = 5% threshold the
+  dependent (predictor) variable is likely to be meaningfully
+  correlated to the independent (sought) variable.
+- Model improvement focused on: adding non-linear relationships,
+  adding binary threshold indicators, and adding interaction effects
+  among independent variables.
 
-* TODO Summary
+* Glossary of code
+
+The greatest revelation of this case study should be the fact that
+generic functions like ~hist~, ~plot~, ~cor~ and ~summary~ deliver valuable
+insights without having to transform the data[fn:7].
+
+| COMMAND            | MEANING                            |
+|--------------------+------------------------------------|
+| ~summary~            | Summary statistics (generic)       |
+| ~hist~               | Histogram (frequency graph)        |
+| ~cor~                | Correlation matrix (generic)       |
+| ~plot~               | Scatterplot matrix (generic)       |
+| ~psych~              | Stats and graphics package         |
+| ~psych:pairs.panels~ | Scatterplot matrix with extras     |
+| ~graphics:pairs~     | Scatterplot matrix                 |
+| ~lm~                 | Linear model with formula and data |
+| ~predict~            | Prediction with model and new data |
+
 * References
 
 - Adda et al (2020). P-hacking in clinical trials and how incentives
@@ -931,6 +842,12 @@ important! We explore three alterations of the model:
   URL https://www.R-project.org/.
 
 * Footnotes
+
+[fn:7]This is one of the greatest advantages of base R over the
+"Tidyverse", whose functions often mask base R functions and represent
+a bloated universe of functions compared to base R that is difficult
+to navigate for newcomers.
+
 [fn:6][[https://quantifyinghealth.com/interpret-interactions-in-linear-regression/][Choueiry (2023)]] contains a detailed breakdown of an interaction
 term for studying the effect of physical exercise and protein intake
 on the amount of muscle the body can build in 1 month.

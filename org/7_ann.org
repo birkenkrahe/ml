@@ -31,6 +31,14 @@ issues, plus having a billion dollars to spend on training runs.«
 
 * Summary
 
+- Supervised ML methods (kNN, Naive Bayes, Decision Trees, Linear and
+  Logistic Regression) result in clear understanding of the
+  relationships between the input and the output.
+
+- Unsupervised ANN ML methods are extremely powerful as classifiers
+  that can be applied in both categorical and numeric prediction
+  problems but they result in nearly-incomprehensible models.
+
 * References
 
 - Lantz (2019). Machine Learning with R (3e). Packt.
