@@ -34,19 +34,15 @@
   #+end_src  
 
   #+RESULTS:
-  #+begin_example
-
-  Call:
-  lm(formula = expenses ~ ., data = insurance)
-
-  Coefficients:
-      (Intercept)              age          sexmale              bmi  
-         -11941.6            256.8           -131.4            339.3  
-         children        smokeryes  regionnorthwest  regionsoutheast  
-            475.7          23847.5           -352.8          -1035.6  
-  regionsouthwest  
-           -959.3
-  #+end_example
+  : 
+  : Call:
+  : lm(formula = expenses ~ ., data = insurance)
+  : 
+  : Coefficients:
+  :     (Intercept)              age          sexmale              bmi         children  
+  :        -11941.6            256.8           -131.4            339.3            475.7  
+  :       smokeryes  regionnorthwest  regionsoutheast  regionsouthwest  
+  :         23847.5           -352.8          -1035.6           -959.3
   
 * TODO Adding non-linear relationships
 
