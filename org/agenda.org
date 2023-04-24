@@ -1415,7 +1415,6 @@ Thu:
 [[../img/Roc_curve.svg]]
 
 1) *Causation:* what's our basic assumption when modeling data?
-
 2) Correlation: what's our main tool to establish it?
    #+begin_notes
    The Pearson correlation coefficient defined as
@@ -1426,7 +1425,6 @@ Thu:
    Only measures linear relationships.
    #+end_notes
 4) What are the possible values for the correlation coefficient?
-
 5) What's logistic regression for?
    #+begin_notes
    Answer: binary classification (categorical features)
@@ -1450,7 +1448,6 @@ Thu:
    set to ~"binomial"~.
    #+end_notes
 8) What is forward or backward stepwise regression?
-   
 9) Why 'regression'?
    #+begin_notes
    Historically: Galton's experiment showed a 'regression to the mean'
@@ -1509,7 +1506,7 @@ Thu:
 - Factor features are automatically dummy-coded with the first level
   used as reference category.
 
-* IN PROGRESS Week 14: Trees & Regression & ANN
+* Week 14: Trees & Regression
 #+attr_latex: :width 400px
 #+caption: Gnarled tree by Mustang Joe @ Flickr.com (Public Domain)
 [[../img/tree.jpg]]
@@ -1524,7 +1521,7 @@ Thu:
 - [ ] Finish linear regression case study: improving/predicting
 - [ ] Course summary and outlook
 
-* TODO [[https://github.com/birkenkrahe/org/blob/master/grading/Presentation_Assessment_Form.pdf][Rubric for evaluating your presentations]]
+** [[https://github.com/birkenkrahe/org/blob/master/grading/Presentation_Assessment_Form.pdf][Rubric for evaluating your presentations]]
 #+attr_latex: :width 400px
 #+caption: Photo: US office of war information, 1944 (Flickr.com)
 [[../img/presentation.jpg]]
@@ -1535,7 +1532,7 @@ Thu:
   no later than May 3rd
 - If I don't get your material by that time, you won't get any points
 
-* TODO What did you learn this week?
+** What did you learn this week?
 
 Tue:
 - Error measures: residuals, \alpha and p-value
@@ -1544,12 +1541,12 @@ Tue:
 
 Thu: Just do it!
 
-* TODO ML - too large for its own good?
+** ML - too large for its own good?
 #+attr_latex: :width 400px
 #+caption: Robert Wadlow, with his family in Alton, Ill.
 [[../img/12_Robert_Wadlow.png]]
 
-** Summary
+*** Course summary
 
 - Supervised methods (kNN, Naive Bayes, Decision Trees, Linear and
   Logistic Regression) result in clear understanding of the
@@ -1576,7 +1573,7 @@ Thu: Just do it!
   clinical trials data gathering, data annotation and labelling,
   algorithm design, algorithm debugging and improvement, and more.
 
-** What could have been better?
+*** What could have been better?
 
 - A proper (practice-oriented) course on machine learning requires one
   term each for supervised and unsupervised methods.
@@ -1589,7 +1586,7 @@ Thu: Just do it!
 - Let me know what you liked and what you didn't like: fill in the
   survey ([[https://lyon.instructure.com/courses/1041/external_tools/163]["CourseEval"@Canvas]]) by May 4, 5:59 pm (*bonus points*)
 
-** Career
+*** ML Careers
 
 - [[https://link.medium.com/pLGMURvz1yb][How To Improve Your Job Search With 4 + 1 Quick Tips]] (I don't
   believe in these but you should be aware of them anyway):
@@ -1617,7 +1614,7 @@ Thu: Just do it!
      sharing). Especially useful if you have a feeling/knowledge for
      the data (e.g. sports data if you're an athlete).
      
-* DONE [[https://docs.google.com/forms/d/e/1FAIpQLSdLkJ65AaAsx-g2_cGj2y3SXwmpz_HdH9mr86QDKGqZBkSNPA/viewform][2023 Arkansas Summer Research Institute]]
+** [[https://docs.google.com/forms/d/e/1FAIpQLSdLkJ65AaAsx-g2_cGj2y3SXwmpz_HdH9mr86QDKGqZBkSNPA/viewform][2023 Arkansas Summer Research Institute]]
 #+attr_latex: :width 400px
 #+caption: Cat on Sidewalk (1959, Angelo Rizzuto) Flickr.com
 [[../img/practice.jpg]]
@@ -1627,7 +1624,7 @@ Thu: Just do it!
 - Only 2 weeks long (June 1-19)
 - Share link with others: https://tinyurl.com/apply2023asri
 
-* DONE DataCamp review questions: decision trees
+** DataCamp review questions: decision trees
 #+attr_latex: :width 400px
 #+caption: DataCamp professional certificate for your resume
 [[../img/certificate.png]]
