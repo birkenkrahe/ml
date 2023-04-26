@@ -1,0 +1,62 @@
+#+TITLE: Sprint 3: Abstract
+#+AUTHOR: Kim Ho, Jackson Harrod, and Alex Baneg
+#+SUBTITLE: DSC 305 - Machine Learning
+#+STARTUP: overview hideblocks indent inlineimages entitiespretty
+#+OPTIONS: toc:nil num:nil ^:nil
+#+PROPERTY: header-args:R :session *R* :results output :exports both :noweb yes
+
+* Abstract
+#+begin_example
+       Artificial intelligence art is art created through the assistance of
+artificial intelligence programs. AI art can encompass music
+compositions (Civit/Cuadrado, 2022), poetry (Hitsuwari, 2022), and
+digital works of art. Of these, text-to-image AI has become
+increasingly popular. In 2021, OpenAI’s advanced neural network DALL-E
+made waves in the AI art world (Ramesh/Pavlov/Gray, 2021). As AI art
+generators become more advanced, discussion over “authorship,
+copyright, and ethical issues” grows (Cetinic/She, 2022). Critics of
+AI art also highlight failure of AI to capture a vision and ease of
+production and thus lack of artistic skill.  Here we document and show
+that AI art can be incorporated into the medium of clay and continue
+to hold the artistic form and vision of the artist. We use an AI art
+generator called NightCafe and enter text that the generator turns
+into images. Then, we print and cut the design onto a vinyl sticker
+and transfer the image over through cyanotyping, a process of printing
+which uses sunlight (Ware).  
+       What this reveals in relation to what was thought previously. AICAN
+(artiﬁcial intelligence creative adversarial network) system is
+designed to deviate from copying the images they learn from and to
+instead encourage new versions of art (Audry/Ippolito, 2019). 
+       AI art ideally is used as part of the process and not taken as the
+final product. AI art in itself is its own medium the likes of which
+we have never really seen before in human history, and therefore
+should be used as such. In a few hundred years and strictly in terms
+of art prowess, future humans may look back on our time similarly to
+how we look upon the Renaissance. Ultimately, there is unlimited
+potential for collaborative artwork between AI and humans.
+#+end_example
+
+* Sources
+#+begin_example
+Audry S. and Ippolito J. Can Artificial Intelligence Make Art without
+Artists? Ask the Viewer. Arts. 2019;
+8(1):35. https://doi.org/10.3390/arts8010035
+
+Civit M., Civit-Masot J., Cuadrado F., and Escalona M. A systematic
+review of artificial intelligence-based music generation: Scope,
+applications, and future trends, Expert Systems with Applications,
+Volume 209, 2022, https://doi.org/10.1016/j.eswa.2022.118190.
+
+R Core Team. R: A language and environment for statistical
+computing. R Foundation for Statistical Computing, 2022, URL:
+R-project.org.
+
+Ramesh A., Pavlov M., and GRAY S. Dall·e: Creating images from
+text., 2021.
+
+Cetinic, E. and She, J. (2021). Understanding and Creating Art with
+AI: Review and Outlook. URL:www.researchgate.net
+
+Ware, Mike. Cyanomicon- History, Science and Art of Cyanotype:
+photographic printing in Prussian blue, 2014. URL: academica.edu 
+#+end_example

@@ -1,0 +1,57 @@
+#+TITLE: 3rd Sprint Review
+#+AUTHOR: Thomas Lingren, Nicholas Chaney, Nikola Sasaroga [pledged]
+* Abstract
+    The NCAA March Madness Men's Basketball Tournament is a major
+ event in the world of college basketball, and accurately predicting
+ the outcome of each match can be a challenging task. According to
+ NCAA.com, the odds of predicting a perfect bracket are about 1 in 9.2
+ quintillion. The most that someone has accurately predicted a bracket
+ is 49 games out of 63. In this project, the goal was to use a linear
+ regression model feature technique to consistently and accurately
+ predict winners of each bracket game with the same or better results.
+ 
+    To begin, a total of thirty-two features were selected for each
+ team accepted into the tournament for previous years(back until
+ 2000). These features were selected from ESPN.com and included a
+ variety of statistics related to the teams' performance. Various
+ ordering processes were then tested against the baseline, and it was
+ found that using a random ordering process increased classification
+ accuracy.
+ 
+    Using linear regression we were able to train a model to find out
+ exactly what statistics were directly correlated with a team winning.
+ After comparing our “training data” with the actual outcome or
+ “testing data” of the 2023 march madness bracket we found or model to
+ be able to predict the correct bracket with **.**% accuracy.
+ 
+    Overall, this project demonstrated the effectiveness of using
+ machine learning in conjunction with a linear regression model for
+ accurately predicting the outcome of NCAA Men's Basketball Tournament
+ matches. By employing these techniques, it may be possible to improve
+ the accuracy of future predictions and provide valuable insights into
+ the world of machine learning and other prediction models.
+
+* References
+ 1.Gumm, Jordan, et al. “A Machine Learning Strategy for Predicting March Madness Winners.”
+       2015 IEEE/ACIS 16th International Conference on Software
+       Engineering, Artificial Intelligence, Networking and
+       Parallel/Distributed Computing (SNPD), 2015,
+
+ 2.Morrell, Eric. “How to Use Machine Learning to Predict NCAA March
+       Madness.” Analytics8, 2 Feb. 2023,
+
+ 3. Shen, Gang, et al. “Predicting Results of March Madness Using
+      Three Different Methods.” Journal of Sports Research, vol. 3,
+      no. 1, 2016, pp. 10–17.,
+
+ 4.Sundberg, Andrew. “College Basketball Dataset.”
+      Kaggle, 16 Mar. 2021,
+
+ 5.Wilco, Daniel. “The Absurd Odds of a Perfect NCAA
+       Bracket.” NCAA.com, NCAA.com, 13 Mar. 2022,
+
+ 6. R Core Team (2022). R: A language and environment for statistical
+  computing. R Foundation for Statistical Computing, Vienna, Austria.
+  URL https://www.R-project.org/.
+
+   

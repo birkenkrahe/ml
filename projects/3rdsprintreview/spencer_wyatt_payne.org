@@ -1,0 +1,29 @@
+#+TITLE:SnAIke_VS_TheWorld
+#+AUTHOR: Spencer Rhoden, Wyatt Frerichs, Andrew Moser
+
+* SnAIke_VS_TheWorld Abstract
+
+   This research project aims to recreate the classic game "Snake" and then
+train a neural network to play it. The objective is to develop an AI algorithm
+that can learn how to navigate the game's environment, avoid obstacles, and
+collect rewards. We are currently exploring various methods for training the
+neural network, including reinforcement learning and deep Q-networks.
+
+   In our early progress, we have successfully built the Snake game using the
+Python programming language. However, we have encountered some difficulties
+with the Pygame library and getting an IDE working. We are currently working
+to optimize the game's performance and deciding on our preferred method for
+the neural network. Once we have successfully developed the game, we will
+begin training the neural network using. We will evaluate the performance
+of the trained model by measuring its score on the game and how the score
+changes as the neural network matures.
+
+
+    We plan on implementing a genetic algorithm for the new neural network.
+The genetic algorithm will introduce random mutations into the decisions
+made by the neural network. It will then take the most successful mutations
+from each generation and further mutate them to further increase the success
+of the next generation. The success of each mutation will be determined by
+not only the score of each snake but the time it takes for each snake to
+achieve the score i.e. a snake that achieves a score of 540 in 2000 moves
+will score higher than a snake that achieved a score of 570 in 2500 moves.

@@ -1,0 +1,45 @@
+Chase Griffith & Garrett Russell
+
+04/21/23
+
+Machine Learning\\
+PLEDGED
+
+ABSTRACT: Stable Diffusion (SD) is a form of an Artificial Intelligence
+model that works on latent space of images to create a “new” image based
+on a text prompt. This presentation goes over the specifics of how SD
+works, as well as the potential legal ramifications of its rapid and
+widespread adoption by the general public. Using a case example from
+Google vs. Authors Guild as a basis for a prediction of the court case
+Class Action lawsuit v. Stability AI LTD., Midjourney INC. DeviantArt,
+INC. We explain the details of SD including how it generates new images
+and how it gathered its training and test data sets. In particular, we
+focus on the Large-scale Artificial Intelligence Open Network (LAION)
+dataset. We discuss how this might affect the field of AI as it relates
+to consumer products. We also discuss the legality of SD and LAION as it
+relates to copyright law. The results of our studies are that SD and
+LAION are most likely going to be found guilty of some sort of copyright
+infringement, but not on a large enough scale to shut the entire project
+down. We think that this is due to the fact that SD and LAION are
+open-sourced projects, and their terms of service can somewhat protect
+them from major ramifications. Despite the protections, the copyright
+infringement and profit off of the infringement are too vast to have no
+repercussions. We advise people to use these tools as they should be
+used: as a tool, not as a means of profit.
+
+References:
+
+Beaumont R. (March 2023). LAION-5B: A NEW ERA OF OPEN LARGE-SCALE
+MULTI-MODAL DATASETS. URL:
+[[https://laion.ai/blog/laion-5b/][_https://laion.ai/blog/laion-5b/_]]
+
+Rath S. (March 2023) Stable Diffusion - A New Paradigm in Generative AI.
+URL:
+[[https://learnopencv.com/stable-diffusion-generative-ai/][_https://learnopencv.com/stable-diffusion-generative-ai/_]]
+
+Authors Guild v. Google, Inc., No. 13-4829 (2d Cir. 2015) URL:
+[[https://law.justia.com/cases/federal/appellate-courts/ca2/13-4829/13-4829-2015-10-16.html][_https://law.justia.com/cases/federal/appellate-courts/ca2/13-4829/13-4829-2015-10-16.html_]]
+
+Sarah Andersen, Kelly McKernan, Karla Ortiz v. Stability AI LTD,
+Stability AI, INC. Midjourney, INC. DeviantArt, Inc. (January 2023) URL:
+[[https://stablediffusionlitigation.com/pdf/00201/1-1-stable-diffusion-complaint.pdf][_https://stablediffusionlitigation.com/pdf/00201/1-1-stable-diffusion-complaint.pdf_]]

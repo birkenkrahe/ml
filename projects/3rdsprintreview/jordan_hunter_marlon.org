@@ -1,0 +1,136 @@
+#+TITLE: Abstract
+#+AUTHOR: Jordan Deuley, Hunter Perkins, Marlon Durand [Pledged]
+
+
+
+* Abstract
+
+  - Abstract
+
+    Social media platforms have become an essential source of
+    information spreading and opinion expression in today's
+    digital age. Among them, Twitter, is a super popular choice.
+    With it's real-time naute and widespread use, Twitter offers a
+    wealth of data that can be used for many various applications,
+    including predicting the performance of tweets. In this study we
+    are going to explore the use of machine learning techniques to
+    esimate the number of impressions a tweet would receieve based on
+    factors such as likes, follower count, retweets, and other
+    relevant features.
+
+    To gather our data, we utilized Twitter Scraper, a tool that
+    enables us to extract tweet data from specific Twitter accounts.
+    We carefully selected three Twitter accounts that represent
+    different domains or industries of interest, such as news
+    organizations, sports teams, or celebrities. We considered
+    factors such as the account's follower count, engagement levels,
+    and relevance to our research question when making our choices.
+
+    In this study, we carefully selected three Twitter accounts, namely
+    @Cudalla, @elonmusk, and @upblissed, from which to collect data
+    for our analysis. These accounts were chosen based on their
+    diverse content, which included a mixture of media (such as videos
+    and pictures) and text-based tweets. We acknowledge that one
+    challenge we may encounter is that media-rich tweets, such as
+    pictures or videos, may potentially receive higher impressions
+    compared to text-based tweets, solely based on their visual
+    appeal.
+
+    We're still in the process of figuring out how to analyze our
+    data. We need to decide which algorithm and programming language
+    would be best for using machine learning to make sense of the
+    information. We're being careful in our decision-making to
+    make sure we choose the right tools for the job. We're considering
+    things like how complex the data is, what questions we're trying
+    to answer, and what resources we have available. We're really
+    excited to see what we'll discover once we've sorted out the best
+    approach!
+
+
+  - References
+
+  Twitter Scraper ·Apify. (n.d.). Apify.
+ #+TITLE: Abstract
+#+AUTHOR: Jordan Deuley, Hunter Perkins, Marlon Durand [Pledged]
+
+
+
+* Abstract
+
+  - Abstract
+
+    Social media platforms have become an essential source of
+    information spreading and opinion expression in today's
+    digital age. Among them, Twitter, is a super popular choice.
+    With it's real-time naute and widespread use, Twitter offers a
+    wealth of data that can be used for many various applications,
+    including predicting the performance of tweets. In this study we
+    are going to explore the use of machine learning techniques to
+    esimate the number of impressions a tweet would receieve based on
+    factors such as likes, follower count, retweets, and other
+    relevant features.
+
+    To gather our data, we utilized Twitter Scraper, a tool that
+    enables us to extract tweet data from specific Twitter accounts.
+    We carefully selected three Twitter accounts that represent
+    different domains or industries of interest, such as news
+    organizations, sports teams, or celebrities. We considered
+    factors such as the account's follower count, engagement levels,
+    and relevance to our research question when making our choices.
+
+    In this study, we carefully selected three Twitter accounts, namely
+    @Cudalla, @elonmusk, and @upblissed, from which to collect data
+    for our analysis. These accounts were chosen based on their
+    diverse content, which included a mixture of media (such as videos
+    and pictures) and text-based tweets. We acknowledge that one
+    challenge we may encounter is that media-rich tweets, such as
+    pictures or videos, may potentially receive higher impressions
+    compared to text-based tweets, solely based on their visual
+    appeal.
+
+    We're still in the process of figuring out how to analyze our
+    data. We need to decide which algorithm and programming language
+    would be best for using machine learning to make sense of the
+    information. We're being careful in our decision-making to
+    make sure we choose the right tools for the job. We're considering
+    things like how complex the data is, what questions we're trying
+    to answer, and what resources we have available. We're really
+    excited to see what we'll discover once we've sorted out the best
+    approach!
+
+
+  - References
+
+  Twitter scraper · Apify. Apify. (2023).
+  Retrieved April 20, 2023, from https://apify.com/quacker/twitter-scraper 
+
+  
+
+  
+  
+
+    
+
+
+
+
+
+    
+
+    
+
+
+  
+
+  
+  
+
+    
+
+
+
+
+
+    
+
+    

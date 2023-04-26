@@ -1,0 +1,80 @@
+#+title: Literature Review
+
+Michael Hullett
+
+Malcolm Howard
+
+To go about finding these references I went on a google search for
+connections between the TikTok algorithm and Data Science/Machine
+Learning. I educated myself first on TikTok's algorithm, then I chose
+the articles that I thought would be best for us to reference and
+explain the algorithm to the class in our final presentation due to the
+amount of information they provided.
+
+[[https://towardsdatascience.com/the-inescapable-ai-algorithm-tiktok-ad4c6fd981b8]]
+
+This Towards Data Science article is a prefect way to introduce our
+topic as it corresponds directly in the direction we are attempting to
+approach. This article achieves a clear explanation of TikTok and its
+algorithm and how it works in correlation to Machine Learning. There are
+multiple examples of how data science was used in creating this
+algorithm and the writer makes the algorithm extremely simple to follow
+which is why we plan to use it in the upcoming sprint reviews.
+
+I liked this entire article from top to bottom. It was easy to follow
+and presented great visual data which was simple to understand. I highly
+recommend this article first and foremost to anyone interested in our
+topic because it is a simple walkthrough of the subject and you don't
+have to understand much to follow along. We believe this is a very
+credible source by the way it is organized, well-structured, and shows
+the references as to where it got its information from.
+
+[[https://towardsdatascience.com/how-does-tiktoks-algorithm-know-me-so-well-459e8dc7e90b]]
+
+Towards Data Science's article goes into the depth of the question, “How
+does the TikTok algorithm know people so well?”. It achieved a
+definitive example of Implicit, explicit, and Granularity feedback,
+while explaining how Machine Learning ties into all of it. I plan to use
+the feedback descriptions in future sprint review projects.
+
+Though this article was not as exceptionally great as the previous one I
+still believe that it provided essential information. This article
+should be read by anyone who read the previous article and were either
+interested in learning more or if they believed that the previous
+article did not contain enough information. We believe this source is
+credible for all the same reason since it was created by the same
+company and also contained multiple references as to where they got
+their information from.
+
+[[https://dev.to/mage_ai/how-does-tiktok-use-machine-learning-5b7i#:~:text=At%20nearly%20every%20stage%20of%20their%20content%20strategy%2C,computer%20vision%2C%20natural%20language%20processing%20%28NLP%29%2C%20and%20metadata]].
+
+This article informs you on the connection between TikTok and Machine
+Learning. It helps you achieve an understanding of how Machine Learning
+in implemented into TikTok via Metadata, Computer vision, and NLP. I
+plan on using this article to help me explain how TikTok itself is
+connected to Machine Learning.
+
+This article is more of a review compared to how detailed the previous
+ones were. If more research was put into the article and it was more
+detailed, then I would call it a great reference however its more on the
+short side. This article is for those who are interested in the subject
+but don't have much time or a well enough attention span to finish a
+fully detailed article on the subject. I believe this source is credible
+because of its use of references and how it implements them into the
+article.
+
+[[https://thecleverprogrammer.com/2020/09/26/tiktok-algorithm-with-machine-learning/]]
+
+This article describes TikTok's Algorithm through collaborative and
+content-based filtering. It achieves examples of how to code both of
+these through Machine Learning. I plan to use the examples of
+collaborative and content-based filtering in our final sprint review
+project.
+
+I believe this article was highly informative and I liked that it taught
+me on topic I did know about in the short time that it took me to read
+it. I recommend this article to anyone who would like to explore the
+subject even further. I believe this article has less credibility than
+the previous articles because of its lack of references, however I
+tested the code that it gave me and it matched the original TikTok
+algorithm.

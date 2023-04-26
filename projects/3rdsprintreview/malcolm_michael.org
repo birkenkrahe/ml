@@ -1,0 +1,61 @@
+#+TITLE: Sprint Review 3: abstract with results
+#+AUTHOR: Malcolm Howard & Michael Hullett
+
+* Abstract
+
+- TikTok is one of the biggest social media platforms around the
+ world. This growing streaming platform is constantly on the rise as
+ it was the most downloaded app in the world with 672 million
+ downloads in 2022. One of the biggest reasons people are so hooked on
+ TikTok is the freedom and creativity you have to do almost anything
+ you want on there. This also gives people the chance to
+ watch others and enjoy watching short videos or pictures of personal
+ interest. The way TikTok got to where they are now is with their
+ algorithmic system. This system is always going to have the
+ viewers’ best interest with the fyp (for you page). This page is a
+ feed of videos that are based on several factors. Looking at it, the
+ system came down to 5 key factors with subfactors in each
+ and they are user interactions, video information, device and account
+ settings, video completion rate, and location. Here we show that
+ there are several factors that influence the for you page
+ and based on impact they are ranked from most dominant with user
+ interaction and the least influence is device and account
+ settings. You would think that trends and popularity and who you
+ follow would be some of the main factors to creating your for you
+ page but that is not the case. We also have a ranking on how
+ effective each sub factor in each has against each other to
+ see how important they are to their selective categories. With all
+ this, our powerpoint will show how each category and their
+ subcategories affect the time you spend on tiktok.
+ More research will be put in by others to better understand the
+ algorithms as well because this is one of the biggest platforms now
+ and its AI is a big reason for it.
+ 
+
+* References
+
+- Worb, Jessica. “How Does TikTok's Algorithm Work in 2023?: Later.”
+  Later Social Media Marketing, Later Blog, 16 Feb. 2023,
+  https://later.com/blog/tiktok-algorithm/.
+
+- Newberry, Christina. “2023 TikTok Algorithm Explained + Tips to Go Viral.”
+  Social Media Marketing &amp; Management Dashboard, Hootsuite, 8 Feb. 2023,
+  https://blog.hootsuite.com/tiktok-algorithm/#:~:text=What%20are%20the%20TikTok's%20algorithm,%2C%20sounds%2C%20hashtags%2C%20etc.
+
+- Hern, Alex. “How TikTok's Algorithm Made It a Success: 'It Pushes the Boundaries'.”
+  The Guardian, Guardian News and Media, 24 Oct. 2022,
+  https://www.theguardian.com/technology/2022/oct/23/tiktok-rise-algorithm-popularity.
+
+- Bujph. “What Makes TikTok so Addictive?: An Analysis of the Mechanisms Underlying
+  the World's Latest Social Media Craze.” Brown Undergraduate Journal of Public Health,
+  7 Feb. 2022, https://sites.brown.edu/publichealthjournal/2021/12/13/tiktok/.
+
+- Ashbridge, Zoe. “How the TikTok Algorithm Works: Everything You Need to Know.”
+  Search Engine Land, 11 Dec. 2022,
+  https://searchengineland.com/how-tiktok-algorithm-works-390229.
+  
+- Zote, Jacqueline. “The TikTok Algorithm Explained.” Sprout Social, 27 Oct. 2022,
+  https://sproutsocial.com/insights/tiktok-algorithm/.
+
+- Geyser, Werner. “How Does the TikTok Algorithm Work?” Influencer Marketing Hub,
+  18 July 2022, https://influencermarketinghub.com/tiktok-algorithm/.

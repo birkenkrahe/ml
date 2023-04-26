@@ -1,0 +1,84 @@
+#+Title: An Exploration of the Use of the Langragian Polynomial for Regression
+#+Author: Jacob Wolfrom (pledged)
+#+Subtitle: Machine Learning
+
+* Abstract
+
+Regression is a technique used to estimate trends for continuous
+numerical data based on other features in a dataset. These methods can
+be classified as parametric or nonparametric based on the assumptions
+made about the structure of the data (semiparametric methods exist but
+are beyond the scope of this project). Parametric regression methods
+assume that the target feature can be modeled by a particular function
+of other features while nonparametric methods do not make any
+assumptions of the relation between features[fn:1]. Regression
+methods, like most methods in machine learning, typically evaluate
+very slowly as the data increases in scale due to the number of
+computations required for each data point. Here I show that, under
+certain circumstances, a nonparametric regression method can be
+significantly sped up through the use of numerical interpolation
+methods, namely Barycentric Lagrangian Interpolation[fn:2], without
+significantly sacrificing accuracy as a proof of concept. I found that
+by applying Barycentric Lagrangian Interpolation on values predicted
+by Kernel Regression[fn:3] with a Gaussian Kernel along a Chebyshev
+Distribution of points, I could produce a similar result to a pure
+Kernel Regression approach in significantly less time. Additionally,
+this process technically turns a nonparamteric method into a
+parametric method which, if implemented correctly, would drastically
+reduce the time required in order to apply the method to new data,
+allowing for faster testing in addition to model creation. However,
+this method becomes unfavorable when considering jagged or
+discontinuous data due to the degree of the polynomial required for an
+accurate model as well as the Hunge effect inherent in Lagrangian
+Interpolation. As a proof of concept, these results imply that this
+process or a similar process may be used to great benefit beyond this
+simple case as higher dimensional interpolation methods exist and
+could, in theory, be used to consider multiple features in the same
+model. While currently better methods to improve the time complexity
+of regression models already exist as shown by comparison to LOESS
+(Locally Estimated Scatterplot Smoothing), this project serves as a
+basis for further investigation into the application of interpolation
+methods within regression models. The discovered results warrant
+further expansion and comparison to other regression boosting
+strategies such as binning for Kernel Density Estimation in order to
+truly determine whether or not this application of interpolation in
+regression methods is truly significant or simply outclassed by modern
+equivalents.
+
+* References
+** Sources for Abstract
+[fn:1] Blog post about parametric vs. nonparametric machine learning methods
+
+Jing, H. (2020, March 7). Parametric vs. Nonparametric Machine
+  Learning Algorithms. Medium. Retrieved April 20, 2023, from
+  https://towardsdatascience.com/parametric-vs-nonparametric-machine-learning-algorithms-5bf31393d944
+
+
+[fn:2] Archived paper concerning the application of Barycentric
+Lagrangian Interpolation
+
+Berrut, J. P., & Trefethen, L. N. (2004). Barycentric lagrange
+    interpolation. SIAM review, 46(3), 501-517.
+
+Link to digital version of the article [[https://epubs.siam.org/doi/epdf/10.1137/S0036144502417715][here]]
+
+
+[fn:3] Blog post concerning application of Kernel Regression. Of all
+the sources I found, this is the one that explained Kernel Regression
+at the level used for this project the best.
+
+McCormick, C. (2014, February 26). Kernel Regression. Chris
+  McCormick. Retrieved April 20, 2023, from
+  https://mccormickml.com/2014/02/26/kernel-regression/#:~:text=Gaussian%20Kernel%20Regression%20is%20a,line%20to%20a%20scatter%20plot
+
+** Software used
+R 4.1.2 [Computer software]. (2021). Retrieved from
+https://www.R-project.org/R
+
+
+R 4.2.2 [Computer software]. (2021). Retrieved from
+https://www.R-project.org/R
+
+
+GNU Emacs 27.2 [Computer software]. (2021). Retrieved from
+https://ftp.gnu.org/gnu/emacs/windows/
