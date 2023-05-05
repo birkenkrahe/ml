@@ -1,0 +1,1141 @@
+#+Title: An Exploration of the Use of the Langragian Polynomial for Regression - Regression Model
+#+Author: Jacob Wolfrom (pledged)
+#+Subtitle: Machine Learning
+#+property: header-args:R :session model :results output :noweb yes
+
+* README
+This file is where I did most of the develpoment for my project. It is
+filled with bad code for the model creation and really bad code for
+the ~shiny~ app. You have been warned. 
+* DONE [#A] Implement the Barycentric Lagrangian Interpolation model using Chebyshev points
+** DONE [#A] Create an S3 class ~bary_lagrange_model~ to store the function for the model
+** DONE [#A] Create a function that outputs a ~bary_lagrange_model~ S3 class given vector of values
+** DONE [#A] Create an S3 class ~weights~ to store the predetermined weights of the model
+** DONE [#A] Create an S3 class ~data_values~ to store the values of the function to be interpolated
+
+** Code
+
+#+begin_src R :tangle app.R
+  ## returns the x-value of a particular point on the Chebyshev
+  ## distribution given the numbers of points, n,  and the index of the
+  ## point. The index spans from 0 to the number of points - 1. By default
+  ## the distribution is over [-1, 1]
+  chebyshevPointDomain = function(n, index, a=-1, b=1) {
+    if(missing(index)) { index = 0:(n-1) }
+
+    ## Compute the default domain value of Chebyshev points 
+    temp_num = cos( ((2*index + 1) * pi)/(2*(n-1) + 2) ) 
+
+    ## Scales the points to fit the domain
+    temp_num = a + (temp_num + 1)*(b - a)/2
+
+    return(temp_num)
+  }
+
+  ## returns the weight of a particular point on the Chebyshev
+  ## distribution as it pertains to the barycentric Lagrangian
+  ## interpolation model. The index spans from 0 to the number of
+  ## weights - 1. By default the distribution is over [-1, 1]
+  chebyshevWeight = function(n, index) {
+    if(missing(index)) { index = 0:(n-1) }
+    return( ((-1)^(index)) * sin( ((2*index + 1)*pi)/(2*(n-1) + 2) ) )
+  }
+
+  ## Creates a data_values S3 object from two numeric vectors of the same length
+  as.dataValues = function(x, y) {
+    if(length(x) != length(y)) { stop("x and y are not of the same length") }
+
+    data_values = y
+    attr(data_values, "class") = "data_values"
+    attr(data_values, "domain_values") = x
+
+    return(data_values)
+  }
+
+  ## Creates a special S3 object to be used in the
+  ## lagrangianInterpolation function. n is the number of points in the
+  ## distribution
+  chebyshevWeightDistribution = function(n) {
+    ## This attribute stores the value of the weights which are independent of
+    ## the data. This is given by the below formula for the Chebyshev
+    ## point distribution
+    weights = chebyshevWeight(n=n)
+
+    attr(weights, "class") = "weights" # set the class
+
+    ## This attribute keeps track of the distribution of the Chebyshev
+    ## points to be used in later calculations
+    attr(weights, "point_distribution") = chebyshevPointDomain(n=n)
+
+    return(weights)
+  }
+
+  ## This function returns the values of a domain, [a, b] according to a
+  ## Chebyshev distribution of n points
+  chebyshevFunctionDistributor = function(func, n, a, b, ...) {
+    domain_values = chebyshevPointDomain(n=n, a=a, b=b)
+    function_values = sapply(domain_values, func, ...)
+
+    return(as.dataValues(x=domain_values, y=function_values))
+  }
+
+  ## This function generates a random set of n data points over a given
+  ## function with some error.  The error_func parameter should be a one
+  ## length character vector containing the name of the distribution
+  ## function to be used to calculate error (i.e. "rnorm"). The ... is
+  ## for parameters to be passed to the error function
+  randomData = function(func, n, a, b) {
+    domain_size = b - a
+    data_domain = sort(a + sample(1000000*domain_size, n)/1000000)
+
+    temp_func = Vectorize(func)
+
+    data_range = range(temp_func(data_domain))
+    data_min = min(temp_func(data_domain))
+    data_max = max(temp_func(data_domain))
+
+    data_values = rep(NA, length(data_domain))
+    for(i in 1:length(data_domain)) {
+      temp_val = func(data_domain[i])
+      data_values[i] = rnorm(n=1, mean=temp_val, sd=max(abs(temp_val/2), 1))
+    }
+
+    return(as.dataValues(x=data_domain, y=data_values))
+  }
+
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :tangle app.R
+  ## This function outputs a function that is the interpolation of the given values following
+  ## barycentric Lagrangian interpolation. The weights default to a Chebyshev distribution, but
+  ## other distributions of weights can be handled. The length of weights if given must be the same
+  ## length as the values.
+  ##
+  ## Alternatively, the user can input the a function and this function will create values based off
+  ## of the input function and other parameters
+  lagrangianInterpolation = function(x, values, func, degree=100,
+                                     interval.start=-1, interval.end=1, weights) {
+    ## Checking if only one of either fun or values was input
+    if(!xor(missing(values), missing(func))) {
+      stop("Use only one function input argument (values or fun)") }
+
+    ## If func was given generate values
+    if(missing(values)) {
+      values = chebyshevFunctionDistributor(func=func, n=degree, a=interval.start, b=interval.end)
+    }
+
+    ## if weights aren't given, default to a Chebyshev distribution of points
+    if(missing(weights)) {
+      weights = chebyshevWeightDistribution(n=length(values))
+    }
+
+    ## Check types of args to be the correct S3 class
+    if(class(values) != "data_values") {
+      stop("values arg is not of class data_values")}
+    if(class(weights) != "weights") {
+      stop("weights arg is not of class weights")}
+
+    ## Check the lengths of weights and values to see if they match
+    if(length(weights) != length(values)) {
+      stop("weights and values args have differing lengths")}
+
+    temp_vec = numeric(0)
+    for(num in x) {
+      ## Check if x is a function value and return f(x) if it is
+      if(num %in% attr(values, "domain_values")) {
+        temp_vec = append(temp_vec, values[which(attr(values, "domain_values") == num)])
+        next()
+      }
+
+      common_terms = weights/(num - attr(values, "domain_values"))
+      numer = sum(values * common_terms)
+      denom = sum(common_terms)
+
+      temp_vec = append(temp_vec, numer/denom)
+    }
+
+    return(temp_vec)
+  }
+
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results graphics file :file "./Images/interpolate.png"
+  f_x = function(x) {
+    x^3 + 3
+  }
+  f_n = 100
+  f_a = -10
+  f_b = 10
+
+  f_values = chebyshevFunctionDistributor(func=f_x, n=f_n, a=f_a, b=f_b)
+  ## str(f_values)
+
+  plot(x=attr(f_values, "domain_values"), y=f_values)
+  curve(lagrangianInterpolation(x=x, values=f_values), add=TRUE)
+#+end_src
+
+#+RESULTS:
+[[file:./Images/interpolate.png]]
+
+* DONE [#B] Review the point-wise regression methods
+I will need to go through the methods to see their advantages and
+disadvantages
+
+I have settled on using Kernel Regression due to its simplicity
+
+** Code
+
+#+begin_src R :tangle app.R
+  ## This function computes kernel regression on a data_values object,
+  ## data, using kernels with a given standard deviation to find the
+  ## estimated function value at a point.
+
+  gaussianKernelRegression = function(x, data, standard_deviation) {
+    if(class(data) != "data_values") {
+      stop("data arg is not of class data_values")}
+
+    temp_vec = numeric(0)
+    for(num in x) {
+      common_terms = exp( -((num - attr(data, "domain_values"))^2) / (2*standard_deviation^2) )
+      numer = sum(data * common_terms)
+      denom = sum(common_terms)
+
+      temp_vec = append(temp_vec, numer/denom)
+    }
+
+    return(temp_vec)
+  }
+
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results graphics file :file "./Images/regression.png"
+  data_a = -10
+  data_b = 10
+  data_n = 10000
+  g_x = Vectorize(function(x) {
+    x^2 + 3
+  })
+
+  g_domain_values = sort(data_a + (sample(1000000000, data_n)/1000000000) * (data_b - data_a))
+
+  g_values = g_x(g_domain_values) 
+  attr(g_values, "class") = "data_values"
+  attr(g_values, "domain_values") = g_domain_values
+
+  plot(x=attr(g_values, "domain_values"), y=g_values, type="l")
+  curve(gaussianKernelRegression(x=x, data=g_values, standard_deviation=1), add=TRUE, col="red")
+#+end_src
+
+#+RESULTS:
+[[file:./Images/regression.png]]
+
+#+begin_src R :tangle app.R
+  ## This function performs Lagrangian Interpolation on specific points that are acquired from
+  ## Kernel Regression
+  lagrangianRegression <- function(x, data, standard_deviation, degree, interval.start,
+                                   interval.end) {
+
+    if(missing(interval.start)) {
+      interval.start <- min(attr(data, "domain_values"))
+    }
+
+    if(missing(interval.end)) {
+      interval.end <- max(attr(data, "domain_values"))
+    }
+
+    node_domain <- chebyshevPointDomain(n=degree, a=interval.start, b=interval.end)
+
+    node_values <- gaussianKernelRegression(x=node_domain, data=data,
+                                            standard_deviation=standard_deviation)
+
+    return(lagrangianInterpolation(x=x, values=as.dataValues(x=node_domain, y=node_values)))
+  }
+
+
+#+end_src
+
+#+RESULTS:
+
+#+begin_src R :results graphics file :file "./Images/lagrangian_regression.png"
+  ## Parameters
+  h_x = function(x) {
+    if(x > 3 & x < 7)
+      return(5)
+    return(2)
+  }
+  h_a = -10
+  h_b = 10
+  h_n = 30
+  data_n = 10000
+
+  data_values = randomData(func=h_x, n=data_n, a=h_a, b=h_b)
+
+
+  plot(x=attr(data_values, "domain_values"), y=data_values, cex=0.2)
+  curve(lagrangianRegression(x=x, data=data_values, standard_deviation=1, degree=h_n,
+                             interval.start=h_a, interval.end=h_b), add=TRUE, col="red", lwd=2)
+
+  temp_func = Vectorize(h_x)
+  curve(temp_func, add=TRUE, col="blue", lwd=2)
+#+end_src
+
+#+RESULTS:
+[[file:./Images/lagrangian_regression.png]]
+
+* DONE [#C] Compare the model to other regression models
+This includes both the time efficiency and accuracy of the model.
+
+I want to do this in the form of a Shiny dashboard
+** Global
+*** Libraries
+#+begin_src R :tangle app.R
+  library(stats)
+  library(shiny)
+  library(shinydashboard)
+#+end_src
+
+#+RESULTS:
+
+*** Global Variables
+Load data
+#+begin_src R :tangle app.R
+  insurance_data <- read.csv("./insurance.csv")
+
+  generating_func <- function(x) {exp(x/3)}
+
+  generated_data <- randomData(
+    func=generating_func,
+    n=10000,
+    a=0,
+    b=5
+  )
+
+  generated_df <- data.frame(x=attr(generated_data, "domain_values"),
+                             y=as.numeric(generated_data))
+  str(insurance_data)
+  str(generated_df)
+    #+end_src
+
+#+RESULTS:
+#+begin_example
+'data.frame':	1338 obs. of  7 variables:
+ $ age     : int  19 18 28 33 32 31 46 37 37 60 ...
+ $ sex     : chr  "female" "male" "male" "male" ...
+ $ bmi     : num  27.9 33.8 33 22.7 28.9 25.7 33.4 27.7 29.8 25.8 ...
+ $ children: int  0 1 3 0 0 0 1 3 2 0 ...
+ $ smoker  : chr  "yes" "no" "no" "no" ...
+ $ region  : chr  "southwest" "southeast" "southeast" "northwest" ...
+ $ expenses: num  16885 1726 4449 21984 3867 ...
+'data.frame':	10000 obs. of  2 variables:
+ $ x: num  0.000123 0.000515 0.000958 0.001062 0.002858 ...
+ $ y: num  2.342 -0.545 0.915 -0.129 2.509 ...
+#+end_example
+
+
+Cleaning data
+#+begin_src R :tangle app.R
+  args(factor)
+
+  ## Dummy variables
+  reg_sex <- as.numeric(factor(insurance_data$sex))
+  str(reg_sex)
+  reg_smoker <- as.numeric(factor(insurance_data$smoker))
+  str(reg_smoker)
+
+  ## Overriding features with the dummies
+  insurance_data$sex <- reg_sex
+  insurance_data$smoker <- reg_smoker
+
+  ## Remove region
+  insurance_data$region <- NULL
+
+  str(insurance_data)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+function (x = character(), levels, labels = levels, exclude = NA, 
+    ordered = is.ordered(x), nmax = NA) 
+NULL
+ num [1:1338] 1 2 2 2 2 1 1 1 2 1 ...
+ num [1:1338] 2 1 1 1 1 1 1 1 1 1 ...
+'data.frame':	1338 obs. of  6 variables:
+ $ age     : int  19 18 28 33 32 31 46 37 37 60 ...
+ $ sex     : num  1 2 2 2 2 1 1 1 2 1 ...
+ $ bmi     : num  27.9 33.8 33 22.7 28.9 25.7 33.4 27.7 29.8 25.8 ...
+ $ children: int  0 1 3 0 0 0 1 3 2 0 ...
+ $ smoker  : num  2 1 1 1 1 1 1 1 1 1 ...
+ $ expenses: num  16885 1726 4449 21984 3867 ...
+#+end_example
+
+Data set to use
+#+begin_src R :tangle app.R
+  regression_data <- insurance_data
+#+end_src
+** UI
+*** Dashboard Header
+#+Name: header
+#+begin_src R :results none
+  dashboardHeader(
+    title="Regression Model Testing"
+  )
+#+end_src
+
+*** Dashboard Sidebar
+#+Name: sidebar
+#+begin_src R :results none
+  dashboardSidebar(
+    sidebarMenu(
+      id="tabs",
+      menuItem(text="Data", tabName="data"),
+      menuItem(text="Regression Models",
+               menuSubItem(text="Gaussian Kernel Regression", tabName="gk_reg"),
+               menuSubItem(text="LOESS", tabName="loess"),
+               menuSubItem(text="Lagrangian Regression", tabName="l_reg")),
+      menuItem(text="Model Comparison", tabName="compare", selected=TRUE)
+    )
+  )
+#+end_src
+
+*** Dashboard Body
+**** Data Tab
+#+Name: data_tab
+#+begin_src R :results none
+  tabItem(
+    tabName="data",
+    titlePanel("Data"),
+    sidebarLayout(
+      position="right",
+
+      sidebarPanel(
+        verbatimTextOutput("data.structure"),
+        verbatimTextOutput("data.raw"),
+        width=6
+      ),
+
+      mainPanel(
+        plotOutput("data.plot"),
+        width=6
+      )
+    )
+  )
+#+end_src
+
+**** Gaussian Kernel Regression Tab
+#+Name: gk_reg_tab
+#+begin_src R :results none
+  tabItem(
+    tabName="gk_reg",
+    titlePanel("Gaussian Kernel Regression"),
+    sidebarLayout(
+      sidebarPanel(
+        numericInput("gk_reg.sample_size", "Sample Size", min=1, max=nrow(regression_data),
+                     value=as.integer(nrow(regression_data)/5),
+                     step=as.integer(nrow(regression_data)/10)),
+        fluidRow(
+          column(
+            6,
+            selectizeInput("gk_reg.domain", "X-Variable", choices=names(regression_data))
+          ),
+          column(
+            6,
+            selectizeInput("gk_reg.values", "Y-Variable", choices=names(regression_data))
+          )
+        ),
+        numericInput("gk_reg.sd", "Standard Deviation of Kernel", value=1, min=0.01, step=1),
+        actionButton("gk_reg.apply", "Apply")
+      ),
+
+      mainPanel(
+        plotOutput("gk_reg.plot")
+      )
+    )
+  )
+#+end_src
+
+**** LOESS Tab
+#+Name: loess_tab
+#+begin_src R :results none
+  tabItem(
+    tabName="loess",
+    titlePanel("LOESS"),
+    sidebarLayout(
+      sidebarPanel(
+        numericInput("loess.sample_size", "Sample Size", min=1, max=nrow(regression_data),
+                     value=as.integer(nrow(regression_data)/5),
+                     step=as.integer(nrow(regression_data)/10)),
+        fluidRow(
+          column(
+            6,
+            selectizeInput("loess.domain", "X-Variable", choices=names(regression_data))
+          ),
+          column(
+            6,
+            selectizeInput("loess.values", "Y-Variable", choices=names(regression_data))
+          )
+        ),
+        numericInput("loess.span", "Span for LOESS", value=0.75, min=0.01, step=1),
+        actionButton("loess.apply", "Apply")
+      ),
+
+      mainPanel(
+        plotOutput("loess.plot")
+      )
+    )
+  )
+#+end_src
+
+**** Lagrangian Regression Tab
+#+Name: l_reg_tab
+#+begin_src R :results none
+  tabItem(
+    tabName="l_reg",
+    titlePanel("Lagrangian Regression"),
+    sidebarLayout(
+      sidebarPanel(
+        numericInput("l_reg.sample_size", "Sample Size", min=1, max=nrow(regression_data),
+                     value=as.integer(nrow(regression_data)/5),
+                     step=as.integer(nrow(regression_data)/10)),
+        fluidRow(
+          column(
+            6,
+            selectizeInput("l_reg.domain", "X-Variable", choices=names(regression_data))
+          ),
+          column(
+            6,
+            selectizeInput("l_reg.values", "Y-Variable", choices=names(regression_data))
+          )
+        ),
+        fluidRow(
+          column(
+            6,
+            numericInput("l_reg.sd", "Std. Dev. of Kernel", value=1, min=0.01, step=1)
+          ),
+          column(
+            6,
+            numericInput("l_reg.degree", "Degree of Polynomial", value=5, min=1, step=1)
+          )
+        ),
+        actionButton("l_reg.apply", "Apply")
+      ),
+
+      mainPanel(
+        plotOutput("l_reg.plot")
+      )
+    )
+  )
+#+end_src
+
+**** Model Comparison Tab
+#+Name: compare_tab
+#+begin_src R :results none
+  tabItem(
+    tabName="compare",
+    titlePanel("Regression Comparison"),
+    fluidRow(
+      column(
+        3,
+        numericInput("compare.sample_size", "Sample Size", min=1, max=nrow(regression_data),
+                     value=as.integer(nrow(regression_data)/5),
+                     step=as.integer(nrow(regression_data)/10))
+      ),
+      column(
+        3,
+        selectizeInput("compare.domain", "X-Variable", choices=names(regression_data))
+      ),
+      column(
+        3,
+        selectizeInput("compare.values", "Y-Variable", choices=names(regression_data))
+      )
+    ),
+    actionButton("compare.apply", "Apply"),
+    fluidRow(
+      column(
+        4,
+        h3("Gaussian Kernel Smoothing"),
+        plotOutput("compare.gk_plot"),
+        numericInput("compare.gk_sd", "Std. Dev.", value=1, min=0.01, step=1)
+      ),
+      column(
+        4,
+        h3("LOESS"),
+        plotOutput("compare.loess_plot"),
+        numericInput("compare.loess_span", "Span", value=0.75, min=0.01, step=1)
+      ),
+      column(
+        4,
+        h3("Lagrangian Regression"),
+        plotOutput("compare.l_plot"),
+        numericInput("compare.l_sd", "Std. Dev.", value=1, min=0.01, step=1),
+        numericInput("compare.l_degree", "Degree", value=5, min=1, step=1)
+      )
+    ),
+    fluidRow(
+      column(
+        4,
+        pre(
+          "Summary of Residuals",
+          textOutput("compare.gk_residuals"),
+          "Sum of Residuals",
+          textOutput("compare.gk_residual_sum"),
+          "Error Measures",
+          textOutput("compare.gk_error_measures")
+        )
+      ),
+      column(
+        4,
+        pre(
+          "Summary of Residuals",
+          textOutput("compare.loess_residuals"),
+          "Sum of Residuals",
+          textOutput("compare.loess_residual_sum"),
+          "Error Measures",
+          textOutput("compare.loess_error_measures")
+        )
+      ),
+      column(
+        4,
+        pre(
+          "Summary of Residuals",
+          textOutput("compare.l_residuals"),
+          "Sum of Residuals",
+          textOutput("compare.l_residual_sum"),
+          "Error Measures",
+          textOutput("compare.l_error_measures")
+        )
+      )
+    )
+  )
+#+end_src
+
+**** Body Defintion
+#+Name: body
+#+begin_src R :results none
+  dashboardBody(
+    tabItems(
+      <<data_tab>>,
+      <<gk_reg_tab>>,
+      <<l_reg_tab>>,
+      <<loess_tab>>,
+      <<compare_tab>>
+    )
+  )
+#+end_src
+
+**** UI Definition
+#+begin_src R :tangle app.R
+  ui = dashboardPage(
+    <<header>>,
+    <<sidebar>>,
+    <<body>>
+  )
+#+end_src
+
+#+RESULTS:
+
+** Server
+*** Data Function
+#+Name: data_function
+#+begin_src R :results none
+  output$data.raw <- renderPrint({ regression_data })
+  output$data.plot <- renderPlot({ plot(regression_data) }, height=600, width=600)
+  output$data.structure <- renderPrint({ str(regression_data) })
+#+end_src
+
+#+RESULTS: data_function
+: Error in output$data.raw = renderPrint({ : object 'output' not found
+: Error in output$data.plot = renderPlot({ : object 'output' not found
+
+*** Gaussian Kernel Regression Function
+#+Name: gk_reg_function
+#+begin_src R :results none
+  gk_reg.idx <- reactive({
+    sample(x=1:nrow(regression_data), size=input$gk_reg.sample_size)
+  })
+
+  reactive({
+    temp_df <- regression_data[gk_reg.idx(),]
+
+    plot(temp_df[c(input$gk_reg.domain, input$gk_reg.values)], cex=0.5)
+
+    curve(
+      gaussianKernelRegression(
+        x=x,
+        data=as.dataValues(temp_df[input$gk_reg.domain], temp_df[input$gk_reg.values]),
+        standard_deviation=input$gk_reg.sd),
+      add=TRUE, col="red"
+    )
+  }) |>
+    bindEvent(input$gk_reg.apply) -> gk_reg.plot_reactor
+
+  output$gk_reg.plot <- renderPlot(
+    gk_reg.plot_reactor(), height=600, width=600
+  )
+
+#+end_src
+
+#+RESULTS: gk_reg_function
+*** LOESS Regression
+#+begin_src R
+  args(loess)
+
+  loess(regression_data$expenses ~ regression_data$age)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+function (formula, data, weights, subset, na.action, model = FALSE, 
+    span = 0.75, enp.target, degree = 2L, parametric = FALSE, 
+    drop.square = FALSE, normalize = TRUE, family = c("gaussian", 
+        "symmetric"), method = c("loess", "model.frame"), control = loess.control(...), 
+    ...) 
+NULL
+Call:
+loess(formula = regression_data$expenses ~ regression_data$age)
+
+Number of Observations: 1338 
+Equivalent Number of Parameters: 4.27 
+Residual Standard Error: 11560
+#+end_example
+
+#+Name: loess_reg_function
+#+begin_src R :results none
+  loess.idx <- reactive({
+    sample(x=1:nrow(regression_data), size=input$loess.sample_size)
+  })
+
+  reactive({
+    temp_df <- regression_data[loess.idx(),]
+
+    plot(temp_df[c(input$loess.domain, input$loess.values)], cex=0.5)
+
+
+    loess_model <- loess(temp_df[,input$loess.values] ~ temp_df[,input$loess.domain],
+                         span=input$loess.span)
+
+    ordered_idx <- order(temp_df[,input$loess.domain])
+    lines(
+      x=temp_df[ordered_idx, input$loess.domain],
+      y=loess_model$fitted[ordered_idx],
+      col="red"
+    )
+  }) |>
+    bindEvent(input$loess.apply) -> loess.plot_reactor
+
+  output$loess.plot <- renderPlot(
+    loess.plot_reactor(), height=600, width=600
+  )
+
+#+end_src
+
+*** Lagrangian Regression Function
+#+begin_src R
+  args(lagrangianRegression)
+  args(gaussianKernelRegression)
+#+end_src
+
+#+RESULTS:
+: function (x, data, standard_deviation, degree, interval.start, 
+:     interval.end) 
+: NULL
+: function (x, data, standard_deviation) 
+: NULL
+
+#+Name: l_reg_function
+#+begin_src R :results none
+  l_reg.idx <- reactive({
+    sample(x=1:nrow(regression_data), size=input$l_reg.sample_size)
+  })
+
+  reactive({
+    temp_df <- regression_data[l_reg.idx(),]
+
+    plot(temp_df[c(input$l_reg.domain, input$l_reg.values)], cex=0.5)
+
+    curve(
+      lagrangianRegression(
+        x=x,
+        data=as.dataValues(temp_df[input$l_reg.domain], temp_df[input$l_reg.values]),
+        standard_deviation=input$l_reg.sd, degree=input$l_reg.degree),
+      add=TRUE, col="red"
+    )
+  }) |>
+    bindEvent(input$l_reg.apply) -> l_reg.plot_reactor
+
+  output$l_reg.plot <- renderPlot(
+    l_reg.plot_reactor(), height=600, width=600
+  )
+
+#+end_src
+
+*** Compare Function
+#+Name:compare_function
+#+begin_src R :results none
+
+  ## Sample Data Frame
+  compare.temp_df <- reactive({
+    idx <- sample(x=1:nrow(regression_data), size=input$compare.sample_size)
+    regression_data[idx,]
+  })
+
+  ## Gaussian Kernel Regression Plot and Data
+  reactive({
+    temp_df <- compare.temp_df()
+
+    plot(temp_df[c(input$compare.domain, input$compare.values)], cex=0.5)
+
+    execution_time <- Sys.time()
+    curve(
+      gaussianKernelRegression(
+        x=x,
+        data=as.dataValues(temp_df[input$compare.domain], temp_df[input$compare.values]),
+        standard_deviation=input$compare.gk_sd),
+      add=TRUE, col="red"
+    )
+    execution_time <- Sys.time() - execution_time
+
+    fitted <- gaussianKernelRegression(
+      x=temp_df[,input$compare.domain],
+      data=as.dataValues(temp_df[input$compare.domain], temp_df[input$compare.values]),
+      standard_deviation=input$compare.gk_sd)
+
+    residuals <- temp_df[,input$compare.values] - fitted
+    residual_summary <- summary(residuals)
+    residual_summary$Mean <- NULL
+
+    output$compare.gk_residuals <- renderPrint(
+      unlist(residual_summary) |>
+      format(digits=3) |>
+      sapply(as.numeric)
+    )
+
+    output$compare.gk_residual_sum <- renderText(sum(residuals))
+
+    error_measures <- list()
+    error_measures$MSE <- sum(residuals^2)/input$compare.sample_size
+    error_measures$RMSE <- sqrt(error_measures$MSE)
+    error_measures$MAE <- sum(abs(residuals))/input$compare.sample_size
+
+    output$compare.gk_error_measures <- renderPrint(
+      unlist(error_measures) |>
+      format(digits=3) |>
+      sapply(as.numeric)
+    )
+
+    title(main="Gaussian Kernel Regression", sub=paste("Execution Time:", execution_time))
+  }) |>
+    bindEvent(input$compare.apply) -> compare.gk_plot_reactor
+
+  output$compare.gk_plot <- renderPlot(
+    compare.gk_plot_reactor(), height=400, width=400
+  )
+
+  ## LOESS Plot and Data
+  reactive({
+    temp_df <- compare.temp_df()
+
+    plot(temp_df[c(input$compare.domain, input$compare.values)], cex=0.5)
+
+    execution_time <- Sys.time()
+    loess_model <- loess(temp_df[,input$compare.values] ~ temp_df[,input$compare.domain],
+                         span=input$compare.loess_span)
+    execution_time <- Sys.time() - execution_time
+
+    title(main="LOESS", sub=paste("Execution Time:", execution_time))
+
+    residuals <- temp_df[,input$compare.values] - loess_model$fitted
+    residual_summary <- summary(residuals)
+    residual_summary$Mean <- NULL
+
+    output$compare.loess_residuals <- renderPrint(
+      unlist(residual_summary) |>
+      format(digits=3) |>
+      sapply(as.numeric)
+    )
+
+    output$compare.loess_residual_sum <- renderText(sum(residuals))
+
+    error_measures <- list()
+    error_measures$MSE <- sum(residuals^2)/input$compare.sample_size
+    error_measures$RMSE <- sqrt(error_measures$MSE)
+    error_measures$MAE <- sum(abs(residuals))/input$compare.sample_size
+
+    output$compare.loess_error_measures <- renderPrint(
+      unlist(error_measures) |>
+      format(digits=3) |>
+      sapply(as.numeric)
+    )
+
+    ordered_idx <- order(temp_df[,input$compare.domain])
+    lines(
+      x=temp_df[ordered_idx, input$compare.domain],
+      y=loess_model$fitted[ordered_idx],
+      col="red"
+    )
+  }) |>
+    bindEvent(input$compare.apply) -> compare.loess_plot_reactor
+
+  output$compare.loess_plot <- renderPlot(
+    compare.loess_plot_reactor(), height=400, width=400
+  )
+
+  ## Lagrangian Regression Plot and Data
+  reactive({
+    temp_df <- compare.temp_df()
+
+    plot(temp_df[c(input$compare.domain, input$compare.values)], cex=0.5)
+
+    execution_time <- Sys.time()
+    curve(
+      lagrangianRegression(
+        x=x,
+        data=as.dataValues(temp_df[input$compare.domain], temp_df[input$compare.values]),
+        standard_deviation=input$compare.l_sd, degree=input$compare.l_degree),
+      add=TRUE, col="red"
+    )
+    execution_time <- Sys.time() - execution_time
+
+    fitted <- lagrangianRegression(
+      x=temp_df[,input$compare.domain],
+      data=as.dataValues(temp_df[input$compare.domain], temp_df[input$compare.values]),
+      standard_deviation=input$compare.l_sd, degree=input$compare.l_degree)
+
+    residuals <- temp_df[,input$compare.values] - fitted
+    residual_summary <- summary(residuals)
+    residual_summary$Mean <- NULL
+
+    output$compare.l_residuals <- renderPrint(
+      unlist(residual_summary) |>
+      format(digits=3) |>
+      sapply(as.numeric)
+    )
+
+    output$compare.l_residual_sum <- renderText(sum(residuals))
+
+    error_measures <- list()
+    error_measures$MSE <- sum(residuals^2)/input$compare.sample_size
+    error_measures$RMSE <- sqrt(error_measures$MSE)
+    error_measures$MAE <- sum(abs(residuals))/input$compare.sample_size
+
+    output$compare.l_error_measures <- renderPrint(
+      unlist(error_measures) |>
+      format(digits=3) |>
+      sapply(as.numeric)
+    )
+
+    title(main="Lagrangian Regression", sub=paste("Execution Time:", execution_time))
+  }) |>
+    bindEvent(input$compare.apply) -> compare.l_plot_reactor
+
+  output$compare.l_plot <- renderPlot(
+    compare.l_plot_reactor(), height=400, width=400
+  )
+
+
+#+end_src
+
+*** Server Definition
+#+begin_src R :tangle app.R
+  server = function(input, output) {
+    <<data_function>>
+    <<gk_reg_function>>
+    <<loess_reg_function>>
+    <<l_reg_function>>
+    <<compare_function>>
+    onSessionEnded(function() { stopApp() })
+  }
+#+end_src
+
+#+RESULTS:
+** App call
+Execute ~runApp()~ to run the app from the console
+
+#+begin_src R :tangle app.R
+  shinyApp(ui=ui, server=server)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+Listening on http://127.0.0.1:4589
+Warning: Error in [.data.frame: undefined columns selected
+  219: [37mstop[39m
+  218: [37m[.data.frame[39m
+  215: [34m[1meventReactiveValueFunc [#88][22m[39m
+  213: [37mvalueFunc[39m
+  200: [37mfunc[39m
+  198: [37mf[39m
+  197: [37mReduce[39m
+  188: [37mdo[39m
+  187: [37mhybrid_chain[39m
+  186: [37m<reactive>[39m
+  185: [37m.func[39m
+  182: [37mcontextFunc[39m
+  181: [37menv$runWith[39m
+  174: [37mctx$run[39m
+  173: [37mself$.updateValue[39m
+  171: [37mcompare.gk_plot_reactor[39m
+  170: [37mrenderPlot[39m
+  168: [37mfunc[39m
+  128: [37mdrawPlot[39m
+  114: [37m<reactive:plotObj>[39m
+   98: [37mdrawReactive[39m
+   85: [37mrenderFunc[39m
+   84: [37moutput$compare.gk_plot[39m
+    3: [37mrunApp[39m
+    2: [37mprint.shiny.appobj[39m
+    1: [37m<Anonymous>[39m
+Warning: Error in [.data.frame: undefined columns selected
+  219: [37mstop[39m
+  218: [37m[.data.frame[39m
+  215: [34m[1meventReactiveValueFunc [#140][22m[39m
+  213: [37mvalueFunc[39m
+  200: [37mfunc[39m
+  198: [37mf[39m
+  197: [37mReduce[39m
+  188: [37mdo[39m
+  187: [37mhybrid_chain[39m
+  186: [37m<reactive>[39m
+  185: [37m.func[39m
+  182: [37mcontextFunc[39m
+  181: [37menv$runWith[39m
+  174: [37mctx$run[39m
+  173: [37mself$.updateValue[39m
+  171: [37mcompare.loess_plot_reactor[39m
+  170: [37mrenderPlot[39m
+  168: [37mfunc[39m
+  128: [37mdrawPlot[39m
+  114: [37m<reactive:plotObj>[39m
+   98: [37mdrawReactive[39m
+   85: [37mrenderFunc[39m
+   84: [37moutput$compare.loess_plot[39m
+    3: [37mrunApp[39m
+    2: [37mprint.shiny.appobj[39m
+    1: [37m<Anonymous>[39m
+Warning: Error in [.data.frame: undefined columns selected
+  219: [37mstop[39m
+  218: [37m[.data.frame[39m
+  215: [34m[1meventReactiveValueFunc [#189][22m[39m
+  213: [37mvalueFunc[39m
+  200: [37mfunc[39m
+  198: [37mf[39m
+  197: [37mReduce[39m
+  188: [37mdo[39m
+  187: [37mhybrid_chain[39m
+  186: [37m<reactive>[39m
+  185: [37m.func[39m
+  182: [37mcontextFunc[39m
+  181: [37menv$runWith[39m
+  174: [37mctx$run[39m
+  173: [37mself$.updateValue[39m
+  171: [37mcompare.l_plot_reactor[39m
+  170: [37mrenderPlot[39m
+  168: [37mfunc[39m
+  128: [37mdrawPlot[39m
+  114: [37m<reactive:plotObj>[39m
+   98: [37mdrawReactive[39m
+   85: [37mrenderFunc[39m
+   84: [37moutput$compare.l_plot[39m
+    3: [37mrunApp[39m
+    2: [37mprint.shiny.appobj[39m
+    1: [37m<Anonymous>[39m
+#+end_example
+* Misc. Code
+#+begin_src R
+  args(lagrangianInterpolation)
+  args(chebyshevPointDomain)
+#+end_src
+
+#+RESULTS:
+: function (x, values, func, degree = 100, interval.start = -1, 
+:     interval.end = 1, weights) 
+: NULL
+: function (n, index, a = -1, b = 1) 
+: NULL
+
+#+begin_src R :results graphics file :file ./hunge_chebyshev.png
+  domain <- chebyshevPointDomain(n=11, a=0, b=10)
+
+  foo_func <- function(x) {
+    ifelse(
+      test= x > 4.9 & x < 5.1,
+      yes=5,
+      no=1
+    )
+  }
+
+  values <- foo_func(domain)
+
+  plot(domain,values, ylim=c(-2,7))
+  curve(
+    lagrangianInterpolation(x=x, values=as.dataValues(domain,values),
+                            interval.start=0, interval.end=10),
+    add=TRUE
+  )
+  title("Hunge Effect w/ Chebyshev Points")
+#+end_src
+
+#+RESULTS:
+[[file:./hunge_chebyshev.png]]
+
+#+begin_src R :results graphics file :file ./hunge_equidistant.png
+  domain <- 0:10
+
+  foo_func <- function(x) {
+    ifelse(
+      test= x > 4.9 & x < 5.1,
+      yes=5,
+      no=1
+    )
+  }
+
+  values <- foo_func(domain)
+
+  weights <- sapply(0:10, function(x) {
+    ((-1)^x) * choose(11, x)
+  })
+
+  attr(weights, "class") <- "weights"
+  attr(weights, "point_distribution") <- 0:10
+
+  plot(domain,values, ylim=c(-7,47))
+  curve(
+    lagrangianInterpolation(x=x, values=as.dataValues(domain,values),
+                            interval.start=0, interval.end=10, weights=weights),
+    add=TRUE
+  )
+  title("Hunge Effect w/ Equidistant Points")
+#+end_src
+
+#+RESULTS:
+[[file:./hunge_equidistant.png]]
+
+#+begin_src R :results graphics file :file ./no_hunge.png
+  domain <- 0:10
+
+  values <- rep(3, 11)
+
+  weights <- sapply(0:10, function(x) {
+    ((-1)^x) * choose(11, x)
+  })
+
+  attr(weights, "class") <- "weights"
+  attr(weights, "point_distribution") <- 0:10
+
+  plot(domain,values, ylim=c(0,6))
+  curve(
+    lagrangianInterpolation(x=x, values=as.dataValues(domain,values),
+                            interval.start=0, interval.end=10, weights=weights),
+    add=TRUE
+  )
+  title("No Hunge Effect")
+#+end_src
+
+#+RESULTS:
+[[file:./no_hunge.png]]

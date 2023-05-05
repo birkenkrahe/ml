@@ -1,0 +1,233 @@
+#+Title: An Exploration of the Use of the Lagrangian Polynomial for Regression - Presentation
+#+Author: Jacob Wolfrom (pledged)
+#+Subtitle: Machine Learning
+#+property: header-args:R :session model :results output :noweb yes
+
+* Interpolation vs. Regression
+Interpolation and regression methods are different ways of
+approximating a function or trend given a set of data points, but they
+have a couple of key differences that makes their use cases entirely
+distinct.
+
+Interpolation assumes that the values given are exact values of a
+function. The error in interpolation methods can often be precisely
+bounded and is a direct result of the method used, not the data.
+
+Regression assumes that the data given are inherently random. The
+error calculation for regression methods is much more nuanced than
+that of interpolation.
+
+Attempting to use regression to interpolate function values will
+introduce unneccessary error, and attempting to use interpolation to
+find trends in data will lead to aggressive overfitting. Because of
+this, regression and interpolation are not interchangable and are
+typically left to their respective fields of study.
+
+The goal of this project is to see if there is any use case for
+interpolation methods for finding trends in data.
+* Parametric vs. Non-Parametric Regression
+There are two primary categories of regression models: parametric and
+non-parametric methods.
+
+Parametric regression methods make an assumption that the data follows
+some predetermined structure. These are the kinds of methods we
+learned about in class such as linear and logistic regression.
+
+Non-parametric regression methods make no assumptions about the
+structure of the data. A couple of methods of this kind are LOESS
+which we have seen before, but not covered in detail, and Kernel
+Smoothing.
+
+Of the two, parametric methods are significantly faster due to the
+fact that the assumptions about the underlying funciton made allow for
+more simple algorithms to be performed.
+
+* Barycentric Lagrangian Interpolation
+Lagrangian Interpolation is a formula that generates the unique
+polynomial that passes through $n$ points. The polynomial, $p(x)$, is of
+a degree less than $n$ (typically $n-1$). The equations for Lagrangian
+Interpolation of $n$ points of the form $(x_{i},f_{i})$, are as follows:
+
+\begin{equation}
+   p(x) = \sum_{i=0}^n f_{i} l_{i}(x)
+\end{equation}
+\begin{equation}
+   l_{i}(x) = \prod_{i=0,i \neq j}^n \frac{x - x_j}{x_i - x_j}
+\end{equation}
+
+It can be easily seen that this algorithm is has a time complexity of
+$O(n^2)$. Due to the way the equations are written, both of the
+iterative processes involved are dependent on $x$, so they must be
+reevaluated completely for each $x$ value.
+
+This method can be improved by using the barycentric form of the
+algorithm in which the equations are written in the form of a weighted
+average.
+
+\begin{equation}
+   l(x) = \prod_{i=0}^n x-x_i
+\end{equation}
+\begin{equation}
+   w_{i} = \prod_{i=0,i \neq j}^n \frac{1}{x_i - x_j}
+\end{equation}
+\begin{equation}
+   p(x) = l(x) \sum_{i=0}^n \frac{w_i}{x-x_i}f_i
+\end{equation}
+
+Due to the fact that the weights, $w_{i}$, are no longer dependent on
+$x$, the evaluation time of $p(x)$ beyond the initial calculation is
+now $O(n)$.
+
+The equation can be further simplified by dividing the prior equation
+by the interpolation for 1.
+
+\begin{equation}
+   p(x) = \frac{ \sum_{i=0}^n \frac{w_i}{x-x_i}f_i }{ \sum_{i=0}^n \frac{w_i}{x-x_i} }
+\end{equation}
+
+* Chebyshev Distribution of Points
+One of the main problems for Lagrangian Interpolation is a phenomenon
+known as the Hunge Effect. This phenomenom is marked by oscillations
+between each point used in the interpolation, creating wildly
+inaccurate approximations.
+
+[[./no_hunge.png]]
+[[./hunge_equidistant.png]]
+
+This can be mitigated by using a Chebyshev distribution of points as
+opposed to an equidistant distribution (Other usable distributions
+exist, but this was the easiest to implement). A Chebyshev
+distribution of points can be calculated by spacing points equidistant
+on the unit hemisphere and projecting the points to a line. Utilizing
+the Chebyshev points is simple as there is a simple equation for both
+the domain values as well as the weights for the purposes of
+Barycentric Lagrangian Interpolation.
+
+[[./hunge_chebyshev.png]]
+* Gaussian Kernel Smoothing
+Kernel Smoothing is a parametric regression method in which the
+approximation of the trend line is a function of the weighted average
+with kernel functions.
+
+For this method, the kernel function acts as the weight for the
+weighted average calculation. You may note that the equation for this
+method is incredibly similar to that of Barycentric Lagrangian
+Interpolation. This is because they are both weighted average
+calculations. The main difference in these methods is that they use
+drastically different weights. The approximation function,
+$\hat{f}_{h}(x)$, using a kernel, $K(x,x_i)$, on data points
+$(x_i,y_i)$ is given by the following formula:
+
+\begin{equation}
+   \hat{f}_{h}(x) = \frac{\sum_{i=1}^n K(x,x_i)y_i}{ \sum_{i=1}^n K(x,x_i)}
+\end{equation}
+
+Kernel functions are a specific family of functions that obey a
+specific set of rules that is beyond the scope of this project. In
+this case I will be utilizing a Gaussion Kernel, hence Gaussian Kernel
+Smoothing. The Gaussian Kernel of standard deviation \sigma can be
+written as follows:
+
+\begin{equation}
+   K(x,x_i) = e^{ -(\frac{x-x_i}{2\sigma})^2 }
+\end{equation}
+
+Due to the fact that this algorithm must take into account the
+entirety of the sample data to predict a single point, it is
+incredibly slow when calculated trend lines. In fact, when I tried to
+implement it on a training set of only 1000 data points, it couldn't
+complete the task before my laptop went to sleep and interrupted the R
+session. My fix for this method is to only approximate the data at
+specific points along a Chebyshev Distribution and then use those
+values to interpolate the trend line using Barycentric Lagrangian
+Regression.
+* LOESS
+LOESS (Locally Estimated Scatterplot Smoothing) is a modification of
+Kernel Smoothing. Instead of using every point in the training data to
+approximate a point, LOESS applies a kernel to the closest $k$ points
+to the specific input. Typically, the Euclidean distance to these
+points is normalized and then input into a Tri-cube kernel function to
+approximate the value of the data at a specific point.
+
+This method is primarily being used in order to compare my results
+with an already existing and well used algorithm that uses similar
+design principles to Kernel Smoothing.
+* Results
+In my experimentation, this simple application of the interpolation
+was able to speed up the Gaussian Kernel Smoothing by an order of
+magnitude without any significant loss of accuracy.
+
+I made an interactive dashbaord using ~shiny~ in order to perform my
+experimentation.
+
+#+begin_src R :results none
+  library(shiny)
+  ## runApp()
+#+end_src
+
+* Limitations
+My primary limitation in this project was my lack of knowledge about
+regression methods. There were many points in this project's
+devvelopement where I learned something that would require me to
+essentially restart the project in order to implement, or it would
+simply require immense effort and time investment.
+
+Another limitation was my lack of familiarity with certain functions
+in R such as the formula operator, ~. A large amount of time was
+wasted trying to find work-arounds and debugging/optimizing
+inefficient code that would have been better spent on researching and
+testing my methods and results in greater detail.
+
+* Conclusion
+Overall, I am happy with my results. I set out to use Lagrangian
+Interpolation to compliment some regression method in a beneficial
+way, and I managed to provably achieve this goal. I was able to
+decrease the amount of time required to perform Gaussian Kernel
+Regression by an order of magnitude without sacrificing the accuracy
+of the model.
+
+The primary aspect that I would have done differnetly is to use the
+existing R infrastructure such as the formula operator in order to be
+able to better generalize my regression method to multiple different
+features and to improve practical use. This would have allowed me to
+test the methods on many more datasets to create more accurate
+results, and allow me to more easily integrate this interpolation
+boost to other regression methods much easier.
+* References
+** Sources
+1. Article is from a scholarly journal, Siam Review
+   Berrut, J. P., & Trefethen, L. N. (2004). Barycentric lagrange
+   interpolation. SIAM review, 46(3), 501-517.
+
+Link to digital version of the article [[https://epubs.siam.org/doi/epdf/10.1137/S0036144502417715][here]]
+
+
+2. Blog post from Towards Data Science
+   Polzer, D. (2021, June 20). 7 of the Most Used Regression Algorithms and How to Choose the Right One. Medium. https://towardsdatascience.com/kernel-regression-made-easy-to-understand-86caf2d2b844
+
+
+3. Paper from online archive, arXiv
+   Mahmoud, H. F. (2019). Parametric versus semi and nonparametric regression models. arXiv preprint arXiv:1906.10221.
+
+Link to digital version of the article [[https://arxiv.org/pdf/1906.10221.pdf#:~:text=The%20most%20common%20functional%20form,finite%20number%20of%20parameters%2C%20%CE%B2.][here]]
+
+
+4. Blog post Towards Data Science
+   Pramanik, N. (2019, September 27). Kernel Regression — With example and code. Medium. https://towardsdatascience.com/kernel-regression-made-easy-to-understand-86caf2d2b844
+
+5. Blog Post by Chris McCormick
+   McCormick, C. (2014, February 26). Kernel Regression. Chris
+   McCormick. Retrieved April 20, 2023, from https://mccormickml.com/2014/02/26/kernel-regression/#:~:text=Gaussian%20Kernel%20Regression%20is%20a,line%20to%20a%20scatter%20plot
+
+** Software
+R 4.1.2 [Computer software]. (2021). Retrieved from
+https://www.R-project.org/R
+
+
+R 4.2.2 [Computer software]. (2021). Retrieved from
+https://www.R-project.org/R
+
+
+GNU Emacs 27.2 [Computer software]. (2021). Retrieved from
+https://ftp.gnu.org/gnu/emacs/windows/
+
